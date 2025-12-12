@@ -1,0 +1,56 @@
+---
+title: Time-lapse camera observations enable fine-grained detection and prediction of alpine vegetation change under earlier snowmelt
+authors:
+  - name: Ryotaro Okamoto
+    affiliation: Biodiversity Division, National Institute for Environmental Studies
+    location: 16-2 Onogawa, Tsukuba, Ibaraki 305-8506 Japan
+    email: okamoto.ryotaro@nies.go.jp
+  - name: Hiroyuki Oguma
+    affiliation: Biodiversity Division, National Institute for Environmental Studies
+    location: 16-2 Onogawa, Tsukuba, Ibaraki 305-8506 Japan
+    email: oguma@nies.go.jp
+  - name: Reiko Ide
+    affiliation: Earth System Division, National Institute for Environmental Studies
+    location: 16-2 Onogawa, Tsukuba, Ibaraki 305-8506 Japan
+    email: ide.reiko@nies.go.jp
+abstract: |
+  Alpine ecosystems are highly vulnerable to climate change, yet tools for detecting and predicting fine‑scale vegetation change remain limited. In the northern Japanese Alps, dwarf bamboo (*Sasa* spp.) is expanding rapidly and threatens alpine plant diversity. Here, we integrated ground‑based time‑lapse cameras with habitat suitability models (HSMs) to quantify past and future *Sasa* expansion at 1 m spatial resolution. Using time‑lapse images collected from 2012 to 2021, we generated automated vegetation classification maps and estimated pixel‑level snowmelt timing. Comparison between 2012 and 2021 showed a 48% increase in *Sasa* cover. On average, snowmelt timing advanced by 8.6 days over the past decade. Variable‑importance analysis of HSMs identified distance from the prior *Sasa* distribution and the snowmelt day of year (DOY) as the strongest predictors. Under continued advancement of snowmelt, projections indicate further *Sasa* expansion by 2030. This study demonstrates that high‑frequency, high‑resolution time‑lapse imagery combined with HSMs can predict vegetation change with fine spatial detail. The framework offers actionable guidance for conservation, including prioritizing areas for *Sasa* cutting and selecting monitoring sites. The approach is generalizable to other invasive species, providing a scalable tool to assess climate impacts and inform biodiversity conservation in vulnerable alpine ecosystems.
+
+keywords:
+  - alpine vegetation
+  - habitat suitability modeling
+  - climate change
+date: last-modified
+bibliography: export.bib
+format:
+  elsevier-pdf:
+    keep-tex: true
+    journal:
+      name: Remote Sensing in Ecology and Conservation
+      formatting: preprint
+      # model: 3p # Don't set a model with preprint
+      cite-style: authoryear
+    include-in-header: 
+      text: |
+        \newpageafter{abstract}
+    header-includes:
+      - \usepackage{lineno}
+      - \linenumbers
+---
+
+{{< include intro.qmd >}}
+{{< include matmet.qmd >}}
+{{< include results.qmd >}}
+
+\clearpage
+
+{{< include discussion.qmd >}}
+{{< include conclusion.qmd >}}
+
+\clearpage
+
+{{< include supplement.qmd >}}
+
+\clearpage
+
+# References

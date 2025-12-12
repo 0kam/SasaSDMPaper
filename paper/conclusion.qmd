@@ -1,0 +1,8 @@
+# Conclusion
+
+This study demonstrated the effectiveness of integrating time-lapse cameras with habitat suitability models (HSMs) to detect and predict changes in vegetation distribution at 1 m resolution. Focusing on the expansion of *Sasa* in the northern Japanese Alps, we quantified its distributional changes over the past nine years and identified earlier snowmelt as a major driver of its spread. Furthermore, our projections indicate that *Sasa* expansion is likely to continue in the coming decades.
+
+The expansion of *Sasa* poses a serious threat to alpine plant diversity, and the framework developed here provides direct applications for conservation planning. Predictions at 1 m resolution offer practical guidance for selecting monitoring sites and prioritizing areas for *Sasa* removal, enabling more efficient allocation of conservation resources. Beyond *Sasa*, this approach can be extended to other invasive species, as well as to plant communities highly sensitive to climate change, demonstrating broad potential for use in alpine regions and other vulnerable ecosystems worldwide.
+
+In summary, this study highlights the power of combining high-frequency time-lapse observations with HSM-based modeling to advance the understanding and prediction of vegetation dynamics. This integrated framework refines climate impact assessment in alpine ecosystems and supports the development of practical, conservation-oriented ecology.
+

@@ -1,9 +1,0 @@
-project:
-  title: "SasaPaper"
-
-editor: source
-
-format:
-  pdf: default
-  elsevier-pdf:
-    keep-tex: true

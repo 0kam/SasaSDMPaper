@@ -151,12 +151,12 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-\journal{Remote Sensing in Ecology and Conservation}
+\journal{Diversity and Distributions}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Time-lapse camera observations enable fine-grained detection and prediction of alpine vegetation change under earlier snowmelt},
+  pdftitle={Snowmelt-driven shifts of a range-expanding plant in alpine ecosystems revealed by ground-based time-lapse cameras},
   pdfkeywords={alpine vegetation, habitat suitability modeling, climate
 change},
   colorlinks=true,
@@ -171,55 +171,12 @@ change},
 \begin{document}
 
 \begin{frontmatter}
-\title{Time-lapse camera observations enable fine-grained detection and
-prediction of alpine vegetation change under earlier snowmelt}
-\author[1]{Ryotaro Okamoto%
-%
-}
- \ead{okamoto.ryotaro@nies.go.jp} 
-\author[1]{Hiroyuki Oguma%
-%
-}
- \ead{oguma@nies.go.jp} 
-\author[2]{Reiko Ide%
-%
-}
- \ead{ide.reiko@nies.go.jp} 
+\title{Snowmelt-driven shifts of a range-expanding plant in alpine
+ecosystems revealed by ground-based time-lapse cameras}
 
-\affiliation[1]{organization={Biodiversity Division, National Institute
-for Environmental Studies},,postcodesep={}}
-\affiliation[2]{organization={Earth System Division, National Institute
-for Environmental Studies},,postcodesep={}}
 
 \cortext[cor1]{Corresponding author}
-
-
-
         
-\begin{abstract}
-Alpine ecosystems are highly vulnerable to climate change, yet tools for
-detecting and predicting fine‑scale vegetation change remain limited. In
-the northern Japanese Alps, dwarf bamboo (\emph{Sasa} spp.) is expanding
-rapidly and threatens alpine plant diversity. Here, we integrated
-ground‑based time‑lapse cameras with habitat suitability models (HSMs)
-to quantify past and future \emph{Sasa} expansion at 1 m spatial
-resolution. Using time‑lapse images collected from 2012 to 2021, we
-generated automated vegetation classification maps and estimated
-pixel‑level snowmelt timing. Comparison between 2012 and 2021 showed a
-48\% increase in \emph{Sasa} cover. On average, snowmelt timing advanced
-by 8.6 days over the past decade. Variable‑importance analysis of HSMs
-identified distance from the prior \emph{Sasa} distribution and the
-snowmelt day of year (DOY) as the strongest predictors. Under continued
-advancement of snowmelt, projections indicate further \emph{Sasa}
-expansion by 2030. This study demonstrates that high‑frequency,
-high‑resolution time‑lapse imagery combined with HSMs can predict
-vegetation change with fine spatial detail. The framework offers
-actionable guidance for conservation, including prioritizing areas for
-\emph{Sasa} cutting and selecting monitoring sites. The approach is
-generalizable to other invasive species, providing a scalable tool to
-assess climate impacts and inform biodiversity conservation in
-vulnerable alpine ecosystems.
-\end{abstract}
 
 
 
@@ -232,85 +189,156 @@ vulnerable alpine ecosystems.
 \end{frontmatter}
     
 
+\section*{Abstract}\label{abstract}
+\addcontentsline{toc}{section}{Abstract}
+
+\subsection*{Aim}\label{aim}
+\addcontentsline{toc}{subsection}{Aim}
+
+Climate change is reorganizing alpine vegetation worldwide. However, the
+processes linking snow dynamics to fine-scale vegetation redistribution
+remain poorly quantified. We ask whether spatial variation in snowmelt
+timing can explain and predict the expansion of competitively dominant
+plants in alpine landscapes.
+
+\subsection*{Location}\label{location}
+\addcontentsline{toc}{subsection}{Location}
+
+Northern Japanese Alps.
+
+\subsection*{Methods}\label{methods}
+\addcontentsline{toc}{subsection}{Methods}
+
+We combined ground-based time-lapse camera observations with habitat
+suitability models (HSMs) to reconstruct past and project future
+distributions of dwarf bamboo (\emph{Sasa} spp.) at 1-meter spatial
+resolution. Time-lapse images collected from 2012 to 2021 were used to
+generate automated vegetation maps and pixel-level estimates of snowmelt
+timing. These variables were incorporated as predictors in the models.
+
+\subsection*{Results}\label{results}
+\addcontentsline{toc}{subsection}{Results}
+
+Between 2012 and 2021, \emph{Sasa} cover increased by 48\%. Over the
+same period, snowmelt timing advanced by an average of 8.6 days per
+decade. Variable-importance analyses identified snowmelt day of year
+(DOY) and distance from the prior \emph{Sasa} distribution as the
+strongest determinants of current patterns. This indicates that both
+climatic forcing and dispersal constraints shape distributional change.
+Scenario-based projections under continued snowmelt advance suggested
+further expansion of \emph{Sasa} by 2030.
+
+\subsection*{Main conclusions}\label{main-conclusions}
+\addcontentsline{toc}{subsection}{Main conclusions}
+
+Our results demonstrate that snowmelt timing is a key biogeographic
+driver structuring the spatial redistribution of dominant alpine plants.
+They also show that fine-scale snow--vegetation relationships can be
+quantified and projected using ground-based observations. By linking
+climate-driven processes to vegetation patterns at meter resolution,
+this study advances understanding of how alpine plant distributions
+respond to changing cryospheric conditions. The approach provides a
+transferable basis for assessing climate-induced vegetation
+reorganization in snow-dominated ecosystems, with direct relevance for
+conservation planning.
+
 \section{Introduction}\label{introduction}
 
 Alpine ecosystems are among the most vulnerable to climate change
-(\citet{IPCCSR2019HM}). Numerous studies have documented vegetation
-shifts in these environments (\citet{Gottfried2012NatClimChange}),
-including changes in timberline positions and alpine vegetation
-distributions. These shifts vary across regions, driven by complex
-interactions between geological and biological factors
-(\citet{Grabherr2010GeoComp}, \citet{Klanderud2005JEcol}).
+(\citet{IPCCSR2019HM}). Across mountain regions worldwide,
+climate-driven shifts in vegetation have been documented
+(\citet{Gottfried2012NatClimChange}), including changes in timberline
+positions and the spatial reorganization of alpine plant communities.
+Such shifts reflect biogeographic responses to environmental gradients
+and vary regionally depending on geological context, species
+interactions, and disturbance regimes (\citet{Grabherr2010GeoComp},
+\citet{Klanderud2005JEcol}).
 
-A major driver of vegetation change is the presence of competitively
-dominant species, which can accelerate community shifts by outcompeting
-other plants. For instance, grass communities in snowbeds
-(\citet{Grabherr2003book}) and shrub communities in alpine grasslands
-(\citet{Dullinger2003AAA}) strongly influence surrounding species. In
-Japanese alpine ecosystems, dwarf bamboo (\emph{Sasa} spp., hereafter
-\emph{Sasa}) exemplifies such dominance, expanding vigorously and often
-excluding rare alpine plants. \citet{Kudo2011EcoEvo} demonstrated that
-earlier snowmelt associated with climate change promotes \emph{Sasa}
-invasion into snowbed communities, reducing plant species richness by
-75\%. Conversely, vegetation recovery following \emph{Sasa} removal has
-been documented (\citet{Kudo2017AlpBot}), emphasizing the importance of
-high-resolution monitoring and predictive modeling of \emph{Sasa}
-expansion for conservation management.
+A key mechanism underlying these biogeographic shifts is the emergence
+or expansion of competitively dominant species, which can rapidly
+reorganize community composition by excluding subordinate taxa. For
+example, grass-dominated snowbed communities (\citet{Grabherr2003book})
+and shrub encroachment into alpine grasslands (\citet{Dullinger2003AAA})
+illustrate how dominance hierarchies mediate vegetation change across
+alpine landscapes. In Japanese alpine ecosystems, dwarf bamboo
+(\emph{Sasa} spp., hereafter \emph{Sasa}) represents a pronounced
+example of such dominance. Earlier snowmelt associated with climate
+change promotes \emph{Sasa} invasion into snowbed communities, resulting
+in substantial reductions in plant species richness
+(\citet{Kudo2011EcoEvo}). Conversely, vegetation recovery following
+\emph{Sasa} removal has been documented (\citet{Kudo2017AlpBot}),
+highlighting the importance of understanding how climate-driven
+processes regulate the spatial dynamics of dominant alpine plants for
+conservation.
 
-Because alpine regions are remote and topographically rugged,
-traditional vegetation surveys are often costly and logistically
-demanding. Moreover, frequent cloud cover and the complex, mosaic-like
-structure of alpine vegetation make satellite-based observations
-particularly challenging. To address these challenges, we previously
-developed a method for generating high-resolution vegetation
-classification maps using ground-based time-lapse cameras
-(\citet{Okamoto2024RSEC}). This method utilizes temporal changes in
-vegetation color captured by time-lapse imagery for classification and
-applies precise georectification to align ground-based photographs
-spatially.
+Despite their importance, fine-scale biogeographic processes in alpine
+ecosystems remain difficult to quantify. Alpine regions are remote and
+topographically rugged, making traditional vegetation surveys costly and
+logistically demanding. Satellite-based observations are also limited by
+frequent cloud cover and the fine-grained, mosaic structure of alpine
+vegetation. These constraints hinder our ability to link environmental
+drivers, such as snowmelt timing, to observed vegetation patterns at
+ecologically meaningful scales.
 
-In this study, we applied this method to quantify \emph{Sasa} expansion
-into alpine meadows on the western slope of Mt. Tateyama in the northern
-Japanese Alps. In the nearby Murodo-daira plateau, \emph{Sasa} species
-(\emph{Sasa kurilensis}, \emph{Sasa spiculosa}, \emph{Sasa senanensis},
-and \emph{Sasa palmata}) expanded by 44--260\% between 1977 and 2015
-(\citet{Yoshida2016SasaTateyama}). However, prior studies relied on
+To address these challenges, a method for generating high-resolution
+vegetation classification maps using ground-based time-lapse cameras has
+been developed (\citet{Okamoto2024RSEC}). This approach exploits
+temporal changes in vegetation colour captured by fixed cameras and
+applies precise georectification to align ground-based imagery
+spatially. By combining high temporal frequency with fine spatial
+resolution, time-lapse cameras provide an opportunity to quantify
+climate-driven biogeographic processes that are difficult to observe
+using conventional approaches.
+
+Here, we apply this framework to a Japanese alpine system as a model
+case to examine snowmelt-driven vegetation dynamics. Specifically, we
+quantified \emph{Sasa} expansion into alpine meadows on the western
+slope of Mt. Tateyama in the northern Japanese Alps. In the nearby
+Murodo-daira plateau, \emph{Sasa} species (\emph{Sasa kurilensis},
+\emph{Sasa spiculosa}, \emph{Sasa senanensis}, and \emph{Sasa palmata})
+expanded by 44--260\% between 1977 and 2015
+(\citet{Yoshida2016SasaTateyama}). Previous studies relied primarily on
 field surveys or manual interpretation of aerial photographs, limiting
-their spatial coverage. By leveraging automated processing of time-lapse
-imagery, we produced a large-scale, high-resolution distribution map of
-\emph{Sasa} across the study area.
+spatial resolution and temporal continuity. By contrast, automated
+processing of time-lapse imagery enabled us to generate large-scale,
+high-resolution maps of \emph{Sasa} distribution across the study area.
 
-A key advantage of time-lapse cameras is their capacity to capture
-frequent, high-resolution records of snowmelt timing---an essential
-driver of alpine vegetation dynamics. Leveraging this capability, we
-modeled \emph{Sasa} distributions derived from time-lapse imagery using
-environmental variables such as snowmelt timing and topographic factors.
-We then predicted expansion patterns under scenarios of earlier
-snowmelt. Habitat suitability models (HSMs)---statistical frameworks
-that relate species occurrence to environmental variables---are widely
-used to elucidate habitat preferences (\citet{Guisan1998JVS}), guide
-conservation planning (\citet{Larson2004EcolModel}, \citet{Xue2021GEC}),
-forecast the spread of invasive species (\citet{Gallien2010DD},
-\citet{Gallien2012GEB}), and assess range shifts or extinction risks
-under climate change (\citet{Thomas2004Nature}, \citet{Bakkenes2002GCB},
+A particular advantage of time-lapse cameras is their capacity to
+capture frequent, site-specific records of snowmelt timing, a
+fundamental driver of alpine vegetation dynamics. Leveraging this
+capability, we modelled \emph{Sasa} distributions derived from
+time-lapse imagery using environmental variables such as snowmelt timing
+and topographic factors, and predicted distributional shifts under
+scenarios of earlier snowmelt. Habitat suitability models
+(HSMs)---statistical frameworks relating species occurrence to
+environmental conditions---are widely used to elucidate habitat
+preferences (\citet{Guisan1998JVS}), inform conservation planning
+(\citet{Larson2004EcolModel}, \citet{Xue2021GEC}), forecast biological
+invasions (\citet{Gallien2010DD}, \citet{Gallien2012GEB}), and assess
+range shifts and extinction risks under climate change
+(\citet{Thomas2004Nature}, \citet{Bakkenes2002GCB},
 \citet{Amagai2022AVS}).
 
-We constructed HSMs using observed \emph{Sasa} distribution and its
-changes to address two primary questions: (1) whether snowmelt timing
-serves as a critical determinant of \emph{Sasa} distribution on Mt.
-Tateyama, and (2) how \emph{Sasa} distribution may shift under future
-conditions of earlier snowmelt. High-resolution predictions of
-\emph{Sasa} expansion can substantially support conservation practices
-by identifying priority areas for \emph{Sasa} removal and improving
-long-term monitoring strategies.
-
-This study provides the first demonstration of detecting and predicting
-vegetation distribution changes using ground-based time-lapse imagery.
-Our results demonstrate that time-lapse cameras, with their high
-temporal frequency and spatial resolution, offer a powerful means for
-understanding and forecasting vegetation dynamics in alpine ecosystems.
+Using HSMs constructed from observed \emph{Sasa} distributions and their
+temporal changes, we addressed two primary questions: (1) whether
+snowmelt timing acts as a critical determinant of dominant plant
+distributions in alpine landscapes, and (2) how such distributions may
+shift under future conditions of earlier snowmelt. By linking
+high-resolution observations with predictive modelling, this study
+demonstrates how ground-based time-lapse imagery can be used to detect
+and forecast climate-driven vegetation redistribution, with implications
+for conservation monitoring and management in alpine ecosystems.
 
 \section{Materials and Methods}\label{materials-and-methods}
+
+Although demonstrated in a Japanese alpine system, the workflow
+presented here is applicable to any snow-dominated ecosystem monitored
+by fixed ground-based cameras, including existing alpine webcam networks
+such as those established in the Swiss Alps
+(\citet{Portenier2020Cryosphere}). The approach is designed as a
+biogeographic inference pipeline that links climate-driven processes,
+represented by snowmelt timing, to vegetation patterns and their
+redistribution under environmental change.
 
 Figure~\ref{fig-overview} presents an overview of the workflow. Using
 time-lapse imagery from the northern Japanese Alps, we quantified
@@ -480,11 +508,11 @@ corresponding to an advance of 8.6 days per decade. For future
 projections, we extended the same regressions to estimate snowmelt DOYs
 for 2030 at each pixel. Although some areas obscured by foreground snow
 cover had uncertain snowmelt dates, these areas showed minimal overlap
-with the Sasa distribution and thus had little impact on our analysis.
-Additional details on snowmelt timing and its prediction are provided in
-Section~\ref{sec-supp}. In the TDM, distance from the 2012 \emph{Sasa}
-distribution was included as an additional explanatory variable to
-represent dispersal limitation.
+with the \emph{Sasa} distribution and thus had little impact on our
+analysis. Additional details on snowmelt timing and its prediction are
+provided in the supplementary information. In the TDM, distance from the
+2012 \emph{Sasa} distribution was included as an additional explanatory
+variable to represent dispersal limitation.
 
 \subsubsection{Target variable}\label{target-variable}
 
@@ -597,7 +625,7 @@ purposes, we therefore defined ``risky areas'' as cells classified as
 (HS) for 2030 exceeded 0.5, and we extracted their spatial distribution
 accordingly.
 
-\section{Results}\label{results}
+\section{Results}\label{results-1}
 
 \subsection{Changes in Sasa distribution between 2012 and
 2021}\label{changes-in-sasa-distribution-between-2012-and-2021}
@@ -768,23 +796,18 @@ predicted 2030 habitat suitability (HS) greater than 0.5.}
 
 \section{Discussion}\label{discussion}
 
-In this study, we applied the method proposed in our previous work to
-quantify the expansion of \emph{Sasa} distribution in the northern
-Japanese Alps using time-lapse camera imagery. By integrating these data
-into habitat suitability models (HSMs), we successfully assessed the
-future risk of \emph{Sasa} expansion at an exceptionally high spatial
-resolution of 1 m.
+This study demonstrates how snowmelt-driven processes can be quantified
+and projected at fine spatial scales using ground-based time-lapse
+imagery integrated with habitat suitability models (HSMs). Using a
+Japanese alpine system as a model case, we assessed recent changes and
+potential future expansion of a competitively dominant plant
+(\emph{Sasa}) at an exceptionally high spatial resolution (1 m). Beyond
+documenting local vegetation change, our results highlight how snowmelt
+timing acts as a key biogeographic driver structuring alpine vegetation
+patterns and dynamics.
 
-The upward expansion of competitively dominant species such as
-\emph{Sasa} poses a serious threat to the conservation of alpine
-vegetation. The findings of this study provide a critical foundation for
-prioritizing conservation actions and designing long-term monitoring
-strategies. In the following section, we discuss the advantages of the
-proposed workflow for understanding and conserving alpine vegetation, as
-well as its methodological limitations and future applications.
-
-\subsection{\texorpdfstring{Expansion of \emph{Sasa} and its
-drivers}{Expansion of Sasa and its drivers}}\label{expansion-of-sasa-and-its-drivers}
+\subsection{Snowmelt timing as a driver of dominant plant
+expansion}\label{snowmelt-timing-as-a-driver-of-dominant-plant-expansion}
 
 Comparison of vegetation classification maps from 2012 and 2021 enabled
 us to spatially identify areas of \emph{Sasa} expansion. Incorporating
@@ -793,10 +816,10 @@ this expansion. Variable importance analyses for both the TBM and TDM
 (Figure~\ref{fig-variable-importance}) indicated that snowmelt DOY was a
 major determinant. Moreover, predictions for 2030, assuming earlier
 snowmelt than in 2021, suggested continued \emph{Sasa} expansion. These
-results indicate that earlier snowmelt has facilitated \emph{Sasa}
-expansion, consistent with previous findings (\citet{Kudo2011EcoEvo})
-that link earlier snowmelt to increased soil dryness and extended
-growing periods that favor \emph{Sasa} growth.
+results indicate that earlier snowmelt has facilitated the expansion of
+a competitively dominant plant, consistent with previous findings
+(\citet{Kudo2011EcoEvo}) linking earlier snowmelt to increased soil
+dryness and extended growing periods that favor \emph{Sasa} growth.
 
 At the same time, the TBM substantially overestimated \emph{Sasa}
 distribution in 2021. Although adding distance as an explanatory
@@ -817,47 +840,61 @@ instance, could play this role. To distinguish between these
 interpretations, the TBM should ideally be extended to include
 additional environmental predictors, although obtaining such
 comprehensive datasets remains challenging. Alternatively, process-based
-models that simulate dispersal dynamics could help clarify whether the
-overestimation results from dispersal limitations or omitted
+models that explicitly simulate dispersal dynamics could help clarify
+whether the overestimation results from dispersal limitation or omitted
 environmental factors.
 
-\subsection{Future prediction and potential
-applications}\label{future-prediction-and-potential-applications}
+\subsection{Methodological implications for conservation
+biogeography}\label{methodological-implications-for-conservation-biogeography}
 
-This study demonstrated that combining time-lapse cameras with HSMs
-enables exceptionally fine-scale (1 m) prediction of future vegetation
-distributions. The integration of time-lapse imagery and HSMs is
-unprecedented. In contrast, conventional species distribution models
-typically operate at much coarser resolutions (e.g., 1 km), as future
-climate projections are generally available only at coarse spatial
-scales (e.g., alpine vegetation studies: \citet{Amagai2022AVS}). Here,
-by directly observing snowmelt timing---a key determinant of \emph{Sasa}
-distribution---using time-lapse cameras, we achieved high-resolution
-predictions. Because snowmelt timing requires both frequent and
-spatially extensive monitoring, time-lapse cameras are particularly
-suited for this purpose.
+This study demonstrates that combining time-lapse cameras with HSMs
+enables exceptionally fine-scale (1 m) prediction of vegetation
+distribution changes driven by climate-related processes. The
+integration of time-lapse imagery and HSMs is unprecedented. In
+contrast, conventional species distribution models typically operate at
+much coarser resolutions (e.g., 1 km), as future climate projections are
+generally available only at coarse spatial scales (e.g., alpine
+vegetation studies: \citet{Amagai2022AVS}). By directly observing
+snowmelt timing---a key determinant of alpine vegetation
+dynamics---using time-lapse cameras, we achieved high-resolution
+predictions that would be difficult to obtain using satellite-based or
+plot-based approaches alone.
 
-High-resolution predictions are especially valuable for designing
-practical conservation strategies, such as identifying priority areas
-for \emph{Sasa} removal or selecting effective monitoring sites. For
-example, a prediction at 1 km resolution might suggest that an entire
-square kilometer is at risk, which would be unrealistic for management.
-In contrast, predictions at 1 m resolution enable more targeted and
-efficient conservation planning.
+Because snowmelt timing requires both frequent and spatially extensive
+monitoring, time-lapse cameras are particularly well suited for
+capturing this biogeographic driver. This approach provides a pathway
+for linking climate-driven processes to spatial vegetation patterns in
+alpine and other snow-dominated ecosystems where conventional monitoring
+methods are limited.
 
-In this study, we predicted future snowmelt timing using a simple linear
-regression based on a decade of past data. While this approach provided
-a useful proof of concept, it does not represent a realistic long-term
-forecast. In the alpine regions, strong seasonal winds and complex
-topography cause substantial snow redistribution, making snowmelt
-prediction a continuing challenge. Therefore, we did not attempt to
-refine future snowmelt predictions here. However, as high-resolution
-climate projections become available, the accuracy of \emph{Sasa}
-distribution forecasts will also improve. The future expansion presented
-here should thus be interpreted not as a literal forecast but as a
-scenario based on the assumption of continued earlier snowmelt---an
-assumption that should be re-evaluated as understanding of alpine snow
-processes advances.
+\subsection{Future projections and scenario-based
+interpretation}\label{future-projections-and-scenario-based-interpretation}
+
+In this study, future snowmelt timing was predicted using a simple
+linear regression based on a decade of past observations. While this
+approach provided a useful proof of concept, it does not represent a
+realistic long-term forecast. In alpine regions, strong seasonal winds
+and complex topography cause substantial snow redistribution, making
+accurate snowmelt prediction a persistent challenge. Accordingly, the
+future \emph{Sasa} expansion presented here should be interpreted not as
+a literal forecast but as a scenario based on the assumption of
+continued earlier snowmelt. As high-resolution climate and snow models
+improve, this framework can readily incorporate more realistic
+projections, thereby refining predictions of vegetation redistribution.
+
+\subsection{Conservation implications}\label{conservation-implications}
+
+The expansion of competitively dominant species such as \emph{Sasa}
+poses a serious threat to alpine biodiversity by reducing habitat
+availability for subordinate and often rare alpine plants.
+High-resolution predictions of vegetation change, as demonstrated here,
+provide a practical basis for conservation management by identifying
+priority areas for intervention, such as targeted \emph{Sasa} removal,
+and for designing efficient long-term monitoring strategies. More
+broadly, our results emphasize that snowmelt timing is a critical
+process shaping alpine vegetation patterns and that fine-scale,
+process-based monitoring can substantially enhance conservation planning
+in climate-sensitive mountain ecosystems.
 
 \section{Conclusion}\label{conclusion}
 
@@ -888,65 +925,11 @@ supports the development of practical, conservation-oriented ecology.
 
 \clearpage
 
-\section{Supplementary Information}\label{sec-supp}
+\section{Data Availability Statement}\label{data-availability-statement}
 
-\setcounter{figure}{0}
-\renewcommand{\figurename}{Fig.}
-\renewcommand{\thefigure}{S\arabic{figure}}
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{index_files/figure-pdf/fig-snowmelt-shift-1.png}
-
-}
-
-\caption{\label{fig-snowmelt-shift}Decadal trend in snowmelt timing
-(2011--2021).\\
-Changes in snowmelt Day of Year (DOY) relative to 2011 (set as 0). A
-total of 1,000 pixels were randomly sampled and plotted. Despite large
-interannual fluctuations, an overall trend toward earlier snowmelt is
-suggested. Data for 2019 are missing due to construction work at the
-mountain lodge where the camera was installed.}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{index_files/figure-pdf/fig-snowmelt-map-1.png}
-
-}
-
-\caption{\label{fig-snowmelt-map}Predicted snowmelt DOY (linear
-regression for each cell).\\
-Predicted snowmelt DOY for 2012, 2021, and 2030, derived from cell-wise
-linear regression models fitted to annual snowmelt DOY between 2011 and
-2021.\\
-}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{index_files/figure-pdf/fig-snowmelt-shift-map-1.png}
-
-}
-
-\caption{\label{fig-snowmelt-shift-map}Changes in predicted snowmelt DOY
-(2021 -- 2012; negative values indicate earlier snowmelt).\\
-Difference in predicted snowmelt DOY between 2012 and 2021. Most areas
-show earlier snowmelt, with clear spatial heterogeneity in the degree of
-change.\\
-}
-
-\end{figure}%
-
-\clearpage
+The data and scripts supporting this study are openly available in an
+anonymous public repository for peer review at:
+\url{https://anonymous.4open.science/r/SasaSDMPaper-67CE/}
 
 
 \renewcommand\refname{References}

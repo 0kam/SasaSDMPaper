@@ -1,2 +1,2 @@
 # SasaSDMPaper
-Repository for the paper "Time-lapse camera observations enable fine-grained detection and prediction of alpine vegetation change under earlier snowmelt
+Repository for the paper "Snowmelt-driven shifts of a range-expanding plant in alpine ecosystems revealed by ground-based time-lapse cameras"

@@ -1,0 +1,37 @@
+"group","n_total","bin","n_cells","pct"
+"Sasa -> Pine",1156,"adjacent (<=1.5 m)",1012,87.543
+"Sasa -> Pine",1156,"2-3 m (1.5-3 m)",102,8.824
+"Sasa -> Pine",1156,"3-5 m",23,1.99
+"Sasa -> Pine",1156,">5 m (isolated)",19,1.644
+"Sasa -> other (non-Sasa)",1312,"adjacent (<=1.5 m)",520,39.634
+"Sasa -> other (non-Sasa)",1312,"2-3 m (1.5-3 m)",309,23.552
+"Sasa -> other (non-Sasa)",1312,"3-5 m",222,16.921
+"Sasa -> other (non-Sasa)",1312,">5 m (isolated)",261,19.893
+"Sasa -> Sasa (persisting)",6079,"adjacent (<=1.5 m)",2449,40.286
+"Sasa -> Sasa (persisting)",6079,"2-3 m (1.5-3 m)",1947,32.028
+"Sasa -> Sasa (persisting)",6079,"3-5 m",1052,17.305
+"Sasa -> Sasa (persisting)",6079,">5 m (isolated)",631,10.38
+"all Sasa 2012 (baseline)",8547,"adjacent (<=1.5 m)",3981,46.578
+"all Sasa 2012 (baseline)",8547,"2-3 m (1.5-3 m)",2358,27.589
+"all Sasa 2012 (baseline)",8547,"3-5 m",1297,15.175
+"all Sasa 2012 (baseline)",8547,">5 m (isolated)",911,10.659
+"Sasa -> Other vegetation (class 2)",932,"adjacent (<=1.5 m)",320,34.335
+"Sasa -> Other vegetation (class 2)",932,"2-3 m (1.5-3 m)",222,23.82
+"Sasa -> Other vegetation (class 2)",932,"3-5 m",165,17.704
+"Sasa -> Other vegetation (class 2)",932,">5 m (isolated)",225,24.142
+"Sasa -> Non-vegetated (class 3)",3,"adjacent (<=1.5 m)",2,66.667
+"Sasa -> Non-vegetated (class 3)",3,"2-3 m (1.5-3 m)",0,0
+"Sasa -> Non-vegetated (class 3)",3,"3-5 m",0,0
+"Sasa -> Non-vegetated (class 3)",3,">5 m (isolated)",1,33.333
+"Sasa -> Sorbus (class 4)",159,"adjacent (<=1.5 m)",81,50.943
+"Sasa -> Sorbus (class 4)",159,"2-3 m (1.5-3 m)",30,18.868
+"Sasa -> Sorbus (class 4)",159,"3-5 m",25,15.723
+"Sasa -> Sorbus (class 4)",159,">5 m (isolated)",23,14.465
+"Sasa -> Acer (class 5)",85,"adjacent (<=1.5 m)",47,55.294
+"Sasa -> Acer (class 5)",85,"2-3 m (1.5-3 m)",29,34.118
+"Sasa -> Acer (class 5)",85,"3-5 m",7,8.235
+"Sasa -> Acer (class 5)",85,">5 m (isolated)",2,2.353
+"Sasa -> Alnus (class 6)",133,"adjacent (<=1.5 m)",70,52.632
+"Sasa -> Alnus (class 6)",133,"2-3 m (1.5-3 m)",28,21.053
+"Sasa -> Alnus (class 6)",133,"3-5 m",25,18.797
+"Sasa -> Alnus (class 6)",133,">5 m (isolated)",10,7.519

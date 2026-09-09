@@ -1,0 +1,14 @@
+"quantity","value"
+"n_rows",1197516
+"n_positives",4095
+"baseline_dev_expl",0.389897380161694
+"trend_dev_expl",0.390182497685481
+"baseline_AIC",33463.6065530576
+"trend_AIC",33455.5109597628
+"AIC_trend_minus_baseline",-8.09559329470358
+"baseline_REML",1117253.91600503
+"trend_REML",1117250.60402484
+"s_trend_edf",3.15250906608553
+"s_trend_ref_df",3.79254298830658
+"s_trend_chisq",12.1411838605443
+"s_trend_p",0.0108063578944331

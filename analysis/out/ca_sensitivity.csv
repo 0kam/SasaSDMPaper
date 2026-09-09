@@ -1,0 +1,3 @@
+"scenario","shift_d_yr","sensitivity","n_replicates","baseline_expected_area_2030_m2","sensitivity_expected_area_2030_m2","difference_m2","ratio_to_baseline"
+"sm071",-0.71,"distance_min_area_m2_0",50,5729.92821753502,17225.6909055524,11495.7626880174,3.00626644027363
+"sm071",-0.71,"annualization_p9_div_9",50,5729.92821753502,5326.08122955295,-403.846987982069,0.92951971252516

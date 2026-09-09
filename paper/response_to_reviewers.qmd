@@ -1,0 +1,795 @@
+---
+format: pdf
+---
+
+# Response to the Editor and Reviewers
+
+**Ecology and Evolution: ECE-2026-04-00956**
+
+**Revised title:** Snowmelt regime and dispersal limitation predict the decadal expansion of dwarf bamboo into alpine snowbed vegetation
+
+Dear Editor and Reviewers,
+
+Thank you for the careful and constructive assessment of our manuscript. We are also grateful for the two-week extension of the revision period, with the revised deadline of 16 September 2026. Your comments prompted substantial changes to the analysis, presentation, and interpretation. The principal revisions are as follows.
+
+1. We have changed the title and reorganised the framing around two questions: where environmental conditions permit *Sasa*, and where establishment occurs relative to existing fronts. We have replaced the former TBM/TDM framework with an environmental-potential model (Model A), an explicit establishment model (Model B), and stochastic scenario projections.
+2. We have added spatial-block validation, predictor-collinearity checks, response curves, threshold and structural sensitivity analyses, two snowmelt-trend sensitivity analyses, a full vegetation transition matrix, an adjacency analysis, and blind interpretation of 129 paired-image samples.
+3. We have redesigned the main figures and reduced their number from nine to six, using larger panels and text, focused enlargements, and more explicit legends and captions.
+4. We now lead with the net increase of 19%, distinguishing it from gross expansion of 48% and gross loss of 29%. We have reassessed apparent loss without assuming that it demonstrates either true decline or canopy concealment.
+5. We have moderated causal and methodological claims, expanded the ecological context and limitations, and reframed the 2030 outputs as conditional scenarios. Ground-based cameras and satellites are presented as complementary monitoring approaches.
+
+Below, we respond separately to each comment. Italicised comments are summaries of the reviewers' comments, not verbatim quotations. Section and figure numbers refer to the revised manuscript unless explicitly labelled "old". Original line references are retained as supplied; revised line numbers will be inserted after the revised PDF is finalised.
+
+Sincerely,
+
+Ryotaro Okamoto, on behalf of all authors
+
+**Draft preparation note for the authors:** `[new L##]` placeholders await final manuscript pagination; `[Zenodo DOI]` awaits deposition at submission. "Old line not supplied" means that no original line number is given in the supplied review summary; it is not an inferred location. Bold **Author check** paragraphs identify remaining gaps in the current manuscript or submission preparation and must be resolved before this letter is submitted. The responses below describe the current revision and do not certify those outstanding actions as completed.
+
+# Associate Editor
+
+## AE-1. Permanent data archiving
+
+*GitHub alone does not meet the data-availability requirement because its contents can be changed or deleted. Deposit the material in a permanent repository.*
+
+**Response:** We agree. The Data Availability Statement now specifies permanent deposition in Zenodo, with GitHub retained as a development mirror. The intended deposit includes imagery-derived vegetation and snowmelt rasters, terrain predictors, fitted model objects, projection outputs, and the scripted analysis pipeline and acceptance tests. The DOI will be obtained and inserted when the revision is submitted: **[Zenodo DOI]**. We do not yet claim that deposition is complete.
+
+**Changes:** Section 6, Data Availability Statement, and Section 2.9, [old line not supplied → new L##].
+
+## AE-2. Supporting Information designation
+
+*The supplementary material is designated "not for publication"; change it to publishable Supporting Information.*
+
+**Response:** We agree. The revised supplementary document is intended for publication as Supporting Information. We will select that designation when uploading the revision.
+
+**Changes:** Supporting Information and submission-file designation, [old line not supplied → new L##].
+
+**Author check:** Confirm the file designation in the submission system; this administrative action has not been performed by preparing this draft.
+
+## AE-3. Single-paragraph abstract
+
+*Present the Abstract as a single paragraph.*
+
+**Response:** We agree. We have removed the structured subheadings and rewritten the Abstract as one paragraph, incorporating the net/gross distinction and the revised two-model framework.
+
+**Changes:** Abstract, [old line not supplied → new L##].
+
+## AE-4. Line numbering
+
+*Include line numbers if they are not already present.*
+
+**Response:** Line numbering was already enabled in the manuscript template and has been retained. This response provides both original line references and placeholders for the final revised line numbers.
+
+**Changes:** Manuscript-wide line numbering, [old line not supplied → new L##].
+
+## AE-5. Optional organism photograph
+
+*Consider including an organism photograph as Figure 1, with appropriate resolution and photographer credit.*
+
+**Response:** Thank you for this optional suggestion. We have retained a workflow diagram as Figure 1 because it is needed to explain the redesigned modelling framework, including the distinction between environmental potential and establishment and the annual distance update. Site and vegetation context are provided in Figure 2. We have not added a separate organism photograph in this revision.
+
+**Changes:** Section 2, Figure 1, and Section 3.1, Figure 2, [old line not supplied → new L##].
+
+# Reviewer 1
+
+Thank you for the detailed suggestions on ecological context, change accounting, and interpretation. We address the six major comments and each minor point recorded in the review summary separately below.
+
+## R1-M1. Literature context and satellite observations (Major 1; issue H)
+
+*The Introduction understates satellite capabilities. Discuss satellites and cameras as complementary, and place the study in the literature on alpine shrub expansion and remote sensing.*
+
+**Response:** We agree. We have rewritten the Introduction to acknowledge long-term satellite observations of snow and vegetation at 10–30 m resolution and to distinguish their regional coverage from the local, metre-scale observations available from a fixed camera. The revised paragraph concludes, "The two approaches are complementary." Section 4.4 develops this comparison and states the limits imposed by a fixed viewpoint, restricted coverage, and visually distinguishable taxa. The Introduction and Discussion now connect our results to field resurveys, alpine greening, shrubification, and Japanese snowbed studies, including Carlson et al., Myers-Smith et al., Bjorkman et al., and Kudo et al., as cited in the manuscript.
+
+**Changes:** Section 1; Sections 4.1, 4.3, and 4.4, [old line not supplied → new L##].
+
+## R1-M2. Environmental description of the study site (Major 2; issue I)
+
+*Add information on regional climate, seasonal snow cover, snow depth and duration, geology, topography, vegetation, disturbance, and conservation management.*
+
+**Response:** We agree. The expanded Study site subsection locates the slope within Chubu-Sangaku National Park at 2,350–3,015 m elevation. It describes the exceptionally snowy setting, approximately 7 m snow depth at Murodo-daira at peak accumulation, snow persistence from exposed ridges into late-melting hollows, volcanic pyroclastic substrate, avalanche tracks, and the vegetation mosaic. It also describes tourist access and maintained trails and states that no vegetation management or *Sasa* removal occurred on the observed slope during the study period. These additions provide the environmental setting needed to assess transferability.
+
+**Changes:** Section 2.1, [old line not supplied → new L##].
+
+**Author check:** The current subsection gives snowmelt seasonality but not a complete regional climate summary or quantitative snow-cover duration from autumn onset. Complete those details from verified sources if claiming that every requested site attribute has been supplied.
+
+## R1-M3. Gross expansion, loss, and net change (Major 3; issue A)
+
+*The reported 48% is gross expansion, whereas the mapped area increased by approximately 19% net. Distinguish gross expansion, gross loss, and net change throughout; provide a transition matrix, identify the replacement classes, test the canopy-cover explanation, and assess sensitivity to apparent loss.*
+
+**Response:** We agree that our previous presentation overstated the increase. The Abstract now reports "a net change of +19%", gives gross expansion of 48% and gross loss of 29% alongside it, and immediately qualifies the interpretation of apparent loss. Section 2.4 defines the three quantities, Section 3.1 leads with the increase from 8,542 to 10,170 m² in geodesic area (+1,628 m²), and Figure 2 separately labels persistence, gain, and loss. The Discussion explains their distinction, and the Conclusion reports net change rather than repeating 48% as the increase.
+
+We added the full seven-class transition matrix (Table S1). Approximately 47% of mapped loss was to dwarf pine, 38% to other vegetation, and only 15% to rowans, maple, and montane alder combined. We therefore withdrew the earlier explanation attributing loss primarily to the named deciduous shrubs. An additional adjacency analysis found that 87.5% of *Sasa*→dwarf pine cells directly adjoined dwarf pine present in 2012 (median distance 1.0 m; Table S6).
+
+We also completed blind interpretation of 129 samples: 79 loss cells, 40 stable controls, and 10 reverse transitions, using paired images from two seasons with transition labels concealed. The result does **not** confirm canopy concealment: judgement distributions were almost identical for loss cells and stable controls. The Supplementary Information states, "whether *Sasa* survived beneath the canopy" could not be resolved at the photographic scale. The boundary interpretation rests on adjacency and constraints from dwarf-pine growth rates, rather than on visual confirmation. Transitions to other vegetation may include genuine retreat and require field verification.
+
+We retain mapped loss as an upper bound on true decline under this interpretation, and net mapped change as the conservative reported measure. We have not applied an arbitrary 0/50/100% canopy correction because the image exercise cannot estimate the fraction of loss due to concealment. Nor have we automatically deleted reciprocal *Sasa*–pine transitions as errors: some may be biological. Reporting the transition composition and the negative outcome of the image check makes this uncertainty explicit without choosing an unsupported correction.
+
+**Changes:** Abstract; Sections 2.4, 3.1, 4.1, and 5; Figure 2; Tables S1, S6, and S10, [old line not supplied → new L##].
+
+**Author check:** Resolved before submission: Table S1 is now computed on the model analysis domain and its margins match the 4,095/2,468 cells in Section 3.1, and the Conclusion now reports gross expansion and loss alongside net change. No numerical loss-fraction sensitivity analysis is supplied; the response explains why such a correction cannot be estimated from the imagery.
+
+## R1-M4. Causal language and snowmelt response curves (Major 4; issue B)
+
+*Permutation importance and two vegetation dates do not demonstrate that earlier snowmelt caused expansion. Moderate the causal claims and show the direction and shape of the snowmelt response.*
+
+**Response:** We agree. We have removed "Snowmelt-driven" from the title, rewritten the objectives in terms of associations, and distinguished snowmelt climatology from the uncertain temporal trend. Figure 3 now shows Model A partial-dependence curves. The revised Results report high suitability at approximately DOY 150–185, with a peak near DOY 172; the Discussion reports a Model B peak near DOY 175. These non-monotonic responses replace the implication that earlier snowmelt invariably increases expansion. Section 4.2 explicitly states, "Modelled associations are not evidence of causality; separating direct snowmelt effects from those of soils and microclimate requires field measurements." We have not collected new soil or microclimate measurements.
+
+**Changes:** Title; Section 1; Sections 2.5, 3.2–3.4, 4.2, and 4.5; Figure 3, [old line not supplied → new L##].
+
+## R1-M5. Projection design, distance, thresholds, and uncertainty (Major 5; issue E)
+
+*Explain which distribution supplies the distance layer for 2030, justify the suitability/risk threshold, display uncertainty, and treat extrapolation as a scenario rather than a forecast.*
+
+**Response:** We agree. The revised projection design replaces the single future distance-layer substitution with an annual stochastic cellular automaton. Model B is fitted to 2012→2021 establishment using distance from observed 2012 patches. Projections start from the observed 2021 distribution; distance is then recalculated each year from the current simulated distribution, using the same >5 m² patch rule as in fitting. Annual establishment probabilities are obtained as $p_1 = 1-(1-p_9)^{1/9}$. Occupancy is retained once established, so the outputs are expected **new establishment**, not net change allowing future loss.
+
+The primary projected area is the sum of establishment probability times cell area and requires no threshold. Model A is presented continuously; where a binary suitability summary is needed, its threshold maximises TSS on held-out predictions (0.158, rounded to 0.16). Table S2 shows sensitivity over 0.1–0.7, including the loss of the suitable-area excess at thresholds of 0.60 and above. Figure 5 and Table S3 show stochastic variation across 200 replicates. Table S9 reports structural sensitivity, and independent spatial validation reports substantial uncertainty in amounts despite useful discrimination of locations. Replicate SD is not a comprehensive confidence interval covering classification, fitted-parameter, and scenario uncertainty. The main scenarios use no change and a shift of −0.71 days/year; the −2.24 days/year case is an extreme sensitivity scenario. None is a meteorological forecast.
+
+**Changes:** Sections 2.6.1, 2.6.2, 2.7, 3.5, and 4.5; Figures 1, 4, and 5; Tables S2, S3, and S9, [old line not supplied → new L##].
+
+**Author check:** Add an explicit "conditional scenarios, not forecasts" qualification to the Abstract and Conclusion before claiming that it appears prominently in every required location. The current Abstract also needs to identify the hindcast as calibration and the trend as non-significant.
+
+## R1-M6. Ecological discussion and communities at risk (Major 6; issue J)
+
+*Expand the Discussion beyond repeating results: relate the findings to snowbed responses, shrubification, graminoid/bamboo expansion, greening, environmental mechanisms, climatic settings, shrub interactions, and the communities and species exposed to risk.*
+
+**Response:** We agree. We reorganised the Discussion around the magnitude of change, distance dependence and the snowmelt window, comparison with shrubification, monitoring approaches, limitations, and conservation implications. It now compares the mapped change with nearby Murodo-daira resurveys and Daisetsuzan observations, discusses growing-season length and soil temperature/moisture, and treats snowmelt as a proxy rather than an isolated causal mechanism. Section 4.3 discusses functional similarities to woody shrub expansion and differences arising from rhizome growth and seed establishment. It also treats the bidirectional *Sasa*–dwarf pine exchange as an ecological interaction requiring investigation.
+
+To give conservation suggestions a community basis, we overlaid the Ministry of the Environment's 1:25,000 vegetation map. Approximately nine tenths of expected establishment within cells classified as other vegetation falls in two snowbed communities, *Fauria crista-galli*–*Carex blepharicarpa* and *Anaphalis alpicola*–*Phyllodoce aleutica* (Figure 6; Table S4). This is a coarse community attribution, not a survey of species present in individual 1 m cells. Rare-species occurrence and field verification remain future work. Removal or containment is described as a candidate intervention; its costs and regrowth were not evaluated.
+
+**Changes:** Sections 2.8, 3.6, and 4.1–4.6; Figure 6; Table S4, [old line not supplied → new L##].
+
+**Author check:** The current Discussion does not yet explicitly compare maritime, continental, and monsoon-influenced alpine settings or develop frost-risk and nutrient mechanisms. Add that requested context before describing this part as fully addressed. Verify the vegetation-map bibliographic details marked for confirmation in the Methods.
+
+## R1-m1. Readability of old Figure 2 (issue M)
+
+*Enlarge the two vegetation maps, preferably arranging them vertically, with a shared legend and clearer labels.*
+
+**Response:** We agree. The main-text display is now Figure 2, which combines site context, mapped persistence/gain/loss, and enlarged examples of an expansion front and a *Sasa*–pine boundary. The full seven-class maps for both years are retained in Figure S6 so that the classifications remain inspectable without crowding the main figure.
+
+**Changes:** Section 3.1, Figure 2; Supporting Information, Figure S6, [old Fig. 2; line not supplied → new L##].
+
+**Author check:** Resolved before submission: Figure S6 has been redrawn with the two years arranged vertically, enlarged panels, and a single shared legend.
+
+## R1-m2. Legend and callouts in old Figure 4 (issue M)
+
+*Replace the ambiguous arrows and boxes with a proper legend or clearly connected callouts.*
+
+**Response:** We agree. The former expansion map has been replaced by revised Figure 2, which explicitly distinguishes persistence, gain, loss, and dwarf pine. Enlarged examples of an expansion front and a *Sasa*–pine boundary are located with boxes in the core-area panel and identified in the caption. This replaces the ambiguous coloured explanatory boxes and arrows with a direct panel-to-location correspondence.
+
+**Changes:** Section 3.1, Figure 2, [old Fig. 4; line not supplied → new L##].
+
+## R1-m3. Repeated legends and small panels in old Figure 5 (issue M)
+
+*Use a shared legend and larger panels and axis labels; repeated legends waste space.*
+
+**Response:** We agree. We have removed the former side-by-side TBM/TDM tuning-performance plots. The redesigned models' held-out performance is reported in the Results and supplementary Tables S7–S8, avoiding small repetitive panels and duplicated legends. The main figure space is now used for larger response curves and spatial displays.
+
+**Changes:** Sections 3.3–3.4; Tables S7–S8, [old Fig. 5; line not supplied → new L##].
+
+## R1-m4. Distinguish model-output terminology (issue N)
+
+*Use habitat suitability, probability of occurrence, predicted presence, and future expansion consistently; they are not interchangeable.*
+
+**Response:** We agree. Model A now returns continuous habitat suitability, described as environmental potential. Model B estimates nine-year establishment probability among cells unoccupied in 2012. The cellular automaton returns probability of new establishment by 2030 and expected new establishment area. Thresholded suitable area is explicitly tied to its threshold. Observed gross expansion, gross loss, and net change are reserved for differences between the classified maps. These distinctions are introduced in the Methods and maintained in the Results and captions.
+
+**Changes:** Sections 2.4 and 2.6–2.8; Sections 3.1 and 3.3–3.6, [old line not supplied → new L##].
+
+## R1-m5. Scientific names and naming of dwarf bamboo (issue N)
+
+*Italicise scientific names consistently and standardise Sasa, dwarf bamboo, and Sasa spp.*
+
+**Response:** We agree. The Introduction defines "dwarf bamboo (*Sasa* spp., hereafter *Sasa*)" and subsequent prose uses *Sasa*. Scientific names, including the vegetation-class and community names, are italicised; common names remain in roman type.
+
+**Changes:** Section 1 and manuscript-wide taxon names, [old line not supplied → new L##].
+
+# Reviewer 2
+
+Thank you for identifying the distinction between association and mechanism and the problem with comparing models fitted to different response domains. Because the supplied comments jump from Major 1 to Major 3 and subsequently use unnumbered topics, the identifiers below are response identifiers, not reconstructed original comment numbers.
+
+## R2-01. Gross versus net expansion (Major 1; issue A)
+
+*The increase from 8,542 to 10,170 m² is approximately 19%, not 48%; report gross expansion, gross loss, and net change separately.*
+
+**Response:** We agree. We now lead with the mapped net increase of 1,628 m² (+19%) and explicitly distinguish gross expansion (48%) and gross loss (29%) in the Abstract, Methods, Results, and figure explanation. The Conclusion reports net change. Beyond correcting the terminology, we added a full transition matrix, an adjacency analysis, and blind interpretation of 129 samples. These show that much apparent loss occurs at *Sasa*–dwarf pine boundaries, but the images could not determine whether individual transitions represent biological change, classification shifts, or survival under the canopy. We have therefore withdrawn the unverified canopy explanation and retained uncertainty in the interpretation. The complete response to the loss-sensitivity request is in R1-M3.
+
+**Changes:** Abstract; Sections 2.4, 3.1, 4.1, and 5; Figure 2; Tables S1, S6, and S10, [old line not supplied → new L##].
+
+**Author check:** Resolved before submission (see R1-M3): Table S1 margins now match the Results, and the Conclusion reports all three quantities.
+
+## R2-02. Snowmelt trend and missing observations (Major 3; issue D)
+
+*Support the reported advance with slope summaries, uncertainty and significance, proportions of negative/positive slopes, and a clear account of the short record and missing 2019 observations.*
+
+**Response:** We agree. We have replaced the unsupported emphasis on an 8.6-day-per-decade advance with an explicit uncertainty assessment. The record comprises 10 years during 2011–2021, excluding 2019 because construction at the camera's mountain lodge interrupted observation. The mean per-pixel slope is −0.71 days/year (median −0.63, SD 0.63), with 91.7% negative slopes. The regression of annual landscape means gives −0.69 days/year (95% CI −2.24 to +0.87; p = 0.34). These are different summaries and are identified separately. Only 2.0% of pixels are individually significant, and none remains significant after false-discovery-rate correction. Figures S1–S3 show the temporal and spatial distributions. We conclude that this decade does not demonstrate a trend and use the slopes only to define scenarios.
+
+Two further analyses test this choice: adding `s(trend)` to Model B reduced held-out AUC in every spatial block (Table S5), and the spatial-structure analysis found a non-monotonic relationship between slopes and climatology (24% of pixel-level variance across climatology bins; Figure S4). We therefore acknowledge that uniform scenario shifts are an approximation rather than a meteorological model.
+
+**Changes:** Sections 2.2, 2.5, 2.7, 3.2, and 4.5; Supporting Information, Snowmelt regime and trends; Figures S1–S4; Table S5, [old line not supplied → new L##].
+
+**Author check:** The analysis output gives positive and zero slopes as 8.29% and 0.06%; these proportions are not yet transcribed into the manuscript. State the valid-year criterion and removal of the former R² filter explicitly. Do not present the extremely narrow pixel-based mean-slope interval as independent landscape evidence; pixels are spatially dependent, so the response uses the annual-mean regression CI for landscape inference.
+
+## R2-03. Causal interpretation and alternative environmental explanations (issue B)
+
+*Snowmelt covaries with soil temperature, moisture, freeze-thaw history, exposure, and topographic position. These observational models cannot isolate a causal snowmelt effect.*
+
+**Response:** We agree. We have changed the title from "Snowmelt-driven shifts..." to "Snowmelt regime and dispersal limitation predict the decadal expansion of dwarf bamboo into alpine snowbed vegetation" and reformulated the aims around statistical associations. Here, "predict" describes model-based relationships, not proof of a climate mechanism. The revised Introduction explains why snowmelt matters for growing conditions; Section 4.2 identifies it as a proxy for covarying conditions and explicitly rejects causal inference from the fitted associations. Section 4.5 states that soil properties, temperature, and moisture were not measured and that distance may absorb unmeasured spatial structure. We added an explicit establishment model, but this does not remove observational confounding. Field measurements and further vegetation dates remain necessary to separate mechanisms. No new soil field campaign was undertaken.
+
+**Changes:** Title; Section 1; Sections 2.5, 2.6.2, 4.2, and 4.5, [old line not supplied → new L##].
+
+**Author check:** Freeze-thaw history and exposure are not explicitly developed in the current environmental-limitation paragraph. Add them if enumerating all alternative processes identified in this comment.
+
+## R2-04. Predictor collinearity (issue C)
+
+*Provide a correlation matrix and VIFs, remove or combine redundant terrain predictors, and do not interpret permutation importance causally.*
+
+**Response:** We agree. We quantified predictor correlations and VIFs and excluded roughness and terrain ruggedness index before refitting because they were strongly correlated with slope (Spearman |r| = 0.93–0.97). Aspect is represented by northness and eastness. For retained predictors, the maximum VIF is 2.30 and all pairwise |r| values are below 0.7; the largest is −0.58 between snowmelt climatology and elevation. The revised models and response curves use this reduced predictor set. These diagnostics address numerical redundancy, but they do not establish causal independence of snowmelt from unmeasured soil or microclimate conditions. We have removed the interpretation of importance rankings as proof of ecological drivers.
+
+**Changes:** Section 2.6, Shared predictors; Section 4.2; Supporting Information, Model A, [old line not supplied → new L##].
+
+**Author check:** The current Supplementary Information reports summary diagnostics only. Insert the full existing correlation matrix and per-predictor VIF table to meet the request for those displays; do not claim that they are already printed there.
+
+## R2-05. Construction and temporal updating of distance (issue E-a)
+
+*The code appears to use observed 2021 patches for future distance, whereas the Methods describe 2012 distance. Explain the update and whether future expansion begins from observed or predicted occupancy.*
+
+**Response:** We agree that the former explanation was incomplete. We have replaced that projection design with an annual cellular automaton. Model B uses distance from observed 2012 patches to model observed 2012→2021 establishment. The projection starts from **observed 2021 occupancy**, then recalculates distance from the current simulated distribution every year. The same Euclidean distance definition and >5 m² patch rule are used for fitting and updates. Thus, future expansion begins from the observed 2021 front and proceeds recursively; it does not begin from all cells classified as suitable by Model A. Figure 1 explicitly includes annual distance updating.
+
+**Changes:** Sections 2.6.2 and 2.7; Figure 1, [old line not supplied → new L##].
+
+## R2-06. The 0.5 threshold (issue E-b)
+
+*Clarify whether 0.5 is ecologically calibrated and show sensitivity to alternative thresholds.*
+
+**Response:** We agree. We no longer use 0.5 as the primary suitability or risk threshold. Model A is reported continuously, with a held-out maximum-TSS threshold of 0.158 where a binary summary is needed. Table S2 reports thresholds from 0.1 to 0.7: suitable area is 16.1 times occupied area at 0.16, 2.3 times at 0.5, and falls below occupied area at 0.60 and above. We have accordingly narrowed the area comparison to its supported threshold range. Near-term risk is now expected establishment area from the cellular automaton, summed from probabilities and requiring no threshold.
+
+**Changes:** Sections 2.6.1, 2.7, 2.8, and 3.3; Table S2, [old line not supplied → new L##].
+
+## R2-07. Model performance and projection uncertainty (issue E-c)
+
+*Display uncertainty and acknowledge the former TBM's low test TSS (0.55) and overprediction of occupied area.*
+
+**Response:** We agree. The former TBM/TDM fits have been replaced, so their scores are not presented as results of the new models. Model A describes environmental potential and is not claimed to reproduce occupied extent. Its full-domain block-mean TSS is 0.785, whereas the elevation-restricted sensitivity variant has TSS 0.583 (Table S7); this shows how the evaluation domain affects apparent discrimination. For the cellular automaton, the within-period hindcast is explicitly a calibration check. Held-block spatial validation gives AUC 0.79–0.86 but expected/observed area ratios of 0.67–2.0. We report this substantial uncertainty in amounts, alongside replicate SD and structural sensitivity. Removing the patch rule increases projected area 3.01-fold (Table S9). These checks replace the previous claim of reliable reproduction of realised distribution; they are not a complete propagation of all uncertainty sources.
+
+**Changes:** Sections 3.3, 3.5, and 4.5; Figure 5; Tables S3, S7, and S9, [old line not supplied → new L##].
+
+## R2-08. Conditional scenarios rather than forecasts (issue E-d)
+
+*The scenario qualification must be prominent in the Abstract, Results, maps, and conservation recommendations, not confined to the Discussion.*
+
+**Response:** We agree. The projection Methods state, "These are scenarios conditional on the observed decade, not forecasts of snowmelt." The revised Results heading, scenario comparisons, Figure 5 caption, and limitations now use this framing. The 10-year record does not demonstrate a snowmelt trend, and a separate meteorological forecast is outside the study's scope. The primary comparison is unchanged snowmelt versus the estimated negative slope, with a lower-CI scenario as sensitivity analysis. The resulting establishment areas are conditional on those inputs and on stationarity of the establishment model. Conservation recommendations are framed as candidate interventions based on the spatial concentration of scenario outcomes, not forecasts of inevitable community loss.
+
+**Changes:** Sections 2.5, 2.7, 3.5, 4.5, and 4.6; Figure 5; Table S3, [old line not supplied → new L##].
+
+**Author check:** The current Abstract still says "under continuation of the observed trend" without explicitly stating non-significance or "scenario, not forecast". Insert that qualification there and in the Conclusion, and make conditionality explicit in the conservation paragraph. The response must not be submitted as a claim that these remaining wording changes are already complete.
+
+## R2-09. Common evaluation areas and colonization/persistence (issue F)
+
+*TBM and TDM use different response domains, so their performance difference cannot be attributed to distance alone. Use common evaluation areas or an explicit colonization–persistence framework, and acknowledge unmeasured spatial structure.*
+
+**Response:** We agree; this comment motivated a redesign rather than a direct comparison of the former scores. We defined one four-fold spatial partition over the full analysis domain and used it for both models. Model A estimates 2021 environmental potential. Model B explicitly models colonization: among cells without *Sasa* in 2012, its response is whether establishment occurred by 2021, conditional on environment and distance from the 2012 front. Model B is refitted leaving out each shared block, and the cellular automaton is also scored only in the omitted block during spatial validation.
+
+The models now share evaluation **areas**, but their response variables and eligible cell sets remain different. Consequently, we do not interpret an AUC/TSS difference between A and B as the isolated contribution of distance. The distance-related evidence is the establishment model's fitted distance response and agreement with observed distance-band rates. We also acknowledge that distance may represent unmeasured environmental structure.
+
+We have not fitted a full colonization–persistence model: the loss/persistence side remains ambiguous because of *Sasa*–dwarf pine exchanges. Loss is therefore described with the transition matrix, adjacency analysis, and image interpretation, while the cellular automaton assumes occupancy persists. This answers the request through explicit colonization and a common spatial design, while identifying the persistence process as unresolved rather than silently treating classified loss as true mortality.
+
+**Changes:** Sections 1, 2.4, 2.6–2.7, 3.4–3.5, and 4.5; Figures 1 and 4; Tables S6, S8, and S10, [old line not supplied → new L##].
+
+## R2-10. Introduction: ecological motivation and updated context (issue H)
+
+*The Introduction relies on older literature and moves too quickly from global alpine change to the method. Explain snowmelt's ecological importance and its limitations as a hydrothermal proxy.*
+
+**Response:** We agree. The Introduction now moves from documented alpine vegetation change and the conservation problem posed by *Sasa*, to the growing-season and soil conditions associated with snowmelt, then to the spatial observation gap and the two dispersal processes motivating Models A and B. It incorporates field resurveys, alpine greening, removal experiments, and dispersal-aware modelling literature. The Discussion explicitly states that snowmelt DOY is a proxy for covarying conditions and that direct effects cannot be separated without field measurements.
+
+**Changes:** Section 1; Sections 4.2–4.4, [old line not supplied → new L##].
+
+**Author check:** The proxy limitation is explicit in the Discussion but only implicit in the current Introduction. Add it to the Introduction to meet the requested placement, and assess whether the literature update adequately addresses the request for recent ecological work.
+
+## R2-11. Proposed Discussion revisions (issues B and F)
+
+*Recast the Discussion around association rather than mechanism and distinguish environmental suitability from spatially constrained establishment; stronger inference requires soil observations and dynamic modelling.*
+
+**Response:** We agree with the substance of this recommendation. Sections 4.2 and 4.5 now identify observational confounding, unmeasured environmental variables, and limitations of temporal transfer. The new Model B and annual cellular automaton directly represent establishment and front updating. We nevertheless distinguish within-period calibration from spatial validation and from untested transfer to a later decade. The new design does not substitute for soil measurements or resolve seedling establishment and true persistence. We have integrated these points into the rewritten Discussion rather than retaining the previous TBM/TDM narrative.
+
+**Changes:** Sections 2.6.2, 2.7, 4.2, and 4.5, [old line not supplied → new L##].
+
+## R2-12. Suggested references
+
+*Consider the recommended literature when strengthening the Introduction and Discussion.*
+
+**Response:** Thank you for the suggestions. We agree that the ecological context needed strengthening and have revised it using literature directly addressing alpine vegetation change, snowbed responses, shrubification, *Sasa* expansion, and dispersal-aware modelling. We have not incorporated the full suggested list, which includes applications in vehicle detection, engineering measurement, and marine biogeochemistry that do not directly support the questions or analyses in this study. The hydrological-modelling suggestions also address processes that we did not measure or model. We therefore retained a focused reference set while adopting the substantive recommendations about environmental confounding and stronger ecological interpretation. We do not claim to have added Wu et al. (2025) or Chen et al. (2025), neither of which is cited in the current revised text.
+
+**Changes:** Section 1; Sections 4.1–4.5 and References, [old line not supplied → new L##].
+
+# Reviewer 3
+
+Thank you for the detailed assessment of presentation, reproducibility, and the scope of inference. We first address the general concerns, then respond in the original order to every row of the line/figure-specific table. The latter comprises 53 separate entries; overlapping line ranges are retained as separate comments.
+
+## R3-G1. Scope and generality of the camera approach (issue G)
+
+*The methodological claims are overstated. Application requires long image records, photographically distinguishable taxa, and a restricted field of view.*
+
+**Response:** We agree. We have removed the generic claim that the study "advances understanding" and rewritten the methodological discussion around specific capabilities and limitations. Section 4.4 now states the dependence on continuous imagery, a fixed oblique viewpoint, limited spatial coverage, and visually distinguishable taxa. The final generalisation is conditional on comparable image records. We retain the more limited contribution of filling an observational gap between plots and satellite imagery, which is demonstrated by the metre-scale maps and establishment analysis.
+
+**Changes:** Abstract; Sections 1, 4.4, 4.6, and 5, [old L35, L105-108, L391, L439-443 → new L##].
+
+## R3-G2. Correlated terrain predictors and missing drivers (issues B and C)
+
+*High importance of snowmelt is not sufficient evidence of mechanism when other predictors are terrain-derived and biotic, climatic, and soil variables are missing.*
+
+**Response:** We agree. Roughness and terrain ruggedness index were removed for collinearity with slope, and the retained variables have a maximum VIF of 2.30. Response curves now show associations rather than assigning causal meaning to importance. Soil properties, temperature, and moisture were not measured, and the distance term may absorb unmeasured spatial structure. The revised title, aims, and Discussion acknowledge that snowmelt regime is one correlate of distribution and establishment; we do not claim to have evaluated all ecological drivers.
+
+**Changes:** Title; Sections 1, 2.6, 4.2, and 4.5; Supporting Information, Model A, [old line not supplied → new L##].
+
+## R3-G3. Separate results, methods, and interpretation (issue K)
+
+*The Results mix observations with interpretation and repeated methods; separate these functions and remove repetition.*
+
+**Response:** We agree. We reorganised the Results into six subsections reporting mapped change, snowmelt, Model A, Model B, projections, and community attribution. The explanations of *Sasa*–pine exchange, non-equilibrium distribution, and the non-monotonic scenario response are developed in the Discussion. Procedural information is consolidated in the Methods, and the Conclusion is substantially shortened. Individual deletions and relocations are addressed below.
+
+**Changes:** Sections 2–5, [old line not supplied → new L##].
+
+## R3-G4. Reproducibility and missing methodological information (issue L)
+
+*Essential procedures are insufficiently described despite repetition of technical details elsewhere.*
+
+**Response:** We agree. The revised Methods proceed from acquisition and alignment through classification, change accounting, predictor preparation, model fitting, and projection. They now specify AKAZE/RANSAC alignment, the Conv2D–LSTM classifier and label provenance, the common 1 m grid, explicit transition responses, spatial folds, distance definition, tuning and stacking, annualisation, and projection checks. We also disclose that classification cross-validation used pixel-level splits and reused labelled polygons across years, so those accuracy estimates do not establish accuracy at unseen locations.
+
+**Changes:** Sections 2.2–2.9 and Supporting Information, [old line not supplied → new L##].
+
+**Author check:** Resolved before submission: classifier architecture, training conditions, and class-specific accuracies (Table S12) and the terrain-derivation provenance (QGIS/SAGA from the ~5 m GSI DEM) are now documented in the Supplementary Information.
+
+## R3-G5. Comprehensive figure redesign (issue M)
+
+*Substantially revise the figures: remove unnecessary displays, enlarge panels and all text, remove redundant in-panel titles, and improve legends.*
+
+**Response:** We agree. We have reduced the main figures from nine to six and rebuilt their organisation: (1) workflow, (2) site and observed change, (3) response curves, (4) environmental potential versus establishment, (5) scenario projections, and (6) communities at risk. Figures 2, 4, and 5 include focused enlargements; plot text and labels have been enlarged. Full classification maps and snowmelt diagnostics are assigned to the Supplementary Information. Captions now identify panel contents, units, outlines, and scenario assumptions. We have removed the former standalone Figure 9 and the old TBM/TDM displays. Below we explain each figure-specific decision, including cases where the changed model estimands make the proposed old-model layout inappropriate.
+
+**Changes:** Sections 2–3, Figures 1–6; Figures S1–S7, [old Figs. 1–9; line not supplied → new L##].
+
+**Author check:** The redesign of supplementary Figure S6 remains unfinished; the six-figure main-text redesign must not be taken to certify that all supplementary artwork has been revised.
+
+## R3-G6. Concise English and final language editing (issue N)
+
+*The manuscript would benefit from final English editing for concision.*
+
+**Response:** We agree. We have rewritten and shortened the Introduction and Conclusion, removed repeated methodological explanations, and standardised the model-output terminology. We have not commissioned an external language-editing service as part of this revision draft.
+
+**Changes:** Manuscript-wide language revision, particularly Sections 1, 2, and 5, [old line not supplied → new L##].
+
+**Author check:** Complete a final language pass after resolving the remaining scientific and figure edits; do not imply that professional editing has already occurred.
+
+## R3-01. L21: model terminology
+
+*Replace "model" with "HSM".*
+
+**Response:** We agree. The Abstract now explicitly identifies Model A as "a habitat suitability model" and separately names Model B as an establishment model. Spelling out the type is clearer than applying HSM to both models after the redesign.
+
+**Changes:** Abstract, [old L21 → new L##].
+
+## R3-02. L26-29: interpretation in the Abstract
+
+*These statements are interpretations and duplicate the conclusions; consolidate them.*
+
+**Response:** We agree. The structured Abstract has been replaced by one paragraph that first reports mapped change and model results and then states the conservation implications once. The earlier duplicated interpretation has not been retained as a separate results block.
+
+**Changes:** Abstract, [old L26-29 → new L##].
+
+## R3-03. L34-39: shorten the Abstract conclusion
+
+*Shorten this passage; if a new method is the central claim, state that at the outset.*
+
+**Response:** We agree. We have removed the generic novelty claim and focused the end of the Abstract on front-associated establishment, snowbed exposure, and the separate possibility of establishment from seed. The opening now states the ecological problem rather than claiming a new general method.
+
+**Changes:** Abstract, [old L34-39 → new L##].
+
+## R3-04. L35: generic self-assessment
+
+*"Study advances understanding" is uninformative self-praise.*
+
+**Response:** We agree. That phrase has been removed. The Abstract instead gives specific quantitative findings and their qualified conservation implications.
+
+**Changes:** Abstract, [old L35 → new L##].
+
+## R3-05. L50: direction of vegetation encroachment
+
+*Snowbed communities are the communities being encroached upon by graminoids.*
+
+**Response:** We agree. The Introduction now describes "the encroachment of grasses and tall forbs into snowbed communities as the snow-free season lengthens", making the direction explicit.
+
+**Changes:** Section 1, first paragraph, [old L50 → new L##].
+
+## R3-06. L57 / L81: snowbeds versus grasslands
+
+*The descriptions conflict over whether expansion is into snowbeds or grasslands.*
+
+**Response:** We agree. The ecological focus is now consistently snowbed vegetation and snowbed meadows. We distinguish those communities from the broader map class "other vegetation", which also includes other alpine herbs and dwarf shrubs. Community attribution is supported by the vegetation-map overlay rather than assuming that every herbaceous cell is a snowbed.
+
+**Changes:** Section 1; Sections 2.8 and 3.6, [old L57 / L81 → new L##].
+
+## R3-07. L71-101: Introduction structure
+
+*Reorganise these paragraphs and move technical details to the Methods.*
+
+**Response:** We agree. The Introduction now follows the ecological problem, snowmelt and observation scale, two dispersal processes, and explicit objectives. Alignment, classification, predictor preparation, and fitting details are described in the Methods rather than interrupting that argument.
+
+**Changes:** Section 1; Sections 2.2–2.7, [old L71-101 → new L##].
+
+## R3-08. L104: undefined "key determinant"
+
+*Explain what "key determinant" means and how it can be evaluated with this restricted predictor set.*
+
+**Response:** We agree. We removed that objective and replaced it with the estimable question of how strongly snowmelt regime and topography are associated with distribution and establishment while accounting for proximity to existing patches. We do not claim to identify the dominant cause among all possible environmental and biotic processes.
+
+**Changes:** Section 1, objectives; Section 4.5, [old L104 → new L##].
+
+## R3-09. L105-108: generic statements
+
+*Delete generic claims that could apply to any study.*
+
+**Response:** We agree. The passage has been removed. The Introduction now ends with five concrete objectives tied to the available maps, snowmelt record, models, scenarios, and community overlay.
+
+**Changes:** Section 1, final paragraph, [old L105-108 → new L##].
+
+## R3-10. L110-116: repeated introductory material
+
+*Remove or consolidate information already given in the Introduction.*
+
+**Response:** We agree. We replaced the repeated rationale at the beginning of the Methods with a short procedural overview linked to Figure 1. The ecological motivation remains in the Introduction.
+
+**Changes:** Section 2, opening paragraph and Figure 1, [old L110-116 → new L##].
+
+## R3-11. L113-114: unclear wording
+
+*Rewrite these sentences.*
+
+**Response:** We agree. The replacement Methods overview states the sequence directly: produce vegetation maps, characterise snowmelt, fit environmental-potential and establishment models, and project establishment under explicit scenarios. It no longer uses the former wording.
+
+**Changes:** Section 2, opening paragraph, [old L113-114 → new L##].
+
+## R3-12. Old Figure 1: terminology and workflow
+
+*Standardise expansion/invasion, expand the caption, and include an HSM box.*
+
+**Response:** We agree. Figure 1 has been rebuilt with four components: data generation, Model A habitat suitability, Model B establishment, and stochastic projection. The caption defines each component and specifies annual distance updating. We use "expansion" for the native *Sasa* process rather than alternating it with "invasion".
+
+**Changes:** Section 2, Figure 1 and manuscript terminology, [old Fig. 1; line not supplied → new L##].
+
+## R3-13. L144 ff: repeated information
+
+*Consolidate and shorten material already presented in the Introduction.*
+
+**Response:** We agree. Image acquisition and processing are now presented as procedural subsections, with instrument, dates, missing-year information, and processing steps. The general justification for cameras is confined to the Introduction and the monitoring discussion.
+
+**Changes:** Sections 2.2–2.3, [old L144 ff → new L##].
+
+## R3-14. L152-153: workflow summary
+
+*Add a concise explanation of the workflow.*
+
+**Response:** We agree. The opening Methods paragraph now enumerates the map production, snowmelt characterisation, two models, and stochastic projections, and directs readers to the expanded Figure 1 caption.
+
+**Changes:** Section 2, opening paragraph and Figure 1, [old L152-153 → new L##].
+
+## R3-15. L162: image alignment
+
+*Briefly explain how the images were aligned.*
+
+**Response:** We agree. Section 2.3 now specifies matching AKAZE local features and estimating projective transformations with RANSAC in OpenCV against a common reference frame. It reports median residual misalignment of 1–2 pixels and no systematic between-year offset.
+
+**Changes:** Section 2.3, Image alignment, [old L162 → new L##].
+
+## R3-16. L164-170: classification as a black box
+
+*Describe the classification sufficiently for readers to understand and reproduce it.*
+
+**Response:** We agree. The Methods now name the Conv2D–LSTM architecture family, 5×5-pixel patch input, seasonal leaf-colour sequences, seven classes, and 216 labelled polygons checked against both target years. Overall cross-validation accuracy is reported as 0.982 and 0.975, with an explicit caveat about pixel-level splits and reuse of polygons. These additions explain the inputs and main procedure; the full network and training specification still needs completion in the Supplementary Information.
+
+**Changes:** Sections 2.2–2.3; Supporting Information, Classifier architecture and accuracy, [old L164-170 → new L##].
+
+**Author check:** Resolved before submission: these details are now present in the Supplementary Information (classifier subsection and Table S12).
+
+## R3-17. L185: why model expansion rather than total area
+
+*Make the valid rationale for using expansion instead of total area explicit.*
+
+**Response:** We agree. We now separate the description of total mapped change from the response used to model establishment. Net change remains the primary measure of overall expansion, but Model B uses non-*Sasa*→*Sasa* transitions to identify where establishment occurred. Ambiguous loss is analysed descriptively rather than being treated as confirmed mortality. Thus, using establishment as the model response does not remove loss from the accounting of total change.
+
+**Changes:** Sections 2.4, 2.6.2, 3.1, and 4.1, [old L185 → new L##].
+
+## R3-18. Old Figure 2: remove or relocate
+
+*Remove the full vegetation maps from the main text or move them to the supplement; indicate enlargement locations and simplify irrelevant classes.*
+
+**Response:** We agree. The complete seven-class maps are now Figure S6. We retain a redesigned Figure 2 in the main text because it provides site context and the observed persistence/gain/loss underlying the analysis. It emphasises *Sasa* and dwarf pine and locates enlarged boundary examples with boxes, rather than repeating two full classification maps.
+
+**Changes:** Section 3.1, Figure 2; Figure S6, [old Fig. 2; line not supplied → new L##].
+
+**Author check:** Complete the Figure S6 readability revision noted in R1-m1; relocation alone does not fulfil the requested improvement of the supplementary display.
+
+## R3-19. L190-196: species description in the modelling subsection
+
+*Move the species biology out of the HSM description.*
+
+**Response:** We agree. Rhizome expansion and establishment from seed are now introduced before the objectives in Section 1. The statistical-model subsection defines responses, predictors, fitting, and evaluation, with only the biological explanation needed for the patch rule retained there.
+
+**Changes:** Section 1, third paragraph; Section 2.6, [old L190-196 → new L##].
+
+## R3-20. L190-191: repetition
+
+*Remove repeated material.*
+
+**Response:** We agree. The former repeated lead-in to the modelling description has been removed. The two questions are introduced once in the Introduction, and the Methods proceeds to the corresponding model definitions.
+
+**Changes:** Sections 1 and 2.6, [old L190-191 → new L##].
+
+## R3-21. L204: proximity and dispersal limitation
+
+*Define "near existing populations" and explain how dispersal limitation was quantified.*
+
+**Response:** We agree. Proximity is now Euclidean distance to the nearest cell in a 2012 *Sasa* patch exceeding 5 m², with four-neighbour connectivity. Model B uses a smooth of log-transformed distance. Figure 4e compares observed and fitted nine-year establishment rates by distance band; probabilities are approximately 10% within 5 m and below 1% beyond 10 m. Distance dependence is evidence consistent with dispersal limitation, not a direct measurement of a dispersal mechanism.
+
+**Changes:** Sections 2.6.2, 3.4, and 4.2; Figure 4e, [old L204 → new L##].
+
+## R3-22. L206: misuse of "niche"
+
+*Use predicted suitable area instead of "niche".*
+
+**Response:** We agree. The relevant output is now called habitat suitability, environmental potential, or suitable area where a threshold is explicitly applied. We no longer label the modelled map a niche.
+
+**Changes:** Sections 2.6.1, 2.7, and 3.3, [old L206 → new L##].
+
+## R3-23. L207: misuse of "realized expansion"
+
+*Model output is not "localized realized expansion".*
+
+**Response:** We agree. We replaced that phrase with establishment probability or projected establishment, according to the output. "Observed" refers only to mapped 2012→2021 transitions; future model outputs are not described as realised observations.
+
+**Changes:** Sections 2.6.2–2.7 and 3.4–3.5, [old L207 → new L##].
+
+## R3-24. L209 ff: describe variables before models
+
+*Introduce the predictors before describing the models.*
+
+**Response:** We agree. Snowmelt climatology is defined in Section 2.5, and the shared terrain predictors and their screening are described at the start of Section 2.6, before the separate Model A and Model B subsections. Distance is then defined with the establishment response to which it applies.
+
+**Changes:** Sections 2.5–2.6, [old L209 ff → new L##].
+
+## R3-25. L216-217: terrain-index definitions
+
+*Provide definitions and references for roughness, TRI, and TPI.*
+
+**Response:** We agree. Roughness and TRI have been removed from the revised models because of redundancy with slope, and that exclusion is now explained quantitatively. TPI is defined as elevation relative to surrounding terrain, and the added TWI is defined as topographic wetness potential derived from contributing area and slope. The exact calculation windows and implementations for the retained indices are still being documented; removing redundant variables does not eliminate that reproducibility requirement.
+
+**Changes:** Section 2.6, Shared predictors, [old L216-217 → new L##].
+
+**Author check:** Complete the terrain-provenance TODO and add the actual formulas, neighbourhoods, implementation, and supporting references to the supplement. The current promise of supplementary derivation details is not yet fulfilled.
+
+## R3-26. L219: missing reference or link
+
+*Add a reference or link for the data/software source.*
+
+**Response:** We agree. The revised predictor description identifies the Geospatial Information Authority of Japan's Fundamental Geospatial Data DEM and includes its reference. The georectification description also gives the `alproj` repository link and the methodological publication, so the relevant data and processing sources can be located.
+
+**Changes:** Sections 2.3 and 2.6; References, [old L219 → new L##].
+
+**Author check:** The original submitted PDF confirms that L219 refers to the 5 m GSI DEM. Resolve the remaining TODO for the exact DEM product and bibliographic details in the Methods and reference entry.
+
+## R3-27. L220: resampling and the factor of five
+
+*Explain resampling and justify the factor of five, including its relevance to spatial autocorrelation.*
+
+**Response:** We agree that the resampling description needs to be explicit. The original passage refers to resampling a **5 m DEM to the 1 m vegetation grid**. The revised Methods identifies the common grid and reprojection, but grid matching must not be interpreted as creating independently measured 1 m terrain information. The factor of five aligns spatial support for the analysis; it is not a demonstrated ecological resolution or a treatment for spatial autocorrelation. Spatial generalisation is evaluated using held-out blocks. The thinning of Model A pseudo-absences to one per 5 m cell and the >5 m² source-patch rule are separate operations with different purposes; neither explains the DEM interpolation. We have not supplied a variogram or Moran's I analysis validating the factor of five.
+
+**Changes:** Section 2, common grid; Sections 2.6.1–2.6.2 and 2.7; Table S9, [old L220 → new L##].
+
+**Author check:** State the original DEM resolution, exact interpolation/resampling method, and resulting effective-resolution limitation in Section 2.6 and the terrain supplement. The current revision does not yet fully answer the procedural and evidential parts of this request.
+
+## R3-28. L224: definition of the linear trend model
+
+*Explain how time enters the model and whether regressions are pixel-specific or fitted to the entire study area.*
+
+**Response:** We agree. Section 2.5 now states that an ordinary least-squares regression of snowmelt DOY against calendar year was fitted separately for each pixel using the 10 available years. The regression of annual landscape means is reported separately as the landscape-level trend, with its confidence interval and p-value.
+
+**Changes:** Sections 2.5 and 3.2; Figures S1 and S3, [old L224 → new L##].
+
+## R3-29. L228: "extended the regression"
+
+*Clarify whether the regression was extrapolated to calculate 2030 snowmelt.*
+
+**Response:** We agree. We removed that formulation. The revised statistical models use mean snowmelt DOY, while projections impose explicitly defined uniform shifts on that climatology. We do not extrapolate every noisy pixel regression as a future snowmelt forecast. The Methods states both the shift formula and the limits of this approximation.
+
+**Changes:** Sections 2.5 and 2.7; Supporting Information, Rationale for spatially uniform snowmelt shifts, [old L228 → new L##].
+
+## R3-30. L232: snowmelt calculation wording
+
+*Complete the wording concerning "the calculation of the snowmelt ...".*
+
+**Response:** We agree. The sentence has been replaced by explicit definitions of annual snowmelt DOY, snowmelt climatology, and the per-pixel linear trend. The incomplete phrase is no longer used.
+
+**Changes:** Section 2.5, [old L232 → new L##].
+
+## R3-31. L232-235: distance metric and calculation
+
+*Specify the distance metric, source patches, and calculation.*
+
+**Response:** We agree. Section 2.6.2 defines Euclidean distance from the nearest cell belonging to a four-neighbour-connected 2012 *Sasa* patch exceeding 5 m² in geodesic area. Section 2.7 specifies recalculation from current simulated occupancy each year using the same patch rule. This resolves the former mismatch between fitting and projection definitions.
+
+**Changes:** Sections 2.6.2 and 2.7; Figure 1, [old L232-235 → new L##].
+
+## R3-32. L239: "trained to predict"
+
+*Rewrite the model-fitting statement more precisely.*
+
+**Response:** We agree. The new text specifies that Model A was fitted to the 2021 distribution and Model B to a binary response indicating whether cells unoccupied in 2012 became occupied by 2021. Fitting, held-out evaluation, and projection are described separately.
+
+**Changes:** Sections 2.6.1–2.7, [old L239 → new L##].
+
+## R3-33. L244 ff: unnecessary subheading
+
+*Remove the unnecessary subheading.*
+
+**Response:** We agree. The former subdivision is not retained. The revised Methods uses separate subsections only for the two distinct statistical models and the projection stage, because their responses, outputs, and validation requirements differ.
+
+**Changes:** Sections 2.6–2.7, [old L244 ff → new L##].
+
+## R3-34. Old Figure 3: unnecessary display
+
+*Remove the figure from the main text or move it to the supplement.*
+
+**Response:** We agree. The old spatial-sampling display, which showed the initial split and cross-validation split, has been removed from the main text. Section 2.6 now describes the single shared four-block partition used by the redesigned models. The revised Figure 3 is a new response-curve display and is not the former sampling figure.
+
+**Changes:** Section 2.6, Shared evaluation design; Section 3.3, Figure 3, [old Fig. 3; line not supplied → new L##].
+
+## R3-35. L258: tuning and ensemble construction
+
+*Explain hyperparameter tuning and ensemble construction.*
+
+**Response:** We agree. Section 2.6.1 names the four candidate algorithms, grid search with up to 18 candidates per algorithm, TSS-based selection on spatial blocks, and LASSO-regularised stacking. Section 3.3 and Table S7 describe the retained four members (two boosted-tree models, one MaxEnt model, and one random forest), with boosted trees and MaxEnt accounting for 95% of the blend weight. Model B is now a binomial GAM, with a boosted-tree robustness comparison and distance-specification checks described separately.
+
+**Changes:** Sections 2.6.1–2.6.2 and 3.3; Tables S7–S8, [old L258 → new L##].
+
+## R3-36. L267: unnecessary TSS explanation
+
+*The extended explanation of TSS is unnecessary.*
+
+**Response:** We agree. We have shortened it to the metric's name, abbreviation, citation, and use for held-out evaluation and threshold selection. The earlier explanatory passage is not retained.
+
+**Changes:** Section 2.6.1, [old L267 → new L##].
+
+## R3-37. L297-299: interpretation in the Results
+
+*Move this interpretation out of the Results.*
+
+**Response:** We agree. The Results report destination classes, image-interpretation outcomes, and mapped change. Explanations involving dwarf-pine growth, mixed boundary cells, and possible *Sasa* persistence are developed in Section 4.1, with their evidential limitations.
+
+**Changes:** Sections 3.1 and 4.1, [old L297-299 → new L##].
+
+## R3-38. L300, L309-310: repeated methods in the Results
+
+*Remove these repetitions of the Methods.*
+
+**Response:** We agree. Snowmelt fitting and predictor/model construction are defined in Sections 2.5–2.6. The corresponding Results now focus on estimated trends, held-out performance, response curves, and mapped outputs; the old procedural sentences are not retained.
+
+**Changes:** Sections 2.5–2.6 and 3.2–3.4, [old L300, L309-310 → new L##].
+
+## R3-39. Old Figure 4: simplify and move to the supplement
+
+*Move the figure to the supplement; remove the coloured boxes, inset, and Japanese text, enlarge the main map, and explain white areas.*
+
+**Response:** We agree that the old expansion map needed substantial simplification. We have removed that standalone display and incorporated its essential information into revised Figure 2, where persistence, gain, and loss are distinguished and the two boundary enlargements are explicitly located. The former coloured explanatory boxes and inset are not retained. We have kept the redesigned change display in the main text because observed gain and loss are central to the paper and directly answer the concern about gross versus net change; it is substantially different from the old map.
+
+**Changes:** Section 3.1, Figure 2, [old Fig. 4; line not supplied → new L##].
+
+**Author check:** Verify that the replacement artwork contains no Japanese labels and explicitly explain the white/background areas in its caption, distinguishing unchanged non-*Sasa* vegetation from any unmapped area according to the actual plotting masks. The current Figure 2 caption does not fully explain that convention.
+
+## R3-40. Old Figure 5: move to the supplement
+
+*Move the figure to the supplement.*
+
+**Response:** We agree. The old TBM/TDM tuning-performance plots are no longer in the main figure sequence. We report the redesigned models' performance in the Results and Tables S7–S8 instead of relocating plots of superseded fits. The current Figure 5 presents the new cellular-automaton scenarios.
+
+**Changes:** Sections 3.3–3.5; Tables S7–S8 and Figure 5, [old Fig. 5; line not supplied → new L##].
+
+## R3-41. Old Figure 6: DOY and predictor names
+
+*Replace "snow" with "DOY" and explain abbreviated predictor names.*
+
+**Response:** We agree. The former importance plot has been replaced by response curves in Figure 3. The Methods defines snowmelt DOY as day of year and explains TPI, TWI, northness, and eastness. The response curves therefore refer to the defined climatology variable rather than an unspecified "snow" predictor.
+
+**Changes:** Sections 2.5–2.6 and 3.3; Figure 3, [old Fig. 6; line not supplied → new L##].
+
+## R3-42. Old Figure 7: colours, labels, and binary comparison
+
+*Explain black areas and improve axis labels; consider a single binary suitable/unsuitable comparison of TBM, TDM, and observed distribution.*
+
+**Response:** We agree that the earlier comparison was difficult to interpret. Revised Figure 4 separates Model A's continuous suitability from Model B's nine-year establishment probability and adds enlarged windows. The caption explicitly identifies black outlines as observed 2021 *Sasa* and white contours as Model A's maximum-TSS threshold. We have not used a single binary comparison because the redesigned models estimate different quantities; applying one threshold to both would obscure that distinction. Observed occupancy remains visible as the reference, and Table S2 provides the binary sensitivity analysis for Model A.
+
+**Changes:** Sections 3.3–3.4, Figure 4; Table S2, [old Fig. 7; line not supplied → new L##].
+
+## R3-43. L321: "of newly" wording
+
+*Replace "of newly" with "becoming".*
+
+**Response:** We agree. The former sentence has been replaced during the redesign. The Methods now explicitly asks whether initially unoccupied cells "had become *Sasa* by 2021", and the Results uses "new establishment" for the projected quantity.
+
+**Changes:** Sections 2.6.2 and 3.5, [old L321 → new L##].
+
+## R3-44. Old Figure 8: change categories and herbaceous risk
+
+*Use one panel per model with gain/loss/stable suitability categories and, where appropriate, restrict the risk map to other vegetation.*
+
+**Response:** We agree with the need to distinguish change and the recipient vegetation. The new Figure 5 shows establishment probability, scenario differences, enlargements, and area trajectories. Figure 6 separately restricts the risk map to cells classified as other vegetation in 2021 and identifies the snowbed communities. We have not retained the proposed three-category suitable-area comparison: the new projection estimates establishment from observed fronts and assumes no loss, so it does not generate a future loss-of-occupancy category. Model A remains a separate environmental-potential layer (Figure S5). Restricting the conservation map to herbaceous vegetation is an analytical focus, not evidence that establishment in all shrub vegetation is biologically impossible.
+
+**Changes:** Sections 2.7–2.8 and 3.5–3.6; Figures 5, 6, and S5, [old Fig. 8; line not supplied → new L##].
+
+## R3-45. Old Figure 9: redundant figure
+
+*The revised Figure 8 should make Figure 9 unnecessary.*
+
+**Response:** We agree. The old Figure 9 has been removed. Its conservation purpose is addressed by the integrated community-risk map and community-level expected areas in Figure 6, with detailed values in Table S4.
+
+**Changes:** Section 3.6, Figure 6; Table S4, [old Fig. 9; line not supplied → new L##].
+
+## R3-46. L328: strength of claims in the Discussion
+
+*The study quantifies snowmelt timing, not all drivers; reassess the strength of the Discussion throughout.*
+
+**Response:** We agree. We changed the title, use snowmelt-regime associations rather than a demonstrated temporal driver, and state that the snowmelt record does not establish a trend. Section 4.2 explicitly rejects causal interpretation of the modelled associations, while Section 4.5 lists missing soil measurements and unmeasured spatial structure. The non-monotonic response and scenario results are presented with those constraints, and the camera method is described in terms of its specific scope.
+
+**Changes:** Title; Sections 3.2, 4.2, 4.4, and 4.5, [old L328 → new L##].
+
+## R3-47. L351: seedling establishment as an alternative constraint
+
+*The suitable/occupied gap may reflect difficulties of seedling establishment as well as dispersal limitation.*
+
+**Response:** We agree. Section 4.5 now states, "Even when seeds arrive, however, germination and seedling establishment may impose constraints independent of dispersal." Model A is therefore described as environmental potential under the measured covariates, not a guarantee of establishment. We did not measure seed arrival, germination, or seedling survival.
+
+**Changes:** Sections 2.8 and 4.5, [old L351 → new L##].
+
+## R3-48. L390: supporting citation
+
+*Add a reference supporting this statement.*
+
+**Response:** We agree that the statement about future high-resolution snow and climate modelling needed support. Rather than retaining that speculative claim, we have removed the passage. The revised Methods and limitations state the narrower point relevant to our analysis: forecasting snowmelt itself is outside this study's scope, and the imposed snowmelt shifts are conditional scenarios. We do not claim that an untested future meteorological input will necessarily improve vegetation projections.
+
+**Changes:** Sections 2.5, 2.7, and 4.5, [old L390 → new L##].
+
+## R3-49. L391: overstated modelling novelty
+
+*Using modelled snow as an input does not itself create a distinct approach beyond an HSM; reduce the emphasis.*
+
+**Response:** We agree. We do not claim methodological novelty simply from including snowmelt in an HSM. The revised distinction is between a suitability model and a transition-based establishment model followed by annual front updating. We describe the camera's contribution as supplying matching vegetation and snowmelt observations at the relevant spatial scale, with explicit applicability limits.
+
+**Changes:** Sections 1, 2.6–2.7, and 4.4, [old L391 → new L##].
+
+## R3-50. L421-422: delete the passage
+
+*Delete these sentences.*
+
+**Response:** We agree. The former passage has not been retained in the rewritten Conclusion. The replacement reports the net mapped change, distance-associated establishment, conditional projection results, and the observation scale supported by this study.
+
+**Changes:** Section 5, [old L421-422 → new L##].
+
+## R3-51. L424-430: repeated and unclear conclusion
+
+*Remove this repetition and the unclear claim beginning at L424.*
+
+**Response:** We agree. The former passage has been removed rather than restated. The Conclusion is now a single short paragraph, and detailed interpretation is confined to the relevant Discussion subsections.
+
+**Changes:** Sections 4 and 5, [old L424-430 → new L##].
+
+## R3-52. L431-438: relocate conservation discussion
+
+*Move this material to Section 4.5.*
+
+**Response:** We agree. The substantive conservation discussion is now consolidated in the dedicated Conservation implications subsection, which is **Section 4.6 in the revised structure**. It connects candidate front interventions to mapped snowbed communities and states that costs, regrowth, and rare-species occurrence require further work. The former numbering changed because Limitations now has its own subsection.
+
+**Changes:** Section 4.6, [old L431-438 → new L##].
+
+## R3-53. L439-443: overstatement of the method
+
+*Delete the exaggerated methodological conclusion.*
+
+**Response:** We agree. The former self-promotional passage has been removed. The replacement conclusion retains a bounded statement about the observation gap between field plots and satellites, and Section 4.4 explicitly sets out the limitations of a fixed-camera approach. We do not claim unrestricted generality or superiority to satellite monitoring.
+
+**Changes:** Sections 4.4 and 5, [old L439-443 → new L##].

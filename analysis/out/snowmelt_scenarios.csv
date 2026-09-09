@@ -1,0 +1,4 @@
+"scenario","shift_d_yr","source"
+"none",0,"no change"
+"point_estimate",-0.71,"mean of per-pixel OLS slopes / landscape point estimate"
+"ci_lower",-2.24,"lower 95% CI limit of the landscape-scale OLS trend"

@@ -1,0 +1,2 @@
+"validation_type","start_year","end_year","n_replicates","observed_gross_colonized_area_m2","observed_area_geodesic_m2","expected_simulated_area_m2","expected_to_observed_ratio","cell_auc","reporting_lower","reporting_upper"
+"calibration_check_not_independent",2012,2021,200,4097,4092.78883923091,4414.16954666953,1.077415071191,0.915818268321073,0.5,2

@@ -1,0 +1,10 @@
+"statistic","value"
+"mean_allyears_doy_positive",171.259082785346
+"mean_allyears_zeros_included_legacy",170.425733834193
+"mean_available_years_doy_positive",170.85670393956
+"n_cells_allyears_valid",1174447
+"n_cells_raw_complete",1206233
+"n_cells_snow_mean_nonNA",1206083
+"n_cells_snow_mean_NA",1951070
+"doy_min_observed",2
+"doy_max_observed",232

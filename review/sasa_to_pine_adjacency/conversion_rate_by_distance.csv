@@ -1,0 +1,5 @@
+"bin","n_sasa12","n_to_pine","n_to_other","pct_converted_to_pine","pct_converted_to_other"
+"adjacent (<=1.5 m)",3981,1012,520,25.42,13.06
+"2-3 m (1.5-3 m)",2358,102,309,4.33,13.1
+"3-5 m",1297,23,222,1.77,17.12
+">5 m (isolated)",911,19,261,2.09,28.65

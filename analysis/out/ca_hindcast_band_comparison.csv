@@ -1,0 +1,8 @@
+"validation_type","distance_band_m","n_cells","observed_colonized_cells","observed_colonization_rate","simulated_colonization_frequency","simulated_expected_area_m2"
+"calibration_check_not_independent","[0,5)",25371,2408,0.0949115131449293,0.110117456939025,2792.2815440881
+"calibration_check_not_independent","[5,10)",34853,507,0.0145468108914584,0.0131060453906407,456.538265235485
+"calibration_check_not_independent","[10,20)",68719,410,0.00596632663455522,0.0051319140266885,352.46946115713
+"calibration_check_not_independent","[20,40)",122535,437,0.00356632798792182,0.00384535030807484,470.935489441606
+"calibration_check_not_independent","[40,80)",124517,254,0.0020398821044516,0.00212063413027919,263.912245638726
+"calibration_check_not_independent","[80,160)",122434,31,0.000253197641178104,0.000293382557132867,35.9004571490997
+"calibration_check_not_independent",">=160",699107,48,6.86590178613574e-05,6.02983520405626e-05,42.1320839593253

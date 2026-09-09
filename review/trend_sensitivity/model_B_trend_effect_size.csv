@@ -1,0 +1,9 @@
+"quantity","value"
+"trend_q05",-1.83916079998016
+"trend_q95",0.120879121124744
+"partial_effect_min_inner",0.00124855994970067
+"partial_effect_max_inner",0.127168195906263
+"partial_effect_span_inner",0.125919635956562
+"odds_ratio_span_inner",1.1341910164443
+"partial_effect_span_full",6.05224194411176
+"s_log1p_dist12_span_full",5.79530719051216

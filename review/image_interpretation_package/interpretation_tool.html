@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ササ減少セル 目視判読ツール</title>
+<style>
+  :root {
+    --bg: #14161a;
+    --panel: #1e2229;
+    --panel-2: #262b34;
+    --line: #363c47;
+    --fg: #e8eaed;
+    --muted: #9aa3af;
+    --accent: #4a9eff;
+    --ok: #35c07a;
+    --warn: #e0a33e;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%;
+    background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+                 "Yu Gothic UI", "Noto Sans JP", sans-serif;
+    font-size: 14px; overflow: hidden;
+  }
+  #app { display: flex; height: 100%; }
+
+  /* ---- image stage ---- */
+  #stage {
+    flex: 1 1 auto; position: relative; overflow: hidden;
+    background: #0c0d10; cursor: grab; touch-action: none;
+  }
+  #stage.dragging { cursor: grabbing; }
+  #canvas {
+    position: absolute; top: 0; left: 0;
+    transform-origin: 0 0; will-change: transform;
+  }
+  #canvas img {
+    display: block; user-select: none; -webkit-user-drag: none;
+    image-rendering: pixelated;
+  }
+  #stage-hud {
+    position: absolute; left: 12px; top: 12px; z-index: 5;
+    background: rgba(20,22,26,.82); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 10px;
+    font-variant-numeric: tabular-nums; pointer-events: none;
+  }
+  #stage-hud b { font-size: 18px; letter-spacing: .04em; }
+  #stage-hud span { color: var(--muted); margin-left: 10px; }
+  #zoombar {
+    position: absolute; right: 12px; top: 12px; z-index: 5; display: flex; gap: 6px;
+  }
+  #zoombar button {
+    width: 34px; height: 34px; font-size: 16px; padding: 0;
+  }
+
+  /* ---- side panel ---- */
+  #side {
+    flex: 0 0 340px; background: var(--panel); border-left: 1px solid var(--line);
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  .sec { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .sec h2 {
+    margin: 0 0 8px; font-size: 11px; font-weight: 600;
+    letter-spacing: .12em; color: var(--muted); text-transform: uppercase;
+  }
+  button {
+    font: inherit; color: var(--fg); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 7px 10px; cursor: pointer;
+  }
+  button:hover { border-color: #566; }
+  button:active { transform: translateY(1px); }
+  .choice {
+    display: flex; width: 100%; align-items: baseline; gap: 8px;
+    margin-bottom: 6px; text-align: left;
+  }
+  .choice .k {
+    flex: 0 0 auto; font-size: 11px; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px;
+  }
+  .choice.on { background: #23405e; border-color: var(--accent); }
+  .choice.on .k { color: var(--fg); border-color: var(--accent); }
+  .row { display: flex; gap: 6px; }
+  .row button { flex: 1 1 0; }
+  #notes {
+    width: 100%; min-height: 80px; resize: vertical;
+    font: inherit; color: var(--fg); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px;
+  }
+  #notes:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  /* ---- progress ---- */
+  #bar {
+    height: 8px; background: var(--panel-2); border-radius: 4px; overflow: hidden;
+    margin-bottom: 8px;
+  }
+  #bar > i { display: block; height: 100%; width: 0; background: var(--ok); }
+  table.tally { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  table.tally td { padding: 2px 0; }
+  table.tally td:last-child { text-align: right; color: var(--muted); }
+
+  .hint { color: var(--muted); font-size: 12px; line-height: 1.7; }
+  .hint kbd {
+    background: var(--panel-2); border: 1px solid var(--line); border-bottom-width: 2px;
+    border-radius: 4px; padding: 0 5px; font-family: ui-monospace, monospace; font-size: 11px;
+  }
+  label.toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  #jump { width: 100%; }
+  #msg { color: var(--warn); font-size: 12px; min-height: 1.4em; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <div id="canvas"><img id="img" alt=""></div>
+    <div id="stage-hud"><b id="hud-id">—</b><span id="hud-pos"></span><span id="hud-zoom"></span></div>
+    <div id="zoombar">
+      <button id="zoom-out" title="縮小">−</button>
+      <button id="zoom-in" title="拡大">＋</button>
+      <button id="zoom-fit" title="全体表示にリセット (0)">⤢</button>
+    </div>
+  </div>
+
+  <div id="side">
+    <div class="sec">
+      <h2>進捗</h2>
+      <div id="bar"><i></i></div>
+      <div id="progress-text" class="hint"></div>
+      <table class="tally"><tbody id="tally"></tbody></table>
+    </div>
+
+    <div class="sec">
+      <h2>判定 (verdict)</h2>
+      <div id="verdicts"></div>
+    </div>
+
+    <div class="sec">
+      <h2>確信度 (confidence)</h2>
+      <div id="confidences"></div>
+    </div>
+
+    <div class="sec">
+      <h2>メモ (notes)</h2>
+      <textarea id="notes" placeholder="自由記述（任意）"></textarea>
+    </div>
+
+    <div class="sec">
+      <h2>移動</h2>
+      <div class="row" style="margin-bottom:8px">
+        <button id="prev">← 前へ</button>
+        <button id="next">次へ →</button>
+      </div>
+      <div class="row" style="margin-bottom:8px">
+        <button id="next-unfilled">未入力へ飛ぶ</button>
+      </div>
+      <select id="jump"></select>
+      <div style="margin-top:8px">
+        <label class="toggle">
+          <input type="checkbox" id="autoadvance" checked>
+          <span>判定を入力したら自動で次へ</span>
+        </label>
+        <label class="toggle" style="margin-top:6px">
+          <input type="checkbox" id="overlay" checked>
+          <span>対象セルの枠を表示（<kbd>o</kbd>）</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>保存・書き出し</h2>
+      <div class="row" style="margin-bottom:8px">
+        <button id="export">CSV を保存</button>
+        <button id="import-btn">CSV を読み込む</button>
+      </div>
+      <input type="file" id="import-file" accept=".csv,text/csv" style="display:none">
+      <button id="reset-all" style="width:100%">入力をすべて消去</button>
+      <div id="msg" style="margin-top:8px"></div>
+    </div>
+
+    <div class="sec">
+      <h2>キーボード操作</h2>
+      <div class="hint" id="shortcuts"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ------------------------------------------------------------------ data */
+const SAMPLES  = [{"blind_id": "B001", "image": "blind/B001.png", "extra": {"blind_id": "B001", "blind_image": "blind/B001.png", "dist": "260.555", "m_per_px_horiz": "0.068", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B002", "image": "blind/B002.png", "extra": {"blind_id": "B002", "blind_image": "blind/B002.png", "dist": "859.253", "m_per_px_horiz": "0.224", "m2_per_px": "0.125", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B003", "image": "blind/B003.png", "extra": {"blind_id": "B003", "blind_image": "blind/B003.png", "dist": "689.004", "m_per_px_horiz": "0.180", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B004", "image": "blind/B004.png", "extra": {"blind_id": "B004", "blind_image": "blind/B004.png", "dist": "826.495", "m_per_px_horiz": "0.215", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B005", "image": "blind/B005.png", "extra": {"blind_id": "B005", "blind_image": "blind/B005.png", "dist": "686.924", "m_per_px_horiz": "0.179", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B006", "image": "blind/B006.png", "extra": {"blind_id": "B006", "blind_image": "blind/B006.png", "dist": "679.894", "m_per_px_horiz": "0.177", "m2_per_px": "0.250", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B007", "image": "blind/B007.png", "extra": {"blind_id": "B007", "blind_image": "blind/B007.png", "dist": "735.222", "m_per_px_horiz": "0.192", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B008", "image": "blind/B008.png", "extra": {"blind_id": "B008", "blind_image": "blind/B008.png", "dist": "593.651", "m_per_px_horiz": "0.155", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B009", "image": "blind/B009.png", "extra": {"blind_id": "B009", "blind_image": "blind/B009.png", "dist": "897.082", "m_per_px_horiz": "0.234", "m2_per_px": "0.250", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B010", "image": "blind/B010.png", "extra": {"blind_id": "B010", "blind_image": "blind/B010.png", "dist": "867.377", "m_per_px_horiz": "0.226", "m2_per_px": "0.312", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B011", "image": "blind/B011.png", "extra": {"blind_id": "B011", "blind_image": "blind/B011.png", "dist": "509.666", "m_per_px_horiz": "0.133", "m2_per_px": "0.125", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B012", "image": "blind/B012.png", "extra": {"blind_id": "B012", "blind_image": "blind/B012.png", "dist": "409.484", "m_per_px_horiz": "0.107", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B013", "image": "blind/B013.png", "extra": {"blind_id": "B013", "blind_image": "blind/B013.png", "dist": "482.256", "m_per_px_horiz": "0.126", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B014", "image": "blind/B014.png", "extra": {"blind_id": "B014", "blind_image": "blind/B014.png", "dist": "202.056", "m_per_px_horiz": "0.053", "m2_per_px": "nan", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B015", "image": "blind/B015.png", "extra": {"blind_id": "B015", "blind_image": "blind/B015.png", "dist": "548.674", "m_per_px_horiz": "0.143", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B016", "image": "blind/B016.png", "extra": {"blind_id": "B016", "blind_image": "blind/B016.png", "dist": "639.779", "m_per_px_horiz": "0.167", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B017", "image": "blind/B017.png", "extra": {"blind_id": "B017", "blind_image": "blind/B017.png", "dist": "751.473", "m_per_px_horiz": "0.196", "m2_per_px": "0.312", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B018", "image": "blind/B018.png", "extra": {"blind_id": "B018", "blind_image": "blind/B018.png", "dist": "257.500", "m_per_px_horiz": "0.067", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B019", "image": "blind/B019.png", "extra": {"blind_id": "B019", "blind_image": "blind/B019.png", "dist": "669.936", "m_per_px_horiz": "0.175", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B020", "image": "blind/B020.png", "extra": {"blind_id": "B020", "blind_image": "blind/B020.png", "dist": "606.276", "m_per_px_horiz": "0.158", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B021", "image": "blind/B021.png", "extra": {"blind_id": "B021", "blind_image": "blind/B021.png", "dist": "536.180", "m_per_px_horiz": "0.140", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B022", "image": "blind/B022.png", "extra": {"blind_id": "B022", "blind_image": "blind/B022.png", "dist": "413.277", "m_per_px_horiz": "0.108", "m2_per_px": "0.125", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B023", "image": "blind/B023.png", "extra": {"blind_id": "B023", "blind_image": "blind/B023.png", "dist": "755.042", "m_per_px_horiz": "0.197", "m2_per_px": "nan", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B024", "image": "blind/B024.png", "extra": {"blind_id": "B024", "blind_image": "blind/B024.png", "dist": "806.512", "m_per_px_horiz": "0.210", "m2_per_px": "0.188", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B025", "image": "blind/B025.png", "extra": {"blind_id": "B025", "blind_image": "blind/B025.png", "dist": "391.497", "m_per_px_horiz": "0.102", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B026", "image": "blind/B026.png", "extra": {"blind_id": "B026", "blind_image": "blind/B026.png", "dist": "793.179", "m_per_px_horiz": "0.207", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B027", "image": "blind/B027.png", "extra": {"blind_id": "B027", "blind_image": "blind/B027.png", "dist": "492.495", "m_per_px_horiz": "0.128", "m2_per_px": "0.062", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B028", "image": "blind/B028.png", "extra": {"blind_id": "B028", "blind_image": "blind/B028.png", "dist": "640.169", "m_per_px_horiz": "0.167", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B029", "image": "blind/B029.png", "extra": {"blind_id": "B029", "blind_image": "blind/B029.png", "dist": "399.825", "m_per_px_horiz": "0.104", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B030", "image": "blind/B030.png", "extra": {"blind_id": "B030", "blind_image": "blind/B030.png", "dist": "611.144", "m_per_px_horiz": "0.159", "m2_per_px": "0.188", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B031", "image": "blind/B031.png", "extra": {"blind_id": "B031", "blind_image": "blind/B031.png", "dist": "739.104", "m_per_px_horiz": "0.193", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B032", "image": "blind/B032.png", "extra": {"blind_id": "B032", "blind_image": "blind/B032.png", "dist": "625.675", "m_per_px_horiz": "0.163", "m2_per_px": "0.312", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B033", "image": "blind/B033.png", "extra": {"blind_id": "B033", "blind_image": "blind/B033.png", "dist": "589.490", "m_per_px_horiz": "0.154", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B034", "image": "blind/B034.png", "extra": {"blind_id": "B034", "blind_image": "blind/B034.png", "dist": "795.035", "m_per_px_horiz": "0.207", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B035", "image": "blind/B035.png", "extra": {"blind_id": "B035", "blind_image": "blind/B035.png", "dist": "512.245", "m_per_px_horiz": "0.134", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B036", "image": "blind/B036.png", "extra": {"blind_id": "B036", "blind_image": "blind/B036.png", "dist": "765.773", "m_per_px_horiz": "0.200", "m2_per_px": "0.250", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B037", "image": "blind/B037.png", "extra": {"blind_id": "B037", "blind_image": "blind/B037.png", "dist": "829.098", "m_per_px_horiz": "0.216", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B038", "image": "blind/B038.png", "extra": {"blind_id": "B038", "blind_image": "blind/B038.png", "dist": "688.471", "m_per_px_horiz": "0.179", "m2_per_px": "0.375", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B039", "image": "blind/B039.png", "extra": {"blind_id": "B039", "blind_image": "blind/B039.png", "dist": "748.775", "m_per_px_horiz": "0.195", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B040", "image": "blind/B040.png", "extra": {"blind_id": "B040", "blind_image": "blind/B040.png", "dist": "620.449", "m_per_px_horiz": "0.162", "m2_per_px": "nan", "align_shift_px": "18.358", "quality_ok": "no"}}, {"blind_id": "B041", "image": "blind/B041.png", "extra": {"blind_id": "B041", "blind_image": "blind/B041.png", "dist": "523.921", "m_per_px_horiz": "0.137", "m2_per_px": "0.062", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B042", "image": "blind/B042.png", "extra": {"blind_id": "B042", "blind_image": "blind/B042.png", "dist": "818.323", "m_per_px_horiz": "0.213", "m2_per_px": "0.312", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B043", "image": "blind/B043.png", "extra": {"blind_id": "B043", "blind_image": "blind/B043.png", "dist": "362.904", "m_per_px_horiz": "0.095", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B044", "image": "blind/B044.png", "extra": {"blind_id": "B044", "blind_image": "blind/B044.png", "dist": "687.296", "m_per_px_horiz": "0.179", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B045", "image": "blind/B045.png", "extra": {"blind_id": "B045", "blind_image": "blind/B045.png", "dist": "607.121", "m_per_px_horiz": "0.158", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B046", "image": "blind/B046.png", "extra": {"blind_id": "B046", "blind_image": "blind/B046.png", "dist": "544.733", "m_per_px_horiz": "0.142", "m2_per_px": "0.188", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B047", "image": "blind/B047.png", "extra": {"blind_id": "B047", "blind_image": "blind/B047.png", "dist": "651.343", "m_per_px_horiz": "0.170", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B048", "image": "blind/B048.png", "extra": {"blind_id": "B048", "blind_image": "blind/B048.png", "dist": "816.586", "m_per_px_horiz": "0.213", "m2_per_px": "0.688", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B049", "image": "blind/B049.png", "extra": {"blind_id": "B049", "blind_image": "blind/B049.png", "dist": "810.078", "m_per_px_horiz": "0.211", "m2_per_px": "0.312", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B050", "image": "blind/B050.png", "extra": {"blind_id": "B050", "blind_image": "blind/B050.png", "dist": "775.112", "m_per_px_horiz": "0.202", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B051", "image": "blind/B051.png", "extra": {"blind_id": "B051", "blind_image": "blind/B051.png", "dist": "835.742", "m_per_px_horiz": "0.218", "m2_per_px": "0.562", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B052", "image": "blind/B052.png", "extra": {"blind_id": "B052", "blind_image": "blind/B052.png", "dist": "107.091", "m_per_px_horiz": "0.028", "m2_per_px": "nan", "align_shift_px": "25.495", "quality_ok": "no"}}, {"blind_id": "B053", "image": "blind/B053.png", "extra": {"blind_id": "B053", "blind_image": "blind/B053.png", "dist": "775.165", "m_per_px_horiz": "0.202", "m2_per_px": "0.125", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B054", "image": "blind/B054.png", "extra": {"blind_id": "B054", "blind_image": "blind/B054.png", "dist": "921.303", "m_per_px_horiz": "0.240", "m2_per_px": "0.312", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B055", "image": "blind/B055.png", "extra": {"blind_id": "B055", "blind_image": "blind/B055.png", "dist": "667.786", "m_per_px_horiz": "0.174", "m2_per_px": "0.188", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B056", "image": "blind/B056.png", "extra": {"blind_id": "B056", "blind_image": "blind/B056.png", "dist": "434.357", "m_per_px_horiz": "0.113", "m2_per_px": "nan", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B057", "image": "blind/B057.png", "extra": {"blind_id": "B057", "blind_image": "blind/B057.png", "dist": "750.383", "m_per_px_horiz": "0.196", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B058", "image": "blind/B058.png", "extra": {"blind_id": "B058", "blind_image": "blind/B058.png", "dist": "237.749", "m_per_px_horiz": "0.062", "m2_per_px": "nan", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B059", "image": "blind/B059.png", "extra": {"blind_id": "B059", "blind_image": "blind/B059.png", "dist": "504.835", "m_per_px_horiz": "0.132", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B060", "image": "blind/B060.png", "extra": {"blind_id": "B060", "blind_image": "blind/B060.png", "dist": "869.698", "m_per_px_horiz": "0.227", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B061", "image": "blind/B061.png", "extra": {"blind_id": "B061", "blind_image": "blind/B061.png", "dist": "577.290", "m_per_px_horiz": "0.150", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B062", "image": "blind/B062.png", "extra": {"blind_id": "B062", "blind_image": "blind/B062.png", "dist": "501.272", "m_per_px_horiz": "0.131", "m2_per_px": "0.188", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B063", "image": "blind/B063.png", "extra": {"blind_id": "B063", "blind_image": "blind/B063.png", "dist": "747.143", "m_per_px_horiz": "0.195", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B064", "image": "blind/B064.png", "extra": {"blind_id": "B064", "blind_image": "blind/B064.png", "dist": "781.370", "m_per_px_horiz": "0.204", "m2_per_px": "0.938", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B065", "image": "blind/B065.png", "extra": {"blind_id": "B065", "blind_image": "blind/B065.png", "dist": "834.348", "m_per_px_horiz": "0.217", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B066", "image": "blind/B066.png", "extra": {"blind_id": "B066", "blind_image": "blind/B066.png", "dist": "103.588", "m_per_px_horiz": "0.027", "m2_per_px": "nan", "align_shift_px": "9.434", "quality_ok": "no"}}, {"blind_id": "B067", "image": "blind/B067.png", "extra": {"blind_id": "B067", "blind_image": "blind/B067.png", "dist": "535.346", "m_per_px_horiz": "0.140", "m2_per_px": "0.125", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B068", "image": "blind/B068.png", "extra": {"blind_id": "B068", "blind_image": "blind/B068.png", "dist": "922.111", "m_per_px_horiz": "0.240", "m2_per_px": "0.062", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B069", "image": "blind/B069.png", "extra": {"blind_id": "B069", "blind_image": "blind/B069.png", "dist": "446.578", "m_per_px_horiz": "0.116", "m2_per_px": "0.125", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B070", "image": "blind/B070.png", "extra": {"blind_id": "B070", "blind_image": "blind/B070.png", "dist": "827.062", "m_per_px_horiz": "0.216", "m2_per_px": "0.562", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B071", "image": "blind/B071.png", "extra": {"blind_id": "B071", "blind_image": "blind/B071.png", "dist": "672.594", "m_per_px_horiz": "0.175", "m2_per_px": "0.188", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B072", "image": "blind/B072.png", "extra": {"blind_id": "B072", "blind_image": "blind/B072.png", "dist": "453.327", "m_per_px_horiz": "0.118", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B073", "image": "blind/B073.png", "extra": {"blind_id": "B073", "blind_image": "blind/B073.png", "dist": "350.796", "m_per_px_horiz": "0.091", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B074", "image": "blind/B074.png", "extra": {"blind_id": "B074", "blind_image": "blind/B074.png", "dist": "783.879", "m_per_px_horiz": "0.204", "m2_per_px": "0.188", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B075", "image": "blind/B075.png", "extra": {"blind_id": "B075", "blind_image": "blind/B075.png", "dist": "795.239", "m_per_px_horiz": "0.207", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B076", "image": "blind/B076.png", "extra": {"blind_id": "B076", "blind_image": "blind/B076.png", "dist": "786.718", "m_per_px_horiz": "0.205", "m2_per_px": "0.188", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B077", "image": "blind/B077.png", "extra": {"blind_id": "B077", "blind_image": "blind/B077.png", "dist": "746.845", "m_per_px_horiz": "0.195", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B078", "image": "blind/B078.png", "extra": {"blind_id": "B078", "blind_image": "blind/B078.png", "dist": "770.178", "m_per_px_horiz": "0.201", "m2_per_px": "0.250", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B079", "image": "blind/B079.png", "extra": {"blind_id": "B079", "blind_image": "blind/B079.png", "dist": "746.668", "m_per_px_horiz": "0.195", "m2_per_px": "0.250", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B080", "image": "blind/B080.png", "extra": {"blind_id": "B080", "blind_image": "blind/B080.png", "dist": "930.983", "m_per_px_horiz": "0.243", "m2_per_px": "1.438", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B081", "image": "blind/B081.png", "extra": {"blind_id": "B081", "blind_image": "blind/B081.png", "dist": "424.758", "m_per_px_horiz": "0.111", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B082", "image": "blind/B082.png", "extra": {"blind_id": "B082", "blind_image": "blind/B082.png", "dist": "359.649", "m_per_px_horiz": "0.094", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B083", "image": "blind/B083.png", "extra": {"blind_id": "B083", "blind_image": "blind/B083.png", "dist": "745.720", "m_per_px_horiz": "0.194", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B084", "image": "blind/B084.png", "extra": {"blind_id": "B084", "blind_image": "blind/B084.png", "dist": "686.829", "m_per_px_horiz": "0.179", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B085", "image": "blind/B085.png", "extra": {"blind_id": "B085", "blind_image": "blind/B085.png", "dist": "878.574", "m_per_px_horiz": "0.229", "m2_per_px": "0.062", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B086", "image": "blind/B086.png", "extra": {"blind_id": "B086", "blind_image": "blind/B086.png", "dist": "785.678", "m_per_px_horiz": "0.205", "m2_per_px": "0.312", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B087", "image": "blind/B087.png", "extra": {"blind_id": "B087", "blind_image": "blind/B087.png", "dist": "520.875", "m_per_px_horiz": "0.136", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B088", "image": "blind/B088.png", "extra": {"blind_id": "B088", "blind_image": "blind/B088.png", "dist": "531.430", "m_per_px_horiz": "0.139", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B089", "image": "blind/B089.png", "extra": {"blind_id": "B089", "blind_image": "blind/B089.png", "dist": "680.887", "m_per_px_horiz": "0.177", "m2_per_px": "0.062", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B090", "image": "blind/B090.png", "extra": {"blind_id": "B090", "blind_image": "blind/B090.png", "dist": "568.595", "m_per_px_horiz": "0.148", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B091", "image": "blind/B091.png", "extra": {"blind_id": "B091", "blind_image": "blind/B091.png", "dist": "697.774", "m_per_px_horiz": "0.182", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B092", "image": "blind/B092.png", "extra": {"blind_id": "B092", "blind_image": "blind/B092.png", "dist": "365.171", "m_per_px_horiz": "0.095", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B093", "image": "blind/B093.png", "extra": {"blind_id": "B093", "blind_image": "blind/B093.png", "dist": "509.067", "m_per_px_horiz": "0.133", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B094", "image": "blind/B094.png", "extra": {"blind_id": "B094", "blind_image": "blind/B094.png", "dist": "601.636", "m_per_px_horiz": "0.157", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B095", "image": "blind/B095.png", "extra": {"blind_id": "B095", "blind_image": "blind/B095.png", "dist": "476.366", "m_per_px_horiz": "0.124", "m2_per_px": "nan", "align_shift_px": "2.000", "quality_ok": "yes"}}, {"blind_id": "B096", "image": "blind/B096.png", "extra": {"blind_id": "B096", "blind_image": "blind/B096.png", "dist": "940.772", "m_per_px_horiz": "0.245", "m2_per_px": "0.250", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B097", "image": "blind/B097.png", "extra": {"blind_id": "B097", "blind_image": "blind/B097.png", "dist": "430.344", "m_per_px_horiz": "0.112", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B098", "image": "blind/B098.png", "extra": {"blind_id": "B098", "blind_image": "blind/B098.png", "dist": "902.676", "m_per_px_horiz": "0.235", "m2_per_px": "0.125", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B099", "image": "blind/B099.png", "extra": {"blind_id": "B099", "blind_image": "blind/B099.png", "dist": "387.618", "m_per_px_horiz": "0.101", "m2_per_px": "0.062", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B100", "image": "blind/B100.png", "extra": {"blind_id": "B100", "blind_image": "blind/B100.png", "dist": "756.696", "m_per_px_horiz": "0.197", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B101", "image": "blind/B101.png", "extra": {"blind_id": "B101", "blind_image": "blind/B101.png", "dist": "771.597", "m_per_px_horiz": "0.201", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B102", "image": "blind/B102.png", "extra": {"blind_id": "B102", "blind_image": "blind/B102.png", "dist": "916.362", "m_per_px_horiz": "0.239", "m2_per_px": "0.500", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B103", "image": "blind/B103.png", "extra": {"blind_id": "B103", "blind_image": "blind/B103.png", "dist": "765.877", "m_per_px_horiz": "0.200", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B104", "image": "blind/B104.png", "extra": {"blind_id": "B104", "blind_image": "blind/B104.png", "dist": "239.500", "m_per_px_horiz": "0.062", "m2_per_px": "0.125", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B105", "image": "blind/B105.png", "extra": {"blind_id": "B105", "blind_image": "blind/B105.png", "dist": "557.807", "m_per_px_horiz": "0.145", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B106", "image": "blind/B106.png", "extra": {"blind_id": "B106", "blind_image": "blind/B106.png", "dist": "695.792", "m_per_px_horiz": "0.181", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B107", "image": "blind/B107.png", "extra": {"blind_id": "B107", "blind_image": "blind/B107.png", "dist": "778.989", "m_per_px_horiz": "0.203", "m2_per_px": "0.188", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B108", "image": "blind/B108.png", "extra": {"blind_id": "B108", "blind_image": "blind/B108.png", "dist": "422.237", "m_per_px_horiz": "0.110", "m2_per_px": "nan", "align_shift_px": "1.414", "quality_ok": "yes"}}, {"blind_id": "B109", "image": "blind/B109.png", "extra": {"blind_id": "B109", "blind_image": "blind/B109.png", "dist": "362.374", "m_per_px_horiz": "0.094", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B110", "image": "blind/B110.png", "extra": {"blind_id": "B110", "blind_image": "blind/B110.png", "dist": "757.987", "m_per_px_horiz": "0.198", "m2_per_px": "0.188", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B111", "image": "blind/B111.png", "extra": {"blind_id": "B111", "blind_image": "blind/B111.png", "dist": "841.116", "m_per_px_horiz": "0.219", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B112", "image": "blind/B112.png", "extra": {"blind_id": "B112", "blind_image": "blind/B112.png", "dist": "696.335", "m_per_px_horiz": "0.182", "m2_per_px": "0.250", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B113", "image": "blind/B113.png", "extra": {"blind_id": "B113", "blind_image": "blind/B113.png", "dist": "484.424", "m_per_px_horiz": "0.126", "m2_per_px": "0.188", "align_shift_px": "3.606", "quality_ok": "no"}}, {"blind_id": "B114", "image": "blind/B114.png", "extra": {"blind_id": "B114", "blind_image": "blind/B114.png", "dist": "513.271", "m_per_px_horiz": "0.134", "m2_per_px": "0.125", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B115", "image": "blind/B115.png", "extra": {"blind_id": "B115", "blind_image": "blind/B115.png", "dist": "692.212", "m_per_px_horiz": "0.180", "m2_per_px": "0.125", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B116", "image": "blind/B116.png", "extra": {"blind_id": "B116", "blind_image": "blind/B116.png", "dist": "522.658", "m_per_px_horiz": "0.136", "m2_per_px": "0.062", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B117", "image": "blind/B117.png", "extra": {"blind_id": "B117", "blind_image": "blind/B117.png", "dist": "659.737", "m_per_px_horiz": "0.172", "m2_per_px": "nan", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B118", "image": "blind/B118.png", "extra": {"blind_id": "B118", "blind_image": "blind/B118.png", "dist": "551.087", "m_per_px_horiz": "0.144", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B119", "image": "blind/B119.png", "extra": {"blind_id": "B119", "blind_image": "blind/B119.png", "dist": "892.768", "m_per_px_horiz": "0.233", "m2_per_px": "0.250", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B120", "image": "blind/B120.png", "extra": {"blind_id": "B120", "blind_image": "blind/B120.png", "dist": "640.169", "m_per_px_horiz": "0.167", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B121", "image": "blind/B121.png", "extra": {"blind_id": "B121", "blind_image": "blind/B121.png", "dist": "609.153", "m_per_px_horiz": "0.159", "m2_per_px": "0.375", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B122", "image": "blind/B122.png", "extra": {"blind_id": "B122", "blind_image": "blind/B122.png", "dist": "807.942", "m_per_px_horiz": "0.211", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B123", "image": "blind/B123.png", "extra": {"blind_id": "B123", "blind_image": "blind/B123.png", "dist": "514.509", "m_per_px_horiz": "0.134", "m2_per_px": "0.188", "align_shift_px": "2.236", "quality_ok": "no"}}, {"blind_id": "B124", "image": "blind/B124.png", "extra": {"blind_id": "B124", "blind_image": "blind/B124.png", "dist": "486.441", "m_per_px_horiz": "0.127", "m2_per_px": "0.062", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B125", "image": "blind/B125.png", "extra": {"blind_id": "B125", "blind_image": "blind/B125.png", "dist": "371.071", "m_per_px_horiz": "0.097", "m2_per_px": "0.125", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B126", "image": "blind/B126.png", "extra": {"blind_id": "B126", "blind_image": "blind/B126.png", "dist": "372.741", "m_per_px_horiz": "0.097", "m2_per_px": "0.125", "align_shift_px": "0.000", "quality_ok": "yes"}}, {"blind_id": "B127", "image": "blind/B127.png", "extra": {"blind_id": "B127", "blind_image": "blind/B127.png", "dist": "497.038", "m_per_px_horiz": "0.130", "m2_per_px": "0.125", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B128", "image": "blind/B128.png", "extra": {"blind_id": "B128", "blind_image": "blind/B128.png", "dist": "467.425", "m_per_px_horiz": "0.122", "m2_per_px": "nan", "align_shift_px": "1.000", "quality_ok": "yes"}}, {"blind_id": "B129", "image": "blind/B129.png", "extra": {"blind_id": "B129", "blind_image": "blind/B129.png", "dist": "767.484", "m_per_px_horiz": "0.200", "m2_per_px": "0.312", "align_shift_px": "1.414", "quality_ok": "yes"}}];      // [{blind_id, image, extra:{...}}, ...]
+const COLUMNS  = ["blind_id", "blind_image", "dist", "m_per_px_horiz", "m2_per_px", "align_shift_px", "quality_ok", "verdict", "confidence", "notes"];      // exact column order of the source sheet
+const ID_COL   = "blind_id";
+const IMG_COL  = "blind_image";
+const STORE_KEY = "sasa_interpretation_v1:" + SAMPLES.length + ":" +
+                  (SAMPLES[0] ? SAMPLES[0].blind_id : "") + "-" +
+                  (SAMPLES[SAMPLES.length - 1] ? SAMPLES[SAMPLES.length - 1].blind_id : "");
+
+const VERDICTS = [
+  { key: "1", value: "sasa_loss",          label: "ササが実際に消えた" },
+  { key: "2", value: "canopy_overgrowth",  label: "木本の被覆で見えなくなった" },
+  { key: "3", value: "boundary_jitter",    label: "境界のゆらぎ・分類の誤り" },
+  { key: "4", value: "undecidable",        label: "判定不能" },
+];
+const CONFIDENCES = [
+  { key: "q", value: "high",   label: "高" },
+  { key: "w", value: "medium", label: "中" },
+  { key: "e", value: "low",    label: "低" },
+];
+
+/* ------------------------------------------------------------------ state */
+/* The overlay variant of each crop lives beside the plain one, with the same
+   file name, under blind_overlay/.  It marks the projected footprint of the
+   1 m cell under judgement; the plain image is the same crop with no ink on
+   it.  Toggling between the two is the only way to inspect pixels that the
+   footprint outline covers, which on a distant cell can be most of it. */
+let overlayOn = true;
+function srcFor(s) {
+  return overlayOn ? s.image.replace(/^blind\//, "blind_overlay/") : s.image;
+}
+let idx = 0;
+let answers = {};   // blind_id -> {verdict, confidence, notes}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      const o = JSON.parse(raw);
+      answers = o.answers || {};
+      if (Number.isInteger(o.idx) && o.idx >= 0 && o.idx < SAMPLES.length) idx = o.idx;
+      if (typeof o.autoadvance === "boolean") $("autoadvance").checked = o.autoadvance;
+      if (typeof o.overlay === "boolean") { overlayOn = o.overlay; $("overlay").checked = o.overlay; }
+    }
+  } catch (e) { /* corrupt or unavailable storage: start fresh */ }
+}
+let saveTimer = null;
+function saveState() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        answers, idx, autoadvance: $("autoadvance").checked,
+        overlay: overlayOn,
+        saved_at: new Date().toISOString(),
+      }));
+    } catch (e) { msg("自動保存に失敗しました（localStorage 不可）。こまめに CSV を保存してください。"); }
+  }, 150);
+}
+function cur() { return SAMPLES[idx]; }
+function ans(id) {
+  if (!answers[id]) answers[id] = { verdict: "", confidence: "", notes: "" };
+  return answers[id];
+}
+function $(id) { return document.getElementById(id); }
+function msg(t) { $("msg").textContent = t || ""; }
+
+/* ------------------------------------------------------------------ zoom/pan */
+const stage = $("stage"), canvas = $("canvas"), img = $("img");
+let scale = 1, tx = 0, ty = 0, natW = 0, natH = 0;
+const MIN_SCALE = 0.1, MAX_SCALE = 40;
+
+function applyTransform() {
+  canvas.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
+  img.style.imageRendering = scale > 1.5 ? "pixelated" : "auto";
+  $("hud-zoom").textContent = natW ? "×" + scale.toFixed(2) : "";
+}
+function fit() {
+  if (!natW || !natH) return;
+  const r = stage.getBoundingClientRect();
+  const pad = 24;
+  scale = Math.min((r.width - pad) / natW, (r.height - pad) / natH);
+  tx = (r.width  - natW * scale) / 2;
+  ty = (r.height - natH * scale) / 2;
+  applyTransform();
+}
+function zoomAt(cx, cy, factor) {
+  const next = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * factor));
+  if (next === scale) return;
+  // keep the point under (cx, cy) fixed
+  tx = cx - (cx - tx) * (next / scale);
+  ty = cy - (cy - ty) * (next / scale);
+  scale = next;
+  applyTransform();
+}
+function zoomCenter(factor) {
+  const r = stage.getBoundingClientRect();
+  zoomAt(r.width / 2, r.height / 2, factor);
+}
+stage.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const r = stage.getBoundingClientRect();
+  // trackpad pinch arrives as ctrlKey wheel; both paths zoom
+  const step = Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0018));
+  zoomAt(e.clientX - r.left, e.clientY - r.top, step);
+}, { passive: false });
+
+let panning = false, px = 0, py = 0;
+stage.addEventListener("pointerdown", (e) => {
+  if (e.button !== 0) return;
+  panning = true; px = e.clientX; py = e.clientY;
+  stage.classList.add("dragging");
+  stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener("pointermove", (e) => {
+  if (!panning) return;
+  tx += e.clientX - px; ty += e.clientY - py;
+  px = e.clientX; py = e.clientY;
+  applyTransform();
+});
+function endPan(e) {
+  if (!panning) return;
+  panning = false; stage.classList.remove("dragging");
+  try { stage.releasePointerCapture(e.pointerId); } catch (_) {}
+}
+stage.addEventListener("pointerup", endPan);
+stage.addEventListener("pointercancel", endPan);
+stage.addEventListener("dblclick", (e) => { e.preventDefault(); fit(); });
+window.addEventListener("resize", () => { if (natW) fit(); });
+$("zoom-in").onclick  = () => zoomCenter(1.4);
+$("zoom-out").onclick = () => zoomCenter(1 / 1.4);
+$("zoom-fit").onclick = fit;
+
+/* ------------------------------------------------------------------ rendering */
+const preloadCache = [];
+function preload(i) {
+  const s = SAMPLES[i];
+  if (!s) return;
+  const p = new Image();
+  p.src = srcFor(s);
+  preloadCache.push(p);
+  if (preloadCache.length > 8) preloadCache.shift();
+}
+
+function showSample(keepView) {
+  const s = cur();
+  $("hud-id").textContent = s.blind_id;
+  $("hud-pos").textContent = (idx + 1) + " / " + SAMPLES.length;
+  const want = srcFor(s);
+  if (img.getAttribute("src") !== want) {
+    img.onload = () => {
+      natW = img.naturalWidth; natH = img.naturalHeight;
+      if (!keepView) fit(); else applyTransform();
+    };
+    img.onerror = () => {
+      if (overlayOn && want !== s.image) {
+        // blind_overlay/ missing: fall back to the plain crop rather than
+        // leaving the interpreter with a blank stage
+        msg("枠つき画像がありません（" + want + "）。枠なしを表示します。");
+        setOverlay(false);
+      } else {
+        msg("画像を読み込めません: " + want);
+      }
+    };
+    img.src = want;
+  } else if (!keepView) {
+    fit();
+  }
+  const a = ans(s.blind_id);
+  document.querySelectorAll("#verdicts .choice").forEach((b) =>
+    b.classList.toggle("on", b.dataset.value === a.verdict));
+  document.querySelectorAll("#confidences .choice").forEach((b) =>
+    b.classList.toggle("on", b.dataset.value === a.confidence));
+  $("notes").value = a.notes || "";
+  $("jump").value = String(idx);
+  renderProgress();
+  msg("");
+  preload(idx + 1); preload(idx + 2); preload(idx - 1);
+  saveState();
+}
+
+function renderProgress() {
+  let done = 0;
+  const counts = {};
+  VERDICTS.forEach((v) => counts[v.value] = 0);
+  SAMPLES.forEach((s) => {
+    const v = answers[s.blind_id] && answers[s.blind_id].verdict;
+    if (v) { done++; if (v in counts) counts[v]++; }
+  });
+  const pct = SAMPLES.length ? (done / SAMPLES.length * 100) : 0;
+  $("bar").firstElementChild.style.width = pct.toFixed(1) + "%";
+  $("progress-text").textContent =
+    "入力済み " + done + " / " + SAMPLES.length + "（" + pct.toFixed(0) + "%）";
+  $("tally").innerHTML = VERDICTS.map((v) =>
+    "<tr><td>" + v.value + "</td><td>" + counts[v.value] + "</td></tr>").join("") +
+    "<tr><td class='muted'>未入力</td><td>" + (SAMPLES.length - done) + "</td></tr>";
+  // reflect completion in the jump list
+  const opt = $("jump").options[idx];
+  if (opt) opt.textContent = optionLabel(idx);
+}
+
+function optionLabel(i) {
+  const s = SAMPLES[i];
+  const a = answers[s.blind_id];
+  const mark = a && a.verdict ? "✓" : "・";
+  return mark + " " + s.blind_id + "  " + (a && a.verdict ? a.verdict : "");
+}
+
+/* ------------------------------------------------------------------ input */
+function setVerdict(value) {
+  const a = ans(cur().blind_id);
+  a.verdict = (a.verdict === value) ? "" : value;
+  document.querySelectorAll("#verdicts .choice").forEach((b) =>
+    b.classList.toggle("on", b.dataset.value === a.verdict));
+  renderProgress();
+  saveState();
+  if (a.verdict && $("autoadvance").checked) setTimeout(() => go(1), 120);
+}
+function setConfidence(value) {
+  const a = ans(cur().blind_id);
+  a.confidence = (a.confidence === value) ? "" : value;
+  document.querySelectorAll("#confidences .choice").forEach((b) =>
+    b.classList.toggle("on", b.dataset.value === a.confidence));
+  saveState();
+}
+function go(delta) {
+  const n = idx + delta;
+  if (n < 0 || n >= SAMPLES.length) return;
+  idx = n;
+  showSample(false);
+}
+function gotoIndex(i, keepView) {
+  if (i < 0 || i >= SAMPLES.length) return;
+  idx = i; showSample(!!keepView);
+}
+function nextUnfilled() {
+  for (let k = 1; k <= SAMPLES.length; k++) {
+    const i = (idx + k) % SAMPLES.length;
+    const a = answers[SAMPLES[i].blind_id];
+    if (!a || !a.verdict) { gotoIndex(i); return; }
+  }
+  msg("未入力のサンプルはありません。");
+}
+
+$("notes").addEventListener("input", () => {
+  ans(cur().blind_id).notes = $("notes").value;
+  saveState();
+});
+$("prev").onclick = () => go(-1);
+$("next").onclick = () => go(1);
+$("next-unfilled").onclick = nextUnfilled;
+$("jump").onchange = (e) => gotoIndex(parseInt(e.target.value, 10));
+$("autoadvance").onchange = saveState;
+
+function setOverlay(on) {
+  overlayOn = !!on;
+  $("overlay").checked = overlayOn;
+  showSample(true);        // keepView: zoom and pan survive the swap
+  saveState();
+}
+$("overlay").onchange = () => setOverlay($("overlay").checked);
+
+document.addEventListener("keydown", (e) => {
+  const typing = e.target === $("notes");
+  if (typing) {
+    if (e.key === "Escape") { $("notes").blur(); e.preventDefault(); }
+    return;
+  }
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  const v = VERDICTS.find((x) => x.key === k);
+  if (v) { setVerdict(v.value); e.preventDefault(); return; }
+  const c = CONFIDENCES.find((x) => x.key === k);
+  if (c) { setConfidence(c.value); e.preventDefault(); return; }
+  if (e.key === "ArrowRight" || k === "j" || k === " ") { go(1);  e.preventDefault(); return; }
+  if (e.key === "ArrowLeft"  || k === "k")               { go(-1); e.preventDefault(); return; }
+  if (k === "o") { setOverlay(!overlayOn); e.preventDefault(); return; }
+  if (k === "n") { $("notes").focus(); e.preventDefault(); return; }
+  if (k === "u") { nextUnfilled(); e.preventDefault(); return; }
+  if (k === "0") { fit(); e.preventDefault(); return; }
+  if (k === "+" || k === "=") { zoomCenter(1.4); e.preventDefault(); return; }
+  if (k === "-") { zoomCenter(1 / 1.4); e.preventDefault(); return; }
+});
+
+/* ------------------------------------------------------------------ CSV */
+function csvEscape(s) {
+  s = (s === null || s === undefined) ? "" : String(s);
+  return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+function buildCSV() {
+  const lines = [COLUMNS.map(csvEscape).join(",")];
+  SAMPLES.forEach((s) => {
+    const a = answers[s.blind_id] || {};
+    lines.push(COLUMNS.map((c) => {
+      if (c === "verdict")    return csvEscape(a.verdict || "");
+      if (c === "confidence") return csvEscape(a.confidence || "");
+      if (c === "notes")      return csvEscape(a.notes || "");
+      return csvEscape(s.extra[c]);
+    }).join(","));
+  });
+  return lines.join("\r\n") + "\r\n";
+}
+$("export").onclick = () => {
+  const blob = new Blob(["﻿" + buildCSV()], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const stamp = new Date().toISOString().slice(0, 16).replace(/[-:T]/g, "");
+  a.href = url;
+  a.download = "interpretation_sheet_filled_" + stamp + ".csv";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  msg("CSV をダウンロードしました。");
+};
+
+// RFC4180-ish parser (handles quotes, embedded commas and newlines)
+function parseCSV(text) {
+  text = text.replace(/^﻿/, "");
+  const rows = []; let row = []; let field = ""; let q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) {
+      if (ch === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; } else { q = false; }
+      } else field += ch;
+    } else if (ch === '"') { q = true; }
+    else if (ch === ",") { row.push(field); field = ""; }
+    else if (ch === "\n") { row.push(field); field = ""; rows.push(row); row = []; }
+    else if (ch === "\r") { /* skip */ }
+    else field += ch;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter((r) => r.length > 1 || (r[0] || "").trim() !== "");
+}
+$("import-btn").onclick = () => $("import-file").click();
+$("import-file").onchange = (e) => {
+  const f = e.target.files && e.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const rows = parseCSV(String(r.result));
+      if (!rows.length) { msg("空の CSV です。"); return; }
+      const head = rows[0].map((h) => h.trim());
+      const ci = {
+        id: head.indexOf(ID_COL),
+        verdict: head.indexOf("verdict"),
+        confidence: head.indexOf("confidence"),
+        notes: head.indexOf("notes"),
+      };
+      if (ci.id < 0) { msg("列 " + ID_COL + " が見つかりません。"); return; }
+      const known = new Set(SAMPLES.map((s) => s.blind_id));
+      let n = 0, skipped = 0;
+      rows.slice(1).forEach((row) => {
+        const id = (row[ci.id] || "").trim();
+        if (!known.has(id)) { if (id) skipped++; return; }
+        const a = ans(id);
+        if (ci.verdict    >= 0) a.verdict    = (row[ci.verdict]    || "").trim();
+        if (ci.confidence >= 0) a.confidence = (row[ci.confidence] || "").trim();
+        if (ci.notes      >= 0) a.notes      = row[ci.notes] || "";
+        n++;
+      });
+      showSample(true);
+      msg("読み込み完了: " + n + " 行" + (skipped ? "（未知の ID " + skipped + " 行は無視）" : ""));
+    } catch (err) {
+      msg("読み込みに失敗しました: " + err);
+    }
+    e.target.value = "";
+  };
+  r.readAsText(f, "utf-8");
+};
+$("reset-all").onclick = () => {
+  if (!confirm("入力した判定・確信度・メモをすべて消去します。よろしいですか？")) return;
+  answers = {};
+  try { localStorage.removeItem(STORE_KEY); } catch (_) {}
+  rebuildJumpList();
+  showSample(true);
+  msg("入力を消去しました。");
+};
+
+/* ------------------------------------------------------------------ build UI */
+function rebuildJumpList() {
+  const sel = $("jump");
+  sel.innerHTML = SAMPLES.map((s, i) =>
+    '<option value="' + i + '">' + optionLabel(i) + "</option>").join("");
+  sel.value = String(idx);
+}
+function buildButtons() {
+  $("verdicts").innerHTML = VERDICTS.map((v) =>
+    '<button class="choice" data-value="' + v.value + '">' +
+      '<span class="k">' + v.key + "</span>" +
+      "<span><b>" + v.label + "</b><br><span class='muted'>" + v.value + "</span></span>" +
+    "</button>").join("");
+  $("confidences").innerHTML =
+    '<div class="row">' + CONFIDENCES.map((c) =>
+      '<button class="choice" style="justify-content:center" data-value="' + c.value + '">' +
+        '<span class="k">' + c.key + "</span><span>" + c.label + "</span>" +
+      "</button>").join("") + "</div>";
+  document.querySelectorAll("#verdicts .choice").forEach((b) =>
+    b.onclick = () => setVerdict(b.dataset.value));
+  document.querySelectorAll("#confidences .choice").forEach((b) =>
+    b.onclick = () => setConfidence(b.dataset.value));
+
+  $("shortcuts").innerHTML = [
+    "<kbd>1</kbd>–<kbd>4</kbd> 判定（もう一度押すと取り消し）",
+    "<kbd>q</kbd>/<kbd>w</kbd>/<kbd>e</kbd> 確信度 高/中/低",
+    "<kbd>→</kbd> または <kbd>Space</kbd>/<kbd>j</kbd> 次へ",
+    "<kbd>←</kbd> または <kbd>k</kbd> 前へ",
+    "<kbd>u</kbd> 次の未入力へ",
+    "<kbd>o</kbd> 対象セルの枠を表示 / 非表示",
+    "<kbd>n</kbd> メモ欄へ / <kbd>Esc</kbd> メモ欄を抜ける",
+    "<kbd>0</kbd> ズームをリセット（ダブルクリックも同じ）",
+    "<kbd>+</kbd>/<kbd>-</kbd> 拡大 / 縮小",
+    "ホイールで拡大縮小、ドラッグで移動",
+  ].join("<br>");
+}
+
+buildButtons();
+loadState();
+rebuildJumpList();
+showSample(false);
+window.addEventListener("beforeunload", () => { clearTimeout(saveTimer); saveState(); });
+</script>
+</body>
+</html>

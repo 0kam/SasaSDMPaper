@@ -1,0 +1,2 @@
+"smoke","runtime_seconds","main_replicates","hindcast_replicates","spatial_replicates_per_fold","sensitivity_replicates","hindcast_ratio","decomposition_max_abs_delta_p9","deviations"
+FALSE,1552.23449397087,200,200,50,50,1.077415071191,8.23195678290034e-11,"none; worker_rng=PSOCK clusterSetRNGStream with scheduling-independent per-replicate set.seed"

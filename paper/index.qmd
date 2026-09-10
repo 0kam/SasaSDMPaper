@@ -1,25 +1,38 @@
 ---
 title: "Snowmelt regime and dispersal limitation predict the decadal expansion of dwarf bamboo into alpine snowbed vegetation"
-authors:
+author:
   - name: Ryotaro Okamoto
-    department: Biodiversity Division
-    affiliation: National Institute for Environmental Studies
-    location: 16-2 Onogawa, Tsukuba, Ibaraki 305-8506 Japan
     email: okamoto.ryotaro@nies.go.jp
+    affiliations:
+      - ref: nies-bd
+    attributes:
+      corresponding: true
   - name: Hiroyuki Oguma
-    department: Biodiversity Division
-    affiliation: National Institute for Environmental Studies
-    location: 16-2 Onogawa, Tsukuba, Ibaraki 305-8506 Japan
     email: oguma@nies.go.jp
+    affiliations:
+      - ref: nies-bd
   - name: Reiko Ide
-    department: Earth System Division
-    affiliation: National Institute for Environmental Studies
-    location: 16-2 Onogawa, Tsukuba, Ibaraki 305-8506 Japan
     email: ide.reiko@nies.go.jp
+    affiliations:
+      - ref: nies-es
+affiliations:
+  - id: nies-bd
+    name: National Institute for Environmental Studies
+    department: Biodiversity Division
+    address: 16-2 Onogawa
+    city: Tsukuba, Ibaraki
+    postal-code: 305-8506
+    country: Japan
+  - id: nies-es
+    name: National Institute for Environmental Studies
+    department: Earth System Division
+    address: 16-2 Onogawa
+    city: Tsukuba, Ibaraki
+    postal-code: 305-8506
+    country: Japan
 keywords:
   - alpine vegetation
   - rhizome expansion
-  - colonization model
   - dispersal limitation
   - habitat suitability modelling
   - snowmelt timing
@@ -44,7 +57,7 @@ format:
 
 # Abstract {.unnumbered}
 
-Dwarf bamboo (*Sasa* spp.) is expanding into Japanese alpine snowbed vegetation, excluding subordinate species and threatening plant diversity. Alpine vegetation forms a fine mosaic of communities along microtopographic gradients, so mapping distributional change requires observations at approximately 1 m resolution. Using 10 years of ground-based time-lapse imagery of a slope on Mt. Tateyama in the northern Japanese Alps, we produced 1 m vegetation maps for 2012 and 2021 and per-pixel snowmelt dates for 2011–2021. Over 9 years, *Sasa* showed a net change of +19% (gross expansion 48%, gross loss 29%; nearly half of the loss was exchange with dwarf pine, and whether this represents true decline or shifts in classification remains unresolved). Because *Sasa* expands through both rhizome elongation and seed dispersal, we fitted two corresponding models under a common spatial-block design: a habitat suitability model describing where environmental conditions permit *Sasa* (Model A), and an establishment model relating the observed 2012→2021 transitions to environment and distance from the existing front (Model B). In both models, snowmelt climatology, defined as the 2011–2021 mean snowmelt date (day of year, DOY), was among the strongest environmental predictors and indicated a favourable snowmelt window for *Sasa* (habitat suitability was high at approximately DOY 150–185, peaked around DOY 170–175, and declined in the latest-melting snowbeds). Establishment probability, however, was most strongly associated with proximity to existing patches: the 9-year probability was approximately 10% within 5 m of the front and below 1% beyond 10 m. Environmentally suitable area greatly exceeded occupied area (approximately 16-fold at the threshold maximising the true skill statistic), suggesting that dispersal is a stronger constraint on the current distribution than environment. A stochastic cellular automaton using Model B reproduced the observed 9-year expansion (a calibration check) and projected approximately 4,900 m² of new establishment by 2030 under unchanged snowmelt and 5,700 m² under continuation of the observed trend; these are scenarios conditioned on the observed decade, not forecasts of snowmelt. Approximately nine tenths of expected establishment within herbaceous vegetation was concentrated in two snowbed communities adjoining existing patches. Near-term expansion is therefore spatially predictable, making removal or containment at fronts bordering snowbeds a high-priority candidate intervention. Establishment from seed could bypass this distance constraint, so surveillance of the environmental-potential stratum would complement such intervention.
+Dwarf bamboo (*Sasa* spp.) is expanding into Japanese alpine snowbed vegetation, excluding subordinate species and threatening plant diversity. Mapping its distributional change requires approximately 1 m resolution, because alpine vegetation forms a fine mosaic along microtopographic gradients. Using 10 years of ground-based time-lapse imagery of a slope on Mt. Tateyama in the northern Japanese Alps, we produced 1 m vegetation maps for 2012 and 2021 and per-pixel snowmelt dates for 2011–2021. Over 9 years, *Sasa* showed a net change of +19% (gross expansion 48%, gross loss 29%; nearly half of the loss was exchange with dwarf pine, of uncertain nature). Because *Sasa* expands through both rhizome elongation and seed dispersal, we fitted two corresponding models under a common spatial-block design: a habitat suitability model of where conditions permit *Sasa* (Model A) and an establishment model of the observed 2012→2021 transitions, including distance from the existing front (Model B). In both models, snowmelt climatology, defined as the 2011–2021 mean snowmelt date (day of year, DOY), was among the strongest environmental predictors and indicated a favourable snowmelt window for *Sasa* (habitat suitability was high at approximately DOY 150–185, peaked around DOY 170–175, and declined in the latest-melting snowbeds). Establishment probability, however, was most strongly associated with proximity to existing patches: the 9-year probability was approximately 10% within 5 m of the front and below 1% beyond 10 m. Environmentally suitable area greatly exceeded occupied area (approximately 16-fold at the threshold maximising the true skill statistic), suggesting that dispersal is a stronger constraint on the current distribution than environment. A stochastic cellular automaton using Model B reproduced the observed 9-year expansion (a calibration check) and projected approximately 4,900 m² of new establishment by 2030 under unchanged snowmelt and 5,700 m² under continuation of the observed trend, which was not statistically detectable over 10 years; these are scenarios conditioned on the observed decade, not forecasts of snowmelt. Approximately nine tenths of expected establishment within herbaceous vegetation was concentrated in two snowbed communities adjoining existing patches. Near-term expansion is therefore spatially predictable, making removal or containment at fronts bordering snowbeds a high-priority candidate intervention, complemented by surveillance of the environmental-potential stratum for establishment from seed.
 
 {{< include intro.qmd >}}
 {{< include matmet.qmd >}}
@@ -52,7 +65,20 @@ Dwarf bamboo (*Sasa* spp.) is expanding into Japanese alpine snowbed vegetation,
 {{< include discussion.qmd >}}
 {{< include conclusion.qmd >}}
 
-# Data Availability Statement
+# Acknowledgements {.unnumbered}
+
+This research was supported by JSPS KAKENHI Grant Number JP23H00729.
+
+# Conflict of Interest Statement {.unnumbered}
+
+The authors declare no conflicts of interest.
+
+# Author Contributions {.unnumbered}
+
+<!-- CRediT roles drafted by the assistant from the manuscript; to be confirmed by the authors before submission. -->
+Ryotaro Okamoto: conceptualisation, methodology, formal analysis, visualisation, writing (original draft). Hiroyuki Oguma: conceptualisation, resources, supervision, writing (review and editing). Reiko Ide: methodology (snowmelt detection), data curation, writing (review and editing).
+
+# Data Availability Statement {.unnumbered}
 
 The imagery-derived vegetation and snowmelt rasters, terrain predictors, all fitted model objects, projection outputs, and scripted analysis pipeline with its acceptance tests will be permanently archived at Zenodo [TODO: DOI]. A development mirror is maintained at <https://github.com/0kam/SasaSDMPaper>.
 

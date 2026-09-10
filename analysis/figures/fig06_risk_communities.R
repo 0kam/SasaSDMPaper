@@ -140,7 +140,7 @@ root4 <- if (utils::packageVersion("scales") >= "1.3.0") {
 }
 
 # Axis breaks identical to Fig. 4 and Fig. 5; labels stay horizontal.
-X_BREAKS <- seq(732800, 734000, by = 400)
+X_BREAKS <- c(733000, 733500)
 Y_BREAKS <- seq(4050800, 4051800, by = 400)
 
 LINE_KEYS <- c("Community boundary", if (HAS_GGTEXT) "2021 *Sasa*" else "2021 Sasa")
@@ -174,7 +174,7 @@ p_a <- ggplot() +
   geom_label(data = anchors, aes(x = x, y = y, label = label),
              inherit.aes = FALSE, size = 11, size.unit = "pt",
              fill = "white", colour = "black", alpha = 0.85,
-             label.size = 0.15, label.padding = unit(0.6, "mm")) +
+             linewidth = 0.15, label.padding = unit(0.6, "mm")) +
   annotate("rect", xmin = bar$xmin, xmax = bar$xmax, ymin = bar$ymin, ymax = bar$ymax,
            fill = "black", colour = "black", linewidth = 0.2) +
   annotate_text_pt(x = mean(c(bar$xmin, bar$xmax)), y = bar$ymax + 0.03 * diff(yr),
@@ -185,7 +185,7 @@ p_a <- ggplot() +
   labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
   theme(legend.position = "bottom", legend.box = "vertical",
         legend.box.spacing = unit(1, "mm"), legend.spacing.y = unit(0.5, "mm"),
-        axis.text = element_text(size = 11),
+        axis.text = element_text(size = 9.5),
         # Right pad so the 734000 tick label (the core extent's edge) is not
         # clipped: this panel is narrower than the map panels of Figs. 4 and 5,
         # and wrap_elements() below stops patchwork from finding the room itself.
@@ -240,7 +240,7 @@ share_lab$comm <- factor(share_lab$comm, levels = rev(COMM_ORDER))
 SCEN_COL <- c(s0    = unname(okabeito_colours["bluishgreen"]),
               sm071 = unname(okabeito_colours["vermillion"]))
 SCEN_SHP <- c(s0 = 21, sm071 = 24)
-SCEN_LAB <- c(s0 = "s = 0", sm071 = "s = −0.71 d yr⁻¹")
+SCEN_LAB <- c(s0 = "s = 0", sm071 = "s = −0.71 days/year")
 
 x_max <- max(agg$expected_area_m2)
 comm_labels <- if (HAS_GGTEXT) COMM_MD else COMM_PLAIN
@@ -252,21 +252,22 @@ p_b <- ggplot(agg, aes(x = expected_area_m2, y = comm)) +
              size = 1.7, stroke = 0.25) +
   geom_text_pt(data = share_lab, aes(x = x, y = comm, label = label),
                inherit.aes = FALSE, hjust = 0, nudge_x = 0.035 * x_max,
-               size_pt = 11, colour = "grey30") +
-  scale_fill_manual(values = SCEN_COL, labels = SCEN_LAB, name = NULL) +
-  scale_shape_manual(values = SCEN_SHP, labels = SCEN_LAB, name = NULL) +
-  scale_x_continuous(limits = c(0, x_max * 1.55), expand = expansion(mult = c(0.02, 0)),
-                     breaks = seq(0, 2000, by = 1000),
+               size_pt = 9.5, colour = "grey30") +
+  scale_fill_manual(values = SCEN_COL, labels = SCEN_LAB, name = NULL, guide = guide_legend(ncol = 1)) +
+  scale_shape_manual(values = SCEN_SHP, labels = SCEN_LAB, name = NULL,
+                     guide = guide_legend(ncol = 1)) +
+  scale_x_continuous(limits = c(0, x_max * 1.85), expand = expansion(mult = c(0.02, 0)),
+                     breaks = c(0, 2000),
                      labels = scales::label_comma()) +
   scale_y_discrete(labels = comm_labels) +
-  labs(x = expression("Expected colonized area (" * m^2 * ")"), y = NULL) +
+  labs(x = "Expected establishment\narea (m²)", y = NULL) +
   theme_paper(base_size = 12, style = "classic") +
   theme(legend.position = "bottom", legend.box.spacing = unit(1, "mm"),
         plot.margin = margin(2, 4, 2, 2, "mm"),
-        axis.text.y = if (HAS_GGTEXT) ggtext::element_markdown(size = rel(0.9),
+        axis.text.y = if (HAS_GGTEXT) ggtext::element_markdown(size = 9.5,
                                                                lineheight = 1.05,
                                                                colour = "black")
-                      else element_text(size = rel(0.9), lineheight = 1.0,
+                      else element_text(size = 9.5, lineheight = 1.0,
                                         colour = "black"))
 
 # ---- Assemble --------------------------------------------------------------
@@ -277,12 +278,12 @@ fig <- (wrap_elements(full = p_a) | wrap_elements(full = p_b)) +
   plot_annotation(tag_levels = "a")
 
 save_figure(fig, file.path(DIR_OUT_FIG, "fig06_risk_communities.pdf"),
-            width_mm = W_2COL, height_mm = 112)
+            width_mm = 170, height_mm = 112)
 save_figure(fig, file.path(DIR_OUT_FIG, "fig06_risk_communities.png"),
-            width_mm = W_2COL, height_mm = 112, dpi = 300)
+            width_mm = 170, height_mm = 112, dpi = 300)
 
 # ---- Self-checks -----------------------------------------------------------
-cat("\n-- expected colonized area by community (m2) and share (%) --\n")
+cat("\n-- expected establishment area by community (m2) and share (%) --\n")
 print(agg[order(agg$scenario, -agg$expected_area_m2),
           c("scenario", "comm", "expected_area_m2", "share")], row.names = FALSE)
 cat("\n-- scenario totals (m2) --\n"); print(totals, row.names = FALSE)

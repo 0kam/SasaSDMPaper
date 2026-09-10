@@ -1,5 +1,11 @@
+---
+bibliography: export.bib
+---
+
 ::: {#sec-supp}
-**Supplementary Information**
+**Supporting Information for:** Snowmelt regime and dispersal limitation predict the decadal expansion of dwarf bamboo into alpine snowbed vegetation
+
+Ryotaro Okamoto, Hiroyuki Oguma, Reiko Ide (National Institute for Environmental Studies, Tsukuba, Japan)
 :::
 
 \setcounter{figure}{0}
@@ -9,15 +15,13 @@
 \renewcommand{\tablename}{Table}
 \renewcommand{\thetable}{S\arabic{table}}
 
-<!-- Float counters preserve the Japanese SI identifiers, whose order differs from the order of appearance. -->
-
-This Supplementary Information follows the order of the methods in the main text. Figures are numbered S1–S7 and Tables S1–S12. These identifiers match the references in the main text (Figures S1–S3, S5, and S6; Tables S1–S4 and S9).
+This Supporting Information follows the order of the methods in the main text. Figures (S1–S7) and tables (S1–S12) are numbered in their order of appearance; all are cited from the main text.
 
 # Snowmelt regime and trends
 
 ## Figures S1–S3: temporal and spatial patterns of snowmelt
 
-![Annual landscape-mean snowmelt DOY varied markedly among years, with no significant temporal trend. The time series covers 2011–2021, with 2019 missing. The slope of the regression against year was −0.69 days/year (95% confidence interval −2.24 to +0.87, p = 0.34).](files/si/fig_snowmelt_annual_mean.png){#fig-s1 width=80% fig-pos="H"}
+![Annual landscape-mean snowmelt DOY varied markedly among years, with no detectable temporal trend. The time series covers 2011–2021, with 2019 missing. The slope of the regression against year was −0.69 days/year (95% confidence interval −2.24 to +0.87, p = 0.34).](files/si/fig_snowmelt_annual_mean.png){#fig-s1 width=80% fig-pos="H"}
 
 ![Snowmelt climatology followed the microtopographic gradient from early-melting ridges to late-melting snowbed hollows. The map shows per-pixel mean snowmelt DOY for 2011–2021. Black lines show the 2021 *Sasa* distribution (patches exceeding 5 m²), and grey lines are 100 m contours.](files/si/figS2_snowmelt_mean_map.png){#fig-s2 width=80% fig-pos="H"}
 
@@ -26,7 +30,7 @@ This Supplementary Information follows the order of the methods in the main text
 
 ![](files/si/fig_snowmelt_slope_hist.png)
 
-Per-pixel snowmelt trends were negative in 91.7% of pixels, but none remained significant after Benjamini–Hochberg correction. Left: trend map; right: frequency distribution of slopes. The mean slope was −0.71 days/year (median −0.63, SD 0.63, n = 1,206,063), and only 2.0% of pixels were individually significant (p < 0.05). In the right panel, the solid black line denotes zero and the dashed black line denotes the mean (−0.71 days/year). The horizontal axis is truncated at the 0.1–99.9 percentiles; pixels outside this range (0.2% of all pixels, including residual-snow margins with |slope| > 5 days/year) are not shown.
+Per-pixel snowmelt trends were negative in 91.7% of pixels, but none remained significant after Benjamini–Hochberg correction. Left: trend map; right: frequency distribution of slopes. The mean slope was −0.71 days/year (median −0.63, SD 0.63, n = 1,206,063), and only 2.0% of pixels were individually significant (p < 0.05). In the right panel, the solid black line denotes zero and the dashed black line denotes the mean (−0.71 days/year). The horizontal axis is truncated at the 0.1–99.9 percentiles; pixels outside this range (0.2% of all pixels, with slopes below −4.1 or above +1.4 days/year, including residual-snow margins) are not shown.
 :::
 
 ## Power to detect snowmelt trends
@@ -35,9 +39,7 @@ With a 10-year record and a residual annual SD of approximately 9 days, the mini
 
 ## Rationale for excluding trends as predictors: sensitivity analysis adding a trend term to Model B
 
-We added a smooth term for the per-pixel trend, `s(trend)`, to the selected Model B specification and re-evaluated it using the same 4 spatial blocks in leave-one-block-out validation (Table S5).
-
-\setcounter{table}{4}
+We added a smooth term for the per-pixel trend, `s(trend)`, to the selected Model B specification and re-evaluated it using the same 4 spatial blocks in leave-one-block-out validation (Table S1).
 
 | Evaluation scope | Baseline AUC | +s(trend) AUC | ΔAUC |
 |---|---:|---:|---:|
@@ -47,13 +49,13 @@ We added a smooth term for the per-pixel trend, `s(trend)`, to the selected Mode
 | Block 4 | 0.9579 | 0.9574 | −0.0005 |
 | Pooled | 0.9461 | 0.9456 | −0.0005 |
 
-: Spatial-block validation of the addition of a snowmelt trend term to Model B. AUC decreased consistently in all 4 blocks. {#tbl-s5}
+: Spatial-block validation of the addition of a snowmelt trend term to Model B. AUC decreased consistently in all 4 blocks. {#tbl-s1}
 
 Although `s(trend)` was nominally significant in-sample (edf 3.15, p = 0.011, ΔAIC −8.1), it did not improve prediction in held-out blocks and increased explained deviance by only 0.03 percentage points. Across the central 90% of the trend distribution (−1.84 to +0.12 days/year), the partial effect spanned only 0.13 on the logit scale (odds ratio 1.13), and the 95% band included zero throughout (Figure S4, right). This was negligible compared with the span of the distance term in the same model (5.8 on the logit scale). Thus, the establishment record could not identify a response to trends, and including the trend as a predictor would only add parameters that the data could not constrain.
 
 ## Rationale for spatially uniform snowmelt shifts
 
-The scenarios for the 2030 projections apply spatially uniform shifts to snowmelt climatology. We examined the spatial structure of the per-pixel trend field (Figure S4, left). Trends were almost unrelated to elevation (Spearman $\rho$ = +0.022; 50 m elevation bins explained 1.9% of the variance), but showed a **non-monotonic** relationship with snowmelt climatology: means across 10-day bins varied as −0.47 → −1.29 → −0.33 → −0.97 days/year, and the bins explained 24% of the pixel-level variance. Because the relationship was non-monotonic, Spearman $\rho$ was close to zero (−0.007). A uniform shift is therefore an approximation. Nevertheless, the means of all well-sampled bins were negative and within ±0.6 days/year of the landscape mean, with deviations smaller than within-bin variation (SD 0.39–0.77 days/year). The scenario range in the main text (0 / −0.71 / −2.24 days/year) brackets all bin means. Moreover, as shown above, the trend field did not contribute to predicting establishment. A uniform shift is therefore an adequate and deliberately conservative approximation for the purpose of the scenarios.
+The scenarios for the 2030 projections apply spatially uniform shifts to snowmelt climatology. We examined the spatial structure of the per-pixel trend field (Figure S4, left). Trends were almost unrelated to elevation (Spearman $\rho$ = +0.022; 50 m elevation bins explained 1.9% of the variance), but showed a **non-monotonic** relationship with snowmelt climatology: means across well-sampled 10-day bins ranged from −0.47 days/year in the earliest-melting bin (DOY 120–130), through a minimum of −1.29 (DOY 150–160) and a local maximum of −0.33 (DOY 180–190), to −0.97 in the latest bin (DOY 220–230), and the bins explained 24% of the pixel-level variance. Because the relationship was non-monotonic, Spearman $\rho$ was close to zero (−0.007). A uniform shift is therefore an approximation. Nevertheless, the means of all well-sampled bins were negative and within ±0.6 days/year of the landscape mean, with deviations smaller than within-bin variation (SD 0.39–0.77 days/year). The scenario range in the main text (0 / −0.71 / −2.24 days/year) brackets all bin means. Moreover, as shown above, the trend field did not contribute to predicting establishment. A uniform shift is therefore an adequate and deliberately conservative approximation for the purpose of the scenarios.
 
 ::: {#fig-s4 layout-ncol=2 fig-pos="H"}
 ![](files/si/fig_trend_vs_snow_mean.png)
@@ -67,7 +69,7 @@ Snowmelt trends varied non-monotonically with snowmelt climatology, but their pa
 
 ## Classifier architecture and accuracy
 
-The classifier was a Conv2D–LSTM operating on 5×5-pixel patches, using temporal changes in leaf colour across seasonal image sequences as input. The full installation, image-acquisition, and georectification pipeline followed Okamoto, Ide & Oguma (2024, *Remote Sensing in Ecology and Conservation*).
+The classifier was a Conv2D–LSTM operating on 5×5-pixel patches, using temporal changes in leaf colour across seasonal image sequences as input. The full installation, image-acquisition, and georectification pipeline followed @Okamoto2024RSEC.
 
 <!-- Source of every value below: models/crnn.py (architecture, loss, optimiser),
      models/nnmodel.py (folds, checkpointing, per-class report), run_crnn.py
@@ -78,13 +80,11 @@ The classifier was a Conv2D–LSTM operating on 5×5-pixel patches, using tempor
 
 **Input.** Each training or prediction sample was a stack of 7 co-registered seasonal frames covering one 5×5-pixel neighbourhood, i.e. 7 time steps × 3 (RGB) channels × 5 × 5 pixels. Patches were cut from the aligned image series, resampled to the 5×5 kernel, stored as 8-bit values, and rescaled to the interval [0, 1] before entering the network. The two target years were treated as independent series of 7 frames each, and the same network was trained separately on the 2012 and the 2021 series.
 
-**Architecture.** Each frame passed through a single convolutional block — `Conv2d`(3 → 8 channels, 3 × 3 kernel, stride 1, no padding) → PReLU → batch normalisation → `MaxPool2d`(3 × 3, stride 1) — which reduces a 5 × 5 patch to a single spatial position and yields 8 features per frame. The resulting 7-step sequence of 8-dimensional feature vectors was passed to a single-layer, unidirectional LSTM with 7 hidden units (the implementation sets the hidden width to the mean of the convolutional output width and the number of classes, i.e. $\lfloor (8 + 7)/2 \rfloor = 7$). The final hidden state was normalised, passed through one fully connected layer of 7 units with PReLU and batch normalisation, and mapped by a second fully connected layer to the 7 class scores, followed by a softmax. Dropout layers are present but are set to a rate of 0, so the fitted network used none.
+**Architecture.** Each frame passed through a single convolutional block — `Conv2d`(3 → 8 channels, 3 × 3 kernel, stride 1, no padding) → PReLU → batch normalisation → `MaxPool2d`(3 × 3, stride 1) — which reduces a 5 × 5 patch to a single spatial position and yields 8 features per frame. The resulting 7-step sequence of 8-dimensional feature vectors was passed to a single-layer, unidirectional LSTM with 7 hidden units (the implementation sets the hidden width to the mean of the convolutional output width and the number of classes, i.e. $\lfloor (8 + 7)/2 \rfloor = 7$). The final hidden state was normalised, passed through one fully connected layer of 7 units with PReLU and batch normalisation, and mapped by a second fully connected layer to the 7 class scores, followed by a softmax. Dropout layers were present but were set to a rate of 0, so the fitted network used none.
 
 **Training.** The loss was cross-entropy and the optimiser RAdam with a fixed learning rate of $1 \times 10^{-3}$; the batch size was 500 and each fold was trained for 50 epochs. No data augmentation was applied: the training and validation transform pipelines are both empty. Training labels comprised 216 hand-drawn polygons, which supplied 618,012 labelled pixels. These were split by stratified 5-fold cross-validation (shuffled, stratified on class), so that each fold trained on 4/5 of the labelled pixels and validated on the remaining 1/5 (mean 123,602 pixels per validation fold). Within each fold the epoch with the lowest validation loss was retained. The published maps are the per-pixel majority vote of the 5 fold models applied to the full image.
 
-Class-specific accuracy is given in Table S12 as the mean across the 5 validation folds. *Sasa*, the focal class, was recovered with an F1 of 0.96 in both years; the weakest class in both years was maple, the rarest of the 7 (12,758 labelled pixels), whose recall fell to 0.90 in 2021. Because the folds were split at the pixel level and the same polygons were reused for both years, these values describe accuracy near the training polygons and are upper bounds on accuracy elsewhere in the scene.
-
-\setcounter{table}{11}
+Class-specific accuracy is given in Table S2 as the mean across the 5 validation folds. *Sasa*, the focal class, was recovered with an F1 of 0.96 in both years; the weakest class in both years was maple, the rarest of the 7 (12,758 labelled pixels), whose recall fell to 0.90 in 2021. Because the folds were split at the pixel level and the same polygons were reused for both years, these values describe accuracy near the training polygons and are upper bounds on accuracy elsewhere in the scene.
 
 | Class | Pixels | 2012 P | 2012 R | 2012 F1 | 2021 P | 2021 R | 2021 F1 |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -98,19 +98,16 @@ Class-specific accuracy is given in Table S12 as the mean across the 5 validatio
 | Macro average | 618,012 | 0.976 | 0.968 | 0.972 | 0.962 | 0.953 | 0.957 |
 | Weighted average | 618,012 | 0.982 | 0.982 | 0.982 | 0.975 | 0.975 | 0.975 |
 
-: Class-specific precision (P), recall (R), and F1 of the Conv2D–LSTM classifier, as means over the 5 stratified cross-validation folds. "Pixels" is the total number of labelled pixels of the class across all folds; the same label polygons were used for both years. The weighted averages are the overall accuracies quoted in the Methods (0.982 for 2012, 0.975 for 2021). {#tbl-s12 tbl-colwidths="[25, 13, 10, 10, 11, 10, 10, 11]"}
+: Class-specific precision (P), recall (R), and F1 of the Conv2D–LSTM classifier, as means over the 5 stratified cross-validation folds. "Pixels" is the total number of labelled pixels of the class across all folds; the same label polygons were used for both years. The weighted averages are the overall accuracies quoted in the Methods (0.982 for 2012, 0.975 for 2021). {#tbl-s2 tbl-colwidths="[25, 13, 10, 10, 11, 10, 10, 11]"}
 
-## Figure S6: vegetation classification maps for 2012 and 2021
+## Figure S5: vegetation classification maps for 2012 and 2021
 
-\setcounter{figure}{5}
+![The 7-class vegetation classification was stable between the two years, and change was concentrated at the margins of the *Sasa* patches. (a) 2012 and (b) 2021, on the 1 m analysis grid over the full analysis extent. Both panels share the legend below. *Sasa* covered 8,547 cells in 2012 and 10,174 cells in 2021 (0.7% and 0.8% of the classified area); the shares of the other six classes changed by at most 3 percentage points.](files/si/figS5_vegmaps.png){#fig-s5 width=100% fig-pos="H"}
 
-![The 7-class vegetation classification was stable between the two years, and change was concentrated at the margins of the *Sasa* patches. (a) 2012 and (b) 2021, on the 1 m analysis grid over the full analysis extent. Both panels share the legend below. *Sasa* covered 8,547 cells in 2012 and 10,174 cells in 2021 (0.7% and 0.8% of the classified area); the shares of the other six classes changed by at most 3 percentage points.](files/si/figS6_vegmaps.png){#fig-s6 width=100% fig-pos="H"}
-
-## Table S1: full transition matrix for all classes (2012→2021)
+## Table S3: full transition matrix for all classes (2012→2021)
 
 Rows indicate the 2012 class and columns the 2021 class. Values are cell counts (1 cell $\approx$ 1 m²).
 
-\setcounter{table}{0}
 \begingroup
 \small
 \setlength{\tabcolsep}{2pt}
@@ -125,15 +122,13 @@ Rows indicate the 2012 class and columns the 2021 class. Values are cell counts 
 | Montane alder | 109 | 3,643 | 45 | 2,023 | 234 | 13,033 | 1,683 | 20,770 |
 | Dwarf pine | 1,424 | 5,488 | 6,418 | 1,369 | 209 | 1,189 | 278,650 | 294,747 |
 
-: Full transition matrix for all vegetation classes, 2012→2021 (cell counts). {#tbl-s1 tbl-colwidths="[17, 9, 12, 12, 10, 8, 11, 11, 10]"}
+: Full transition matrix for all vegetation classes, 2012→2021 (cell counts). {#tbl-s3 tbl-colwidths="[17, 9, 12, 12, 10, 8, 11, 11, 10]"}
 
 \endgroup
 
 # Spatial verification of *Sasa*→dwarf pine transitions: adjacency analysis
 
-To assess whether *Sasa*→dwarf pine transitions (1,156 cells) were concentrated at the boundaries of existing dwarf pine, we calculated the Euclidean distance from each transition cell to the nearest 2012 dwarf pine cell (Table S6).
-
-\setcounter{table}{5}
+To assess whether *Sasa*→dwarf pine transitions (1,156 cells) were concentrated at the boundaries of existing dwarf pine, we calculated the Euclidean distance from each transition cell to the nearest 2012 dwarf pine cell (Table S4).
 
 | Group | n | $\leq 1.5$ m (directly adjacent) | 1.5–3 m | 3–5 m | >5 m |
 |---|---:|---:|---:|---:|---:|
@@ -141,15 +136,14 @@ To assess whether *Sasa*→dwarf pine transitions (1,156 cells) were concentrate
 | *Sasa*→other vegetation and other classes | 1,312 | 39.6% | 23.6% | 16.9% | 19.9% |
 | All 2012 *Sasa* cells (reference) | 8,547 | 46.6% | 27.6% | 15.2% | 10.7% |
 
-: Distribution of distances to 2012 dwarf pine. Of the cells transitioning to dwarf pine, 87.5% were directly adjacent (median distance 1.0 m), approximately 1.9 times the proportion in the reference distribution (46.6%). {#tbl-s6 tbl-colwidths="[32, 11, 21, 12, 12, 12]"}
+: Distribution of distances to 2012 dwarf pine. Of the cells transitioning to dwarf pine, 87.5% were directly adjacent (median distance 1.0 m), approximately 1.9 times the proportion in the reference distribution (46.6%). {#tbl-s4 tbl-colwidths="[32, 11, 21, 12, 12, 12]"}
 
 The transition rate to dwarf pine in the adjacent band ($\leq 1.5$ m) was 25.4%, approximately 6 times that in the 1.5–3 m band (4.3%), and levelled off at around 2% beyond 3 m, consistent with a classification-noise floor. Isolated transitions more than 5 m away amounted to only 19 m² (1.6% of transition area; 10 clusters, maximum 4 m²). Of these, only 2 clusters totalling 5 m², located 21–24 m from the front, were difficult to explain biologically and were consistent with sporadic misclassification within *Sasa* stands.
 
 # Blind interpretation of paired images
 
-We conducted a blind interpretation of paired images to assess whether lateral growth of dwarf pine branches could be distinguished from shifts in the classification of mixed boundary pixels. The 129 samples comprised 79 stratified samples of loss cells (37 to dwarf pine, 30 to other vegetation, and 12 to deciduous shrubs, proportional to the population composition of destination classes, 47/38/15%), 40 stable controls (20 *Sasa* in both years and 20 dwarf pine in both years), and 10 reverse transitions (dwarf pine→*Sasa*). Paired image crops from 2012 and 2021 were presented in random order with transition types concealed. Each sample contained 2 pairs, one from the green-leaf season and one from the autumn-colour season; frames with similar image greenness were paired to reduce phenological differences, and a box marked the projected location of the target 1 m cell. The interpreter (the first author) assigned each sample to one of 4 interpretation categories: *Sasa* loss, canopy cover, boundary ambiguity, or indeterminate. Residual georectification errors could shift the box by 1–2 cells. Boundary ambiguity was used when no clear change was visually discernible.
+We conducted a blind interpretation of paired images to assess whether lateral growth of dwarf pine branches could be distinguished from shifts in the classification of mixed boundary pixels. The 129 samples comprised 79 stratified samples of loss cells (37 to dwarf pine, 30 to other vegetation, and 12 to deciduous shrubs, proportional to the population composition of destination classes, 47/38/15%), 40 stable controls (20 *Sasa* in both years and 20 dwarf pine in both years), and 10 reverse transitions (dwarf pine→*Sasa*). Paired image crops from 2012 and 2021 were presented in random order with transition types concealed. Blinding was to transition type only: the interpreter approached the samples as a set of mapped loss cells and was not informed that stable controls and reverse transitions had been interleaved. Because this expectation was identical across strata, it cannot explain the agreement between loss cells and controls reported below. Each sample contained 2 pairs, one from the green-leaf season and one from the autumn-colour season; frames with similar image greenness were paired to reduce phenological differences, and a box marked the projected location of the target 1 m cell. The interpreter (the first author) assigned each sample to one of 4 interpretation categories: *Sasa* loss, canopy cover, boundary ambiguity, or indeterminate. Residual georectification errors could shift the box by 1–2 cells. Boundary ambiguity was used when no clear change was visually discernible.
 
-\setcounter{table}{9}
 \begingroup
 \small
 
@@ -162,21 +156,19 @@ We conducted a blind interpretation of paired images to assess whether lateral g
 | Stable control (dwarf pine→dwarf pine) | 20 | 80% | **15%** | 5% | 0% |
 | Dwarf pine→*Sasa* | 10 | 80% | 10% | 0% | 10% |
 
-: Distribution of blind interpretation judgements by sample group (*percentages may not sum to 100% because of rounding). {#tbl-s10 tbl-colwidths="[34, 6, 17, 13, 11, 19]"}
+: Distribution of blind interpretation judgements by sample group (*percentages may not sum to 100% because of rounding). {#tbl-s5 tbl-colwidths="[34, 6, 17, 13, 11, 19]"}
 
 \endgroup
 
-Judgement distributions were almost identical for loss cells and stable controls. Thus, the interpreter could not distinguish cells mapped as changed from those mapped as unchanged using the photographs. Canopy cover was assigned to 22% (8/37) of *Sasa*→dwarf pine transitions, only slightly above the corresponding judgement for stable dwarf pine controls (15%, 3/20, providing an indication of the false-positive rate). **At the photographic scale, the nature of transitions in individual 1 m cells could not be resolved: whether they represented lateral growth or shifts in classification, or whether *Sasa* survived beneath the canopy.** The main text's interpretation of apparent loss to dwarf pine as a boundary phenomenon therefore rests on the concentration of adjacent transitions (preceding section) and the physical constraint imposed by dwarf pine annual shoot extension (approximately 4–5 cm/year), rather than on this interpretation exercise. We retain the conservative treatment of loss area as an upper bound on true decline. Raw interpretation data and reproduction instructions are included in `review/image_interpretation_package/` in the repository.
+Judgement distributions were almost identical for loss cells and stable controls. Thus, the interpreter could not distinguish cells mapped as changed from those mapped as unchanged using the photographs. Canopy cover was assigned to 22% (8/37) of *Sasa*→dwarf pine transitions, only slightly above the corresponding judgement for stable dwarf pine controls (15%, 3/20, providing an indication of the false-positive rate). **At the photographic scale, the nature of transitions in individual 1 m cells could not be resolved: whether they represented lateral growth or shifts in classification, or whether *Sasa* survived beneath the canopy.** The main text's interpretation of apparent loss to dwarf pine as a boundary phenomenon therefore rests on the concentration of adjacent transitions (preceding section) and the physical constraint imposed by dwarf pine annual shoot extension of approximately 4–5 cm/year [@Amagai2015EcoRes], rather than on this interpretation exercise. All 129 samples were tallied, including 5 that fell below the pre-specified image-quality screen; excluding them does not change the pattern. We retain the conservative treatment of loss area as an upper bound on true decline. Raw interpretation data and reproduction instructions are included in `review/image_interpretation_package/` in the repository.
 
-![Cells transitioning from *Sasa* to dwarf pine were distributed along the boundaries between persistent *Sasa* and 2021 dwarf pine. This example shows a 300 m window with dense *Sasa*–dwarf pine boundaries. Transition cells are magenta, persistent *Sasa* is dark green, and 2021 dwarf pine is pale green. The window contains 220 transition cells.](files/si/figS7_adjacency_map.png){#fig-s7 width=90% fig-pos="H"}
+![Cells transitioning from *Sasa* to dwarf pine were distributed along the boundaries between persistent *Sasa* and 2021 dwarf pine. This example shows a 150 m window with dense *Sasa*–dwarf pine boundaries. Transition cells are magenta, persistent *Sasa* is dark green, and 2021 dwarf pine is pale green. The window contains 218 transition cells.](files/si/figS6_adjacency_map.png){#fig-s6 width=90% fig-pos="H"}
 
 \clearpage
 
 # Model A
 
-## Table S7: held-out performance and ensemble composition
-
-\setcounter{table}{6}
+## Table S6: held-out performance and ensemble composition
 
 | Variant | Evaluation scope | AUC | TSS | TSS-maximising threshold |
 |---|---|---:|---:|---:|
@@ -185,17 +177,13 @@ Judgement distributions were almost identical for loss cells and stable controls
 | Elevation-restricted (<2,560 m) | Block mean | 0.857 | 0.583 | — |
 | Elevation-restricted (<2,560 m) | Pooled | 0.846 | 0.553 | 0.302 |
 
-: Held-out performance of Model A for the full and restricted elevation ranges. {#tbl-s7 tbl-colwidths="[31, 20, 12, 12, 25]"}
+: Held-out performance of Model A for the full and restricted elevation ranges. {#tbl-s6 tbl-colwidths="[31, 20, 12, 12, 25]"}
 
-The lower performance of the elevation-restricted variant (TSS 0.78→0.58) reflects the ease of discriminating high-elevation cells where *Sasa* cannot occur, rather than deterioration of the model. LASSO stacking retained 4 members in the main model (2 gradient boosted tree models, 1 MaxEnt model, and 1 random forest). Boosted trees and MaxEnt accounted for 95% of the weight, and no GAM members remained.
+The lower performance of the elevation-restricted variant (TSS 0.78→0.58) reflects the ease of discriminating high-elevation cells where *Sasa* cannot occur, rather than deterioration of the model. LASSO stacking retained 4 members in the main model (2 gradient boosted tree models, 1 MaxEnt model, and 1 random forest). Boosted trees and MaxEnt accounted for approximately 97% of the weight, and no GAM members remained.
 
-The full predictor correlation structure is given in Table S11.
+## Terrain predictors and Table S7: predictor correlation matrix and VIF
 
-Terrain predictors (slope, aspect, TPI, and TWI) were computed from the Fundamental Geospatial Data DEM of the Geospatial Information Authority of Japan (approximately 5 m mesh) [@GSIdem] in QGIS using SAGA GIS tools, and then reprojected to the 1 m analysis grid by bilinear interpolation. The effective resolution of the terrain predictors is therefore that of the source DEM rather than 1 m.
-
-## Table S11: predictor correlation matrix and VIF
-
-\setcounter{table}{10}
+Elevation was taken from the Fundamental Geospatial Data DEM of the Geospatial Information Authority of Japan [@GSIdem], whose native 0.2″ × 0.2″ grid corresponds to cells of 4.97 m (east–west) × 6.16 m (north–south) after projection to JGD2000 / UTM zone 53N (EPSG:3099). Slope, aspect, and TPI were derived from this DEM with the GDAL `gdaldem` utility: slope and aspect with the Zevenbergen–Thorne four-neighbour algorithm [@Zevenbergen1987ESPL], and TPI as the difference between the elevation of the focal cell and the mean elevation of its eight neighbours (a fixed 3 × 3 window). We verified this provenance post hoc by re-deriving each layer from the archived DEM with `gdaldem` (GDAL 3.12), which reproduced the archived rasters exactly (maximum absolute difference 0). TWI [@Beven1979TWI] was computed in QGIS with SAGA GIS [@Conrad2015SAGA] at the tool's default settings; the specific module, its parameters, and the QGIS and SAGA version numbers were not recorded at the time of processing and could not be recovered, although the archived layer is consistent with a multiple-flow-direction contributing area combined with a lower bound on slope. Aspect was decomposed into northness and eastness at the native DEM resolution, and all terrain layers were then reprojected onto the 1 m analysis grid by bilinear interpolation; their effective resolution therefore remains that of the source DEM rather than 1 m. The derived terrain rasters are included in the archived deposit. The full predictor correlation structure is given in Table S7.
 
 | | slope | elevation | TPI | TWI | northness | eastness | snowmelt clim. | VIF |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -207,11 +195,9 @@ Terrain predictors (slope, aspect, TPI, and TWI) were computed from the Fundamen
 | eastness | −0.14 | −0.25 | 0.05 | 0.02 | 0.48 | 1 | 0.13 | 1.22 |
 | snowmelt clim. | −0.55 | −0.58 | −0.33 | 0.63 | 0.27 | 0.13 | 1 | 2.30 |
 
-: Pairwise Spearman correlations and variance inflation factors (VIF) of the retained predictors. The largest |r| is 0.63 between TWI and snowmelt climatology, and the largest VIF is 2.30 (snowmelt climatology); both are below conventional thresholds (|r| < 0.7, VIF < 5). {#tbl-s11}
+: Pairwise Spearman correlations and variance inflation factors (VIF) of the retained predictors. The largest |r| is 0.63 between TWI and snowmelt climatology, and the largest VIF is 2.30 (snowmelt climatology); both are below conventional thresholds (|r| < 0.7, VIF < 5). {#tbl-s7}
 
-## Table S2: threshold sensitivity of suitable area in the main model
-
-\setcounter{table}{1}
+## Table S8: threshold sensitivity of suitable area in the main model
 
 | Threshold | Suitable area (10³ m²) | Ratio to occupied area (10.2×10³ m²) |
 |---:|---:|---:|
@@ -225,15 +211,13 @@ Terrain predictors (slope, aspect, TPI, and TWI) were computed from the Fundamen
 | 0.60 | 5.5 | 0.5 |
 | 0.70 | 0.0 | 0.0 |
 
-: Sensitivity of suitable area to the binarisation threshold in the main Model A. {#tbl-s2}
+: Sensitivity of suitable area to the binarisation threshold in the main Model A. {#tbl-s8}
 
 Suitable area exceeded occupied area at thresholds up to 0.55. At thresholds of 0.60 or above, it fell below occupied area. The statement that suitable area exceeded occupied area therefore uses the TSS-maximising threshold as its reference (0.16; ratio 16.1), and the main text explicitly states that the relationship held up to a threshold of 0.55.
 
-## Figure S5: seed-dispersal stratum (environmental potential)
+## Figure S7: seed-dispersal stratum (environmental potential)
 
-\setcounter{figure}{4}
-
-![The seed-dispersal stratum was more than an order of magnitude larger than the expected establishment area in the near-term rhizome stratum. Orange cells were classified as other vegetation in 2021 and had Model A suitability at or above the TSS-maximising threshold (0.158), covering a nominal area of 84.7×10³ m² compared with expected establishment of 2,429–3,383 m² in the near-term rhizome stratum. Black lines show the 2021 *Sasa* distribution.](files/si/figS5_seed_layer.png){#fig-s5 width=80% fig-pos="H"}
+![The seed-dispersal stratum was more than an order of magnitude larger than the expected establishment area in the near-term rhizome stratum. Orange cells were classified as other vegetation in 2021 and had Model A suitability at or above the TSS-maximising threshold (0.158), covering a nominal area of 84.7×10³ m² compared with expected establishment of 2,429–3,383 m² in the near-term rhizome stratum. Black lines show the 2021 *Sasa* distribution.](files/si/figS7_seed_layer.png){#fig-s7 width=80% fig-pos="H"}
 
 \clearpage
 
@@ -241,9 +225,7 @@ Suitable area exceeded occupied area at thresholds up to 0.55. At thresholds of 
 
 ## Selection of the distance-term specification
 
-We selected the distance-term specification by comparing a smooth on the linear distance axis, `s(d)`, with a smooth on log-transformed distance, `s(log(1+d))`, using 3 criteria fixed in advance (Table S8).
-
-\setcounter{table}{7}
+We selected the distance-term specification by comparing a smooth on the linear distance axis, `s(d)`, with a smooth on log-transformed distance, `s(log(1+d))`, using 3 criteria fixed in advance (Table S9).
 
 | Criterion | Requirement | Result | Decision |
 |---|---|---:|---|
@@ -251,9 +233,9 @@ We selected the distance-term specification by comparing a smooth on the linear 
 | Reduction in absolute error in the 0–5 m band | $\geq 30\%$ | 87.3% reduction | Pass |
 | Deterioration in the 5–20 m band | None | Improvement | Pass |
 
-: Comparison of distance-term specifications using predefined criteria (linear axis → log distance). All 3 criteria were met, so `s(log(1+d))` was selected. {#tbl-s8 tbl-colwidths="[38, 18, 29, 15]"}
+: Comparison of distance-term specifications using predefined criteria (linear axis → log distance). All 3 criteria were met, so `s(log(1+d))` was selected. {#tbl-s9 tbl-colwidths="[38, 18, 29, 15]"}
 
-The selected specification achieved block-specific AUC of 0.91–0.96 (pooled AUC 0.946, TSS 0.75). The gradient boosted tree ensemble used as a robustness comparison, fitted to the same response, predictors, and folds, achieved a pooled AUC of 0.948, indicating that the additive model captured nearly all the signal available to a flexible learner. MaxEnt was excluded from the comparison because quasi-separation of the classes along the distance gradient prevented convergence of the regularisation path in `maxnet`/`glmnet`. <!-- TODO: Add a table of sensitivity to smooth basis dimension (k sensitivity); run the analysis and transcribe the results when preparing the English SI. -->
+The selected specification achieved block-specific AUC of 0.91–0.96 (pooled AUC 0.946, TSS 0.75). The gradient boosted tree ensemble used as a robustness comparison, fitted on the same folds to all establishment cells and a fold-stratified random sample of 150,000 non-establishment cells, achieved a pooled AUC of 0.948, indicating that the additive model captured nearly all the signal available to a flexible learner. MaxEnt was excluded from the comparison because quasi-separation of the classes along the distance gradient prevented convergence of the regularisation path in `maxnet`/`glmnet`. The selected specification used a basis dimension of k = 5 for `s(log(1 + d))` and k = 10 for the environmental smooths; the distance term is deliberately low-dimensional because establishment records are sparse and larger bases produced unsupported oscillations between distant stands. Kernels fitted with k = 3, 5, and 10 on the linear distance axis are included in the deposited output (`model_B_distance_kernel.csv`).
 
 \clearpage
 
@@ -265,9 +247,7 @@ The environmental component of the linear predictor was precomputed for each sce
 
 ## Validation and structural sensitivity
 
-The hindcast initialised from the 2012 distribution reproduced observed gross expansion with a ratio of 1.077 (expected 4,414 m² vs observed 4,093 m²), and cell-level AUC was 0.92. In spatial-block-exclusion validation, AUC ranged from 0.79 to 0.86 and block-level ratios of expected to observed area ranged from 0.67 to 2.0. Structural sensitivity is summarised in Table S9.
-
-\setcounter{table}{8}
+The hindcast initialised from the 2012 distribution reproduced observed gross expansion with a ratio of 1.077 (expected 4,414 m² vs observed 4,093 m²), and cell-level AUC was 0.92. In spatial-block-exclusion validation (50 replicates per block), AUC ranged from 0.79 to 0.86 and block-level ratios of expected to observed area ranged from 0.67 to 2.0. Structural sensitivity (50 replicates per setting) is summarised in Table S10.
 
 | Sensitivity setting | Expected area in 2030 (s = −0.71) | Ratio to baseline |
 |---|---:|---:|
@@ -275,11 +255,9 @@ The hindcast initialised from the 2012 distribution reproduced observed gross ex
 | Remove the 5 m² patch rule | 17,226 m² | 3.01 |
 | Replace annualisation with the first-order approximation $p_9/9$ | 5,326 m² | 0.93 |
 
-: Structural sensitivity of projected establishment area. {#tbl-s9 tbl-colwidths="[45, 35, 20]"}
+: Structural sensitivity of projected establishment area. {#tbl-s10 tbl-colwidths="[45, 35, 20]"}
 
-## Table S3: projection summary by scenario
-
-\setcounter{table}{2}
+## Table S11: projection summary by scenario
 
 | Scenario | Expected new establishment area by 2030 | SD across replicates | Number of replicates |
 |---|---:|---:|---:|
@@ -287,17 +265,16 @@ The hindcast initialised from the 2012 distribution reproduced observed gross ex
 | s = −0.71 days/year (point estimate) | 5,730 m² | 84 | 200 |
 | s = −2.24 days/year (lower CI limit) | 5,524 m² | 81 | 200 |
 
-: Expected new establishment area by 2030 under each snowmelt scenario. {#tbl-s3 tbl-colwidths="[34, 30, 18, 18]"}
+: Expected new establishment area by 2030 under each snowmelt scenario. {#tbl-s11 tbl-colwidths="[34, 30, 18, 18]"}
 
-The extreme scenario (−2.24 days/year) yielded less establishment than the point-estimate scenario. At sites immediately adjacent to the front, where establishment was concentrated, excessive snowmelt advance shifted conditions beyond the favourable snowmelt window (Section 4.2 of the main text).
+The extreme scenario (−2.24 days/year) yielded less establishment than the point-estimate scenario. At sites immediately adjacent to the front, where establishment was concentrated, excessive snowmelt advance shifted conditions beyond the favourable snowmelt window (see the Discussion of the main text).
 
 # Composition of communities at risk
 
-## Table S4: expected establishment area by community (Ministry of the Environment 1:25,000 vegetation map)
+## Table S12: expected establishment area by community (Ministry of the Environment 1:25,000 vegetation map)
 
 Expected establishment area by 2030 is broken down by community within cells classified as other vegetation in 2021. For comparison, the composition of observed 2012–2021 establishment originating from other vegetation is also shown.
 
-\setcounter{table}{3}
 \begingroup
 \small
 
@@ -306,10 +283,14 @@ Expected establishment area by 2030 is broken down by community within cells cla
 | *Fauria crista-galli*–*Carex blepharicarpa* community | 1,774 m² (73.0%) | 2,500 m² (73.9%) | 3,013 m² (74.7%) | 2,736 m² (66.8%) |
 | *Anaphalis alpicola*–*Phyllodoce aleutica* community | 383 m² (15.8%) | 501 m² (14.8%) | 567 m² (14.1%) | 467 m² (11.4%) |
 | *Vaccinium vitis-idaea*–*Pinus pumila* community | 251 m² (10.3%) | 346 m² (10.2%) | 393 m² (9.7%) | 882 m² (21.5%) |
-| Other map categories | 21 m² (0.9%) | 36 m² (1.1%) | 59 m² (1.5%) | 10 m² (0.3%) |
+| Other map categories | 21 m² (0.9%) | 36 m² (1.1%) | 59 m² (1.5%) | 11 m² (0.3%) |
 
-: Expected establishment area by mapped community and scenario, with observed 2012–2021 establishment for comparison. {#tbl-s4 tbl-colwidths="[32, 17, 17, 17, 17]"}
+: Expected establishment area by mapped community and scenario, with observed 2012–2021 establishment for comparison. {#tbl-s12 tbl-colwidths="[32, 17, 17, 17, 17]"}
 
 \endgroup
 
 The allocation to the *Vaccinium vitis-idaea*–*Pinus pumila* community reflects the scale mismatch between 1:25,000 polygons and the 1 m grid (herbaceous cells within the polygons), rather than establishment beneath dwarf pine canopies.
+
+\clearpage
+
+# References {.unnumbered}

@@ -1,0 +1,33 @@
+source,class_ja,class_en,support,precision,recall,f1
+surviving_2012_5x5_modal,ササ,Sasa,38370,0.9776,0.9613,0.9694
+surviving_2012_5x5_modal,その他植生,Other vegetation,339296,0.9899,0.9948,0.9923
+surviving_2012_5x5_modal,無植生,No vegetation,40593,0.9816,0.9788,0.9802
+surviving_2012_5x5_modal,ナナカマド,Rowan (Sorbus),29238,0.9774,0.9831,0.9803
+surviving_2012_5x5_modal,ダケカンバ,Erman's birch (Betula ermanii),12738,0.9852,0.9542,0.9694
+surviving_2012_5x5_modal,ミヤマハンノキ,Montane alder (Alnus),48086,0.988,0.9766,0.9823
+surviving_2012_5x5_modal,ハイマツ,Dwarf pine (Pinus pumila),109250,0.9786,0.9775,0.978
+surviving_2012_5x5_modal,OVERALL,overall accuracy / kappa,617571,0.9858,0.3514,0.9781
+surviving_2021_5x5_modal,ササ,Sasa,38370,0.969,0.9599,0.9644
+surviving_2021_5x5_modal,その他植生,Other vegetation,339296,0.9887,0.992,0.9903
+surviving_2021_5x5_modal,無植生,No vegetation,40593,0.9728,0.9824,0.9776
+surviving_2021_5x5_modal,ナナカマド,Rowan (Sorbus),29238,0.9585,0.9501,0.9543
+surviving_2021_5x5_modal,ダケカンバ,Erman's birch (Betula ermanii),12738,0.9664,0.9129,0.9389
+surviving_2021_5x5_modal,ミヤマハンノキ,Montane alder (Alnus),48086,0.973,0.952,0.9624
+surviving_2021_5x5_modal,ハイマツ,Dwarf pine (Pinus pumila),109250,0.9698,0.9772,0.9735
+surviving_2021_5x5_modal,OVERALL,overall accuracy / kappa,617571,0.98,0.3511,0.9692
+published_2012_partial,ササ,Sasa,11197,0.8194,0.9196,0.8666
+published_2012_partial,その他植生,Other vegetation,148806,0.9909,0.949,0.9695
+published_2012_partial,無植生,No vegetation,37563,0.993,0.9343,0.9628
+published_2012_partial,ナナカマド,Rowan (Sorbus),15790,0.9401,0.9797,0.9595
+published_2012_partial,ダケカンバ,Erman's birch (Betula ermanii),6909,0.9222,0.944,0.933
+published_2012_partial,ミヤマハンノキ,Montane alder (Alnus),28850,0.9587,0.9852,0.9718
+published_2012_partial,ハイマツ,Dwarf pine (Pinus pumila),104885,0.9372,0.9864,0.9611
+published_2012_partial,OVERALL,overall accuracy / kappa,354000,0.9618,0.2826,0.9468
+published_2021_partial,ササ,Sasa,0,0.0,0.0,0.0
+published_2021_partial,その他植生,Other vegetation,2728,0.9782,0.9227,0.9496
+published_2021_partial,無植生,No vegetation,4835,0.9424,0.9737,0.9578
+published_2021_partial,ナナカマド,Rowan (Sorbus),0,0.0,0.0,0.0
+published_2021_partial,ダケカンバ,Erman's birch (Betula ermanii),0,0.0,0.0,0.0
+published_2021_partial,ミヤマハンノキ,Montane alder (Alnus),0,0.0,0.0,0.0
+published_2021_partial,ハイマツ,Dwarf pine (Pinus pumila),22726,0.9956,0.9954,0.9955
+published_2021_partial,OVERALL,overall accuracy / kappa,30289,0.9854,0.5968,0.9637

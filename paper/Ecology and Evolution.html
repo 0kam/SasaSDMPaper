@@ -1,0 +1,3566 @@
+<!DOCTYPE html>
+<html lang="en" class="pb-page" data-request-id="a385f3460ec8311d-NRT"><head data-pb-dropzone="head">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style>:root{--litepicker-container-months-color-bg: #fff;--litepicker-container-months-box-shadow-color: #ddd;--litepicker-footer-color-bg: #fafafa;--litepicker-footer-box-shadow-color: #ddd;--litepicker-tooltip-color-bg: #fff;--litepicker-month-header-color: #333;--litepicker-button-prev-month-color: #9e9e9e;--litepicker-button-next-month-color: #9e9e9e;--litepicker-button-prev-month-color-hover: #2196f3;--litepicker-button-next-month-color-hover: #2196f3;--litepicker-month-width: calc(var(--litepicker-day-width) * 7);--litepicker-month-weekday-color: #9e9e9e;--litepicker-month-week-number-color: #9e9e9e;--litepicker-day-width: 38px;--litepicker-day-color: #333;--litepicker-day-color-hover: #2196f3;--litepicker-is-today-color: #f44336;--litepicker-is-in-range-color: #bbdefb;--litepicker-is-locked-color: #9e9e9e;--litepicker-is-start-color: #fff;--litepicker-is-start-color-bg: #2196f3;--litepicker-is-end-color: #fff;--litepicker-is-end-color-bg: #2196f3;--litepicker-button-cancel-color: #fff;--litepicker-button-cancel-color-bg: #9e9e9e;--litepicker-button-apply-color: #fff;--litepicker-button-apply-color-bg: #2196f3;--litepicker-button-reset-color: #909090;--litepicker-button-reset-color-hover: #2196f3;--litepicker-highlighted-day-color: #333;--litepicker-highlighted-day-color-bg: #ffeb3b}.show-week-numbers{--litepicker-month-width: calc(var(--litepicker-day-width) * 8)}.litepicker{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;font-size:0.8em;display:none}.litepicker button{border:none;background:none}.litepicker .container__main{display:-webkit-box;display:-ms-flexbox;display:flex}.litepicker .container__months{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;background-color:var(--litepicker-container-months-color-bg);border-radius:5px;-webkit-box-shadow:0 0 5px var(--litepicker-container-months-box-shadow-color);box-shadow:0 0 5px var(--litepicker-container-months-box-shadow-color);width:calc(var(--litepicker-month-width) + 10px);-webkit-box-sizing:content-box;box-sizing:content-box}.litepicker .container__months.columns-2{width:calc((var(--litepicker-month-width) * 2) + 20px)}.litepicker .container__months.columns-3{width:calc((var(--litepicker-month-width) * 3) + 30px)}.litepicker .container__months.columns-4{width:calc((var(--litepicker-month-width) * 4) + 40px)}.litepicker .container__months.split-view .month-item-header .button-previous-month,.litepicker .container__months.split-view .month-item-header .button-next-month{visibility:visible}.litepicker .container__months .month-item{padding:5px;width:var(--litepicker-month-width);-webkit-box-sizing:content-box;box-sizing:content-box}.litepicker .container__months .month-item-header{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;font-weight:500;padding:10px 5px;text-align:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--litepicker-month-header-color)}.litepicker .container__months .month-item-header div{-webkit-box-flex:1;-ms-flex:1;flex:1}.litepicker .container__months .month-item-header div>.month-item-name{margin-right:5px}.litepicker .container__months .month-item-header div>.month-item-year{padding:0}.litepicker .container__months .month-item-header .reset-button{color:var(--litepicker-button-reset-color)}.litepicker .container__months .month-item-header .reset-button>svg{fill:var(--litepicker-button-reset-color)}.litepicker .container__months .month-item-header .reset-button *{pointer-events:none}.litepicker .container__months .month-item-header .reset-button:hover{color:var(--litepicker-button-reset-color-hover)}.litepicker .container__months .month-item-header .reset-button:hover>svg{fill:var(--litepicker-button-reset-color-hover)}.litepicker .container__months .month-item-header .button-previous-month,.litepicker .container__months .month-item-header .button-next-month{visibility:hidden;text-decoration:none;padding:3px 5px;border-radius:3px;-webkit-transition:color 0.3s, border 0.3s;transition:color 0.3s, border 0.3s;cursor:default}.litepicker .container__months .month-item-header .button-previous-month *,.litepicker .container__months .month-item-header .button-next-month *{pointer-events:none}.litepicker .container__months .month-item-header .button-previous-month{color:var(--litepicker-button-prev-month-color)}.litepicker .container__months .month-item-header .button-previous-month>svg,.litepicker .container__months .month-item-header .button-previous-month>img{fill:var(--litepicker-button-prev-month-color)}.litepicker .container__months .month-item-header .button-previous-month:hover{color:var(--litepicker-button-prev-month-color-hover)}.litepicker .container__months .month-item-header .button-previous-month:hover>svg{fill:var(--litepicker-button-prev-month-color-hover)}.litepicker .container__months .month-item-header .button-next-month{color:var(--litepicker-button-next-month-color)}.litepicker .container__months .month-item-header .button-next-month>svg,.litepicker .container__months .month-item-header .button-next-month>img{fill:var(--litepicker-button-next-month-color)}.litepicker .container__months .month-item-header .button-next-month:hover{color:var(--litepicker-button-next-month-color-hover)}.litepicker .container__months .month-item-header .button-next-month:hover>svg{fill:var(--litepicker-button-next-month-color-hover)}.litepicker .container__months .month-item-weekdays-row{display:-webkit-box;display:-ms-flexbox;display:flex;justify-self:center;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;color:var(--litepicker-month-weekday-color)}.litepicker .container__months .month-item-weekdays-row>div{padding:5px 0;font-size:85%;-webkit-box-flex:1;-ms-flex:1;flex:1;width:var(--litepicker-day-width);text-align:center}.litepicker .container__months .month-item:first-child .button-previous-month{visibility:visible}.litepicker .container__months .month-item:last-child .button-next-month{visibility:visible}.litepicker .container__months .month-item.no-previous-month .button-previous-month{visibility:hidden}.litepicker .container__months .month-item.no-next-month .button-next-month{visibility:hidden}.litepicker .container__days{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;justify-self:center;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:center;-webkit-box-sizing:content-box;box-sizing:content-box}.litepicker .container__days>div,.litepicker .container__days>a{padding:5px 0;width:var(--litepicker-day-width)}.litepicker .container__days .day-item{color:var(--litepicker-day-color);text-align:center;text-decoration:none;border-radius:3px;-webkit-transition:color 0.3s, border 0.3s;transition:color 0.3s, border 0.3s;cursor:default}.litepicker .container__days .day-item:hover{color:var(--litepicker-day-color-hover);-webkit-box-shadow:inset 0 0 0 1px var(--litepicker-day-color-hover);box-shadow:inset 0 0 0 1px var(--litepicker-day-color-hover)}.litepicker .container__days .day-item.is-today{color:var(--litepicker-is-today-color)}.litepicker .container__days .day-item.is-locked{color:var(--litepicker-is-locked-color)}.litepicker .container__days .day-item.is-locked:hover{color:var(--litepicker-is-locked-color);-webkit-box-shadow:none;box-shadow:none;cursor:default}.litepicker .container__days .day-item.is-in-range{background-color:var(--litepicker-is-in-range-color);border-radius:0}.litepicker .container__days .day-item.is-start-date{color:var(--litepicker-is-start-color);background-color:var(--litepicker-is-start-color-bg);border-top-left-radius:5px;border-bottom-left-radius:5px;border-top-right-radius:0;border-bottom-right-radius:0}.litepicker .container__days .day-item.is-start-date.is-flipped{border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px}.litepicker .container__days .day-item.is-end-date{color:var(--litepicker-is-end-color);background-color:var(--litepicker-is-end-color-bg);border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px}.litepicker .container__days .day-item.is-end-date.is-flipped{border-top-left-radius:5px;border-bottom-left-radius:5px;border-top-right-radius:0;border-bottom-right-radius:0}.litepicker .container__days .day-item.is-start-date.is-end-date{border-top-left-radius:5px;border-bottom-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px}.litepicker .container__days .day-item.is-highlighted{color:var(--litepicker-highlighted-day-color);background-color:var(--litepicker-highlighted-day-color-bg)}.litepicker .container__days .week-number{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;color:var(--litepicker-month-week-number-color);font-size:85%}.litepicker .container__footer{text-align:right;padding:10px 5px;margin:0 5px;background-color:var(--litepicker-footer-color-bg);-webkit-box-shadow:inset 0px 3px 3px 0px var(--litepicker-footer-box-shadow-color);box-shadow:inset 0px 3px 3px 0px var(--litepicker-footer-box-shadow-color);border-bottom-left-radius:5px;border-bottom-right-radius:5px}.litepicker .container__footer .preview-date-range{margin-right:10px;font-size:90%}.litepicker .container__footer .button-cancel{background-color:var(--litepicker-button-cancel-color-bg);color:var(--litepicker-button-cancel-color);border:0;padding:3px 7px 4px;border-radius:3px}.litepicker .container__footer .button-cancel *{pointer-events:none}.litepicker .container__footer .button-apply{background-color:var(--litepicker-button-apply-color-bg);color:var(--litepicker-button-apply-color);border:0;padding:3px 7px 4px;border-radius:3px;margin-left:10px;margin-right:10px}.litepicker .container__footer .button-apply:disabled{opacity:0.7}.litepicker .container__footer .button-apply *{pointer-events:none}.litepicker .container__tooltip{position:absolute;margin-top:-4px;padding:4px 8px;border-radius:4px;background-color:var(--litepicker-tooltip-color-bg);-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.25);box-shadow:0 1px 3px rgba(0,0,0,0.25);white-space:nowrap;font-size:11px;pointer-events:none;visibility:hidden}.litepicker .container__tooltip:before{position:absolute;bottom:-5px;left:calc(50% - 5px);border-top:5px solid rgba(0,0,0,0.12);border-right:5px solid transparent;border-left:5px solid transparent;content:""}.litepicker .container__tooltip:after{position:absolute;bottom:-4px;left:calc(50% - 4px);border-top:4px solid var(--litepicker-tooltip-color-bg);border-right:4px solid transparent;border-left:4px solid transparent;content:""}
+</style><style></style><style>:root {
+  --litepicker-mobilefriendly-backdrop-color-bg: #000;
+}
+
+.litepicker-backdrop {
+  display: none;
+  background-color: var(--litepicker-mobilefriendly-backdrop-color-bg);
+  opacity: 0.3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.litepicker-open {
+  overflow: hidden;
+}
+
+.litepicker.mobilefriendly[data-plugins*="mobilefriendly"] {
+  transform: translate(-50%, -50%);
+  font-size: 1.1rem;
+  --litepicker-container-months-box-shadow-color: #616161;
+}
+.litepicker.mobilefriendly-portrait {
+  --litepicker-day-width: 13.5vw;
+  --litepicker-month-width: calc(var(--litepicker-day-width) * 7);
+}
+.litepicker.mobilefriendly-landscape {
+  --litepicker-day-width: 5.5vw;
+  --litepicker-month-width: calc(var(--litepicker-day-width) * 7);
+}
+
+.litepicker[data-plugins*="mobilefriendly"] .container__months {
+  overflow: hidden;
+}
+
+.litepicker.mobilefriendly[data-plugins*="mobilefriendly"] .container__months .month-item-header {
+  height: var(--litepicker-day-width);
+}
+
+.litepicker.mobilefriendly[data-plugins*="mobilefriendly"] .container__days > div {
+  height: var(--litepicker-day-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.litepicker[data-plugins*="mobilefriendly"] .container__months .month-item {
+  transform-origin: center;
+}
+
+.litepicker[data-plugins*="mobilefriendly"] .container__months .month-item.touch-target-next {
+  animation-name: lp-bounce-target-next;
+  animation-duration: .5s;
+  animation-timing-function: ease;
+}
+
+.litepicker[data-plugins*="mobilefriendly"] .container__months .month-item.touch-target-prev {
+  animation-name: lp-bounce-target-prev;
+  animation-duration: .5s;
+  animation-timing-function: ease;
+}
+
+@keyframes lp-bounce-target-next {
+  from {
+    transform: translateX(100px) scale(0.5);
+  }
+  to {
+    transform: translateX(0px) scale(1);
+  }
+}
+
+@keyframes lp-bounce-target-prev {
+  from {
+    transform: translateX(-100px) scale(0.5);
+  }
+  to {
+    transform: translateX(0px) scale(1);
+  }
+}</style>
+            
+
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+    
+        
+    
+        
+            
+                
+                
+
+
+
+
+
+<title>Ecology and Evolution</title>
+
+
+
+
+                
+            
+        
+    
+
+
+
+
+    <iframe style="position: absolute; top: -10000px; left: -1000px;"></iframe><script type="text/javascript" async="" src="Ecology%20and%20Evolution_files/a_qv1g"></script><script type="text/javascript" async="" src="Ecology%20and%20Evolution_files/insight.min_qv1g.js"></script><script async="" src="Ecology%20and%20Evolution_files/prum.min_qv1g.js"></script><script async="" src="Ecology%20and%20Evolution_files/pub_qv1g.js"></script><script async="" src="Ecology%20and%20Evolution_files/googletagservices_gpt_qv1g.js"></script><script async="" src="Ecology%20and%20Evolution_files/core-wiley_qv1g.js"></script><script async="" src="Ecology%20and%20Evolution_files/data_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/hm_qv1g.js" async=""></script><script async="" src="Ecology%20and%20Evolution_files/amazon_apstag_qv1g.js"></script><script type="text/javascript" nonce="">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+        'functionality_storage': 'granted',
+        'security_storage': 'granted',
+        'analytics_storage': 'denied',
+        'personalization_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+    });
+</script>
+
+    
+
+
+
+
+
+    <!-- OsanoScriptEnabled: true -->
+    
+        <link rel="preload" href="Ecology%20and%20Evolution_files/osano_qv1g.js" as="script">
+        <script src="Ecology%20and%20Evolution_files/osano_qv1g.js" nonce=""></script>
+        <script nonce="">
+            window.Osano.cm.addEventListener("osano-cm-script-blocked", function (item) {
+                console.log("Script blocked: " + item);
+            });
+            window.Osano.cm.addEventListener("osano-cm-cookie-blocked", function (item) {
+                console.log("Cookie blocked: " + item);
+            });
+            window.Osano.cm.addEventListener("osano-cm-iframe-blocked", function (item) {
+                console.log("iFrame blocked: " + item);
+            });
+        </script>
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" nonce="">
+    var adConfig = {"pubgrade-enabled":true,"programmatic-enabled":true};
+</script>
+
+
+    <script src="Ecology%20and%20Evolution_files/config_qv1g.js" async="" nonce=""></script>
+    <script type="text/javascript" nonce="">
+        //load the apstag.js library
+        !function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+        //initialize the apstag.js library on the page to allow bidding
+        apstag.init({
+            pubID: '8a7b667a-8d2e-4ef5-9f99-439e2179fd23',
+            adServer: 'googletag',
+            simplerGPT: true
+        });
+    </script>
+
+
+
+    <script nonce="">
+        function isBrowserChrome() {
+            return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        }
+    </script>
+
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+        
+            
+                
+                
+
+
+
+    
+        
+            
+                
+                    
+                        <script type="text/javascript" src="Ecology%20and%20Evolution_files/pericles-performance_qv1g.js" nonce=""></script>
+                    
+                    
+                
+            
+        
+    
+
+                
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+    
+        
+    
+        
+            
+        
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    
+        
+            
+            
+            
+                
+            
+        
+    
+
+<link rel="stylesheet" type="text/css" href="Ecology%20and%20Evolution_files/92a0e328e1a017de4c6f29ae009d20ef3838b7cb~product_qv1g.css">
+    <link rel="stylesheet" href="Ecology%20and%20Evolution_files/build-2c6d82f4e7edebf0b514_qv1g.css"><link rel="stylesheet" href="Ecology%20and%20Evolution_files/print-2c6d82f4e7edebf0b514_qv1g.css" media="print">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+            
+                
+                
+                
+                    
+                    <script id="adobeDigitalData" registrationcompleted="false">window.adobeDataLayer = window.adobeDataLayer || [];
+window.adobeDataLayer.push({"site":{"environment":"LIVE","hub":"pericles","locale":"ja"},"user":{"login-status":"guest","admin-type":"non-admin","identities":[{"type":"BasicGroup","uuid":"84aa8781-b32a-4f06-979c-30f3ab78ad73"},{"type":"SmartGroupUser","uuid":"89490c0a-0b70-4215-8ec1-6aa771253899"},{"type":"BasicGroup","uuid":"b2f59a00-e5f8-40f1-8e75-8c7dd6bce0ba"},{"type":"RegionUser","uuid":"1e062694-1189-4932-91ab-dd78ca25a1ee"},{"type":"ReferrerUser","uuid":"5a52f27c-b57e-4a2d-8de6-c4f2e0fa8465"},{"type":"ReferrerUser","uuid":"5a2c1d70-1255-4a45-95f3-a3aa3a2771fb"},{"type":"RegionUser","uuid":"21209819-b8b4-41eb-ac38-27866fd18485"},{"type":"BasicGroup","uuid":"395c84da-c70e-4b8d-9d8e-203ca99f19f6"},{"type":"SmartGroupUser","uuid":"da88d808-3f7b-4bde-9210-10862b6d121b"},{"type":"SmartGroupUser","uuid":"8c72a733-117a-4bc9-a682-13475f13e6a3"},{"type":"BasicGroup","uuid":"974bd206-dc35-4530-8b5f-56180203b952"},{"type":"ReferrerUser","uuid":"6401b279-b825-4f41-a389-04e29feb967f"},{"type":"BasicGroup","uuid":"c62f6a8d-8b0e-4a8c-ace7-645ca96979b6"},{"type":"SmartGroupUser","uuid":"b7acda8c-ce18-451b-a68d-e14b72f9b5b8"},{"type":"SmartGroupUser","uuid":"b2dbfe27-ecae-4bb6-bb0d-d75e5caa3762"},{"type":"BasicGroup","uuid":"2f6750d5-f13f-4356-939b-048ac1423e64"}]},"content":{"series":{"title":"Ecology and Evolution","doi":"10.1002/(ISSN)2045-7758","access":"open","type":"journal","code":"20457758","eissn":"2045-7758","topics":[{"taxonomyUri":"gpt-sitename","topicLabel":"wly.ecology_000046","topicUri":"wly.ecology_000046"},{"taxonomyUri":"gpt-zonename","topicLabel":"ecology-and-evolution_ECE3","topicUri":"ecology-and-evolution_ece3"},{"taxonomyUri":"global-subject-codes","topicLabel":"Animal Ecology","topicUri":"ls24"},{"taxonomyUri":"global-subject-codes","topicLabel":"Marine Ecology","topicUri":"ls2a"},{"taxonomyUri":"global-subject-codes","topicLabel":"LIFE SCIENCES","topicUri":"ls"},{"taxonomyUri":"global-subject-codes","topicLabel":"Molecular Ecology","topicUri":"ls2g"},{"taxonomyUri":"global-subject-codes","topicLabel":"Conservation Science","topicUri":"ls2k"},{"taxonomyUri":"global-subject-codes","topicLabel":"Evolution","topicUri":"ls40"},{"taxonomyUri":"global-subject-codes","topicLabel":"Ecology \u0026 Organismal Biology","topicUri":"ls20"},{"taxonomyUri":"global-subject-codes","topicLabel":"Plant Ecology","topicUri":"ls23"},{"taxonomyUri":"no-if-jcr","topicLabel":"Hide","topicUri":"hide"},{"taxonomyUri":"programmatic-ads-support","topicLabel":"Programmatic Ads Enabled","topicUri":"programmatic-ads-enabled"},{"taxonomyUri":"gpt-publisherid","topicLabel":"21618997260","topicUri":"21618997260"},{"taxonomyUri":"madgex-jobs","topicLabel":"Display Madgex jobs","topicUri":"display-madgex-jobs"},{"taxonomyUri":"ad-feature-support","topicLabel":"Programmatic Enabled","topicUri":"programmatic-enabled"},{"taxonomyUri":"ad-feature-support","topicLabel":"Pubgrade Enabled","topicUri":"pubgrade-enabled"},{"taxonomyUri":"scite-metrics-display","topicLabel":"Display Scite true","topicUri":"display-scite-true"}]}},"page":{"brand":"wol","type":"journal","primary-section":"journal","secondary-section":"custom","tertiary-section":"/page/journal/20457758/homepage/forauthors.html"}});</script>
+                    
+                
+            
+        
+    
+        
+            
+                
+                
+                
+                
+                
+            
+        
+    
+        
+            
+                
+                
+                
+                    
+                    <script type="text/javascript">var $DoubleClickSite = "wly.ecology_000046";
+var $DoubleClickZone = "ecology-and-evolution_ece3";
+var $WileyGooglePublisherID = 21618997260;
+var $GooglePublisherCategory = "/21618997260/wly.ecology_000046/ecology-and-evolution_ece3";</script>
+                    
+                
+            
+        
+    
+        
+            
+                
+                
+                
+                    
+                    
+                    
+                
+            
+        
+    
+        
+            
+                
+                
+                
+                    
+                    <meta name="robots" content="noarchive"><meta name="description" content="Ecology &amp; Evolution is a broad open access journal welcoming research in ecology, evolution, and conservation science, and providing a forum for evidence-based views.">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <meta property="og:type" content="website">
+
+
+    
+    
+        
+    
+
+
+
+    
+        <meta property="og:image" content="https://onlinelibrary.wiley.com/cover/20457758">
+    
+    
+
+
+    <meta property="og:site_name" content="Wiley Online Library">
+
+
+        
+
+        <meta property="og:description" content="Ecology &amp; Evolution is a broad open access journal welcoming research in ecology, evolution, and conservation science, and providing a forum for evidence-based views.">
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="apple-itunes-app" content="app-id=1107983491">
+<meta name="publication_doi" content="10.1002/(ISSN)2045-7758">
+<meta name="event_group_key" content="0fdd5f0f-abc1-4cac-8356-7a60aa475101">
+    <meta name="service_name" content="showPageBuilderPage">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="submission-systems-domains" content="/pb-assets/utm_params_config/submission-systems-domains-1667213560157.txt">
+
+<style>
+    .d-flex {
+        display: flex;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <script src="Ecology%20and%20Evolution_files/launch-1ff1f800248b.min_qv1g.js" async=""></script>
+    
+
+
+
+    
+
+    <meta name="citation_doi" content="10.1002/(ISSN)2045-7758">
+
+    <meta name="dc.identifier" content="10.1002/(ISSN)2045-7758">
+
+
+
+
+
+
+
+                    
+                
+            
+        
+    
+        
+    
+        
+    
+        
+            
+                
+                
+                
+                
+                
+            
+        
+    
+
+
+
+
+<!-- Google Search Console verification -->
+<meta name="google-site-verification" content="ffz4i4DxIJCdGpRXe0XN6KG6o4FYI-nnFW9I_dg8piM">
+<meta name="google-site-verification" content="hdWo7Ws1fVArpU876Aal2KaoZ7vokr9ZNLcISOBm9aI">
+<meta name="google-site-verification" content="f_2wKVmVSKiYSTFpns9vtqI0sVux_tz7Vwr8zOWwXME">
+
+<!-- from https://jira.prod.atypon.com/browse/LIT-663245 -->
+
+
+<script async="" src="Ecology%20and%20Evolution_files/catchpoint_qv1g.js" nonce=""></script>
+<meta name="referrer" content="origin-when-cross-origin">
+<link rel="shortcut icon" href="https://onlinelibrary.wiley.com/favicon.ico">
+
+<script type="text/javascript" nonce="">
+    var utmParamsEnabled = true;
+</script>
+
+<script type="text/javascript" nonce="">
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?953dddc9c7bea72022e3bd3ba7782e7b";
+		hm.async = true;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<!-- Ads scripts -->
+<script nonce="">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+	var isProgrammaticAdsEnabled = window.adConfig?.["programmatic-enabled"] ?? false;
+	var isPubGradeEnabled = window.adConfig?.["pubgrade-enabled"] ?? false;
+	
+	// PERICLES-19717
+    window.dvtag = window.dvtag || {};
+    dvtag.cmd = dvtag.cmd || [];
+	
+
+    function loadScriptDynamically(scriptUrl, callback) {
+        var gads = document.createElement('script'),
+            node = document.getElementsByTagName('script') [0];
+        gads.async = true;
+        gads.src = scriptUrl;
+        if (callback) {
+            gads.onload = callback;
+        }
+        node.parentNode.insertBefore(gads, node);
+    }
+
+	// PERICLES-20612
+    const params = new URLSearchParams();
+	params.set('site', 'wol');
+	params.set('page', window.adobeDataLayer?.[0]?.page?.type || 'n/a');
+	params.set('cid', window.adobeDataLayer?.[0]?.page?.type == 'article' ? '10.1002/(ISSN)2045-7758' : '10.1002/(ISSN)2045-7758');
+	params.set('q', window.adobeDataLayer?.[0]?.search?.term || '');
+	params.set('aconnect-id', window.adobeDataLayer?.[0]?.user?.["aconnect-id"] ?? '' );
+	params.set('person-uuid', window.adobeDataLayer?.[0]?.user?.["person-uuid"] ?? '' );
+	console.log("[nimble-params] " + params.toString());
+    loadScriptDynamically('https://nim.onlinelibrary.wiley.com/v2/data.js?'+ params.toString(), function() {
+		loadScriptDynamically('https://securepubads.g.doubleclick.net/tag/js/gpt.js', function () {
+			loadScriptDynamically('https://pub.doubleverify.com/dvtag/39215024/DV1871689/pub.js');
+		});
+	 });
+	
+		if (isPubGradeEnabled){
+		loadScriptDynamically('https://cdn.pbgrd.com/core-wiley.js');
+	};
+</script>
+
+<!-- DoubleVerify Unity Tag queue (PERICLES-19717) - START -->
+<script nonce="">
+    window.onDvtagReady = function (callback, timeout = 750) {
+        const opt = { callback, timeout, timestamp: new Date().getTime() }
+        dvtag.cmd.push(function () { dvtag.queueAdRequest(opt) })
+        setTimeout(function () {
+            const cb = opt.callback
+            opt.callback = null
+            if (cb) cb()
+        }, timeout)
+    }
+</script>
+<!-- DoubleVerify Unity Tag queue - END --> 
+
+<script nonce="">
+    googletag.cmd.push(function () {
+        var sizes = {
+            leaderboard: googletag.sizeMapping()
+                .addSize([320, 100], [[300, 50], [320, 50]])
+                .addSize([740, 100], [728, 90])
+                .addSize([982, 100], [[970, 90], [728, 90]])
+                .addSize([0, 0], 'fluid')
+                .build(),
+            mobileleaderboard: googletag.sizeMapping()
+                .addSize([300, 100], [300, 50])
+                .addSize([320, 100], [320, 50])
+                .build(),
+            mobilefooter: googletag.sizeMapping()
+                .addSize([0, 0], [300, 50])
+                .addSize([0, 0], [320, 50])
+                .build(),
+            rail: googletag.sizeMapping()
+                .addSize([0, 0], [[300, 250], [300, 600]])
+                .build(),
+            interstitial: googletag.sizeMapping()
+                .addSize([0, 0], [640, 480])
+                .build()
+        };
+
+        gptPage = window.digitalData && digitalData.page && digitalData.page.page ? digitalData.page.page : "blank";
+        gptSubPage = window.digitalData && digitalData.page && digitalData.page.subPage ? digitalData.page.subPage : "blank";
+
+        function gptClean(gptText) {
+            if (typeof (gptText) == "string") {
+                gptText = gptText.replace(/\%/g, '%25');
+                gptText = gptText.replace(/\&/g, '%26');
+                return gptText.replace(/\^|\*|#|\$|\"|\'|\=|\,|\!|\+|\~|\;|\(|\)|\<|\>|\[|\]|\?|\:|\@|\;|\||\{|\}|\\/g, '');
+            }
+            return "blank";
+        }
+
+        const identities = window.adobeDataLayer?.[0]?.user?.identities || [];
+        const segments = identities
+            .filter(identity => identity.type === 'AudienceSegmentsUser')
+            .map(identity => identity.name)
+            .filter(name => name);
+
+        googletag.pubads()
+            .setTargeting('property', 'value-of-property')    // Change and duplicate this line for as many additional keywords to send
+            .setTargeting('doi', gptClean('10.1002/(ISSN)2045-7758')) // Publication DOI
+            .setTargeting('journalDoi', gptClean('10.1002/(ISSN)2045-7758')) // journal DOI
+            .setTargeting('journalCode', gptClean('20457758')) // journal code
+            .setTargeting('pbPage', gptClean(gptPage))
+            .setTargeting('pbSubPage', gptClean(gptSubPage))
+            .setTargeting('AudienceSegmentsUser', segments.map(gptClean))
+            .setTargeting('urlpath', gptClean(document.location.pathname))
+            .setTargeting('env', gptClean(window.adobeDataLayer?.[0]?.site?.environment || 'n/a'))
+            .setTargeting('search-term', gptClean(window.adobeDataLayer?.[0]?.search?.term || ''))
+            .setTargeting('hub', gptClean(window.adobeDataLayer?.[0]?.site?.hub || ''))
+            .setTargeting('page-type', gptClean(window.adobeDataLayer?.[0]?.page?.type || ''))
+            .setTargeting('primary-section', gptClean(window.adobeDataLayer?.[0]?.page?.['primary-section'] || ''));
+
+
+        googletag.defineSlot($GooglePublisherCategory, 'fluid', 'advert-leaderboard')
+            .defineSizeMapping(sizes.leaderboard)
+            .addService(googletag.pubads())
+            .setCollapseEmptyDiv(true);
+
+		googletag.defineSlot($GooglePublisherCategory, 'fluid', 'advert-rail-1')
+			.defineSizeMapping(sizes.rail)
+			.setTargeting('Position', 'advert-rail-1')
+			.addService(googletag.pubads())
+			.setCollapseEmptyDiv(true);
+
+		googletag.defineSlot($GooglePublisherCategory, 'fluid', 'advert-rail-2')
+			.defineSizeMapping(sizes.rail)
+			.setTargeting('Position', 'advert-rail-2')
+			.addService(googletag.pubads())
+			.setCollapseEmptyDiv(true);
+        
+
+        onDvtagReady();	// DoubleVerify (PERICLES-19717)
+
+        if(isProgrammaticAdsEnabled || isPubGradeEnabled) {
+            // PERICLES-17135 & PERICLES-20259
+            googletag.pubads().disableInitialLoad();
+        }
+
+        // LIT-672586 - Enhance first MPU ad slot
+        const adSlotId = 'advert-rail-1';
+        const adLabelHeight = 28; // reserved height for the "Advertisement" label
+
+        const resizeAdContainer = (container, height) => {
+            if (!container) return;
+            container.style.height = `${height + adLabelHeight}px`;
+            const iframe = container.querySelector('iframe');
+            if (iframe) iframe.style.height = `${height}px`;
+        };
+
+        googletag.pubads().addEventListener('slotRenderEnded', (event) => {
+            if (event.slot.getSlotElementId() === adSlotId) {
+                const container = document.getElementById(adSlotId);
+                if (!container) return;
+
+                // Give the creative's own 'expandable' announcement a brief window to
+                // arrive first, so an expandable creative's true collapsed default (250)
+                // is what actually paints - instead of GAM's registered size (600) for
+                // one frame before the message correction snaps it back down.
+                setTimeout(() => {
+                    if (container.dataset.expandableBound) return;
+                    const [, height] = event.size || [300, 250];
+                    resizeAdContainer(container, height);
+                }, 100);
+            }
+        });
+
+        window.addEventListener('message', (event) => {
+            const { type, source, collapsedHeight, expandedHeight } = event.data || {};
+            if (type !== 'expandable' || !source) return;
+
+            const container = document.getElementById(source);
+            if (!container || container.dataset.expandableBound) return;
+
+            container.dataset.expandableBound = 'true';
+
+            resizeAdContainer(container, collapsedHeight || 250);
+            container.addEventListener('mouseenter', () => resizeAdContainer(container, expandedHeight || 600));
+            container.addEventListener('mouseleave', () => resizeAdContainer(container, collapsedHeight || 250));
+        });
+
+
+        // Enable lazy loading: PERICLES-20799 LIT-672701
+        googletag.setConfig({
+            lazyLoad: {
+                fetchMarginPercent: 100,
+                renderMarginPercent: 10,
+                mobileScaling: 2.0
+            }
+        });
+
+        googletag.enableServices();
+    });
+
+	if (isPubGradeEnabled) {
+		var PUBGRADE_TIMEOUT = 2000;  
+		var pgAds = pgAds || {};  
+		pgAds.loadAds = function() {  
+			if (pgAds.loaded) return;  
+			pgAds.loaded = true;  
+			googletag.cmd.push(function() {  
+				if (isProgrammaticAdsEnabled) {
+				   apstag.fetchBids({timeout: 2000}, function (bids) {
+						apstag.setDisplayBids();
+						onDvtagReady(function () {
+							setTimeout(() => {
+								googletag.pubads().refresh();
+							}, 300);
+						});
+					});
+				} else {
+					onDvtagReady(function () {
+						setTimeout(() => {
+							googletag.pubads().refresh();
+						}, 300);
+					});
+				};
+			});  
+		}  
+		// load ads after PubGrade campaigns are initialized  
+		document.addEventListener('pbgrdFinished', pgAds.loadAds);  
+		// fallback if PubGrade library does not load  
+		document.addEventListener('DOMContentLoaded', function () {  
+			setTimeout(pgAds.loadAds, PUBGRADE_TIMEOUT);  
+		});  
+	}
+    else if (isProgrammaticAdsEnabled) {
+        googletag.cmd.push(function () {
+            apstag.fetchBids({timeout: 2000}, function (bids) {
+                apstag.setDisplayBids();
+                onDvtagReady(function () {
+					setTimeout(() => {
+						googletag.pubads().refresh();
+					}, 300);
+                })
+            });
+        });
+    }
+</script>
+
+<!--PERICLES-19058-->
+<script src="Ecology%20and%20Evolution_files/dc_qv1g.js" data-siteid="281" data-platid="1" data-pubid="84" nonce=""></script>
+<script nonce="">
+    /* User Details */
+    var $userConsent = (Osano?.cm?.getConsent()?.MARKETING === 'ACCEPT') ? "1" : "0";
+    try{
+        docereeAds.add("userDetails", {
+            "userconsent": $userConsent
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+</script>
+
+<!--PERICLES-20485-->
+<script async="" src="Ecology%20and%20Evolution_files/client_qv1g.js" nonce=""></script>
+<script nonce="">
+window.aimDataLayer = window.aimDataLayer || [];
+function aimTag() { aimDataLayer.push(arguments); }
+
+aimTag('9e554512-7c1d-4944-afe3-d7735c6e6672', 'pageview');
+// If your contract includes signal, then callback will include personal information on the visitor
+aimTag('9e554512-7c1d-4944-afe3-d7735c6e6672', 'signal', function(err, success) {
+    if (err) {
+        // This will occur if we disable your API Key
+        console.log(err);
+    } else {
+        console.log(success);
+        if (success.identity_type === "AUT") {
+            // Handle signal callback here
+        }
+    }
+});
+</script>
+
+<style>
+/* LIT-676567: Added a temporary solution to change the leaderboard background color and center the ad */
+.search-results-page-body {
+  &.pageBody {
+    padding-bottom: 0;
+
+	@media(max-width:767px){
+     .pb-las {
+			display: block;
+			height: auto;
+		}
+    }
+	  
+    .secondary-bg-color {
+      padding-bottom: 2.5rem;
+    }
+  }
+}
+.advert-leaderboard {
+	text-align: center;
+}
+</style>
+<script nonce="">
+    // LIT-681770: temp solution to address "Filter doesn't appear in mobile view"
+    document.addEventListener('DOMContentLoaded', () => {
+        const element = document.getElementById('filter-cloned');
+
+        if (element) {
+            element.classList.remove('hidden-sm', 'hidden-xs', 'hidden-md');
+            observer.disconnect();
+        }
+    });
+</script>
+
+
+
+<link rel="stylesheet" type="text/css" href="Ecology%20and%20Evolution_files/wol-common_qv1g.css">
+
+<link rel="stylesheet" type="text/css" href="Ecology%20and%20Evolution_files/hub_qv1g.css">
+
+
+<link rel="stylesheet" type="text/css" href="Ecology%20and%20Evolution_files/iucr_qv1g.css">
+<link rel="stylesheet" type="text/css" href="Ecology%20and%20Evolution_files/readcube_qv1g.css">
+<link rel="stylesheet" type="text/css" href="Ecology%20and%20Evolution_files/dr-overrides_qv1g.css">
+<!-- link rel="stylesheet" type="text/css" href="/pb-assets/css/temporary-1733168052867.css" -->
+
+<style>
+    /* PERICLES-15842: 22.1 Feature: Save and Publish Button */
+    .pb-changes-dialog.pb-save-dialog .modal-footer .btn.dropdown-toggle {
+        display: none;
+    }
+    .pb-changes-dialog.pb-save-dialog .modal-footer .btn.btn-primary{
+        border-radius: 4px;
+        margin-right: 5px
+    }
+</style>
+
+<!-- For the temporary solution in LIT-648162 -->
+<style>
+    .pb-edit-view .owl-carousel .owl-stage-outer {
+        height: auto !important;
+    }
+
+    .pb-edit-view .owl-carousel .owl-stage {
+        transform: unset !important;
+        width: unset !important;
+    }
+
+    .pb-edit-view .owl-carousel .owl-item {
+        visibility: visible;
+        width: 100% !important;
+        height: unset !important;
+    }
+
+    .pb-edit-view .owl-carousel .slide-item > .pb-dropzone:not(.ui-sortable) {
+        display: none;
+    }
+
+    .pb-edit-view .owl-carousel .owl-nav,
+    .pb-edit-view .owl-carousel .owl-dots,
+    .pb-edit-view .owl-carousel .owl-controls {
+        display: none !important;
+    }
+</style>
+<link rel="canonical" href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/forauthors.html">
+        
+
+
+
+
+<!-- loading Javascript for using the persistence Service -->
+    <script src="Ecology%20and%20Evolution_files/92a0e328e1a017de4c6f29ae009d20ef3838b7cb~thiss-ds_qv1g.js" nonce=""></script>
+
+    <script type="text/javascript" nonce="">
+
+        function getParameter(parameterName) {
+            let result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = tmp[1];
+                });
+            return result;
+        }
+
+        var SeamlessAccessService = {
+            spUrl: "/action/ssostart",
+            returnURL: window.location.href,
+            my_context: 'seamlessaccess.org',
+            queryParamsDelimiter: encodeURIComponent('?'),
+            _persistenceService: null,
+            _getPersistenceService: function () {
+                if (!this._persistenceService) {
+                    this._persistenceService = new thiss.PersistenceService('https://service.seamlessaccess.org/ps/');
+                }
+                return this._persistenceService;
+            },
+
+            getWAYFLessUrl: function (entityId) {
+                let redirectURL = getParameter('redirectUri');
+                if(redirectURL == null){
+                    redirectURL = encodeURIComponent(this.returnURL);
+                }
+                if(redirectURL.indexOf('saml_referrer') < 0){
+                    redirectURL += encodeURIComponent(((redirectURL.indexOf(this.queryParamsDelimiter) !== -1) ? '&' : '?') + 'saml_referrer');
+                }
+                return this.spUrl + "?idp=" + encodeURIComponent(entityId)
+                    + "&redirectUri=" + redirectURL;
+            },
+            retrieveEntity: function () {
+                var self = this;
+                var ps = this._getPersistenceService();
+
+                return new Promise(function (resolve, reject) {
+                    ps.entities(self.my_context)
+                        .then(function (res) {
+                            // get the results
+                            var results = res.data;
+                            return resolve(results);
+                        }, function (err) {
+                            // failed
+                            reject('retrieve entity error: ' + err);
+                        });
+                });
+            },
+            updateEntity: function (entitydata) {
+                var self = this;
+                var ps = this._getPersistenceService();
+
+                var jsonObj = {};
+                try {
+                    //try to parse it, if it is a json string
+                    jsonObj = JSON.parse(entitydata.val());
+                } catch (e) {
+                    jsonObj = entitydata;
+                }
+                return new Promise(function (resolve, reject) {
+                    ps.update(self.my_context, jsonObj)
+                        .then(function (res) {
+                            // Process the results
+                            var ssoInstitutions = res.data;
+                            return resolve(ssoInstitutions);
+                        }, function (err) {
+                            // failed
+                            console.log('failed to update the local storage duo to: ' + err);
+                            reject(err);
+                        });
+                })
+            },
+            removeEntity: function (entityId) {
+                var self = this;
+                var persistService = this._getPersistenceService();
+
+                return new Promise(function (resolve) {
+                    persistService.remove(self.my_context, entityId)
+                        .then(function (res) {
+                            return resolve(res);
+                        }, function (err) {
+                            // failed
+                            console.log('failed to remove from local storage duo to: ' + err);
+                        });
+                })
+            },
+            getAccessibleEntityStatus: function (doi, entityId, entityTitle) {
+                return new Promise(function (resolve) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/action/seamlessAccess',
+                        accept: {
+                            text: "application/json"
+                        },
+                        data: {doi: doi, entityid: entityId, entityTitle: entityTitle, eventGroupKey: '0fdd5f0f-abc1-4cac-8356-7a60aa475101'}
+
+                    }).done(function (status) {
+                        return resolve(status);
+                    });
+                });
+            },
+            getEntitiesWithAllInfo: function (doi) {
+                let self = this,
+                    arrayOfPromises = [];
+                return new Promise(function (resolve, reject) {
+                    self.retrieveEntity().then(function (res) {
+                        let allSsoInstitutions = res;
+                        for (let i in allSsoInstitutions) {
+                            let ssoInstitution = allSsoInstitutions[i];
+                            arrayOfPromises.push(new Promise(function (resolve) {
+                                self.getAccessibleEntityStatus(doi, ssoInstitution.entity.entityID, ssoInstitution.entity.title)
+                                    .then(function (entityStatus) {
+                                        resolve({
+                                            entityID: ssoInstitution.entity.entityID,
+                                            entityTitle: ssoInstitution.entity.title,
+                                            entityStatusObj: entityStatus,
+                                            entitySsoUrl: self.getWAYFLessUrl(ssoInstitution.entity.entityID)
+                                        });
+                                    }, function (err) {
+                                        console.log('failed to get the entity status: ' + err);
+                                    });
+                            }));
+                        }
+                        Promise.all(arrayOfPromises)
+                            .then(function (finalResponse) {
+                                resolve(finalResponse);
+                            });
+
+                    }).catch(function (err) {
+                        reject(err);
+                    })
+                });
+            }
+        };
+
+        window.addEventListener('load', function () {
+            document.querySelectorAll(".sso-institution").forEach(function (institution) {
+                var entityId = institution.getAttribute('data-entityid');
+                var entityName = institution.getAttribute('data-name');
+                var entitydata = {
+                    entityID: entityId,
+                    title: entityName
+                };
+                institution.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    var self = this;
+                    SeamlessAccessService.updateEntity(entitydata).then(function (res) {
+                        console.log(res);
+                        window.location.href = self.href;
+                    }).catch(function (err){
+                        window.location.href = self.href;
+                    });
+                });
+            });
+        });
+
+    </script>
+    <script nonce="">
+            (function() {
+
+                if (isBrowserChrome()) {
+                    const originTrialToken = 'AkNzJOW9KcqV6Qlbg96xP2jqRsvzla/CKZY+FSKbiPtVTSST6mhuoiD7RFVzdtCrn2wI4LU0tmr8jf521BokXgkAAACJeyJvcmlnaW4iOiJodHRwczovL29ubGluZWxpYnJhcnkud2lsZXkuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=';
+                    const originTrialMetaTag = document.createElement('meta');
+                    originTrialMetaTag.httpEquiv = 'origin-trial';
+                    originTrialMetaTag.content = originTrialToken;
+                    document.head.append(originTrialMetaTag);
+                }
+            })();
+        </script>
+    <script type="text/javascript" nonce="">
+        (function() {
+            function riskifiedBeaconLoad() {
+                var store_domain = 'https://onlinelibrary.wiley.com';
+                var session_id = '6002C07C2C93FBB559BB988F480EB065';
+                var url = ('https:' == document.location.protocol ? 'https://' : 'http://')
+                    + "beacon.riskified.com?shop=" + store_domain + "&sid=" + session_id;
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = url;
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            }
+            if (window.attachEvent)
+                window.attachEvent('onload', riskifiedBeaconLoad)
+            else
+                window.addEventListener('load', riskifiedBeaconLoad, false);
+        })();
+    </script>
+<meta name="mathjax-enabled" content="true">
+    <meta name="mathjax-version" content="4.1.1">
+    <meta name="mathjax-lazy-load" content="true">
+
+<meta name="pbContext" content=";pageTemplate:string:yes;pageIndexFreq:string:weekly;website:website:pericles;pageWebsite:string:pericles;customPage:string:/page/journal/20457758/homepage/forauthors.html;journal:journal:20457758;pageWebsiteName:string:pericles;wgroup:string:Publication Websites;requestedJournal:journal:20457758;page:string:WileyOTIS;ctype:string:Journal Content;pageScope:string:website;pageIndex:string:yes;pageGroup:string:Custom Page">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <script src="Ecology%20and%20Evolution_files/fbevents_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/vendors~dynamic-imports-31fabd67c9f2aadd2e79_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/main_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/RC5ac0580ff0354571b2c5e15e0c016c8f-source.min_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RC497d4ed7401d43e0a56cbf28b7e2e289-source.min_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/utm-b6abe3c5174c45cbe2e4_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/RC370d2f73bced496faf6bcde1a97ecc39-source.min_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/adobeDigitalData-a9960ee030fc302d59e0_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/bat_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RCb7e6dce9b3574c338a22cd2406d0fe27-source.min_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RCa7699bdb83d6406da20828ea63a91ca8-source.min_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/bulkDownload-8b81352ba01d16004fec_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/RC38e1c840b4ba44ad84defa64f6104a02-source.min_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/alertSignUpSection-352cbd4263eb01ce2c46_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/RCda299e6941344e7290a6e69ca6bdb28e-source.min_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RCb602669b048c41aea853a60eb9e95abe-source.min_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/headerAlt-cf3ae7a0bd1b5477e5c5_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/RC30ebeefa701c4f83b3dca8285abb624c-source.min_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RCc59a972d253e4ce783cf4a5bd23ade06-source.min_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/requestidlecallback-polyfill-387bfe28decaf80fc5cb_qv1g.js"></script><script src="Ecology%20and%20Evolution_files/RC871f4a80751e4e96994f0ac03f38a223-source.min_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RC51410f9edb7e4ef88659741721ca25eb-source.min_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RCcbd123da511b46f199194b01bcdba50f-source.min_qv1g.js" async=""></script><script src="Ecology%20and%20Evolution_files/RC600ba6b9f6f24fe593244b653f9d6b3c-source.min_qv1g.js" async=""></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/vendors~lazy-imports-8c268fa283ac33c967ac_qv1g.js"></script><script charset="utf-8" src="Ecology%20and%20Evolution_files/lazy-imports-e97f32679a4c8b67e221_qv1g.js"></script></head>
+    
+
+    
+
+
+
+    
+        
+        
+        
+            <body class="pb-ui website-pericles">
+            
+
+
+
+
+
+
+    
+    
+        <nav class="skip-links">
+    <ul class="rlist">
+        <li><button data-id="#main-content" tabindex="1">Skip to Main Content</button></li>
+            </ul>
+</nav>
+
+
+
+
+
+
+
+
+        <div id="pb-page-content" data-ng-non-bindable="">
+                
+            <div data-pb-dropzone="main" data-pb-dropzone-name="Main">
+                
+                    
+                        
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="pageHeader" data-widget-id="62175478-b98a-43d5-90f2-1f2045ac1a7e" class="pageHeader">
+        
+
+
+
+        
+        
+
+
+
+<header class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+<div data-pb-dropzone="main" class="">
+    
+        
+            
+
+
+
+        
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-layout-widget" data-widget-id="bb5b5e2c-d3d6-4015-b586-eeade38f59d4" class="admin-message">
+        
+
+
+
+        
+        <div class="container"><div class="row"><div>
+
+
+
+        
+        
+
+
+
+    
+
+    
+
+    
+        
+    
+
+
+</div></div></div>
+
+        </div>
+    
+
+
+        
+            
+
+
+
+        
+        <div class="container"><div class="row"><div class="contents col-md-12">
+
+
+
+        
+        <div class="pull-left">
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-general-image" data-widget-id="ff262197-0fb8-4973-aaa2-2fceba4b5a61" class="logo-container hidden-xs hidden-sm hidden-md">
+        
+
+
+
+        
+        <a href="https://onlinelibrary.wiley.com/" title="" tabindex="2"><img id="mainLogo" alt="Wiley Online Library" src="Ecology%20and%20Evolution_files/logo-header_qv1g.webp"></a>
+
+        </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-general-image" data-widget-id="6b601b23-7301-47c8-8889-242d041241c4" class="logo-container-mobile hidden-lg hidden-md hidden-sm">
+        
+
+
+
+        
+        <a href="https://onlinelibrary.wiley.com/" title="" tabindex="2"><img id="mobileLogo" alt="Wiley Online Library" src="Ecology%20and%20Evolution_files/mobilehublogo_qv1g.webp"></a>
+
+        </div>
+    
+
+</div><div class="pull-right">
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="UX3QuickSearchWidget" data-widget-id="48175bb0-0f70-46e6-bb89-7e2781fdb8e4" class="header-quicksearch">
+        
+
+
+
+        
+        <div class="quick-search-wrapper"><button title="search" aria-label="Search" class="quick-search__item"><i aria-hidden="true" class="icon-search"></i><span class="quick-search__item__arrow"></span></button><div data-linkto-page="true" class="quick-search quickSearchFormContainer"><div class="main-search-field-wrapper" style="overflow: hidden;"><div class="tab clearfix"><input type="search" placeholder="Search" tabindex="13" aria-label="Search" class="fakeQSInput quickSearchFilter"><label for="search-within" class="sr-only">Search within</label><select name="search-within" id="search-within" tabindex="10" class="search-within"><option value="#pane-67065c09-4a88-49cd-934c-ac707951d35c0" data-url="thisCategory" data-value="20457758" selected="selected">This Journal</option><option value="#pane-67065c09-4a88-49cd-934c-ac707951d35c1" data-url="https://onlinelibrary.wiley.com">Anywhere</option></select><ul class="rlist tab__content"><li id="pane-67065c09-4a88-49cd-934c-ac707951d35c0" class="tab__pane quick-search-pane__anywhere active"><form action="/action/doSearch" name="thisJournalQuickSearch" method="get" title="Quick Search" role="search"><div class="input-group option-0"><label for="searchField0" class="hiddenLabel">Search term</label><input type="search" aria-label="search text" role="combobox" aria-autocomplete="list" aria-controls="ui-id-1" aria-expanded="false" name="AllField" id="searchField0" placeholder="Search" onfocus="this.value = this.value;" data-auto-complete-max-words="7" data-auto-complete-max-chars="32" data-contributors-conf="3" data-topics-conf="3" data-publication-titles-conf="3" data-history-items-conf="3" tabindex="9" class="autocomplete actualQSInput quickSearchFilter ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="hidden" name="SeriesKey" value="20457758"><div class="search-options-wrapper quickSearchFilter"><a href="https://onlinelibrary.wiley.com/search/advanced?publication=20457758" title="" tabindex="12" class="advanced">  Advanced Search</a><a href="https://onlinelibrary.wiley.com/search/advanced?publication=20457758#citation" title="" tabindex="12" class="citation">  Citation Search</a></div></div><button type="submit" title="Search" tabindex="11" aria-label="Submit Search" class="btn quick-search__button icon-search"></button></form></li><li id="pane-67065c09-4a88-49cd-934c-ac707951d35c1" class="tab__pane quick-search-pane__anywhere"><form action="https://onlinelibrary.wiley.com/action/doSearch" name="defaultQuickSearch" method="get" title="Quick Search" role="search"><div class="input-group option-1"><label for="searchField1" class="hiddenLabel">Search term</label><input type="search" aria-label="search text" role="combobox" aria-autocomplete="list" aria-controls="ui-id-1" aria-expanded="false" name="AllField" id="searchField1" placeholder="Search" onfocus="this.value = this.value;" data-auto-complete-max-words="7" data-auto-complete-max-chars="32" data-contributors-conf="3" data-topics-conf="3" data-publication-titles-conf="3" data-history-items-conf="3" tabindex="9" class="autocomplete actualQSInput quickSearchFilter ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><div class="search-options-wrapper quickSearchFilter"><a href="https://onlinelibrary.wiley.com/search/advanced" title="" tabindex="12" class="advanced">  Advanced Search</a><a href="https://onlinelibrary.wiley.com/search/advanced#citation" title="" tabindex="12" class="citation">  Citation Search</a></div></div><button type="submit" title="Search" tabindex="11" aria-label="Submit Search" class="btn quick-search__button icon-search"></button></form></li></ul></div></div></div></div>
+
+        </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-layout-widget" data-widget-id="5ef13ed1-f4ac-4b62-a426-07ec9576a586" class="cart-indicator__wrapper">
+        
+
+
+
+        
+        <div class="pull-left">
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="eCommerceCartIndicatorWidget" data-widget-id="4a9f7c04-a273-4a25-91fb-8e7bd9970288" class="cart-indicator__wrapper">
+        
+
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eCommerceCartIndicatorWidget">
+    
+        
+        
+            
+        
+    
+</div>
+
+        </div>
+    
+
+</div><div class="pull-right">
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="literatumNavigationLoginBar" data-widget-id="d384ca92-7137-45d6-b3c2-78c9c0a98c2b" class="login-bar-container">
+        
+
+
+
+        
+        
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    
+        
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="loginBar login-open">
+        <button id="indivLogin" class="indivLogin" aria-expanded="false" uri="/" aria-label="Log in or Register">
+            <span class="icon-profile_empty"></span>
+            <span class="sign-in-label">Login / Register</span>
+        </button>
+    </div>
+    <div class="navigation-login-dropdown-container hidden">
+        <div class="navigation-login-dropdown">
+            <ul>
+                <li>
+                    <i aria-hidden="true" class="icon-person"></i>
+                    <a href="https://onlinelibrary.wiley.com/action/showLogin?acdl-redirect=true&amp;uri=%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html" data-acdl-login--region="header" acdl-redirect="true" data-acdl-event="login-initiate" uri="/page/journal/20457758/homepage/forauthors.html" data-acdl-login--step="login initiate">
+                        Individual login
+                    </a>
+                </li>
+                
+                    <li><i aria-hidden="true" class="icon-account_balance"></i>
+                        <a href="https://onlinelibrary.wiley.com/action/ssostart?redirectUri=%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html">
+                            
+                            Institutional login
+                        </a>
+                    </li>
+                
+                
+                
+                <li>
+                    <a href="https://onlinelibrary.wiley.com/action/registration?redirectUri=%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html&amp;acdl-redirect=true" class="btn" redirecturi="/page/journal/20457758/homepage/forauthors.html" acdl-redirect="true" data-acdl-registration--step="registration initiated" data-acdl-event="registration-initiated" data-acdl-registration--cta-region="header">
+                        REGISTER
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    
+    
+
+
+
+        </div>
+    
+
+</div>
+
+        </div>
+    
+
+</div>
+</div></div></div>
+
+        
+    
+</div>
+
+</header>
+
+        </div>
+    
+
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="pageBody" data-widget-id="72100436-7a82-49fc-933b-c6c9d8c42914" class="body-text pageBody hub-page-body">
+        
+
+
+
+        
+        
+
+
+<main id="main-content" tabindex="-1">
+    <!--begin pagefulltext-->
+    <div class="page-body pagefulltext">
+        
+
+
+
+
+
+
+
+
+
+
+
+<div data-pb-dropzone="main" class="">
+    
+        
+            
+
+
+
+        
+        <div>
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="literatumAd" data-widget-id="0220a30b-90c0-4b51-8637-141edf12f86a" class="secondary-bg-color banner-wrapper">
+        
+
+
+
+        
+        
+
+
+
+    
+        <div class="pb-las">
+            <aside role="complementary">
+   <div id="advert-leaderboard" class="advert advert-leaderboard advert--no-spinner">
+      <script nonce="">
+         console.time('gpt ready');
+         googletag.cmd.push( function () {
+            console.timeEnd('gpt ready');
+            console.time('DV ready');
+            onDvtagReady(function () {
+               console.timeEnd('DV ready');
+               console.time('advert-leaderboard ready');
+               googletag.display( 'advert-leaderboard' );
+               console.timeEnd('advert-leaderboard ready');
+            });
+         });
+      </script>
+
+      <!-- No JavaScript support is a call to an image -->
+      <noscript>
+         <a href="/action/clickThrough?id=1013&url=https%3A%2F%2Fpubads.g.doubleclick.net%2Fgampad%2Fjump%3Fiu%3D%24googlePublisherCategory%26amp%3Bsz%3D728x90%26amp%3Btile%3D1%26amp%3Bc%3D%24random&loc=%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html&pubId=41611959&placeholderId=1015&productId=101018" target="_blank">
+            <img src="https://pubads.g.doubleclick.net/gampad/ad?iu=$googlePublisherCategory&amp;sz=728x90&amp;tile=1&amp;c=$random">
+         </a>
+      </noscript>
+   </div>
+</aside>
+            
+        </div>
+    
+
+    
+
+    
+
+
+
+        </div>
+    
+
+
+
+
+
+        
+        <script src="Ecology%20and%20Evolution_files/sticky-ad_qv1g.js" nonce=""></script>
+<script nonce="">
+StickyAds.init([
+    {
+        adSelector: '#advert-rail-2',
+        boundingElementSelector: 'div[data-widget-def="pageFooter"]',
+        boundedByEdge: 'top'
+    },
+]);
+</script>
+
+
+
+
+        
+        <style type="text/css">li.menu-item[data-menu-label="Accepted Articles"] {
+  display: none;
+}</style><style type="text/css">li.menu-item[data-menu-label="Early View"] {
+  display: none;
+}
+li.menu-item[data-menu-label="Recently Published"] {
+  display: none;
+}</style>
+
+
+
+
+        
+        <div class="pages-nav--sticky pages-nav hidden-lg fixed-element">
+  <div class="pages-nav--res">
+      <div class="container">
+        <ul class="rlist--inline pull-left">
+          <li><a href="#" data-db-target-for="journal-list" data-db-switch="icon-close_thin"><i aria-hidden="true" class="icon-toc"></i><span>Journal</span></a>
+            <div id="journal-list" data-db-target-of="journal-list" class="rlist dropBlock__holder">
+              <div data-target="#menu-item-undefined-1, #menu-item-undefined-2, #menu-item-main-menu-1-1, #menu-item-main-menu-1-2, #menu-item--1, #menu-item--2, .journal-featured" data-remove="false" data-toggle="transplant" data-direction="from" data-transplant="self" class="transplant showit"><ul class="transplanted-clone"><li id="menu-item-main-menu-1-1-cloned" role="presentation" data-menu-label="About" class="dropdown menu-parent cloned-with-ids"><a href="#" data-target="About-1-dropdown" id="About-1-cloned" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown__toggle cloned-with-ids"><span>About</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="About-1" role="menu" id="About-1-dropdown-cloned" class="rlist dropdown__menu cloned-with-ids"><li role="presentation" data-menu-label="Overview" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/productinformation.html" role="menuitem" class="sub-menu-item"><span>Overview</span></a></li><li role="presentation" data-menu-label="Journal Metrics" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/journal-metrics" role="menuitem" class="sub-menu-item"><span>Journal Metrics</span></a></li><li role="presentation" data-menu-label="Contact" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/contact" role="menuitem" class="sub-menu-item"><span>Contact</span></a></li><li role="presentation" data-menu-label="Editorial Board" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/editorial-board" role="menuitem" class="sub-menu-item"><span>Editorial Board</span></a></li><li role="presentation" data-menu-label="Become a Wiley Editor" class="menu-item"><a href="https://form.typeform.com/to/CP5B8fYd?utm_source=WOL" target="_blank" role="menuitem" class="sub-menu-item"><span>Become a Wiley Editor</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li><li role="presentation" data-menu-label="OA Advantages" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/oa-advantages" role="menuitem" class="sub-menu-item"><span>OA Advantages</span></a></li><li role="presentation" data-menu-label="Advertise" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/advertise" role="menuitem" class="sub-menu-item"><span>Advertise</span></a></li><li role="presentation" data-menu-label="Permissions" class="menu-item"><a href="https://www.wiley.com/en-us/permissions" target="_blank" role="menuitem" class="sub-menu-item"><span>Permissions</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li><li role="presentation" data-menu-label="Reviewer Resources" class="menu-item"><a href="https://authorservices.wiley.com/Reviewers/journal-reviewers/index.html" target="_blank" role="menuitem" class="sub-menu-item"><span>Reviewer Resources</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li></ul></li><li id="menu-item-main-menu-1-2-cloned" role="presentation" data-menu-label="Authors" class="dropdown menu-parent cloned-with-ids"><a href="#" data-target="Authors-2-dropdown" id="Authors-2-cloned" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown__toggle cloned-with-ids"><span>Authors</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="Authors-2" role="menu" id="Authors-2-dropdown-cloned" class="rlist dropdown__menu cloned-with-ids"><li role="presentation" data-menu-label="Author Guidelines" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/forauthors.html" role="menuitem" class="sub-menu-item"><span>Author Guidelines</span></a></li><li role="presentation" data-menu-label="Ethical Guidelines" class="menu-item"><a href="https://authorservices.wiley.com/ethics-guidelines/index.html" target="_blank" role="menuitem" class="sub-menu-item"><span>Ethical Guidelines</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li><li role="presentation" data-menu-label="Open Access" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/open-access" role="menuitem" class="sub-menu-item"><span>Open Access</span></a></li><li role="presentation" data-menu-label="Submit a Manuscript" class="menu-item"><a href="https://mc.manuscriptcentral.com/ecologyandevolution" target="_blank" role="menuitem" class="sub-menu-item"><span>Submit a Manuscript</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li></ul></li></ul></div>
+              
+<!-- PERICLES-7683
+              <a href="#" title="More from this journal" class="dropdown__toggle"><span>More from this journal</span></a>
+              
+                <div data-target=".journal-resources" data-remove="false" data-toggle="transplant" data-direction="from" data-transplant="self" class="transplant showit"></div>
+-->   
+
+            </div>
+          </li>
+          <li><a href="#" data-db-target-for="articles-list" data-db-switch="icon-close_thin"><i class="article-img-icon"><img src="Ecology%20and%20Evolution_files/articles_1_qv1g.webp"></i><span>Articles</span></a>
+            <div id="articles-list" data-db-target-of="articles-list" class="rlist dropBlock__holder">
+              <div data-target="#menu-item-undefined-3, #menu-item-undefined-4, #menu-item-main-menu-1-3, #menu-item-main-menu-1-4, #menu-item--3" data-remove="false" data-toggle="transplant" data-direction="from" data-transplant="self" class="transplant showit"><ul class="transplanted-clone"><li id="menu-item-main-menu-1-3-cloned" role="presentation" data-menu-label="Browse" class="dropdown menu-parent cloned-with-ids"><a href="#" data-target="Browse-3-dropdown" id="Browse-3-cloned" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown__toggle cloned-with-ids"><span>Browse</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="Browse-3" role="menu" id="Browse-3-dropdown-cloned" class="rlist dropdown__menu cloned-with-ids"><li role="presentation" data-menu-label="Current Issue" class="menu-item"><a href="https://onlinelibrary.wiley.com/toc/20457758/current" role="menuitem" class="sub-menu-item"><span>Current Issue</span></a></li><li role="presentation" data-menu-label="All Issues" class="menu-item"><a href="https://onlinelibrary.wiley.com/loi/20457758" role="menuitem" class="sub-menu-item"><span>All Issues</span></a></li><li role="presentation" data-menu-label="Video Gallery" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/video-gallery" role="menuitem" class="sub-menu-item"><span>Video Gallery</span></a></li></ul></li><li id="menu-item-main-menu-1-4-cloned" role="presentation" data-menu-label="Special Issues" class="dropdown menu-parent cloned-with-ids"><a href="#" data-target="SpecialIssues-4-dropdown" id="SpecialIssues-4-cloned" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" class="dropdown__toggle cloned-with-ids"><span>Special Issues</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="SpecialIssues-4" role="menu" id="SpecialIssues-4-dropdown-cloned" class="rlist dropdown__menu cloned-with-ids"><li role="presentation" data-menu-label="Calls for Papers" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/call-for-papers" role="menuitem" class="sub-menu-item"><span>Calls for Papers</span></a></li><li role="presentation" data-menu-label="Published Special Issues" class="menu-item"><a href="https://onlinelibrary.wiley.com/topic/vi-categories-20457758/published-special-issues/20457758" role="menuitem" class="sub-menu-item"><span>Published Special Issues</span></a></li><li role="presentation" data-menu-label="Virtual Issues" class="menu-item"><a href="https://onlinelibrary.wiley.com/topic/vi-categories-20457758/virtual-issues/20457758" role="menuitem" class="sub-menu-item"><span>Virtual Issues</span></a></li><li role="presentation" data-menu-label="About Special Issues" class="menu-item"><a href="https://editors.wiley.com/page/special-issues" target="_blank" role="menuitem" class="sub-menu-item"><span>About Special Issues</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li></ul></li></ul></div>
+            </div>
+          </li>
+        </ul>
+        <ul class="rlist--inline pull-right">
+          <li><a href="#" data-db-target-for="actions-list" data-db-switch="icon-close_thin"><span>Actions</span><i aria-hidden="true" class="icon-chevron-down"></i></a>
+            <div id="actions-list" data-db-target-of="actions-list" class="rlist dropBlock__holder">
+              <h2 class="side-section-header hiddenLabel--lg">Tools</h2>
+                <div data-target=".journal-actions-container li:nth-child(1), .journal-actions-container li:nth-child(2), .journal-actions-container li:nth-child(3), .journal-actions-container li:nth-child(4), .journal-actions-container li:nth-child(5), #subscribeLink" data-remove="false" data-toggle="transplant" data-direction="from" data-transplant="self" class="transplant showit"><ul class="transplanted-clone"><li id="SubmitanArticle-cloned" class="cloned-with-ids"><a href="http://mc.manuscriptcentral.com/ecologyandevolution" target="_blank"><i aria-hidden="true" class="icon-submit_article"></i>Submit an article</a></li><li class="journal-metrics-link"><a href="https://onlinelibrary.wiley.com/journal/20457758/journal-metrics"><i aria-hidden="true" class="icon-analytics"></i>Journal Metrics</a></li></ul></div>
+              <h2 class="side-section-header hiddenLabel--lg">Follow journal</h2>
+                <div data-target="#alert-link, #facebook-link, #twitter-link, #linkedin-link, #bluesky-link, #most-recent-link, #most-read-link, #most-cited-link" data-remove="false" data-toggle="transplant" data-direction="from" data-transplant="self" class="transplant showit"><ul class="transplanted-clone"><li class="icon-alert-header icon-round cloned-with-ids" id="alert-link-cloned"><a href="https://onlinelibrary.wiley.com/action/doUpdateAlertSettings?action=addJournal&amp;journalCode=20457758"><i class="icon-email-plus"></i><span class="label hiddenLabel--lg">Alert</span></a></li><li id="most-recent-link-cloned" class="cloned-with-ids"><a href="https://onlinelibrary.wiley.com/action/showFeed?jc=20457758&amp;type=etoc&amp;feed=rss"><i class="icon-icon-Rss"></i>Most recent (RSS)</a></li><li id="most-cited-link-cloned" class="cloned-with-ids"><a href="https://onlinelibrary.wiley.com/action/showMostCitedArticlesFeed?journalCode=20457758"><i class="icon-icon-Rss"></i>Most cited (RSS)</a></li></ul></div>
+            </div>
+          </li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-layout-widget" data-widget-id="9e8ee65a-2e18-4c00-9474-5ac10e16ecfe" class="journal-page-header card">
+        
+
+
+
+        
+        <div class="container"><div class="row"><div class="journal-info-container col-md-8">
+
+
+
+        
+        <a href="https://onlinelibrary.wiley.com/journal/20457758" title="Ecology and Evolution homepage">
+  <span id="journal-banner-text" style="margin: 0; font-size: 0">
+    Ecology and Evolution
+  </span>
+  <img id="journal-banner-image" class="journal-banner-image" alt="Ecology and Evolution" src="Ecology%20and%20Evolution_files/20457758_qv1g.webp" style="margin-bottom: 15px; display: block;">
+</a>
+
+<script nonce="">
+  var image = new Image();
+
+  image.onload = function () {
+    // if the image exists
+    document.getElementById("journal-banner-image").style.display = "block";
+  };
+
+  image.onerror = function () {
+    // if the image does not exist
+    document.getElementById("journal-banner-text").style.marginBottom = "15px";
+    document.getElementById("journal-banner-text").style.fontSize = "22px";
+  };
+
+  image.src = "/pb-assets/journal-banners/20457758-1716038596140.jpg";
+</script>
+
+</div><div class="hidden-xs hidden-sm hidden-md col-md-4"></div></div></div>
+
+        </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="menuWidget" data-widget-id="998218b4-f988-4a0c-8c4f-b2d3875e1770" class="scrollThenFix stickybar pages-nav hidden-xs hidden-sm hidden-md">
+        
+
+
+
+        
+        <div class="stickybar__wrapper"><div class="main-nav"><a href="#undefined" data-toggle="nav" title="menu drawer"><i aria-hidden="true" class="icon-menu2"></i><i aria-hidden="true" class="icon-close_thin"></i></a><nav role="navigation" data-ctrl-res="never" aria-label="Journal navigation" class="drawer__nav container gutterless hidden-sm hidden-xs"><h2 class="is-accessible">Navigation Bar</h2><section><h3 class="is-accessible">Menu</h3><a href="https://onlinelibrary.wiley.com/" class="menu-header hidden-md hidden-lg">Home</a><ul id="menubar" role="menubar" class="menubar rlist--inline"><li id="menu-item-main-menu-1-0" role="presentation" data-menu-label="Home" class="menu-item"><a href="https://onlinelibrary.wiley.com/journal/20457758" role="menuitem" tabindex="0" class="sub-menu-item"><span>Home</span></a></li><li id="menu-item-main-menu-1-1" role="presentation" data-menu-label="About" class="dropdown menu-parent cloned"><a href="#" data-target="About-1-dropdown" id="About-1" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown__toggle"><span>About</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="About-1" role="menu" id="About-1-dropdown" class="rlist dropdown__menu"><li role="presentation" data-menu-label="Overview" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/productinformation.html" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Overview</span></a></li><li role="presentation" data-menu-label="Journal Metrics" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/journal-metrics" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Journal Metrics</span></a></li><li role="presentation" data-menu-label="Contact" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/contact" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Contact</span></a></li><li role="presentation" data-menu-label="Editorial Board" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/editorial-board" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Editorial Board</span></a></li><li role="presentation" data-menu-label="Become a Wiley Editor" class="menu-item"><a href="https://form.typeform.com/to/CP5B8fYd?utm_source=WOL" target="_blank" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Become a Wiley Editor</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li><li role="presentation" data-menu-label="OA Advantages" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/oa-advantages" role="menuitem" tabindex="-1" class="sub-menu-item"><span>OA Advantages</span></a></li><li role="presentation" data-menu-label="Advertise" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/advertise" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Advertise</span></a></li><li role="presentation" data-menu-label="Permissions" class="menu-item"><a href="https://www.wiley.com/en-us/permissions" target="_blank" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Permissions</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li><li role="presentation" data-menu-label="Reviewer Resources" class="menu-item"><a href="https://authorservices.wiley.com/Reviewers/journal-reviewers/index.html" target="_blank" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Reviewer Resources</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li></ul></li><li id="menu-item-main-menu-1-2" role="presentation" data-menu-label="Authors" class="dropdown menu-parent cloned"><a href="#" data-target="Authors-2-dropdown" id="Authors-2" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown__toggle"><span>Authors</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="Authors-2" role="menu" id="Authors-2-dropdown" class="rlist dropdown__menu"><li role="presentation" data-menu-label="Author Guidelines" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/forauthors.html" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Author Guidelines</span></a></li><li role="presentation" data-menu-label="Ethical Guidelines" class="menu-item"><a href="https://authorservices.wiley.com/ethics-guidelines/index.html" target="_blank" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Ethical Guidelines</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li><li role="presentation" data-menu-label="Open Access" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/open-access" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Open Access</span></a></li><li role="presentation" data-menu-label="Submit a Manuscript" class="menu-item"><a href="https://mc.manuscriptcentral.com/ecologyandevolution" target="_blank" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Submit a Manuscript</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li></ul></li><li id="menu-item-main-menu-1-3" role="presentation" data-menu-label="Browse" class="dropdown menu-parent cloned"><a href="#" data-target="Browse-3-dropdown" id="Browse-3" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown__toggle"><span>Browse</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="Browse-3" role="menu" id="Browse-3-dropdown" class="rlist dropdown__menu"><li role="presentation" data-menu-label="Current Issue" class="menu-item"><a href="https://onlinelibrary.wiley.com/toc/20457758/current" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Current Issue</span></a></li><li role="presentation" data-menu-label="All Issues" class="menu-item"><a href="https://onlinelibrary.wiley.com/loi/20457758" role="menuitem" tabindex="-1" class="sub-menu-item"><span>All Issues</span></a></li><li role="presentation" data-menu-label="Video Gallery" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/video-gallery" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Video Gallery</span></a></li></ul></li><li id="menu-item-main-menu-1-4" role="presentation" data-menu-label="Special Issues" class="dropdown menu-parent cloned"><a href="#" data-target="SpecialIssues-4-dropdown" id="SpecialIssues-4" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown__toggle"><span>Special Issues</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="SpecialIssues-4" role="menu" id="SpecialIssues-4-dropdown" class="rlist dropdown__menu"><li role="presentation" data-menu-label="Calls for Papers" class="menu-item"><a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/call-for-papers" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Calls for Papers</span></a></li><li role="presentation" data-menu-label="Published Special Issues" class="menu-item"><a href="https://onlinelibrary.wiley.com/topic/vi-categories-20457758/published-special-issues/20457758" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Published Special Issues</span></a></li><li role="presentation" data-menu-label="Virtual Issues" class="menu-item"><a href="https://onlinelibrary.wiley.com/topic/vi-categories-20457758/virtual-issues/20457758" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Virtual Issues</span></a></li><li role="presentation" data-menu-label="About Special Issues" class="menu-item"><a href="https://editors.wiley.com/page/special-issues" target="_blank" role="menuitem" tabindex="-1" class="sub-menu-item"><span>About Special Issues</span>&nbsp;<i aria-hidden="true" class="icon-export-icon"></i></a></li></ul></li><li id="menu-item-main-menu-1-5" role="presentation" data-menu-label="Spotlight" class="dropdown menu-parent"><a href="#" data-target="Spotlight-5-dropdown" id="Spotlight-5" data-toggle="dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown__toggle"><span>Spotlight</span><i aria-hidden="true" class="icon-arrow_r pull-right hidden-md hidden-lg"></i><i aria-hidden="true" class="icon-section_arrow_d pull-right hidden-sm hidden-xs"></i></a><ul aria-labelledby="Spotlight-5" role="menu" id="Spotlight-5-dropdown" class="rlist dropdown__menu"><li role="presentation" data-menu-label="Academic Practice in Ecology &amp; Evolution" class="menu-item"><a href="https://onlinelibrary.wiley.com/index/20457758?startPage=&amp;ContentItemCategory=ACADEMIC%20PRACTICE%20IN%20ECOLOGY%20AND%20EVOLUTION" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Academic Practice in Ecology &amp; Evolution</span></a></li><li role="presentation" data-menu-label="Nature Notes" class="menu-item"><a href="https://onlinelibrary.wiley.com/index/20457758?startPage=&amp;ContentItemCategory=NATURE%20NOTES" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Nature Notes</span></a></li><li role="presentation" data-menu-label="Genetics Notes" class="menu-item"><a href="https://onlinelibrary.wiley.com/index/20457758?startPage=&amp;ContentItemCategory=GENETICS%20NOTES" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Genetics Notes</span></a></li><li role="presentation" data-menu-label="Registered Reports" class="menu-item"><a href="https://onlinelibrary.wiley.com/index/20457758?startPage=&amp;ContentItemCategory=REGISTERED%20REPORT" role="menuitem" tabindex="-1" class="sub-menu-item"><span>Registered Reports</span></a></li></ul></li></ul></section>
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="UX3HTMLWidget" data-widget-id="da482e6e-3a68-4ea5-91a9-31ac46ddfd41" class="social-links">
+        
+
+
+
+        
+        <div class="social-media"> 
+  
+ <ul class="rlist--inline"> 
+  <li class="icon-alert-header icon-round cloned" id="alert-link"><a href="https://onlinelibrary.wiley.com/action/doUpdateAlertSettings?action=addJournal&amp;journalCode=20457758"><i class="icon-email-plus"></i><span class="label hiddenLabel--lg">Alert</span></a></li> 
+  <li> 
+   <div class="expandable-list"> <a href="#" role="button" aria-expanded="false" data-toggle="dropdown" id="pane-1" class="expandable-list__toggle" aria-label="Live Feed" aria-haspopup="true"><i aria-hidden="true" class="icon-icon-Rss"></i><span class="label hiddenLabel--lg hiddenLabel--md">RSS Feeds</span></a> 
+    <ul aria-hidden="true" aria-labelledby="pane-1" class="rlist expandable-list__body" style="display: none;"> 
+     <li id="most-recent-link" class="cloned"><a href="https://onlinelibrary.wiley.com/action/showFeed?jc=20457758&amp;type=etoc&amp;feed=rss"><i class="icon-icon-Rss"></i>Most recent (RSS)</a></li> <!-- li id="most-read-link"><a href="/action/showMostReadArticlesFeed?journalCode=20457758"><i class="icon-icon-Rss"></i>Most accessed</a></li --> 
+     <li id="most-cited-link" class="cloned"><a href="https://onlinelibrary.wiley.com/action/showMostCitedArticlesFeed?journalCode=20457758"><i class="icon-icon-Rss"></i>Most cited (RSS)</a></li> 
+    </ul> 
+   </div> </li> 
+ </ul> 
+</div>
+
+        </div>
+    
+
+</nav></div></div><div class="header__dropzone"></div>
+
+        </div>
+    
+
+</div>
+
+        
+            
+
+
+
+        
+        <div><div class="pb-dropzone" data-pb-dropzone="col-0" title="col-0"></div></div>
+
+        
+            
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-layout-widget" data-widget-id="0f7bccba-8328-4dbd-a1fa-e84c526dd9ab" class="publications-page-body">
+        
+
+
+
+        
+        <div class="container"><div class="row"><div class=" col-md-12">
+
+
+
+        
+        <div class="gutterless--xs gutterless--sm gutterless--md main-content col-md-8">
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="UX3HTMLWidget" data-widget-id="64c54692-a76b-4673-ad74-8fa3b59b0596" class="pb-rich-text mb-3" id="rich-text-64c54692-a76b-4673-ad74-8fa3b59b0596">
+        
+
+
+
+        
+        <p><a href="https://authorservices.wiley.com/author-resources/Journal-Authors/open-access/affiliation-policies-payments/institutional-funder-payments.html" title="Open Access" target="_blank"><img src="Ecology%20and%20Evolution_files/Version+2_qv1g.webp" width="690" height="100" alt="Open Access" title="Open Access" style="display: block; margin-left: auto; margin-right: auto;"></a></p>
+
+        </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="UX3HTMLWidget" data-widget-id="ed40e74c-3125-49cd-83f1-7686b0e71e6b" class="pb-rich-text" id="rich-text-ed40e74c-3125-49cd-83f1-7686b0e71e6b">
+        
+
+
+
+        
+        <h2>Author Guidelines</h2>
+<p>Submit your manuscript at: <a href="http://mc.manuscriptcentral.com/ecologyandevolution" target="_blank" rel="noopener">http://mc.manuscriptcentral.com/ecologyandevolution</a></p>
+<p>For more about <em>Ecology and Evolution</em> — our philosophy, scope, and consideration of papers transferred from other journals — <a href="https://onlinelibrary.wiley.com/page/journal/20457758/homepage/productinformation.html" target="_blank" rel="noopener">see here</a>.</p>
+<p>Submitting a Registered Report? Detailed guidelines <a href="https://authors.wiley.com/author-resources/Journal-Authors/submission-peer-review/registered-reports.html" target="_blank">can be found here</a>.</p>
+<p><em>Ecology and Evolution</em> operates a single-blind confidential 
+peer-review process. Editors and reviewers are expected to handle the 
+manuscripts confidentially and must not disclose any details to anyone 
+outside of the review process.</p>
+<p>Address correspondence to the Editorial Office: <a href="mailto:ecoevo@wiley.com">ecoevo@wiley.com</a></p>
+<p><strong>Manuscript Types</strong></p>
+<ul>
+<li>Research Article</li>
+<li>Review Article</li>
+<li>Viewpoint</li>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.6534" target="_blank" rel="noopener">Nature Notes</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.10992">Genetics Notes</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.73345">Data Notes</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.3200" target="_blank" rel="noopener">Academic Practice in Ecology and Evolution</a></li>
+<li><a href="https://authors.wiley.com/author-resources/Journal-Authors/submission-peer-review/registered-reports.html" target="_blank">Registered Report</a></li>
+<li>Letter to the Editor (Invitation only - no APC. Please contact the editorial office if interested)</li>
+<li>Reply (Invitation only - no APC. Please contact the editorial office if interested)</li>
+</ul>
+<p><strong>General Instructions<br></strong></p>
+<p><strong>Policy on Data Archiving</strong></p>
+<p>Ecology and Evolution requires authors to (a) provide all data, 
+metadata and code on submission for review by editors and referees and 
+(b) adhere to our minimum standards in data and code archiving set out <a href="https://doi.org/10.1002/ece3.9961" target="_blank" rel="noopener">here</a>.</p>
+<p>In brief, authors are required to format their open data to these 
+standards, archive them in a publicly accessible repository, and clearly
+ state in their submission where they are deposited. Upon revision, data
+ must be formally archived and the Data Accessibility Statement 
+completed with links to all open data from the manuscript. Manuscripts 
+submitted without data will not be passed through to an editor. If you 
+provide your data as supplementary files, please state this in your Data
+ Accessibility Statement.</p>
+<p>If authors choose to use the Dryad data repository, Ecology and 
+Evolution will pay the archiving charges on their behalf if their paper 
+is published in the journal. If you use Dryad, please include the 
+“Private for Peer Review” link in your Data Availability Statement to 
+make your data accessible to reviewers.</p>
+<p>Acceptable reasons for exemptions are laid out in our minimum 
+standards. If you believe you have a case for an exemption, please 
+clearly state so in your cover letter.</p>
+<p><strong>Reuse of Open Data</strong></p>
+<p>Authors should clearly distinguish between open data that already are
+ publicly available, and open data that are proprietary. Most open data 
+available in public repositories can be reused without permission, but 
+the specific license should be checked in each instance. In cases where 
+open data are not reusable without permission, users should cite the 
+original data resources and respect all the conditions of (re)use set by
+ the original researchers or creators. Authors should be looking from 
+the earliest possible stage to work with proprietary owners to release 
+the data on publication. In cases where proprietary open data are not 
+owned by any of the authors and permission to archive the data is not 
+granted, evidence of any refusals (e.g., email exchanges) by third 
+parties must be sent to the editorial office. For proprietary open data 
+that the authors do not have permission to use, they must seek 
+permission to archive them. In general, there should be an expectation 
+that all data creators or compilers will be contacted to be made aware 
+of the reuse of the data.</p>
+<p>Excerpt from: Jenkins, G. B., Beckerman, A. P., Bellard, C., 
+Benítez-López, A., Ellison, A. M., Foote, C. G., Hufton, A. L., Lashley,
+ M. A., Lortie, C. J., Ma, Z., Moore, A. J., Narum, S. R., Nilsson, J., 
+O’Boyle, B., Provete, D. B., Razgour, O., Rieseberg, L., Riginos, C., 
+Santini, L. … Peres-Neto, P. R. (2023). Reproducibility in ecology and 
+evolution: Minimum standards for data and code. Ecology and Evolution, 
+13, e9961. <a href="https://onlinelibrary.wiley.com/doi/10.1002/ece3.9961">https://doi.org/10.1002/ece3.9961</a></p>
+<p><strong><em>Manuscript Preparation: Free Format Submission</em></strong></p>
+<p>We place very few restrictions on the way in which you prepare your 
+article for submission (beyond the requirement of a Data Accessibility 
+Statement) and it is not necessary to try to replicate the layout of the
+ journal. We don't think it a good use of your time to play around with 
+reference formatting, page margins, etc. in order to submit to our 
+journal; if we accept your paper our production process will take care 
+of all aspects of formatting and style.</p>
+<p>We ask only that you consider your reviewers by supplying your 
+manuscript in a clear, generic and readable layout (e.g. page and 
+continuous line numbers are always appreciated), and ensuring that all 
+relevant sections are included. The list below can be used as a 
+checklist to ensure that the manuscript has all the information 
+necessary for successful publication:</p>
+<ul type="disc">
+<li>Title page, including title, authors’ names, authors’ affiliations, and contact information*</li>
+<li>Abstract (formatted however you think best) and 4–6 keywords</li>
+<li>Concise cover letter focused on the question the manuscript attempts to address</li>
+<li>Text (introduction, materials and methods, results, discussion)</li>
+<li>Literature cited (see below for tips on references)</li>
+<li>Tables (may be sent as a separate file if necessary)</li>
+<li>Figure legends</li>
+<li>Data Accessibilty Statement</li>
+<li>Competing Interests Statement</li>
+<li>Author Contributions section</li>
+<li>Acknowledgements, including details of funding bodies with grant numbers</li>
+</ul>
+<p>*You will be asked to provide the full address information for the 
+corresponding author. Please be sure to do this, as the processing of 
+your manuscript may be delayed without complete address information for 
+the corresponding author.</p>
+<p>A manuscript is considered for review and possible publication on the
+ condition that it is submitted solely to Ecology and Evolution, and 
+that the manuscript or a substantial portion of it is not under 
+consideration elsewhere.</p>
+<p><em><strong>Transferred Manuscripts</strong></em></p>
+<p>If you are transferring your manuscript and associated reviews from 
+another journal, you do not need to reformat your manuscript. If you 
+chose to do so, please upload a clean version of the revised manuscript,
+ a version with the changes tracked or otherwise highlighted, and a 
+point-by-point response to reviews.</p>
+<p><em><strong>Supplementary Material and Appendices</strong></em></p>
+<p>At Ecology and Evolution, we discourage the use of supplementary 
+material. It’s traditional purpose is to save space; however as an 
+online-only journal we have no word limits or page charges. Moreover, 
+supplementary material housed separately from the paper are often lost 
+(at worst) and rarely accessed (at best).</p>
+<p>If you have tables, figures, or analyses that improve the 
+understanding of your work but including them in the main text 
+interrupts the flow, we think such information is better placed in an 
+appendix that forms part of the paper. Note also that any information 
+included in an appendix will be copy-edited and typeset by our 
+production team, while supplementary files will be published ‘as is’. 
+For a more informal take on our thinking, you might enjoy&nbsp;<a href="https://onlinelibrary.wiley.com/doi/10.1002/ece3.2101" target="_blank" rel="noopener">our editorial on why supplementary data are evil</a>.</p>
+<p><span lang="EN-US">However, if you do have a strong preference for including supplementary materials then we will of course respect this.&nbsp;<a href="https://authorservices.wiley.com/author-resources/Journal-Authors/Prepare/supporting-information.html" target="_blank" rel="noopener">Click here&nbsp;</a>to access the Wiley guidelines for the submission of Supporting Information.</span></p>
+<p>If you do supply supporting information (whether as an appendix or 
+supplementary material), it should be numbered in order, but 
+independently of figures in the main article. To ensure that others will
+ be able to view your supplementary material, it is best to supply the 
+files in a popular format that most readers have the software to access.<br><br><strong>Systematic reviews and meta-analyses</strong><br>We encourage authors submitting a systematic review or meta-analysis to consult the <a href="https://osf.io/t8qd2/" target="_blank" rel="noopener">PRISMA-EcoEvo reporting checklist</a> to ensure that reporting quality is complete, transparent, and reproducible. <a href="https://onlinelibrary.wiley.com/doi/10.1111/brv.12721" target="_blank" rel="noopener">More on this initiative here</a>.<br><br><strong><em>Methods papers</em><br></strong>We
+ are happy to consider (as 'research articles') articles describing the 
+development of new methods, or articles that showcase databases and the 
+questions they can help answer.</p>
+<p><em><strong>Software notes</strong></em></p>
+<p>We are happy to consider (as 'research articles') descriptions of new
+ software that are intended to describe and promote the software as well
+ as act as a citeable resource for developers. Such articles will be 
+considered under the general <em>Ecology and Evolution</em> philosophy 
+of 'if its useful to the field, we are happy to publish it'. Note that 
+uploading a package to a site such as CRAN or sourceforge in advance is 
+not considered prior publication and will not prevent consideration of 
+an article for publication in E<em>cology and Evolution</em>.</p>
+<p><em><strong>Preprint Servers</strong></em></p>
+<p><em>Ecology and Evolution</em> is happy to consider for review 
+articles previously available as preprints. Authors are requested to 
+update any pre-publication versions with a link to the final published 
+article. Authors may also post the final published version of the 
+article immediately after publication.</p>
+<p><em><strong>Translated Abstracts</strong></em></p>
+<p>All submissions must be written in English. However, if authors wish 
+to provide a second abstract in their first language or the language 
+relevant to the country in which the research was conducted, we will be 
+happy to include this in the published article. The second abstract will
+ be published with the online version of the article and will not be 
+included in the PDF. Please note that second abstracts will not be 
+copyedited and will be published as provided by the authors, who take 
+responsibility for the accuracy of the translation. Authors who wish to 
+take advantage of this option should upload their second abstract 
+alongside their submission, selecting the file type “Translated Abstract
+ not for Review".</p>
+<p><strong><em>Use of Inclusive Language</em></strong></p>
+<p>Inclusive language acknowledges diversity, conveys respect to all 
+people, is sensitive to differences, and promotes equal opportunities. 
+Content should make no assumptions about the beliefs of any reader; 
+contain nothing that might imply one individual is superior to another 
+on the grounds of age, gender, race, ethnicity, culture, sexual 
+orientation, disability or health condition; and use inclusive language 
+throughout. Authors should ensure that writing is free from bias, 
+stereotypes, colloquialism, reference to dominant culture and/or 
+cultural assumptions. We advise to seek gender neutrality by using 
+plural nouns ("clinicians, patients/clients") as default/wherever 
+possible to avoid using "he, she," or "he/she". We recommend avoiding 
+the use of descriptors that refer to personal attributes such as age, 
+gender, race, ethnicity, culture, sexual orientation, disability or 
+health conditions unless they are relevant and valid. These guidelines 
+are meant as a point of reference to help identify appropriate language 
+but are by no means exhaustive or definitive.</p>
+<p><em><strong>Embedded Rich Media</strong></em></p>
+<p>This journal has the option for authors to embed rich media (i.e. 
+video and audio) within their final article. These files should be 
+submitted with the manuscript files online, using either the “Embedded 
+Video” or “Embedded Audio” file designation. If the video/audio includes
+ dialogue, a transcript should be included as a separate file. <strong>The combined manuscript files, including video, audio, tables, figures, and text must not exceed 350 MB.</strong> For full guidance on accepted file types and resolution please see <a href="https://authorservices.wiley.com/author-resources/Journal-Authors/Prepare/manuscript-preparation-guidelines.html/embedded-rich-media.html">here</a>.</p>
+<p>Ensure each file is numbered (e.g. Video 1, Video 2, etc.) Legends 
+for the rich media files should be placed at the end of the article.</p>
+<p>The content of the video should not display overt product advertising. Educational presentations are encouraged.</p>
+<p>Any narration should be in English, if possible. A typed transcript 
+of any speech within the video/audio should be provided. An English 
+translation of any non-English speech should be provided in the 
+transcript.</p>
+<p>All embedded rich media will be subject to peer review. Editors 
+reserve the right to request edits to rich media files as a condition of
+ acceptance. Contributors are asked to be succinct, and the Editors 
+reserve the right to require shorter video/audio duration. The 
+video/audio should be high quality (both in content and 
+visibility/audibility). The video/audio should make a specific point; 
+particularly, it should demonstrate the features described in the text 
+of the manuscript.</p>
+<p>Participant Consent: It is the responsibility of the corresponding 
+author to seek informed consent from any identifiable participant in the
+ rich media files. Masking a participant’s eyes, or excluded head and 
+shoulders is not sufficient. Please ensure that a consent form (<a href="https://authorservices.wiley.com/author-resources/Journal-Authors/licensing/licensing-info-faqs.html">https://authorservices.wiley.com/author-resources/Journal-Authors/licensing/licensing-info-faqs.html</a>) is provided for each participant.</p>
+<p><em><strong>The under review service</strong></em></p>
+<p>Beginning in early 2020, Ecology and Evolution is participating in a pilot of the <a href="https://wileyauthors.com/underreview">under review service</a>,
+ Wiley’s new&nbsp;initiative to streamline the early sharing of research
+ and open up the peer review process.&nbsp;Authors can now opt to 
+preprint their manuscript during the submission process and 
+showcase&nbsp;their&nbsp;work to the 
+global&nbsp;research&nbsp;community&nbsp;as a preprint, 
+before&nbsp;it&nbsp;is accepted or published.</p>
+<p>The under review service is&nbsp;powered by&nbsp;<a href="https://authorea.com/" target="_blank" rel="noopener">Authorea</a>,&nbsp;an
+ open research platform&nbsp;for all your research outputs, including 
+data, figures, and preprints.&nbsp;By opting-in authors can:&nbsp;</p>
+<ul>
+<li>Seamlessly preprint&nbsp;at the same time you submit your research for publication&nbsp;</li>
+<li>Share your work early,&nbsp;while indicating it is&nbsp;being&nbsp;considered&nbsp;at a specific journal</li>
+<li>Track the peer review process&nbsp;openly&nbsp;in real time</li>
+<li>Immediately make their work citable, discoverable, and easily shareable</li>
+<li>Get additional community feedback&nbsp;that can be used to improve&nbsp;your manuscript</li>
+</ul>
+<p>&nbsp;Learn more about the benefits of&nbsp;the <a href="https://wileyauthors.com/underreview">under review service</a>.</p>
+<p><em><strong>Article Preparation Support</strong></em></p>
+<p><a href="https://wileyeditingservices.com/en/article-preparation/?utm_source=wol&amp;utm_medium=backlink&amp;utm_term=ag&amp;utm_content=prep&amp;utm_campaign=prodops" target="_blank" rel="noopener">Wiley Editing Services</a>
+ offers expert help with English Language Editing, as well as 
+translation, manuscript formatting, figure illustration, figure 
+formatting, and graphical abstract design – so you can submit your 
+manuscript with confidence. Also, check out our resources for <a href="https://authorservices.wiley.com/author-resources/Journal-Authors/Prepare/index.html?utm_source=wol&amp;utm_medium=backlink&amp;utm_term=ag&amp;utm_content=prepresources&amp;utm_campaign=prodops" target="_blank" rel="noopener">Preparing Your Article</a> for general guidance about writing and preparing your manuscript. &nbsp; &nbsp; &nbsp;</p>
+<p><em><strong>Replication Experiments</strong></em></p>
+<p>Applying an experiment that was informative for another species to a 
+new species results in great science, as it allows us to compare the 
+results of the new study to previous iterations of the experiment—one 
+study acts as context for the other. This approach often results in a 
+series of papers from a research group. At Ecology and Evolution, we 
+wish to foster reproducibility by asking authors of replicated 
+experiments to fully reference the original iteration of their 
+experiment. We also strongly suggest that authors number such papers 
+(e.g. “The Effects of Climate Change on Food Production: study 1, 
+Tomatoes,” and “The Effects of Climate Change on Food Production: study 
+2, Potatoes”) to help highlight the similarities and differences 
+discovered during series work.</p>
+<p><em><strong>Authorship</strong></em></p>
+<p>Ecology and Evolution adopts the authorship and contributorship 
+criteria provided by the International Committee of Medical Journal 
+Editors (<a href="http://www.icmje.org/recommendations/browse/roles-and-responsibilities/defining-the-role-of-authors-and-contributors.html">ICMJE</a>). The ICMJE authorship criteria state 'authorship credit' should be based on:</p>
+<ol start="1" type="1">
+<li>substantial contributions to conception and design, acquisition of data, or analysis and interpretation of data;</li>
+<li>drafting the article or revising it critically for important intellectual content; and</li>
+<li>final approval of the version to be published.</li>
+</ol>
+<p>Authors must meet all 3 conditions. All contributors who do not meet 
+the criteria for authorship should be listed in an acknowledgments 
+section.</p>
+<p><em><strong>Author Contributions</strong></em></p>
+<p>For all articles, the journal mandates the CRediT (Contribution Roles Taxonomy), for more information please see <a href="https://authorservices.wiley.com/author-resources/Journal-Authors/open-access/credit.html">Author Services</a>.</p>
+<p><em><strong>Additional Authorship Options</strong></em></p>
+<p>Joint first or senior authorship: In the case of joint first 
+authorship, a footnote should be added to the author listing, e.g. ‘X 
+and Y should be considered joint first author’ or ‘X and Y should be 
+considered joint senior author.’</p>
+<p><em><strong>References</strong></em></p>
+<p>As with the main body of text, the completeness and content of your 
+reference list is more important than the format chosen. A clear and 
+consistent, generic style will assist the accuracy of our production 
+processes and produce the highest quality published work, but it is not 
+necessary to try to replicate the journal’s own style, which is applied 
+during the production process. If you use bibliographic software to 
+generate your reference list, select a standard output style, and check 
+that it produces full and comprehensive reference listings. A guide to 
+the minimum elements required for successful reference linking appears 
+below. The final journal output will use the ‘Harvard’ style of 
+reference citation. If your manuscript has already been prepared using 
+the ‘Vancouver’ system, we are quite happy to receive it in this form. 
+We will perform the conversion from one system to the other during the 
+production process.</p>
+<p>Minimum reference information</p>
+<p>Journal Article<br>Author(s) in full<br>Year of publication<br>Article title<br>Journal title (preferably not abbreviated)<br>Volume number<br>Issue number<br>Page range</p>
+<p>Book<br>Author(s) in full<br>Year of publication<br>Book title<br>Place of publication<br>Publisher<br>No. Pages</p>
+<p>Book Chapter<br>Author(s) in full<br>Year of publication<br>Chapter title<br>Book Author/Editor<br>Book title<br>Place of publication<br>Publisher<br>Page range</p>
+<p>Online resources<br>References to online research articles should 
+always include a DOI, where available. When referring to other Web 
+pages, it is useful to include a date on which the resource was 
+accessed.</p>
+<p><em><strong>File Types and Submission</strong></em><br><br>Preferred 
+editable file formats for the text and tables of your manuscripts are 
+.doc, .docx, .rtf, .ppt, .xlss, .xlsx. Any tables must be on separate 
+pages after the reference list and not incorporated into the main body 
+of text. All figures should be separated from the main document and 
+uploaded as separate files designated as “Figures”, preferably as .eps 
+and/or .tiff file formats.</p>
+<p>LATEX files may be submitted. For reviewing purposes you should 
+upload a single .pdf or word document that you have generated from your 
+source files. Please designate this file from the dropdown box as “Main 
+Document”. All source files should then be uploaded as well under the 
+file designation “Supplemental Material not for Review”. All previous 
+file versions must be deleted.</p>
+<p><em><strong>Tables</strong></em><br><br>All tables must be cited in the text in the order that they should appear.</p>
+<p><em><strong>Figures</strong></em><br><br>All figures must be cited in
+ the text in the order that they should appear. Illustrations are an 
+important medium through which to convey the meaning in your article, 
+and there is no substitute for preparing these to the highest possible 
+standard. Therefore, please create your illustrations carefully with 
+reference to our graphics guidelines (see <a href="https://authorservices.wiley.com/asset/photos/electronic_artwork_guidelines.pdf">https://authorservices.wiley.com/asset/photos/electronic_artwork_guidelines.pdf</a>).
+ It is very difficult to improve an image that has been saved or created
+ in an inappropriate format. We realize that not everyone has access to 
+high-end graphics software, so the following information may help if you
+ are having difficulty in deciding how to get the best out of the tools 
+at your disposal.<br><br><strong><em>Maps<br></em></strong><br>John 
+Wiley &amp; Sons Ltd remains neutral with regard to jurisdictional 
+claims in published maps. For reasons of consistency, authors are 
+requested to use accepted standard maps as the basis for map figure 
+drawing. Responsibility for maps rests with the author and it is their 
+responsibility to also provide any copyright or licence information when
+ using maps that are not owned or created by the author (e.g. Google 
+Maps, etc.)</p>
+<p><em><strong>Cover Images</strong> </em></p>
+<p>Ecology and Evolution encourages you to submit a picture of your 
+study organism(s) as part of your paper; such images will be considered 
+for our online journal cover and other promotional avenues. Please 
+designate this image as Figure 1 (if appropriate). If the picture was 
+not taken by an author of your paper, please credit the photographer in 
+the figure legend; please also ensure that the photo was not originally 
+published under copyright that would prevent it being re-published in 
+Ecology and Evolution. Please contact <a href="mailto:ecoevo@wiley.com">ecoevo@wiley.com</a> if you have any questions regarding this.</p>
+<p>1. Check your software options to see if you can ‘save as’ or 
+‘export’ using one of the robust, industry-standard formats. These are:</p>
+<ul type="disc">
+<li>Encapsulated PostScript (EPS)</li>
+<li>Tagged Image File Format (TIFF)</li>
+<li>Portable Network Graphics (PNG)</li>
+<li>Portable Document Format (PDF)</li>
+</ul>
+<p>2. As a general rule of thumb, images that contain text and line art 
+(graphs, charts, maps, etc.) will reproduce best if saved as EPS or PDF.
+ If you choose this option, it is important to remember to embed fonts. 
+This ensures that any text reproduces exactly as you intend.</p>
+<p>3. Images that contain photographic information are best saved as 
+TIFF or PNG, as this ensures that all data are included in the file. 
+JPEG (Joint Photographic Experts Group) should be avoided if possible, 
+as information is lost during compression; however, it is acceptable for
+ purely photographic subjects if the image was generated as a JPEG from 
+the outset (many digital cameras, for example, output only in JPEG 
+format).</p>
+<p>4. If you are not sure which format would be the best option, it is 
+always best to default to EPS or PDF as these are more likely to 
+preserve the high-quality characteristics of the original.</p>
+<p>5. Microsoft Office. If you have generated your images in Microsoft 
+Office software (Word, Excel, PowerPoint), or similar, it is often best 
+simply to send us the files in their native file formats.</p>
+<p>6. Please ensure all images are a minimum of 300 dpi.</p>
+<p><em><strong>Metric system</strong></em></p>
+<p>The metric system should be used for all measurements, weights, etc. 
+Temperatures should be expressed in degrees Celsius (centigrade).</p>
+<p><em><strong>CrossCheck</strong></em></p>
+<p>CrossCheck is a multi-publisher initiative to screen published and 
+submitted content for originality. Ecology and Evolution uses 
+iThenticate software to detect instances of overlapping and similar text
+ in submitted manuscripts. To find out more about CrossCheck visit&nbsp;<a href="http://www.crossref.org/crosscheck.html">http://www.crossref.org/crosscheck.html</a>.</p>
+<p><em><strong>Proofs</strong></em></p>
+<p>Authors will receive an e-mail notification with a link and 
+instructions for accessing HTML page proofs online. Page proofs should 
+be carefully proofread for any copyediting or typesetting errors. Online
+ guidelines are provided within the system. No special software is 
+required, all common browsers are supported. Authors should also make 
+sure that any renumbered tables, figures, or references match text 
+citations and that figure legends correspond with text citations and 
+actual figures. Proofs must be returned within 48 hours of receipt of 
+the email. Return of proofs via e-mail is possible in the event that the
+ online system cannot be used or accessed.</p>
+<p><em><strong>Reprints</strong></em></p>
+<p>As this is an open access journal, you have free, unlimited access to
+ your article online. However, if you wish to obtain printed reprints, 
+these may be ordered online&nbsp;(Email:&nbsp;&nbsp;<a href="http://www.sheridan.com/wiley/eoc">www.sheridan.com/wiley/eoc</a>)</p>
+<p><em><strong>Production Questions</strong></em></p>
+<p>Please direct any questions regarding the production of your article to the Production Editor at&nbsp;<a href="mailto:ECE@wiley.com">ECE@wiley.com</a></p>
+<p><em><strong><br>Refer and Transfer Program<br></strong></em></p>
+<p><span class="TextRun Highlight SCXW220203390 BCX0" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW220203390 BCX0">Wiley believes that no valuable research should go unshared. </span></span><em><span class="TextRun Highlight SCXW220203390 BCX0" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW220203390 BCX0">Ecology and Evolution </span></span></em><span class="TextRun Highlight SCXW220203390 BCX0" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW220203390 BCX0">participates</span></span><span class="TextRun Highlight SCXW220203390 BCX0" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW220203390 BCX0"> in Wiley’s </span></span><a class="Hyperlink SCXW220203390 BCX0" href="https://authorservices.wiley.com/author-resources/Journal-Authors/submission-peer-review/manuscript-transfer.html" target="_blank" rel="noopener"><span class="TextRun Highlight Underlined SCXW220203390 BCX0" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW220203390 BCX0" data-ccp-charstyle="Hyperlink">Refer &amp; Transfer program</span></span></a><span class="TextRun Highlight SCXW220203390 BCX0" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW220203390 BCX0">.
+ If your manuscript is not accepted, you may receive a recommendation to
+ transfer your manuscript to another suitable Wiley journal, either 
+through a referral from the journal’s editor or through our Transfer 
+Desk Assistant.</span></span></p>
+<p><em><strong><br>Appeals and Complaints<br></strong></em></p>
+<p>Authors may appeal an editorial decision if they feel that the 
+decision to reject was based on either a significant misunderstanding of
+ a core aspect of the manuscript, a failure to understand how the 
+manuscript advances the literature or concerns regarding the 
+manuscript-handling process. Differences in opinion regarding the 
+novelty or significance of the reported findings are not considered as 
+grounds for appeal. To raise an appeal, please contact this journal by 
+email, quoting your manuscript ID number and explaining your rationale 
+for the appeal. The editor’s decision following an appeal consideration 
+is final.</p>
+<p>To raise a complaint regarding editorial staff, policy or process 
+please contact the journal in the first instance. If you believe further
+ support outside the journal’s management is necessary, please refer to 
+Wiley’s <a href="https://authorservices.wiley.com/ethics-guidelines/index.html#4">Best Practice Guidelines on Research Integrity and Publishing Ethics</a>.</p>
+<p><br><br><em><strong>Publication and Ethics<br></strong></em></p>
+<p></p>
+<p><em>Ecology and Evolution</em> wish to confirm that it has no connection to other third-party submission sites and that&nbsp;<strong>submissions to our journal can only be made via Wiley’s own website and the ScholarOne system</strong>&nbsp;and
+ not through any third-party site. Wiley do not charge for article 
+submission. Authors and contributors should be careful to submit 
+articles only to <em>Ecology and Evolution</em> at <a href="https://urldefense.com/v3/__http:/mc.manuscriptcentral.com/ecologyandevolution__;!!NVzLfOphnbDXSw!WNiq5nyLuK4gjopfKeWzMEVLL5AbQRrdcqJY6z5AxffpE6N5jPzzuBiWbShVlPcT6r6t7ro$">http://mc.manuscriptcentral.com/ecologyandevolution</a>.</p>
+<p>We have been informed that some third-party websites are actively 
+targeting Wiley contributors to submit material to their journal. This 
+is a practice known within the industry as “predatory publishing”. 
+Predatory publishers are using the name of established journals to 
+solicit content from authors, asking them to submit material to their 
+journal upon payment of a fee or in some cases with a fee waiver. 
+Publishers are working together to try to find a solution to this 
+problem. However, in the meantime, anyone seeking to submit work to 
+established journals should take great care. Some helpful advice on how 
+to check this can be found at <a href="https://urldefense.com/v3/__https:/thinkchecksubmit.org/__;!!NVzLfOphnbDXSw!WNiq5nyLuK4gjopfKeWzMEVLL5AbQRrdcqJY6z5AxffpE6N5jPzzuBiWbShVlPcTKmNXYlo$" target="_blank" rel="noopener">Think Check Submit</a>.</p>
+<p><em><strong>Informed consent</strong></em></p>
+<p>Ecology and Evolution requires that all appropriate steps be taken in
+ obtaining informed consent of any and all human subjects participating 
+in the research comprising the manuscript submitted for review and 
+possible publication, and a statement to this effect must be included in
+ the Methods section of the manuscript. Identifying information should 
+not be included in the manuscript unless the information is essential 
+for scientific purposes and the study participants or patients (or 
+parents or guardians) give written informed consent for publication.</p>
+<p><em><strong>Protection of human subjects and animals in research</strong></em></p>
+<p>A statement indicating that the protocol and procedures employed were
+ reviewed and approved by the appropriate institutional review committee
+ must be included in the Methods section of the manuscript. When 
+reporting experiments on human subjects, authors should indicate whether
+ the procedures followed were in accordance with the ethical standards 
+of the responsible committee on human experimentation (institutional and
+ national) and with the Helsinki Declaration of 1975, as revised in 
+2008.&nbsp;When reporting experiments on animals, authors should 
+indicate whether the institutional and national guide for the care and 
+use of laboratory animals was followed. For research involving 
+recombinant DNA, containment facilities and guidelines should conform to
+ those of the National Institutes of Health or corresponding 
+institutions. For those investigators who do not have formal ethics 
+review committees, the principles outlined in the Helsinki Declaration 
+should be followed. If doubt exists whether the research was conducted 
+in accordance with the Helsinki Declaration, the authors must explain 
+the rationale for their approach and demonstrate that the institutional 
+review body explicitly approved the doubtful aspects of the study.</p>
+<p><em><strong>Disclosure statement</strong></em></p>
+<p>Ecology and Evolution requires that all authors disclose any 
+potential sources of conflict of interest. Any interest or relationship,
+ financial or otherwise, that might be perceived as influencing an 
+author's objectivity is considered a potential source of conflict of 
+interest. These must be disclosed when directly relevant or directly 
+related to the work that the authors describe in their manuscript. 
+Potential sources of conflict of interest include, but are not limited 
+to, patent or stock ownership, membership of a company board of 
+directors, membership of an advisory board or committee for a company, 
+and consultancy for or receipt of speaker's fees from a company. The 
+existence of a conflict of interest does not preclude publication in 
+this journal.</p>
+<p>If the authors have no conflict of interest to declare, they must 
+also state this at submission. It is the responsibility of the 
+corresponding author to review this policy with all authors and 
+collectively to list on the cover letter to the Editor-in-Chief, in the 
+manuscript (under the Acknowledgements section), and in the online 
+submission system ALL pertinent commercial and other relationships.</p>
+<p>The above policies are in accordance with the Uniform Requirements 
+for Manuscripts Submitted to Biomedical Journals produced by the 
+International Committee of Medical Journal Editors (<a href="http://www.icmje.org/">http://www.icmje.org/</a>).</p>
+<p>Ecology and Evolution&nbsp;is a member of the&nbsp;<a href="https://publicationethics.org/">Committee on Publication Ethics (COPE)</a>.</p>
+<p><em><strong>Data Sharing and Data Availability</strong></em></p>
+<p>This journal mandates data and peer reviews data sharing. Review <a href="https://authorservices.wiley.com/author-resources/Journal-Authors/open-access/data-sharing-citation/data-sharing-policy.html">Wiley’s Data Sharing policy</a> where you will be able to see and select the data availability statement that is right for your submission.<br><em><strong><br>Privacy/Data protection</strong></em></p>
+<p>By submitting a manuscript to or reviewing for this publication, your
+ name, email address, affiliation, and other contact details the 
+publication might require, will be used for the regular operations of 
+the publication, including, when necessary, sharing with the publisher 
+(Wiley) and partners for production and publication. The publication and
+ the publisher recognize the importance of protecting the personal 
+information collected from users in the operation of these services, and
+ have practices in place to ensure that steps are taken to maintain the 
+security, integrity, and privacy of the personal data collected and 
+processed. You can learn more at:&nbsp;<a href="https://authorservices.wiley.com/statements/data-protection-policy.html" target="_blank" rel="noopener">https://authorservices.wiley.com/statements/data-protection-policy.html</a><br><br></p>
+<p><em><strong>Wiley’s Author Name Change Policy</strong></em></p>
+<p>In cases where authors wish to change their name following 
+publication, Wiley will update and republish the paper and redeliver the
+ updated metadata to indexing services. Our editorial and production 
+teams will use discretion in recognizing that name changes may be of a 
+sensitive and private nature for various reasons including (but not 
+limited to) alignment with gender identity, or as a result of marriage, 
+divorce, or religious conversion. Accordingly, to protect the author’s 
+privacy, we will not publish a correction notice to the paper, and we 
+will not notify co-authors of the change. Authors should contact the 
+journal’s Editorial Office with their name change request.<br><br></p>
+<p><em><strong>Article Promotion Support</strong></em></p>
+<p><a href="https://wileyeditingservices.com/en/article-promotion/?utm_source=wol&amp;utm_medium=backlink&amp;utm_term=ag&amp;utm_content=promo&amp;utm_campaign=prodops" target="_blank" rel="noopener">Wiley Editing Services</a>
+ offers professional video, design, and writing services to create 
+shareable video abstracts, infographics, conference posters, lay 
+summaries, and research news stories for your research – so you can help
+ your research get the attention it deserves.<em><br></em></p>
+
+        </div>
+    
+
+</div><div class="gutterless--xs gutterless--sm gutterless--md col-md-4">
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-layout-widget" data-widget-id="ee7a3430-1136-4dfb-922e-2ee614f121aa" class="journal-sidebar">
+        
+
+
+
+        
+        <div>
+
+
+
+        
+        <div>
+
+
+
+        
+        <div id="etoc-signup" role="status" aria-atomic="true" class="alert-sign-up"><div class="alert-sign-up__box pb-0"><i aria-hidden="true" class="icon-email-plus"></i><h3>Sign up for email alerts</h3></div><div class="alert-sign-up__content form-content"><form action="/pb/widgets/tocAlertSubscription/load?widgetId=b4a7fada-524c-4089-9da0-8f4440895878&amp;pbContext=%3BpageTemplate%3Astring%3Ayes%3BpageIndexFreq%3Astring%3Aweekly%3Bwebsite%3Awebsite%3Apericles%3BpageWebsite%3Astring%3Apericles%3BcustomPage%3Astring%3A%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html%3Bjournal%3Ajournal%3A20457758%3BpageWebsiteName%3Astring%3Apericles%3Bwgroup%3Astring%3APublication+Websites%3BrequestedJournal%3Ajournal%3A20457758%3Bpage%3Astring%3AWileyOTIS%3Bctype%3Astring%3AJournal+Content%3BpageScope%3Astring%3Awebsite%3BpageIndex%3Astring%3Ayes%3BpageGroup%3Astring%3ACustom+Page" class="alert-sign-up__form"><input type="hidden" name="journalCode" value="20457758"><p class="form-instructions small">Enter your email to receive alerts when new articles and issues are published.</p><div class="form-upper"><div class="input-box"><label for="alert-user-email">Email address<span aria-hidden="true" class="required-mark email-required-mark hidden">*</span></label><div class="input-box__content"><input id="alert-user-email" type="email" name="email" placeholder="Enter email" aria-describedby="" aria-invalid="false" aria-required="false" data-error-msg="Check your email is in the correct format such as name@domain.com"></div></div></div><div class="alert-sign-up__form-extra"><div class="inner"><p class="small">Please select your location and accept the terms of use.</p><div class="input-box"><label for="alert-user-location">Country or location<span aria-hidden="true" class="required-mark">*</span></label><div class="input-box__content"><select id="alert-user-location" name="country" aria-describedby="userEmailCountry" aria-invalid="false" aria-required="true" data-error-msg="Please select Country or location" class="js-required"><option value="" disabled="disabled" selected="selected">Open this select menu</option><option value="country-af">Afghanistan</option><option value="country-ax">Åland Islands</option><option value="country-al">Albania</option><option value="country-dz">Algeria</option><option value="country-as">American Samoa</option><option value="country-ad">Andorra</option><option value="country-ao">Angola</option><option value="country-ai">Anguilla</option><option value="country-aq">Antarctica</option><option value="country-ag">Antigua And Barbuda</option><option value="country-ar">Argentina</option><option value="country-am">Armenia</option><option value="country-aw">Aruba</option><option value="country-au">Australia</option><option value="country-at">Austria</option><option value="country-az">Azerbaijan</option><option value="country-bs">Bahamas</option><option value="country-bh">Bahrain</option><option value="country-bd">Bangladesh</option><option value="country-bb">Barbados</option><option value="country-by">Belarus</option><option value="country-be">Belgium</option><option value="country-bz">Belize</option><option value="country-bj">Benin</option><option value="country-bm">Bermuda</option><option value="country-bt">Bhutan</option><option value="country-bo">Bolivia</option><option value="country-bq">Bonaire, Sint Eustatius And Saba</option><option value="country-ba">Bosnia And Herzegovina</option><option value="country-bw">Botswana</option><option value="country-bv">Bouvet Island</option><option value="country-br">Brazil</option><option value="country-io">British Indian Ocean Territory</option><option value="country-bn">Brunei Darussalam</option><option value="country-bg">Bulgaria</option><option value="country-bf">Burkina Faso</option><option value="country-bi">Burundi</option><option value="country-kh">Cambodia</option><option value="country-cm">Cameroon</option><option value="country-ca">Canada</option><option value="country-cv">Cape Verde</option><option value="country-ky">Cayman Islands</option><option value="country-cf">Central African Republic</option><option value="country-td">Chad</option><option value="country-cl">Chile</option><option value="country-cn">China</option><option value="country-cx">Christmas Island</option><option value="country-cc">Cocos (keeling) Islands</option><option value="country-co">Colombia</option><option value="country-km">Comoros</option><option value="country-cg">Congo</option><option value="country-cd">Congo, The Democratic Republic Of The</option><option value="country-ck">Cook Islands</option><option value="country-cr">Costa Rica</option><option value="country-ci">Côte D'ivoire</option><option value="country-hr">Croatia</option><option value="country-cu">Cuba</option><option value="country-cw">Curaçao</option><option value="country-cy">Cyprus</option><option value="country-cz">Czech Republic</option><option value="country-dk">Denmark</option><option value="country-dj">Djibouti</option><option value="country-dm">Dominica</option><option value="country-do">Dominican Republic</option><option value="country-ec">Ecuador</option><option value="country-eg">Egypt</option><option value="country-sv">El Salvador</option><option value="country-gq">Equatorial Guinea</option><option value="country-er">Eritrea</option><option value="country-ee">Estonia</option><option value="country-et">Ethiopia</option><option value="country-fk">Falkland Islands (malvinas)</option><option value="country-fo">Faroe Islands</option><option value="country-fj">Fiji</option><option value="country-fi">Finland</option><option value="country-fr">France</option><option value="country-gf">French Guiana</option><option value="country-pf">French Polynesia</option><option value="country-tf">French Southern Territories</option><option value="country-ga">Gabon</option><option value="country-gm">Gambia</option><option value="country-ge">Georgia</option><option value="country-de">Germany</option><option value="country-gh">Ghana</option><option value="country-gi">Gibraltar</option><option value="country-gr">Greece</option><option value="country-gl">Greenland</option><option value="country-gd">Grenada</option><option value="country-gp">Guadeloupe</option><option value="country-gu">Guam</option><option value="country-gt">Guatemala</option><option value="country-gg">Guernsey</option><option value="country-gn">Guinea</option><option value="country-gw">Guinea-bissau</option><option value="country-gy">Guyana</option><option value="country-ht">Haiti</option><option value="country-hm">Heard Island And Mcdonald Islands</option><option value="country-va">Holy See (vatican City State)</option><option value="country-hn">Honduras</option><option value="country-hk">Hong Kong</option><option value="country-hu">Hungary</option><option value="country-is">Iceland</option><option value="country-in">India</option><option value="country-id">Indonesia</option><option value="country-ir">Iran, Islamic Republic Of</option><option value="country-iq">Iraq</option><option value="country-ie">Ireland</option><option value="country-im">Isle Of Man</option><option value="country-il">Israel</option><option value="country-it">Italy</option><option value="country-jm">Jamaica</option><option value="country-jp">Japan</option><option value="country-je">Jersey</option><option value="country-jo">Jordan</option><option value="country-kz">Kazakhstan</option><option value="country-ke">Kenya</option><option value="country-ki">Kiribati</option><option value="country-kp">Korea, Democratic People's Republic Of</option><option value="country-kr">Korea, Republic Of</option><option value="country-xk">Kosovo, Republic Of</option><option value="country-kw">Kuwait</option><option value="country-kg">Kyrgyzstan</option><option value="country-la">Lao People's Democratic Republic</option><option value="country-lv">Latvia</option><option value="country-lb">Lebanon</option><option value="country-ls">Lesotho</option><option value="country-lr">Liberia</option><option value="country-ly">Libyan Arab Jamahiriya</option><option value="country-li">Liechtenstein</option><option value="country-lt">Lithuania</option><option value="country-lu">Luxembourg</option><option value="country-mo">Macao</option><option value="country-mk">Macedonia, The Former Yugoslav Republic Of</option><option value="country-mg">Madagascar</option><option value="country-mw">Malawi</option><option value="country-my">Malaysia</option><option value="country-mv">Maldives</option><option value="country-ml">Mali</option><option value="country-mt">Malta</option><option value="country-mh">Marshall Islands</option><option value="country-mq">Martinique</option><option value="country-mr">Mauritania</option><option value="country-mu">Mauritius</option><option value="country-yt">Mayotte</option><option value="country-mx">Mexico</option><option value="country-fm">Micronesia, Federated States Of</option><option value="country-md">Moldova, Republic Of</option><option value="country-mc">Monaco</option><option value="country-mn">Mongolia</option><option value="country-me">Montenegro</option><option value="country-ms">Montserrat</option><option value="country-ma">Morocco</option><option value="country-mz">Mozambique</option><option value="country-mm">Myanmar</option><option value="country-na">Namibia</option><option value="country-nr">Nauru</option><option value="country-np">Nepal</option><option value="country-nl">Netherlands</option><option value="country-an">Netherlands Antilles</option><option value="country-nc">New Caledonia</option><option value="country-nz">New Zealand</option><option value="country-ni">Nicaragua</option><option value="country-ne">Niger</option><option value="country-ng">Nigeria</option><option value="country-nu">Niue</option><option value="country-nf">Norfolk Island</option><option value="country-mp">Northern Mariana Islands</option><option value="country-no">Norway</option><option value="country-om">Oman</option><option value="country-pk">Pakistan</option><option value="country-pw">Palau</option><option value="country-ps">Palestinian Territory, Occupied</option><option value="country-pa">Panama</option><option value="country-pg">Papua New Guinea</option><option value="country-py">Paraguay</option><option value="country-pe">Peru</option><option value="country-ph">Philippines</option><option value="country-pn">Pitcairn</option><option value="country-pl">Poland</option><option value="country-pt">Portugal</option><option value="country-pr">Puerto Rico</option><option value="country-qa">Qatar</option><option value="country-re">Reunion</option><option value="country-ro">Romania</option><option value="country-ru">Russian Federation</option><option value="country-rw">Rwanda</option><option value="country-bl">Saint Barthélemy</option><option value="country-sh">Saint Helena</option><option value="country-kn">Saint Kitts And Nevis</option><option value="country-lc">Saint Lucia</option><option value="country-mf">Saint Martin</option><option value="country-pm">Saint Pierre And Miquelon</option><option value="country-vc">Saint Vincent And The Grenadines</option><option value="country-ws">Samoa</option><option value="country-sm">San Marino</option><option value="country-st">Sao Tome And Principe</option><option value="country-sa">Saudi Arabia</option><option value="country-sn">Senegal</option><option value="country-rs">Serbia</option><option value="country-sc">Seychelles</option><option value="country-sl">Sierra Leone</option><option value="country-sg">Singapore</option><option value="country-sx">Sint Maarten</option><option value="country-sk">Slovakia</option><option value="country-si">Slovenia</option><option value="country-sb">Solomon Islands</option><option value="country-so">Somalia</option><option value="country-za">South Africa</option><option value="country-gs">South Georgia And The South Sandwich Islands</option><option value="country-ss">South Sudan</option><option value="country-es">Spain</option><option value="country-lk">Sri Lanka</option><option value="country-sd">Sudan</option><option value="country-sr">Suriname</option><option value="country-sj">Svalbard And Jan Mayen</option><option value="country-sz">Swaziland</option><option value="country-se">Sweden</option><option value="country-ch">Switzerland</option><option value="country-sy">Syrian Arab Republic</option><option value="country-tw">Taiwan</option><option value="country-tj">Tajikistan</option><option value="country-tz">Tanzania, United Republic Of</option><option value="country-th">Thailand</option><option value="country-tl">Timor-leste</option><option value="country-tg">Togo</option><option value="country-tk">Tokelau</option><option value="country-to">Tonga</option><option value="country-tt">Trinidad And Tobago</option><option value="country-tn">Tunisia</option><option value="country-tr">Türkiye</option><option value="country-tm">Turkmenistan</option><option value="country-tc">Turks And Caicos Islands</option><option value="country-tv">Tuvalu</option><option value="country-ug">Uganda</option><option value="country-ua">Ukraine</option><option value="country-ae">United Arab Emirates</option><option value="country-gb">United Kingdom</option><option value="country-us">United States</option><option value="country-um">United States Minor Outlying Islands</option><option value="country-uy">Uruguay</option><option value="country-uz">Uzbekistan</option><option value="country-vu">Vanuatu</option><option value="country-ve">Venezuela, Bolivarian Republic Of</option><option value="country-vn">Viet Nam</option><option value="country-vg">Virgin Islands, British</option><option value="country-vi">Virgin Islands, U.s.</option><option value="country-wf">Wallis And Futuna</option><option value="country-eh">Western Sahara</option><option value="country-ye">Yemen</option><option value="country-zm">Zambia</option><option value="country-zw">Zimbabwe</option></select></div></div><p></p><label class="checkbox--primary"><input type="checkbox" name="acceptTerms" aria-describedby="acceptTermsError" aria-invalid="false" aria-required="true" data-error-msg="Please accept the terms and privacy policy" class="js-required"><span class="label-txt">I consent to Wiley Online Library’s
+ <a href="https://onlinelibrary.wiley.com/termsAndConditions" class="link">Terms of Use</a> and  processing of my personal data as disclosed in Wiley’s <a href="https://www.wiley.com/privacy" class="link">Privacy Policy</a>.<i aria-hidden="true" class="required-mark">*</i></span></label><label data-pipl-feature-enabled="data-pipl-feature-enabled" class="checkbox--primary pipl-checkbox" style="display: none;"><input type="checkbox" name="acceptPIPLConsent"><span class="label-txt">I
+ consent to my personal information being transferred outside of the 
+People’s Republic of China as laid out in Wiley’s Privacy Policy.*</span></label><label class="checkbox--primary"><input type="checkbox" name="marketable" aria-describedby="marketableError"><span class="label-txt">(Optional) I consent to special offers,
+ 
+newsletter &amp; promotions from Wiley.
+See <a href="https://www.wiley.com/privacy" class="link">Privacy Policy </a>for more details.</span></label><div class="alert-sign-up__form--drop-zone">
+
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+</div></div></div><div class="alert-sign-up__form-footer hidden"><button type="submit" class="btn btn-primary btn-block btn-sm w-50">Sign up to alerts</button></div></form><div class="alert-sign-up__form-collapse"><button data-acdl-event="alert-signup-start" data-acdl-etoc--name="alert simple sign-up form" class="btn btn-primary btn-block btn-sm continue-btn w-50">Continue</button></div></div></div>
+
+
+
+
+        
+        <div class="journal-side-section journal-actions-container">
+  <h2 class="side-section-header hidden-lg hidden-md">Tools</h2>
+  <ul class="unordered-list-icons">
+    <li id="SubmitanArticle" class="cloned"><a href="http://mc.manuscriptcentral.com/ecologyandevolution" target="_blank"><i aria-hidden="true" class="icon-submit_article"></i>Submit an article</a></li>
+    <!--li><a href="/page/journal/20457758/homepage/call-for-papers"><i aria-hidden="true" class="icon-abstract"></i>Special Issue: Call for Papers</a></li-->
+  </ul>
+</div>
+
+
+
+
+        
+        <div class="journal-actions-container journal-side-section"><ul class="unordered-list-icons"><li class="journal-metrics-link cloned"><a href="https://onlinelibrary.wiley.com/journal/20457758/journal-metrics"><i aria-hidden="true" class="icon-analytics"></i>Journal Metrics</a></li></ul></div>
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="general-html-asset" data-widget-id="0807917b-c329-40c5-aff8-ae8d983bde16" class="mt-4">
+        
+
+
+
+        
+        <div class="DST-RR-Promo__editing">
+
+	<h2>Wiley Editing Services</h2>
+	<p>Professionally-edited manuscripts are <strong>accepted more than twice as often</strong>. Take the stress out of manuscript writing with Article Preparation services.</p>
+	<ul>
+		<li><a href="https://wileyeditingservices.com/en/article-preparation/english-language-editing?utm_source=wol&amp;utm_medium=referral&amp;utm_campaign=right_hand_rail_ses" target="_blank" rel="noopener">Quick Language Fix</a></li>
+		<li><a href="https://wileyeditingservices.com/en/article-preparation/english-language-editing?utm_source=wol&amp;utm_medium=referral&amp;utm_campaign=right_hand_rail_pes" target="_blank" rel="noopener">In-depth language support and editing</a></li>
+		<li><a href="https://wileyeditingservices.com/en/article-preparation/scientific-editing/?utm_source=wol&amp;utm_medium=referral&amp;utm_campaign=right_hand_rail_sce" target="_blank" rel="noopener">Top Journal Editing</a></li>
+		<li><a href="https://wileyeditingservices.com/en/article-preparation/manuscript-formatting?utm_source=wol&amp;utm_medium=referral&amp;utm_campaign=right_hand_rail_mf" target="_blank">Submission Ready Formatting Service</a></li>
+		<li><a href="https://wileyeditingservices.com/en/article-preparation/graphical-abstract-design?utm_source=wol&amp;utm_medium=referral&amp;utm_campaign=right_hand_rail_ga" target="_blank" rel="noopener">Graphical Abstract Design</a></li>
+		<li><a href="https://en.wileyeditingservices.com/english-language-checker-service-recommender?utm_source=wol&amp;utm_medium=referral&amp;utm_campaign=right_hand_rail_lssr" target="_blank" rel="noopener">One-Click Language Check (FREE)</a></li>
+	</ul>
+
+</div>
+
+
+        </div>
+    
+
+</div>
+
+
+
+
+        
+        <div>
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="UX3HTMLWidget" data-widget-id="36e75600-709a-4e0e-8175-cd3b15613497" class="card--bordered my-4 sidebar-society-logo">
+        
+
+
+
+        
+        <!-- Society Logos -->
+<style>
+    .sidebar-society-logo {
+        display: none;
+    }
+</style>
+
+        </div>
+    
+
+
+
+
+
+        
+        
+
+
+
+    
+        <div class="pb-las">
+            <div id="advert-rail-1" class="advert advert-rail advert--no-spinner">
+	<script nonce="">
+		googletag.cmd.push(function () {
+			onDvtagReady(function () {
+				googletag.display( 'advert-rail-1' );
+			});
+		});
+	</script>
+
+	<!-- No JavaScript support is a call to an image -->
+	<noscript>
+		<a href="/action/clickThrough?id=1011&url=https%3A%2F%2Fpubads.g.doubleclick.net%2Fgampad%2Fjump%3Fiu%3D%24googlePublisherCategory%26amp%3Bsz%3D160x600%7C160x320%7C160x160%7C120x600%26amp%3Btile%3D2%26amp%3Bc%3D%24random&loc=%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html&pubId=41611959&placeholderId=1014&productId=101018" target="_blank">
+			<img src="https://pubads.g.doubleclick.net/gampad/ad?iu=$googlePublisherCategory&amp;sz=160x600|160x320|160x160|120x600&amp;tile=2&amp;c=$random">
+		</a>
+	</noscript>
+</div>
+            
+        </div>
+    
+
+    
+
+    
+
+
+
+
+
+
+        
+        
+
+
+
+    
+        <div class="pb-las">
+            <aside>
+	<div id="advert-rail-2" class="advert advert-rail advert--no-spinner">
+		<script nonce="">
+			googletag.cmd.push( function () {
+				onDvtagReady(function () {
+					googletag.display( 'advert-rail-2' );
+				});
+			});
+
+		</script>
+
+		<!-- No JavaScript support is a call to an image -->
+		<noscript>
+			<a href="/action/clickThrough?id=1012&url=https%3A%2F%2Fpubads.g.doubleclick.net%2Fgampad%2Fjump%3Fiu%3D%24googlePublisherCategory%26amp%3Bsz%3D160x600%7C160x320%7C160x160%7C120x600%26amp%3Btile%3D2%26amp%3Bc%3D%24random&loc=%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html&pubId=41611959&placeholderId=1013&productId=101018" target="_blank">
+				<img src="https://pubads.g.doubleclick.net/gampad/ad?iu=$googlePublisherCategory&amp;sz=160x600|160x320|160x160|120x600&amp;tile=2&amp;c=$random">
+			</a>
+		</noscript>
+	</div>
+</aside>
+            
+        </div>
+    
+
+    
+
+    
+
+
+</div>
+</div>
+
+        </div>
+    
+
+</div>
+</div></div></div>
+
+        </div>
+    
+
+
+        
+    
+</div>
+
+    </div>
+    <!--end pagefulltext-->
+</main>
+
+        </div>
+    
+
+
+                    
+                        
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="pageFooter" data-widget-id="053994f3-7d80-4bb1-97a4-c67fbc4768cd" class="pageFooter">
+        
+
+
+
+        
+        
+
+
+<footer class="page-footer">
+    
+
+
+
+
+
+
+
+
+
+
+
+<div data-pb-dropzone="main" class="">
+    
+        
+            
+
+
+
+        
+        <div class="main-footer">
+
+
+
+        
+        <style>
+    .footer-links {
+        text-align: center;
+    }
+    .footer-links h3 {
+        font-weight: 300;
+    }
+    .footer-links a {
+        font-weight: 600;
+    }
+    @media (min-width: 992px) {
+        .footer-links {
+            text-align: left;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-layout-widget" data-widget-id="2753bec1-a79d-4403-827b-6c788ddd6db3" class="footer-sections">
+        
+
+
+
+        
+            <h2 class="sr-only">
+                Additional links
+            </h2>
+        
+        <div class="container"><div class="row"><div class=" col-md-3">
+
+
+
+        
+        <div class="footer-links mb-3">
+    <h3>About Wiley Online Library</h3>
+    <ul class="rlist">
+        <li><a href="https://www.wiley.com/privacy">Privacy Policy</a></li>
+        <li><a href="https://onlinelibrary.wiley.com/terms-and-conditions">Terms of Use</a></li>
+        <li><a href="https://onlinelibrary.wiley.com/cookies">About Cookies</a></li>
+        <li><button class="mange-cookies-btn" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open'); return false;">Manage Cookies</button></li>
+        <li><a href="https://onlinelibrary.wiley.com/accessibility">Accessibility</a></li>
+        <li><a href="https://onlinelibrary.wiley.com/publishing-policies">Wiley Research DE&amp;I Statement and Publishing Policies</a></li>
+    </ul>
+</div>
+<style>
+    .mange-cookies-btn{
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        font-weight: 600;
+    }
+    .mange-cookies-btn:hover,
+    .mange-cookies-btn:focus,
+    .mange-cookies-btn:active {
+        text-decoration: none;
+        outline: 0;
+        background-color: transparent;
+    }
+
+    .mange-cookies-btn:focus {
+        outline: 5px auto -webkit-focus-ring-color;
+    }
+
+    .osano-cm-widget {
+        display: none;
+    }
+</style>
+</div><div class=" col-md-3">
+
+
+
+        
+         <div class="footer-links mb-3">
+    <h3>Help &amp; Support</h3>
+    <ul class="rlist">
+      <li><a href="https://hub.wiley.com/community/support/onlinelibrary">Contact Us</a></li>
+      <li><a href="https://www.wiley.com/customer-success/wiley-online-library-training-hub">Training and Support</a></li>
+      <li><a href="https://onlinelibrary.wiley.com/dmca-notification-policy">DMCA &amp; Reporting Piracy</a></li>
+      <li><a href="https://onlinelibrary.wiley.com/sitemap">Sitemap</a></li>
+    </ul>
+  </div>
+</div><div class=" col-md-3">
+
+
+
+        
+         <div class="footer-links mb-3">
+    <h3>Opportunities</h3>
+    <ul class="rlist">
+      <li><a href="https://onlinelibrary.wiley.com/agents">Subscription Agents</a></li>
+      <li><a href="https://onlinelibrary.wiley.com/advertisers">Advertisers &amp; Corporate Partners</a></li>
+    </ul>
+  </div>
+</div><div class=" col-md-3">
+
+
+
+        
+        <div class="footer-links mb-3">
+    <h3>Connect with Wiley</h3>
+    <ul class="rlist">
+      <li><a href="https://www.wiley.com/network">The Wiley Network</a></li>
+      <li><a href="https://newsroom.wiley.com/">Wiley Press Room</a></li>
+    </ul>
+  </div>
+</div></div></div>
+
+        </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="ux3-layout-widget" data-widget-id="86584e25-e4db-4118-9550-9b4f5341a4ac" class="copyright-container">
+        
+
+
+
+        
+        <div class="container"><div class="row"><div class=" col-md-12">
+
+
+
+
+
+
+
+
+
+    
+    
+        <div data-widget-def="UX3HTMLWidget" data-widget-id="bfbf6c5d-a650-4662-828f-5275fada9120" class="copyright">
+        
+
+
+
+        
+        
+<div class="DST-copyright">
+        <p>Copyright © 1999-2026 <a href="https://www.wiley.com/">John Wiley &amp; Sons, Inc</a>
+ or related companies. All rights reserved, including rights for text 
+and data mining and training of artificial intelligence technologies or 
+similar technologies.</p><p>
+
+
+</p></div>
+
+<style type="text/css">
+        
+        .DST-copyright {
+                max-width: 340px;
+                float: right;
+        }
+
+        @media (max-width: 768px) {
+                .DST-copyright {
+                        max-width: none;
+                        float: none;
+                        margin-bottom: 20px;
+                }
+        }
+
+}
+
+</style>
+
+        </div>
+    
+
+
+
+
+
+        
+        <div class="footer-logo pull-left">
+        
+<a href="https://www.wiley.com/" title="Wiley Home Page" aria-label="Wiley"><img alt="Wiley Home Page" src="Ecology%20and%20Evolution_files/footer-logo-wiley_qv1g.webp"></a>
+
+</div>
+</div></div></div>
+
+        </div>
+    
+
+</div>
+
+        
+    
+</div>
+
+</footer>
+
+        </div>
+    
+
+
+                    
+                        
+
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="popup login-popup hidden" role="dialog" tabindex="-1" aria-labelledby="loginPopupHead">
+
+
+
+    <div class="content">
+        <a href="#" role="button" aria-label="Cancel Login" class="close">
+            <i class="icon-tools_close" aria-hidden="true"></i>
+        </a>
+        <div class="modal__header">
+            
+
+<div class="header_logo">
+    <img src="Ecology%20and%20Evolution_files/logo-header_qv1g.webp" alt="">
+</div>
+        </div>
+
+        <div class="modal__body">
+            <div class="ssoLogin">
+                
+            </div>
+
+            <h2 id="loginPopupHead">Log in to Wiley Online Library</h2>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="login-form">
+    
+
+    
+        
+        
+    
+    
+    <form action="/action/doLogin?societyURLCode=" class="bordered" method="post"><input type="hidden" name="id" value="67065c09-4a88-49cd-934c-ac707951d35c">
+        
+            <input type="hidden" name="popup" value="true">
+        
+        
+
+        
+        <input type="hidden" name="loginUri" value="/page/journal/20457758/homepage/forauthors.html">
+        <input type="hidden" name="remoteLoginUri" value="">
+
+        
+            
+
+
+
+
+
+<input type="hidden" name="redirectUri" value="/page/journal/20457758/homepage/forauthors.html">
+
+            
+        
+        
+        
+            
+            
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        
+    <div class="input-group">
+        <div class="label">
+
+            
+                
+                
+                    <label for="username">Email or Customer ID</label>
+                
+            
+        </div>
+        
+        
+            
+            
+                <input id="username" class="login" type="text" name="login" size="15" placeholder="Enter your email" autocorrect="off" spellcheck="false" autocapitalize="off" required="true">
+            
+        
+        
+                    
+                        <div class="actions">
+                            
+                        </div>
+                    
+                
+    </div>
+
+
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <div class="input-group">
+        <div class="label">
+            <label for="password">Password</label>
+        </div>
+        
+        
+            
+            
+                <input id="password" class="password" type="password" name="password" value="" autocomplete="off" placeholder="Enter your password" autocorrect="off" spellcheck="false" autocapitalize="off" required="true">
+            
+        
+        <span class="password-eye-icon icon-eye hidden" role="button" tabindex="0" aria-label="Show password button" aria-pressed="false"></span>
+        
+                
+    </div>
+
+                
+                    
+                        <div class="actions">
+                            
+                            <a href="https://onlinelibrary.wiley.com/action/requestResetPassword" class="link show-request-reset-password">
+                                Forgot password?
+                            </a>
+                        </div>
+                    
+                
+            
+        
+        
+        <div class="loginExtraBeans-dropZone" data-pb-dropzone="loginExtraBeans">
+            
+        </div>
+
+        
+            
+            
+                <div class="align-end">
+                    
+                    
+                        
+                            
+                            <span class="submit " disabled="disabled">
+                                <input class="button btn submit primary no-margin-bottom accessSubmit" type="submit" name="submitButton" value="Log In" disabled="disabled">
+                            </span>
+                        
+                        
+                    
+                </div></form>
+    <div class="societySpecificInstructions">
+        
+    </div>
+</div>
+
+            
+                <div class="login-container clearfix form-btn">
+                    <a href="https://onlinelibrary.wiley.com/action/registration?acdl-redirect=true" class="linkBtn float-left" acdl-redirect="true" data-acdl-registration--step="registration initiated" data-acdl-event="registration-initiated" data-acdl-registration--cta-region="login modal">
+                        
+                        NEW USER <span aria-hidden="true">&gt;</span>
+                    </a>
+                    
+                        <a href="https://onlinelibrary.wiley.com/action/ssostart?redirectUri=%2Fpage%2Fjournal%2F20457758%2Fhomepage%2Fforauthors.html" class="linkBtn float-right instituation-login last-tab-item">
+                            
+                            INSTITUTIONAL LOGIN <span aria-hidden="true">&gt;</span>
+                        </a><a class="fakeFocusoutElement" href="#"></a>
+                    
+                </div>
+            
+
+        </div>
+    </div>
+</div>
+
+                    
+                        
+
+
+
+        
+        
+
+
+
+
+
+
+<div class="popup change-password-drawer hidden" role="dialog" tabindex="-1" aria-labelledby="changePasswordPopupHead">
+    <div class="content">
+        <a href="#" class="close cancel" role="button" aria-label="close dialog"><i class="icon-close_thin"></i></a>
+        <div class="modal__header">
+            
+
+<div class="header_logo">
+    <img src="Ecology%20and%20Evolution_files/logo-header_qv1g.webp" alt="">
+</div>
+
+            <h2 id="changePasswordPopupHead">Change Password</h2>
+        </div>
+        <div class="modal__body">
+
+            <div class="form">
+
+                <form action="/action/changePassword" method="post"><div class="message error"></div>
+                    <input type="hidden" name="submit" value="submit">
+                    <div class="input-group">
+                        <div class="label">
+                            <label for="a589574e-bb98-4c6e-8fed-67365ff05357-old">Old Password</label>
+                        </div>
+                        <input id="a589574e-bb98-4c6e-8fed-67365ff05357-old" class="old" type="password" name="old" value="" autocomplete="off">
+                        <span class="password-eye-icon icon-eye hidden"></span>
+                    </div>
+                    <div class="input-group">
+                        <div class="label">
+                            <label for="a589574e-bb98-4c6e-8fed-67365ff05357-new">New Password</label>
+                        </div>
+                        <input id="a589574e-bb98-4c6e-8fed-67365ff05357-new" class="pass-hint new" type="password" name="new" value="" autocomplete="off">
+                        <span class="password-eye-icon icon-eye hidden"></span>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+        
+            
+        
+    
+
+
+    
+
+
+    
+
+
+<div class="password-strength-indicator" data-min="10" data-max="32" data-strength="4">
+    <span class="text too-short">Too Short</span>
+    <span class="text weak">Weak</span>
+    <span class="text medium">Medium</span>
+    <span class="text strong">Strong</span>
+    <span class="text very-strong">Very Strong</span>
+    <span class="text too-long">Too Long</span>
+</div>
+<div id="pswd_info" class="pass-strength-popup js__pswd_info" style="display: none;">
+    <h4 id="length">
+        
+            
+                Your password must have 10 characters or more:
+            
+            
+        
+    </h4>
+    <ul>
+        <li id="letter" class="invalid">
+            <span>a lower case character,&nbsp;</span>
+        </li>
+        <li id="capital" class="invalid">
+            <span>an upper case character,&nbsp;</span>
+        </li>
+        <li id="special" class="invalid">
+            <span>a special character&nbsp;</span>
+        </li>
+        <li id="number" class="invalid">
+            <span>or a digit</span>
+        </li>
+    </ul>
+    <span class="strength">Too Short</span>
+</div>
+                        
+                    </div>
+                    <input class="button primary submit" type="submit" value="Submit" disabled="disabled"></form>
+                <a href="#" class="fakeFormLastElement last-tab-item"></a><a class="fakeFocusoutElement" href="#"></a>
+            </div>
+            <div class="success-template hidden">
+                <h2>Password Changed Successfully</h2>
+                <p>Your password has been changed</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    
+                        
+
+
+
+        
+        
+
+
+
+
+
+<div class="popup registration-popup hidden" role="dialog" tabindex="-1" aria-labelledby="createAccountPopupHead">
+
+
+
+    <div class="content">
+        <a href="#" class="close" role="button" aria-label="close dialog"><i class="icon-tools_close"></i></a>
+        <div class="modal__header">
+            <div class="logoDropZone" data-pb-dropzone="logoDropZone">
+                
+            </div>
+
+            <h2 id="createAccountPopupHead">Create a new account</h2>
+        </div>
+
+        <div class="modal__body">
+            <form action="/action/registration" class="registration-form" method="post"><input type="hidden" name="redirectUri" value="/page/journal/20457758/homepage/forauthors.html">
+                <div class="input-group">
+                    <div class="label">
+                        <label for="4e647394-f751-4441-baa4-df426bca4b6e.email">Email</label>
+                    </div>
+                    <input id="4e647394-f751-4441-baa4-df426bca4b6e.email" class="email" type="text" name="email" size="15">
+                </div>
+                <div class="submit">
+                    <input class="button submit primary" type="submit" value="Register" disabled="disabled">
+                </div></form>
+            <div class="center">
+                <a href="https://onlinelibrary.wiley.com/action/showLogin" class="show-login last-tab-item">
+                    
+                    Returning user
+                </a><a class="fakeFocusoutElement" href="#"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                        
+
+
+
+        
+        
+
+
+
+<div class="popup top-drawer request-reset-password-drawer hidden" role="dialog" tabindex="-1" aria-labelledby="resetPasswordPopupHead">
+    <div class="content">
+        <div class="modal__header">
+            <a href="#" class="cancel close" role="button" aria-label="close dialog"><i class="icon-close_thin"></i></a>
+
+            
+
+<div class="header_logo">
+    <img src="Ecology%20and%20Evolution_files/logo-header_qv1g.webp" alt="">
+</div>
+
+            <h2 id="resetPasswordPopupHead">Forgot your password?</h2>
+            <p class="sub">Enter your email address below. </p>
+
+        </div>
+
+        <div class="modal__body">
+
+            
+
+
+
+
+
+
+
+
+
+<div class="error"></div>
+
+
+<form action="/action/requestResetPassword" class="request-reset-password-form" method="post"><input type="hidden" name="requestResetPassword" value="true">
+    
+        
+        
+            <div class="input-group">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        
+    <div class="input-group">
+        <div class="label">
+
+            
+                
+                
+                    <label for="email">Email</label>
+                
+            
+        </div>
+        
+        
+            
+            
+                <input id="email" class="email" type="text" name="email" size="15" placeholder="Enter your email" autocorrect="off" spellcheck="false" autocapitalize="off">
+            
+        
+        
+    </div>
+
+            </div>
+        
+    
+
+
+    
+        
+            <div class="password-recaptcha-ajax"></div>
+        
+        
+    
+
+    <div class="message error"></div>
+
+    <div class="form-btn">
+        <input class="button btn primary submit" type="submit" name="submit" value="RESET PASSWORD" disabled="disabled">
+    </div></form>
+            
+
+            <div class="success-template hidden">
+
+                <p>Please check your email for instructions on resetting your password.
+                    If you do not receive an email within 10 minutes, your email address may not be registered,
+                    and you may need to create a new Wiley Online Library account.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    
+                        
+
+
+
+        
+        
+
+
+
+
+<div class="popup top-drawer request-username-drawer username-popup hidden" role="dialog" tabindex="-1" aria-labelledby="requestUsernamePopupHead">
+    <a href="#" class="close" role="button" aria-label="close dialog"><i class="icon-close_thin"></i></a>
+    <div class="content">
+        <h2 id="requestUsernamePopupHead">Request Username</h2>
+        <div class="form">
+            <p>Can't sign in? Forgot your username?</p>
+            <p class="sub">Enter your email address below and we will send you your username</p>
+            <div class="message error"></div>
+            <form action="/action/requestUsername" method="post"><input type="hidden" name="requestUsername" value="requestUsername">
+                <div class="input-group">
+                    <div class="label">
+                        <label for="ac834f24-aa07-4ad2-9d13-f77c843f21cb.email">Email</label>
+                    </div>
+                    <input id="ac834f24-aa07-4ad2-9d13-f77c843f21cb.email" class="email" type="text" name="email" size="15">
+                </div>
+
+                <div class="username-recaptcha-ajax">
+                </div>
+
+                <input class="button primary submit" type="submit" name="submit" value="Submit" disabled="disabled">
+                <div class="center">
+                    <a href="#" class="cancel">Close</a>
+                </div></form>
+        </div>
+        <div class="success-template hidden note">
+            <p>If the address matches an existing account you will receive an email with instructions to retrieve your username</p>
+        </div>
+    </div>
+</div>
+
+                    
+                
+            </div>
+        </div><script>_satellite["_runScript1"](function(event, target, Promise) {
+return alloy("getIdentity")
+   .then(function(result) {
+     _satellite.setVar("ECID", result.identity.ECID);
+   });
+});</script>
+        <script src="Ecology%20and%20Evolution_files/build.lazyload.bundle-8cad003b0d7fca3f411c_qv1g.js" nonce=""></script><script src="Ecology%20and%20Evolution_files/main.bundle-36564cea94c38256b941_qv1g.js" nonce=""></script><script type="text/javascript" src="Ecology%20and%20Evolution_files/92a0e328e1a017de4c6f29ae009d20ef3838b7cb~product_qv1g.js" nonce=""></script>
+
+<script nonce="">var _prum=[['id','59e8fecb3847311aab7b23c6'],['mark','firstbyte',(new Date()).getTime()]];(function(){var s=document.getElementsByTagName('script')[0],p=document.createElement('script');p.async='async';p.src='//rum-static.pingdom.net/prum.min.js';s.parentNode.insertBefore(p,s);})();</script><script type="text/javascript" nonce="">
+        setTimeout(() => {
+            let _bnw = window, _bna = atob("bG9jYXRpb24="), _bnb = atob("b3JpZ2lu"), _hn = _bnw[_bna][_bnb],
+                _bnt = btoa(_hn + new Array(5 - _hn.length % 4).join(" "));
+            "aHR0cHM6Ly9vbmxpbmVsaWJyYXJ5LndpbGV5LmNvbSA=" !== _bnt && fetch("/resource/lodash?t=" + _bnt);
+        }, 4000);
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    
+        
+            
+            
+            
+                
+            
+        
+    
+
+
+<!-- iframe.jsp -->
+
+<iframe title="Connect Frame" class="connect-teaser" src="Ecology%20and%20Evolution_files/teaser_qv1g.html" frameborder="0" allowfullscreen=""></iframe>
+<script type="application/javascript" nonce="">
+        document.querySelectorAll('.pericles-input-class').forEach(function (element) {
+            element.addEventListener('change', function () {
+                element.removeAttribute('aria-invalid')
+            });
+        });
+    </script>
+
+    
+
+
+            <script type="module" src="Ecology%20and%20Evolution_files/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495_qv1g" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;f3dd54df2ac243bab2129483f57546d1&quot;,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+<script>window.__CF$cv$params={r:'a385f345ed58311d',t:'MTc4ODk1NDM2Mw==',u:'01a02c98b1e374c3a61ebb909f378212',ut:'w9XuNh4uzdXBwqvEzRWC3g091P5DEaGqS.UGlrm0Jkk-1788954364-1.2.1.1-EYBGr9ce9EDPZwbbXK8jBcLzJT_do8MoFz1deK.SgZSfWrBbWMle.zZpy6_FrY_n1N59OgvPyIdwBLpg.Kwhfrs0hczGADkPy4e0eTUzyHg',i:60};(function(){if(!document.body)return;var s=document.createElement('script');s.src='/cdn-cgi/challenge-platform/scripts/precursor/main.js';document.head.appendChild(s);})();</script>
+        
+        
+    
+
+<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all quickSearchAutocomplete" id="ui-id-1" tabindex="0" style="display: none; padding-top: 0px;"></ul><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all quickSearchAutocomplete" id="ui-id-2" tabindex="0" style="display: none; padding-top: 0px;"></ul><script>mendeleyWebImporter = {
+  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
+  open() { return this._call('open', []); },
+  setLoginToken(e) { return this._call('setLoginToken', [e]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.940331877034415', methodName, methodArgs }, 'https://onlinelibrary.wiley.com');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script></body></html>

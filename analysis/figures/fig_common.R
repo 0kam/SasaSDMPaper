@@ -130,8 +130,8 @@ LAB <- c(
   northness = "Northness (cos aspect)",
   eastness  = "Eastness (sin aspect)",
   suitability = "Habitat suitability",
-  p_col_9yr = "P(colonized in 9 yr)",
-  p_col_2030 = "P(colonized by 2030)",
+  p_col_9yr = "P(established within 9 years)",
+  p_col_2030 = "P(established by 2030)",
   easting   = "Easting (m)",
   northing  = "Northing (m)"
 )
@@ -152,6 +152,6 @@ PROB_LABELS <- c("0", "0.01", "0.1", "0.5")
 # ---- Scenario labels -----------------------------------------------------
 SCEN_LABELS <- c(
   s0    = "No change (s = 0)",
-  sm071 = expression("Observed trend (s = -0.71 d yr"^-1*")"),
-  sm224 = expression("CI lower bound (s = -2.24 d yr"^-1*")")
+  sm071 = "Observed trend (s = −0.71 days/year)",
+  sm224 = "CI lower bound (s = −2.24 days/year)"
 )

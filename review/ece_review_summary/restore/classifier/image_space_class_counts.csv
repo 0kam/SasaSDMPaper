@@ -1,0 +1,5 @@
+quantity,variant,Sasa,Other_vegetation,Non_vegetated,Rowan,Ermans_birch,Montane_alder,Dwarf_pine
+"class pixel counts inside mask (n=11,779,750)",2012_5x5,283497,7156489,1399432,422534,151444,414677,1951677
+"class pixel counts inside mask (n=11,779,750)",2021_5x5,322102,6785271,1555090,469153,139353,470096,2038685
+"class pixel counts inside mask (n=11,779,750)",2012_1x1_RNN,275536,6607873,1690294,376191,213942,527823,2088091
+"class pixel counts inside mask (n=11,779,750)",2021_1x1_RNN,278364,6544326,1797691,463478,131085,631673,1933133

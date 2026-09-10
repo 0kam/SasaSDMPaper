@@ -1,0 +1,4 @@
+model,sasa_px_2012,sasa_px_2021,net,gross_gain,gross_loss,net_pct
+surviving 5x5 CNN-LSTM (50 ep),283497,322102,38605,104336,65731,13.62
+surviving 1x1 RNN (200 ep),275536,278364,2828,95669,92841,1.03
+"PUBLISHED, georectified 1 m raster (m2)",8547,10176,1629,4097,2468,19.06

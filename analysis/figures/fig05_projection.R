@@ -89,7 +89,7 @@ xr <- c(core$xmin, core$xmax); yr <- c(core$ymin, core$ymax)
 # Axis breaks are identical to Fig. 4 (analysis/figures/fig04_potential_vs_
 # establishment.R) so that the two figures' maps are read the same way; the
 # labels stay horizontal.
-X_BREAKS <- seq(732800, 734000, by = 400)
+X_BREAKS <- c(733000, 733500)
 Y_BREAKS <- seq(4050800, 4051800, by = 400)
 
 # Scale bar: 200 m, lower right, drawn in map units so it is exact.
@@ -113,7 +113,7 @@ map_furniture <- function(p) {
     labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
     theme(legend.position = "top",
           legend.title = element_text(vjust = 1),
-          axis.text = element_text(size = 11),
+          axis.text = element_text(size = 9.5),
           # Right pad: at 11 pt the 734000 tick label overruns the panel.
           plot.margin = margin(2, 8, 2, 2, "mm"))
 }
@@ -135,7 +135,7 @@ zoom_furniture <- function(p, outline_colour = SASA_OUTLINE_COLOUR,
     labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
     theme(legend.position = "top",
           legend.title = element_text(vjust = 1),
-          axis.text = element_text(size = 11),
+          axis.text = element_text(size = 9.5),
           plot.margin = margin(2, 8, 2, 2, "mm"))
 }
 
@@ -145,7 +145,7 @@ base_map <- function() {
 }
 
 # Bar widened from 38 mm so that the 10.8 pt tick labels do not touch.
-cbar <- function(...) guide_colourbar(barwidth = unit(52, "mm"), barheight = unit(2.6, "mm"),
+cbar <- function(...) guide_colourbar(barwidth = unit(46, "mm"), barheight = unit(2.6, "mm"),
                                       title.position = "top", ticks.colour = "grey20", ...)
 
 # ---- (a) P(colonized by 2030), s = 0 --------------------------------------
@@ -195,7 +195,7 @@ diff_scale <- scale_fill_gradientn(
     labels = function(x) ifelse(abs(abs(x) - diff_lim) < 1e-9,
                                 sprintf("%s%.3f", ifelse(x < 0, "≤ −", "≥ +"), abs(x)),
                                 sprintf("%s%.3f", ifelse(x < 0, "−", ifelse(x > 0, "+", "")), abs(x))),
-  name = expression(Delta*"P (s = −0.71 minus s = 0), 10 m mean"),
+  name = expression(atop(Delta*"P (s = −0.71 minus s = 0),", "10 m mean")),
   guide = cbar()
 )
 
@@ -226,8 +226,8 @@ SCEN_COL <- c(s0    = unname(okabeito_colours["bluishgreen"]),
               sm071 = unname(okabeito_colours["vermillion"]),
               sm224 = unname(okabeito_colours["blue"]))
 SCEN_TEXT <- c(s0    = "s == 0",
-               sm071 = "s == -0.71~d~yr^-1",
-               sm224 = "s == -2.24~d~yr^-1")
+               sm071 = "s == -0.71~'days/year'",
+               sm224 = "s == -2.24~'days/year'")
 
 traj$scenario <- factor(traj$scenario, levels = names(SCEN_COL))
 ends <- traj[traj$year == max(traj$year), ]
@@ -253,9 +253,9 @@ p_e <- ggplot(traj, aes(year, cumulative_expected_area_m2,
   # Two-line y title: at 12 pt the one-line version is taller than the panel and
   # is clipped top and bottom.
   labs(x = "Year",
-       y = expression(atop("Cumulative expected new", "colonization (" * m^2 * ")"))) +
+       y = "Cumulative expected new\nestablishment (m²)") +
   theme_paper(base_size = 12, style = "classic") +
-  theme(axis.text = element_text(size = 11))
+  theme(axis.text = element_text(size = 9.5))
 
 # ---- Assemble -------------------------------------------------------------
 # Each map column is its own nested patchwork so that guides = "collect" merges
@@ -278,9 +278,9 @@ fig <- ((col_left | col_right) / p_e) +
 
 # Height raised from 170 mm: the figure gained a whole row of zoom panels.
 save_figure(fig, file.path(DIR_OUT_FIG, "fig05_projection.pdf"),
-            width_mm = W_2COL, height_mm = 244)
+            width_mm = 170, height_mm = 244)
 save_figure(fig, file.path(DIR_OUT_FIG, "fig05_projection.png"),
-            width_mm = W_2COL, height_mm = 244, dpi = 300)
+            width_mm = 170, height_mm = 244, dpi = 300)
 
 # ---- Self-checks ----------------------------------------------------------
 chk <- traj[traj$year == 2030, c("scenario", "cumulative_expected_area_m2")]

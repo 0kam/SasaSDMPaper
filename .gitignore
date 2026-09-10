@@ -1,10 +1,29 @@
-paper/
+# ---------------------------------------------------------------------------
+# Manuscript sources (paper/*.qmd, export.bib, _extensions/, files/) ARE
+# tracked. Only the Quarto build products and editing backups are excluded.
+# ---------------------------------------------------------------------------
+paper/.quarto/
+paper/index_files/
+paper/*_files/
+paper/*.tex
+paper/*.spl
+paper/*.log
+paper/*.bak*
+paper/ja/*.docx
+paper/ja/*.html
+paper/ja/*.pdf
 
-# large files
+# ---------------------------------------------------------------------------
+# Large binaries. These are NOT in git; they are distributed through the
+# Zenodo deposit instead (see README.md, "Data availability").
+# ---------------------------------------------------------------------------
 *.tiff
+*.db
 *.zip
 *.npy
 *.rds
+ortho/data/georectified.csv
+data_external/veg2024bk4.gpkg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -214,3 +233,14 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 .Rproj.user
+
+# ---------------------------------------------------------------------------
+# Regenerable analysis rasters and blind-interpretation image crops are large;
+# they are distributed through the Zenodo deposit, not git.
+# ---------------------------------------------------------------------------
+analysis/out/*.tif
+review/**/*.tif
+review/image_interpretation_package/crops/
+review/image_interpretation_package/crops_native/
+review/image_interpretation_package/blind_overlay/
+review/image_interpretation_package/_cache/

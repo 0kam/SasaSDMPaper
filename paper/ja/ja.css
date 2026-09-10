@@ -1,0 +1,11 @@
+
+body { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 11pt; line-height: 1.75; max-width: 175mm; margin: 0 auto; }
+h1, h2, h3 { font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; }
+h1 { font-size: 15pt; margin-top: 2em; }
+h2 { font-size: 13pt; }
+h3 { font-size: 12pt; }
+figure { page-break-inside: avoid; }
+figcaption { font-size: 9.5pt; line-height: 1.5; }
+img { max-width: 100%; }
+@page { size: A4; margin: 22mm 20mm; }
+@media print { a { color: inherit; text-decoration: none; } }

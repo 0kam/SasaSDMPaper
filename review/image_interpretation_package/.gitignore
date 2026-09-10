@@ -1,0 +1,3 @@
+# regenerable cache (~230 MB): camera fit, reconstructed mask,
+# per-pixel ground area, projected cell coordinates.
+_cache/

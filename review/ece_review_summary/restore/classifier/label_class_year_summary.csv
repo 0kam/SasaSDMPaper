@@ -1,0 +1,8 @@
+raster_value,model_class,ja_corrected,scientific,poly_2012,poly_2015,poly_2021,poly_total,px_2012,px_2015,px_2021,px_total
+1,0,ササ,Sasa spp.,0,8,17,25,0,32094,6302,38396
+2,1,その他植生,Other vegetation,0,57,19,76,0,286869,52570,339439
+3,2,無植生,Non-vegetated,0,14,15,29,0,30150,10482,40632
+4,3,ナナカマド,Sorbus spp.,4,12,0,16,2947,26335,0,29282
+5,4,ミネカエデ,Acer tschonoskii,0,16,0,16,0,12758,0,12758
+6,5,ミヤマハンノキ,Alnus alnobetula ssp. maximowiczii,0,14,0,14,0,48130,0,48130
+7,6,ハイマツ,Pinus pumila,3,16,21,40,4881,81191,23303,109375

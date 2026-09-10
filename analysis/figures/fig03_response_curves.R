@@ -10,7 +10,7 @@
 #          the CSV is absent -- the block below reproduces analysis/03_model_A.R
 #          lines 148-168 exactly, same seed, same 5000-row PDP sample)
 #         analysis/out/predictors.tif, ortho/data/vege_2021_5x5.tiff (rug data)
-# Output: paper/files/fig03_response_curves.pdf / .png   (190 mm wide)
+# Output: paper/files/fig03_response_curves.pdf / .png   (170 mm wide)
 
 source(file.path("analysis", "figures", "fig_common.R"))
 theme_set(theme_paper(base_size = 12, style = "classic"))
@@ -22,17 +22,14 @@ PATH_PREDICTOR_STACK <- file.path(DIR_ANALYSIS_OUT, "predictors.tif")
 # Panel order: snow_mean first (top-left) -- this panel carries the claim.
 PANEL_VARS <- c("snow_mean", "elevation", "slope", "TPI", "twi", "northness")
 
-# The long predictor names do not fit on one line inside a three-column panel,
-# so the strip labels are wrapped. At base_size 12 on the widened 190 mm canvas
-# each column is about 58 mm, which takes 30 characters, so every name used here
-# now stays on one line and the two panel rows keep the same strip height.
+# Wrap long predictor names for three columns at the final 170 mm width.
 wrap_strip <- function(x) vapply(x, function(s)
-  paste(strwrap(s, width = 30), collapse = "\n"), character(1))
+  paste(strwrap(s, width = 24), collapse = "\n"), character(1))
 
 # The shaded band marks the snowmelt window, defined from the data rather than
-# hard-coded: the contiguous snow_mean range over which the partial-dependence
-# suitability stays within 10 % of its maximum.
-WINDOW_REL_HEIGHT <- 0.90
+# hard-coded: the DOY range where Model A partial dependence is at or above
+# 85% of its peak.
+WINDOW_REL_HEIGHT <- 0.85
 
 # ---- 1. Partial-dependence profiles --------------------------------------
 
@@ -148,6 +145,10 @@ snow_window <- local({
 message(sprintf("Snowmelt window (>= %.0f%% of peak suitability): DOY %.0f-%.0f",
                 100 * WINDOW_REL_HEIGHT, snow_window[1], snow_window[2]))
 
+snow_pdp <- pdp[pdp$predictor == "snow_mean", ]
+message(sprintf("Snowmelt peak: DOY %.0f (partial-dependence suitability %.8f)",
+                snow_pdp$x[which.max(snow_pdp$yhat)], max(snow_pdp$yhat)))
+
 window_rect <- data.frame(
   predictor = factor("snow_mean", levels = PANEL_VARS),
   xmin = snow_window[1], xmax = snow_window[2],
@@ -160,7 +161,7 @@ window_label <- data.frame(
   # suitability ~0.09) is empty.
   x = max(pdp$x[pdp$predictor == "snow_mean"]),
   y = y_range[2] + 0.21 * y_span,
-  label = sprintf("Snowmelt window\nDOY %.0f-%.0f", snow_window[1],
+  label = sprintf("Snowmelt window\nDOY %.0f–%.0f", snow_window[1],
                   snow_window[2]))
 
 # ---- 5. Plot -------------------------------------------------------------
@@ -201,12 +202,10 @@ p <- ggplot(pdp, aes(x = x, y = yhat)) +
         axis.title.y = element_text(margin = margin(r = 1.5, unit = "mm")),
         plot.margin = margin(2, 3, 2, 2, "mm"))
 
-# Width raised from 140 mm (1.5 column) to the full 190 mm: at base_size 12 the
-# wrapped strip labels and the DOY tick labels no longer fit three to a row at
-# 140 mm. Height raised from 98 mm in step, keeping the panels close to square.
+# Render directly at the manuscript width so the 10–12 pt text is not reduced.
 save_figure(p, file.path(DIR_OUT_FIG, "fig03_response_curves.pdf"),
-            width_mm = W_2COL, height_mm = 118)
+            width_mm = 170, height_mm = 118)
 save_figure(p, file.path(DIR_OUT_FIG, "fig03_response_curves.png"),
-            width_mm = W_2COL, height_mm = 118, dpi = 300)
+            width_mm = 170, height_mm = 118, dpi = 300)
 
 message("Wrote paper/files/fig03_response_curves.{pdf,png}")

@@ -29,6 +29,12 @@
 #  checked for exact agreement.)
 # =============================================================================
 
+# --figures-only never reads raw snow data or writes statistics/raster files.
+if ("--figures-only" %in% commandArgs(trailingOnly = TRUE)) {
+  source(file.path("analysis", "figures", "figS_snowmelt_trends.R"))
+  quit(save = "no", status = 0)
+}
+
 t0 <- Sys.time()
 source(file.path(Sys.getenv("SASA_REPO_ROOT",
                             unset = "/Users/okamoto/NIES/SasaSDMPaper"),
@@ -163,73 +169,6 @@ print(stats_tbl[, c("quantity", "value")])
 # -----------------------------------------------------------------------------
 # 5. Figures
 # -----------------------------------------------------------------------------
-# English labels, no in-plot titles, axis text >= 11 pt, 300 dpi.
-theme_snow <- theme_bw(base_size = 12) +
-  theme(axis.text  = element_text(size = 11, colour = "black"),
-        axis.title = element_text(size = 12),
-        panel.grid.minor = element_blank(),
-        plot.title = element_blank())
-
-# (a) annual mean DOY with OLS fit and 95% CI band
-pred_x <- data.frame(year = seq(min(annual$year), max(annual$year), length.out = 100))
-pred <- cbind(pred_x, as.data.frame(
-  stats::predict(land_fit, newdata = pred_x, interval = "confidence")))
-
-p_a <- ggplot(annual, aes(x = year, y = mean_doy)) +
-  geom_ribbon(data = pred, aes(x = year, ymin = lwr, ymax = upr),
-              inherit.aes = FALSE, fill = "grey70", alpha = 0.45) +
-  geom_line(data = pred, aes(x = year, y = fit), inherit.aes = FALSE,
-            linewidth = 0.7) +
-  geom_point(size = 2.4) +
-  scale_x_continuous(breaks = annual$year) +
-  labs(x = "Year", y = "Mean snowmelt date (day of year)") +
-  theme_snow +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-ggsave(file.path(DIR_OUT, "fig_snowmelt_annual_mean.png"), p_a,
-       width = 6, height = 4, dpi = 300)
-
-# (b) histogram of per-pixel slopes with a zero reference line.
-# The x range is trimmed to the 0.1-99.9 percentiles: a few hundred pixels have
-# |slope| > 5 d/yr (steep, poorly constrained snow-patch edges) and would
-# otherwise stretch the axis to +/- 15 and flatten the distribution to a spike.
-# The number of pixels outside the plotted range is reported on stdout.
-hist_lim <- as.numeric(stats::quantile(b, c(0.001, 0.999)))
-n_outside <- sum(b < hist_lim[1] | b > hist_lim[2])
-msg(sprintf("slope histogram trimmed to [%.2f, %.2f]; %d pixels (%.3f%%) outside",
-            hist_lim[1], hist_lim[2], n_outside, 100 * n_outside / n_pix))
-p_b <- ggplot(data.frame(slope = b), aes(x = slope)) +
-  geom_histogram(binwidth = diff(hist_lim) / 80, fill = "grey45", colour = NA) +
-  geom_vline(xintercept = 0, linewidth = 0.6, colour = "black") +
-  geom_vline(xintercept = slope_mean, linewidth = 0.6, linetype = "dashed",
-             colour = "black") +
-  coord_cartesian(xlim = hist_lim) +
-  labs(x = expression(paste("Pixelwise snowmelt trend (days ", year^-1, ")")),
-       y = "Number of pixels") +
-  theme_snow
-ggsave(file.path(DIR_OUT, "fig_snowmelt_slope_hist.png"), p_b,
-       width = 6, height = 4, dpi = 300)
-
-# (c) map of the slope raster (symmetric diverging scale about 0)
-lim <- as.numeric(stats::quantile(abs(b), 0.99, na.rm = TRUE))
-# na.rm = FALSE keeps the full rectangular grid so that geom_raster() sees an
-# evenly spaced lattice (NA cells simply render transparent); dropping NAs first
-# would leave gaps in x and make ggplot shift the cells.
-map_df <- as.data.frame(slope_rast, xy = TRUE, na.rm = FALSE)
-names(map_df)[3] <- "slope"
-p_c <- ggplot(map_df, aes(x = x, y = y, fill = slope)) +
-  geom_raster() +
-  coord_equal(expand = FALSE) +
-  scale_fill_gradient2(low = "#2166ac", mid = "grey95", high = "#b2182b",
-                       midpoint = 0, limits = c(-lim, lim), oob = scales::squish,
-                       na.value = "transparent",
-                       name = expression(paste("days ", year^-1))) +
-  labs(x = "Easting (m)", y = "Northing (m)") +
-  theme_snow +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.title = element_text(size = 11))
-ggsave(file.path(DIR_OUT, "fig_snowmelt_slope_map.png"), p_c,
-       width = 6.5, height = 5.5, dpi = 300)
-
-msg("wrote 3 figures to ", DIR_OUT)
+source(file.path("analysis", "figures", "figS_snowmelt_trends.R"))
 
 finish_script("06_snowmelt_stats.R", t0)

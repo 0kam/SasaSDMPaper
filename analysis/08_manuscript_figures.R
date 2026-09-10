@@ -5,6 +5,12 @@
 # reviewers' requests: no in-plot titles, shared legends, >= 11 pt text, all
 # panels large. Written to paper/files/ so the Quarto sources can include them.
 
+# Regenerate only S1/S3 from saved outputs; avoid rebuilding unrelated figures.
+if ("--snowmelt-only" %in% commandArgs(trailingOnly = TRUE)) {
+  source(file.path("analysis", "figures", "figS_snowmelt_trends.R"))
+  quit(save = "no", status = 0)
+}
+
 t0 <- Sys.time()
 source(file.path("analysis", "00_config.R"))
 suppressPackageStartupMessages({
@@ -148,9 +154,8 @@ p_comp <- ggplot(top, aes(x = reorder(凡例名, share_of_scenario_total), y = 1
 ggsave(file.path(DIR_PAPER_FILES, "fig_risk.png"), p_rk + p_comp + plot_layout(widths = c(1.2, 1)),
        width = 14, height = 7.6, dpi = 300)
 
-# ---- Snowmelt figures: copy WP6 outputs into paper/files ---------------------
-for (f in c("fig_snowmelt_annual_mean.png", "fig_snowmelt_slope_hist.png", "fig_snowmelt_slope_map.png"))
-  file.copy(file.path(DIR_OUT, f), file.path(DIR_PAPER_FILES, f), overwrite = TRUE)
+# ---- Snowmelt figures: regenerate at final SI sizes and copy to SI -----------
+source(file.path("analysis", "figures", "figS_snowmelt_trends.R"))
 
 cat("Figures written to", DIR_PAPER_FILES, "\n")
 finish_script("08_manuscript_figures.R", t0)

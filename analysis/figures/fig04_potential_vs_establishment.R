@@ -80,7 +80,7 @@ sasa21_core <- sf::st_as_sf(terra::crop(sasa21_sf, core))
 sasa21_zoom <- sf::st_as_sf(terra::crop(sasa21_sf, zoom_ext()))
 stopifnot(nrow(sasa21_core) > 0, nrow(sasa21_zoom) > 0)
 
-X_BREAKS <- seq(732800, 734000, by = 400)
+X_BREAKS <- c(733000, 733500)
 Y_BREAKS <- seq(4050800, 4051800, by = 400)
 
 # Hand-drawn scale bar: guarantees >= 10 pt text (annotation_scale sizes text in
@@ -123,7 +123,7 @@ map_frame <- function(p) {
       legend.position = "top",
       legend.title.position = "top",
       legend.justification = "left",
-      axis.text = element_text(size = 11),
+      axis.text = element_text(size = 9.5),
       # Right pad: at 11 pt the "734000" tick label (the core extent's own edge)
       # is most of a label wider than the panel and is otherwise clipped.
       plot.margin = margin(1, 8, 1, 1, "mm")
@@ -143,7 +143,7 @@ zoom_frame <- function(p) {
     theme(legend.position = "top",
           legend.title.position = "top",
           legend.justification = "left",
-          axis.text = element_text(size = 11),
+          axis.text = element_text(size = 9.5),
           plot.margin = margin(1, 8, 1, 1, "mm"))
 }
 
@@ -318,9 +318,9 @@ p_e <- ggplot() +
     limits = c(y_min, 0.2)
   ) +
   labs(x = expression("Distance to the 2012 "*italic("Sasa")*" front (m)"),
-       y = "Nine-year colonization rate") +
+       y = "Nine-year\nestablishment rate") +
   theme_paper(base_size = 12, style = "classic") +
-  theme(axis.text = element_text(size = 11),
+  theme(axis.text = element_text(size = 9.5),
         plot.margin = margin(2, 2, 1, 1, "mm"))
 
 # ---- Compose ---------------------------------------------------------------
@@ -344,7 +344,7 @@ fig <- ((col_left | col_right) / p_e) +
   theme(plot.tag = element_text(size = 13, face = "bold"))
 
 # Height raised from 163 mm: the figure gained a whole row of zoom panels.
-save_figure(fig, OUT_PDF, width_mm = W_2COL, height_mm = 244)
-save_figure(fig, OUT_PNG, width_mm = W_2COL, height_mm = 244, dpi = 300)
+save_figure(fig, OUT_PDF, width_mm = 170, height_mm = 244)
+save_figure(fig, OUT_PNG, width_mm = 170, height_mm = 244, dpi = 300)
 
 cat("Wrote", OUT_PDF, "and", OUT_PNG, "\n")

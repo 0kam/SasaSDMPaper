@@ -1,0 +1,29 @@
+source,true_class,pred_Sasa,pred_Other vegetation,pred_No vegetation,pred_Rowan (Sorbus),pred_Erman's birch (Betula ermanii),pred_Montane alder (Alnus),pred_Dwarf pine (Pinus pumila)
+surviving_2012_5x5_modal,Sasa,36884,816,0,14,1,0,655
+surviving_2012_5x5_modal,Other vegetation,227,337526,295,190,48,264,746
+surviving_2012_5x5_modal,No vegetation,0,299,39731,0,18,12,533
+surviving_2012_5x5_modal,Rowan (Sorbus),13,240,4,28745,5,56,175
+surviving_2012_5x5_modal,Erman's birch (Betula ermanii),199,231,0,28,12154,50,76
+surviving_2012_5x5_modal,Montane alder (Alnus),2,806,2,89,76,46959,152
+surviving_2012_5x5_modal,Dwarf pine (Pinus pumila),403,1048,445,344,35,188,106787
+surviving_2021_5x5_modal,Sasa,36831,507,0,0,50,0,982
+surviving_2021_5x5_modal,Other vegetation,287,336571,483,302,114,579,960
+surviving_2021_5x5_modal,No vegetation,12,410,39878,20,0,0,273
+surviving_2021_5x5_modal,Rowan (Sorbus),17,669,0,27780,63,308,401
+surviving_2021_5x5_modal,Erman's birch (Betula ermanii),158,498,0,157,11629,172,124
+surviving_2021_5x5_modal,Montane alder (Alnus),194,1145,0,365,17,45780,585
+surviving_2021_5x5_modal,Dwarf pine (Pinus pumila),512,618,630,358,160,209,106763
+published_2012_partial,Sasa,10297,259,0,3,3,0,635
+published_2012_partial,Other vegetation,1543,141220,108,662,489,915,3869
+published_2012_partial,No vegetation,0,226,35096,0,1,49,2191
+published_2012_partial,Rowan (Sorbus),48,56,0,15470,4,58,154
+published_2012_partial,Erman's birch (Betula ermanii),241,103,0,11,6522,19,13
+published_2012_partial,Montane alder (Alnus),0,276,0,62,14,28424,74
+published_2012_partial,Dwarf pine (Pinus pumila),438,384,140,247,39,182,103455
+published_2021_partial,Sasa,0,0,0,0,0,0,0
+published_2021_partial,Other vegetation,0,2517,205,0,0,0,6
+published_2021_partial,No vegetation,0,34,4708,0,0,0,93
+published_2021_partial,Rowan (Sorbus),0,0,0,0,0,0,0
+published_2021_partial,Erman's birch (Betula ermanii),0,0,0,0,0,0,0
+published_2021_partial,Montane alder (Alnus),0,0,0,0,0,0,0
+published_2021_partial,Dwarf pine (Pinus pumila),0,22,83,0,0,0,22621

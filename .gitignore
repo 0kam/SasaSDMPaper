@@ -9,9 +9,9 @@ paper/*.tex
 paper/*.spl
 paper/*.log
 paper/*.bak*
-paper/ja/*.docx
-paper/ja/*.html
-paper/ja/*.pdf
+
+# OS / editor cruft
+.DS_Store
 
 # ---------------------------------------------------------------------------
 # Large binaries. These are NOT in git; they are distributed through the

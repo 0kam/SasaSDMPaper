@@ -104,7 +104,7 @@ write.csv(
 # 2. Per-pixel OLS trend surface + scenario constants
 # -----------------------------------------------------------------------------
 # Documentation of the trend surface. The trend itself is SCENARIO-ONLY by
-# design (decisions.md section 7): it never enters a model as a fitted process.
+# design: it never enters a model as a fitted process.
 msg("fitting per-pixel OLS (snowmelt ~ year, DOY > 0, >= ", OLS_MIN_YEARS,
     " valid years)")
 ols <- row_ols(V, as.numeric(snow$years), min_n = OLS_MIN_YEARS)

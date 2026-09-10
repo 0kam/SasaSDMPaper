@@ -12,7 +12,7 @@ set.seed(SEED_CA)
 
 # Colonized cells persist permanently. Extinction is deliberately absent from
 # this projection because loss observations are confounded with canopy-class
-# changes (decisions.md section 7).
+# changes.
 
 inference_model_path <- model_b_inference_path()
 required_inputs <- c(

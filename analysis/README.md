@@ -22,9 +22,8 @@ top-level `README.md` for the environment variables (`SASA_REPO_ROOT`, `SASA_SMO
 | Directory | Contents |
 |---|---|
 | `R/` | Shared helpers: `distance.R`, `model_utils.R` |
-| `specs/` | Work-package specifications written before implementation (WP2/WP3, WP4, WP5, and the four numbered patches) |
 | `tests/` | Acceptance tests, one per work package; each exits non-zero on failure |
-| `figures/` | Per-figure scripts and shared styling (`fig_common.R`, `figure_recipes.R`), plus `figure_revision_report.md` |
+| `figures/` | Per-figure scripts and shared styling (`fig_common.R`, `figure_recipes.R`) |
 | `out/` | All outputs: CSV summaries, GeoTIFFs, PNG diagnostics, fitted models under `out/models/`, and the `full_run_*.log` files that carry the seeds and `sessionInfo()` |
 
 Large outputs (`out/models/*.rds`, `out/*.tif`) are not in git; they are part of the

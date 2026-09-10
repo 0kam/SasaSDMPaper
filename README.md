@@ -16,7 +16,7 @@ cellular automaton under three snowmelt scenarios.
 
 | Path | Role |
 |---|---|
-| `analysis/` | The manuscript's analysis pipeline: `00_config.R` … `08_manuscript_figures.R`, shared helpers (`R/`), work-package specifications (`specs/`), acceptance tests (`tests/`), figure scripts (`figures/`), outputs (`out/`) |
+| `analysis/` | The manuscript's analysis pipeline: `00_config.R` … `08_manuscript_figures.R`, shared helpers (`R/`), acceptance tests (`tests/`), figure scripts (`figures/`), outputs (`out/`) |
 | `scripts/vegetation_classification/` | Python/PyTorch Conv2D–LSTM classifier that turns aligned photographs into per-pixel vegetation classes |
 | `scripts/sdm/` | Species-distribution code of the **original (2026-04) submission**, superseded by `analysis/`. Retained because it defines the vegetation class codes used downstream |
 | `ortho/` | Georectification: `georectify.R` plus the geospatial inputs under `ortho/data/` |
@@ -24,7 +24,7 @@ cellular automaton under three snowmelt scenarios.
 | `data_external/` | Third-party geodata (Ministry of the Environment 1:25,000 vegetation map) |
 | `results/` | Image-space classifier output, used by the blind-interpretation package in `review/` |
 | `review/` | The three additional analyses behind the Supporting Information (snowmelt-trend sensitivity, *Sasa*–dwarf pine adjacency, blind image interpretation) and the scripts and tables that re-derived the classifier accuracy and georectification provenance (`restore/`) |
-| `paper/` | Quarto manuscript, Supporting Information, response to reviewers, figures |
+| `paper/` | Quarto manuscript, Supporting Information, figures |
 
 ## Reproduction
 

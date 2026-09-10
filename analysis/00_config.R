@@ -154,7 +154,7 @@ DOY_MIN_VALID    <- 0L   # values <= DOY_MIN_VALID are set to NA
 OLS_MIN_YEARS    <- 8L   # minimum valid years for a per-pixel OLS trend
 
 # Snowmelt shift scenarios (days per year) used by the projection layer.
-# The trend is used as a SCENARIO ONLY (decisions.md section 7): the landscape
+# The trend is used as a SCENARIO ONLY: the landscape
 # scale trend is not statistically significant, so it parameterises scenarios
 # rather than entering the model as a fitted process.
 #   0.00  : no change
@@ -170,8 +170,8 @@ SNOW_SCENARIOS <- data.frame(
 )
 
 # ---- predictor set ----------------------------------------------------------
-# roughness.tif and TRI.tif are deliberately EXCLUDED (collinear with slope;
-# decisions.md section 7). Raw `aspect` never enters the stack -- it is
+# roughness.tif and TRI.tif are deliberately EXCLUDED (collinear with
+# slope). Raw `aspect` never enters the stack -- it is
 # decomposed into northness / eastness, which are the modelled quantities.
 PREDICTOR_NAMES <- c("slope", "elevation", "TPI", "twi",
                      "northness", "eastness", "snow_mean")

@@ -34,8 +34,8 @@ affiliations:
   - id: shinshu-ims
     name: Shinshu University
     department: Institute for Mountain Science
-    address: 8304 Minamiminowa-Village, Kamiina-County
-    city: Nagano
+    address: 8304 Minamiminowa
+    city: Kamiina, Nagano
     postal-code: 399-4598
     country: Japan
 keywords:

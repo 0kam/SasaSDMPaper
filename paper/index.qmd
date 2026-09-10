@@ -11,6 +11,7 @@ author:
     email: oguma@nies.go.jp
     affiliations:
       - ref: nies-bd
+      - ref: shinshu-ims
   - name: Reiko Ide
     email: ide.reiko@nies.go.jp
     affiliations:
@@ -29,6 +30,13 @@ affiliations:
     address: 16-2 Onogawa
     city: Tsukuba, Ibaraki
     postal-code: 305-8506
+    country: Japan
+  - id: shinshu-ims
+    name: Shinshu University
+    department: Institute for Mountain Science
+    address: 8304 Minamiminowa-Village, Kamiina-County
+    city: Nagano
+    postal-code: 399-4598
     country: Japan
 keywords:
   - alpine vegetation

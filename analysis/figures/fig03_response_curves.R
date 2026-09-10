@@ -1,7 +1,7 @@
 # fig03_response_curves.R -- Fig. 3: Model A partial-dependence response curves.
 #
 # Message: habitat suitability peaks at an intermediate snowmelt date; Sasa has
-# a snowmelt window. Design reference: review/figure_redesign_plan_ja.md, Fig. 3.
+# a snowmelt window. 3.
 #
 #   Rscript analysis/figures/fig03_response_curves.R
 #

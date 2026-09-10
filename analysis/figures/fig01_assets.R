@@ -11,7 +11,7 @@
 #   schematic_modelB.png   -- panel (c): Model B concept grid
 #   thumb_pcol2030.png     -- panel (d) output: CA P(colonized by 2030), s = 0
 #
-# Design reference: review/figure_redesign_plan_ja.md, section "Fig. 1".
+# 1".
 
 source(file.path("analysis", "figures", "fig_common.R"))
 

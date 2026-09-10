@@ -45,4 +45,4 @@ These scripts were run on a GPU server and still carry that machine's relative p
 `data_source/aligned/<year>` onto `data/images/aligned/<year>/` before re-running. The
 cross-validation run directories (checkpoints and TensorBoard logs) were not retained;
 the CV metrics transcribed from them are in
-`review/ece_review_summary/restore/classifier/`.
+`review/restore/classifier/`.

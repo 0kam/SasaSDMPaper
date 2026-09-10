@@ -18,14 +18,13 @@ cellular automaton under three snowmelt scenarios.
 |---|---|
 | `analysis/` | The manuscript's analysis pipeline: `00_config.R` … `08_manuscript_figures.R`, shared helpers (`R/`), work-package specifications (`specs/`), acceptance tests (`tests/`), figure scripts (`figures/`), outputs (`out/`) |
 | `scripts/vegetation_classification/` | Python/PyTorch Conv2D–LSTM classifier that turns aligned photographs into per-pixel vegetation classes |
-| `scripts/sdm/` | Species-distribution code of the **original (2026-04) submission**, superseded by `analysis/`. Retained because it defines the vegetation class codes used downstream and is the reference for the audit reports in `review/` |
+| `scripts/sdm/` | Species-distribution code of the **original (2026-04) submission**, superseded by `analysis/`. Retained because it defines the vegetation class codes used downstream |
 | `ortho/` | Georectification: `georectify.R` plus the geospatial inputs under `ortho/data/` |
 | `data/` | Photographic and field inputs: source and aligned photographs (`images/`), hand-drawn training polygons (`labels/`), snow-front tracings (`snow/`) |
 | `data_external/` | Third-party geodata (Ministry of the Environment 1:25,000 vegetation map) |
 | `results/` | Image-space classifier output, used by the blind-interpretation package in `review/` |
-| `review/` | Peer-review work: audit and provenance reports, decision records, and the three additional analyses behind the Supporting Information |
+| `review/` | The three additional analyses behind the Supporting Information (snowmelt-trend sensitivity, *Sasa*–dwarf pine adjacency, blind image interpretation) and the scripts and tables that re-derived the classifier accuracy and georectification provenance (`restore/`) |
 | `paper/` | Quarto manuscript, Supporting Information, response to reviewers, figures |
-| `archive/original_submission_2026-04/` | The package as submitted in April 2026 (the manuscript itself is also at git commit `58da9ef`) |
 
 ## Reproduction
 
@@ -127,7 +126,6 @@ Zenodo deposit instead:
 - `analysis/out/*.tif` — predictor stack and projection rasters
 - `results/*.npy` — image-space classifier output
 - `data_external/veg2024bk4.gpkg` — the un-clipped source of `veg_murodo.gpkg`
-- `archive/original_submission_2026-04/submit_files.zip`
 
 The DOI is recorded in `paper/index.qmd` and `paper/matmet.qmd` once the deposit is
 published.

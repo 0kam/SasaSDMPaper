@@ -18,7 +18,7 @@
 # Run from the repository root:
 #   Rscript analysis/figures/fig04_potential_vs_establishment.R
 #
-# Design reference: review/figure_redesign_plan_ja.md, section "Fig. 4".
+# 4".
 # -----------------------------------------------------------------------------
 
 set.seed(20260830)

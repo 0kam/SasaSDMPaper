@@ -1,7 +1,7 @@
 # fig_common.R -- shared constants and helpers for all manuscript figures.
 # Every figure script starts with:
 #   source(file.path("analysis", "figures", "fig_common.R"))
-# Design reference: review/figure_redesign_plan_ja.md (approved 2026-08-30).
+#
 
 source(file.path("analysis", "figures", "figure_recipes.R"))
 # Base size 12 pt. Reviewer 3 asked for at least 9-10 pt; the co-authors then

@@ -45,7 +45,7 @@
 - 解析出力: analysis/out/（CSV・tif・図）
 - 原稿: paper/*.qmd（英語・正本）、paper/ja/*_ja.qmd（日本語確認版）
 - 原投稿バックアップ: paper/pre_revision_backup/
-- 査読整理・確定方針: review/ece_review_summary/
+- 査読整理・確定方針: git 履歴（commit f590ffb の review/ece_review_summary/）。デポジット版からは削除
   （review_summary_ja.md, decisions.md）
 - 再構成指示書: review/restructure_plan/manuscript_restructure_plan_ja.md
 - references.bib: paper/export.bib

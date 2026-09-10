@@ -12,7 +12,7 @@
 #
 # Run from the repository root:
 #   Rscript analysis/figures/fig05_projection.R
-# Design reference: review/figure_redesign_plan_ja.md (Fig. 5).
+# 5).
 
 set.seed(1)
 source(file.path("analysis", "figures", "fig_common.R"))

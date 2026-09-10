@@ -13,7 +13,7 @@
 #
 # Output: paper/files/fig02_study_area_change.pdf / .png (190 mm wide).
 # Run from the project root:  Rscript analysis/figures/fig02_study_area_change.R
-# Design reference: review/figure_redesign_plan_ja.md, sections 1 and "Fig. 2".
+# 2".
 
 source(file.path("analysis", "figures", "fig_common.R"))
 

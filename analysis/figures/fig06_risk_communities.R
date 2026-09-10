@@ -11,7 +11,7 @@
 #
 # Run from the repository root:
 #   Rscript analysis/figures/fig06_risk_communities.R
-# Design reference: review/figure_redesign_plan_ja.md (Fig. 6).
+# 6).
 #
 # Output: paper/files/fig06_risk_communities.pdf / .png (190 mm wide).
 # Width note: this figure was 140 mm (1.5 column) while its text was 8 pt. At

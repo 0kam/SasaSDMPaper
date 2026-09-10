@@ -26,5 +26,5 @@ and is distributed through the Zenodo deposit.
 
 The outputs of the original submission's SDM (habitat-suitability rasters, risky-area
 maps, model performance figures) previously lived here. They were removed during the
-revision; they remain in git history and their provenance is documented in
-`review/ece_review_summary/sdm_provenance_report_ja.md`.
+revision; they remain in git history (commit `f590ffb` and earlier), together with the
+provenance reports written during the revision.

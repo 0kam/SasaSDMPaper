@@ -4,7 +4,7 @@
 paper/files/SasaPaper_Figures.pptx is read-only input; everything is written to
 the _v2 copy, so re-running this script reproduces the figure from scratch.
 
-Layout (design reference: review/figure_redesign_plan_ja.md, section "Fig. 1"):
+Layout:
 
   (a) data generation -- one left-to-right chain across the top band:
       time-lapse photo -> "align, classify, geo-correct" -> product column

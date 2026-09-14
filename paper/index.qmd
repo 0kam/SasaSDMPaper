@@ -83,7 +83,7 @@ The authors declare no conflicts of interest.
 
 # Author Contributions {.unnumbered}
 
-Ryotaro Okamoto: conceptualisation, methodology, formal analysis, visualisation, writing (original draft). Hiroyuki Oguma: conceptualisation, resources, supervision, writing (review and editing). Reiko Ide: methodology (snowmelt detection), data curation, writing (review and editing).
+**Ryotaro Okamoto:** Conceptualization (equal); Data curation (lead); Methodology (lead); Software (lead); Writing – original draft (lead); Writing – review & editing (equal). **Hiroyuki Oguma:** Conceptualization (equal); Investigation (equal); Project administration (lead); Supervision (lead); Writing – review & editing (equal). **Reiko Ide:** Conceptualization (equal); Data curation (equal); Writing – review & editing (equal).
 
 # Data Availability Statement {.unnumbered}
 

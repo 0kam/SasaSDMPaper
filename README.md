@@ -127,8 +127,7 @@ Zenodo deposit instead:
 - `results/*.npy` — image-space classifier output
 - `data_external/veg2024bk4.gpkg` — the un-clipped source of `veg_murodo.gpkg`
 
-The DOI is recorded in `paper/index.qmd` and `paper/matmet.qmd` once the deposit is
-published.
+Zenodo concept DOI: https://doi.org/10.5281/zenodo.22745234 (resolves to the latest version).
 
 ## Software
 

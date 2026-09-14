@@ -87,6 +87,6 @@ Ryotaro Okamoto: conceptualisation, methodology, formal analysis, visualisation,
 
 # Data Availability Statement {.unnumbered}
 
-The imagery-derived vegetation and snowmelt rasters, terrain predictors, all fitted model objects, projection outputs, and scripted analysis pipeline with its acceptance tests will be permanently archived at Zenodo [TODO: DOI]. A development mirror is maintained at <https://github.com/0kam/SasaSDMPaper>.
+The imagery-derived vegetation and snowmelt rasters, terrain predictors, all fitted model objects, projection outputs, and scripted analysis pipeline with its acceptance tests are permanently archived at Zenodo (https://doi.org/10.5281/zenodo.22745234). A development mirror is maintained at <https://github.com/0kam/SasaSDMPaper>.
 
 # References {.unnumbered}

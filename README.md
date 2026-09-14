@@ -129,6 +129,10 @@ Zenodo deposit instead:
 
 Zenodo concept DOI: https://doi.org/10.5281/zenodo.22745234 (resolves to the latest version).
 
+The Zenodo record stores these files as a flat list (directory structure cannot be
+preserved there). File names are unique across the repository, so each file can be
+placed back at the path given in the list above before re-running the pipeline.
+
 ## Software
 
 - **R 4.5.2** — terra, sf, ggplot2, tidyterra, patchwork, dplyr, tidymodels/tidysdm,

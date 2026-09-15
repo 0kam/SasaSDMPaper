@@ -146,7 +146,7 @@ X_MAX    <- 24.0   # right edge of the drawing area
 key <- data.frame(
   y      = c(9.5, 6.5, 3.5),
   fill   = c(COL_PATCH, COL_COL, "#c7d5e2"),
-  label  = c("2012\npatch", "colonized\nby 2021", "distance\nto front"),
+  label  = c("2012\npatch", "established\nby 2021", "distance\nto front"),
   colour = c(COL_PATCH, COL_COL, "grey15")
 )
 

@@ -345,8 +345,7 @@ textbox("d input label", D_COL1_X, Y_LABEL, D_COL1_W, H_LABEL,
         [[("Model B applied annually", LABEL_SZ, False)]])
 _scen = modelbox("d scenarios box", D_COL2_X, Y_LABEL, DX2 - D_COL2_X, H_LABEL,
          [[("Snowmelt scenarios", 1400, True)],
-          [("s = 0, −0.71, −2.24 d yr", BODY_SZ, False),
-           ("−1", BODY_SZ, False, True)]])
+          [("s = 0, −0.71, −2.24 days/year", BODY_SZ, False)]])
 _bp = _scen.find(p("txBody")).find(a("bodyPr"))
 _bp.set("lIns", "20000"); _bp.set("rIns", "20000")
 _bp.set("tIns", "20000"); _bp.set("bIns", "20000")
@@ -361,7 +360,7 @@ down_arrow("d output arrow", DCX - ARROW_W / 2.0, Y_ARROW2, ARROW_W, ARROW_H)
 set_xfrm(by_id[48], DCX - H_IMG * AR_THUMB / 2.0, Y_IMG,
          H_IMG * AR_THUMB, H_IMG)
 set_xfrm(by_id[49], DX1, Y_CAP, DW, H_CAP)
-set_text(by_id[49], [[("P(colonized by 2030), s = 0", CAP_SZ, False)]])
+set_text(by_id[49], [[("P(established by 2030), s = 0", CAP_SZ, False)]])
 
 # --------------------------------------------------------------- deletions
 drop(33)                                   # duplicate vegetation-map label
@@ -385,9 +384,18 @@ replace = {"ppt/slides/slide1.xml": slide_xml,
 extra = {"ppt/media/image5.png": blob("thumb_suitability.png"),
          "ppt/media/image6.png": blob("schematic_modelB.png")}
 
+# Theme fonts in the source deck are Yu Gothic, which headless LibreOffice cannot
+# resolve; use Arial so the exported PNG matches the sans-serif figure fonts.
+def _fix_theme_fonts(name, data):
+    if name.startswith("ppt/theme/") and name.endswith(".xml"):
+        return data.replace("游ゴシック Light".encode("utf-8"), b"Arial").replace(
+            "游ゴシック".encode("utf-8"), b"Arial")
+    return data
+
 with zipfile.ZipFile(DST, "w", zipfile.ZIP_DEFLATED) as zout:
     for item in zin.infolist():
-        zout.writestr(item, replace.get(item.filename, zin.read(item.filename)))
+        zout.writestr(item, _fix_theme_fonts(item.filename,
+                      replace.get(item.filename, zin.read(item.filename))))
     for name, data in extra.items():
         zout.writestr(name, data)
 zin.close()

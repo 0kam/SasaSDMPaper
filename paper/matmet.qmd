@@ -66,4 +66,4 @@ We present two risk strata corresponding to the two modes of *Sasa* expansion. T
 
 ## Software and reproducibility
 
-All analyses used R 4.5.2 (terra, sf, tidymodels/tidysdm, stacks, spatialsample, mgcv, xgboost, ranger, maxnet, DALEX) in a scripted, non-interactive pipeline with fixed random seeds defined in a single configuration script; package versions are recorded in the `sessionInfo()` logs archived with the code. The vegetation classifier was implemented in Python with PyTorch, and image alignment used OpenCV. Code and data are archived at Zenodo (https://doi.org/10.5281/zenodo.22745234).
+All analyses used R 4.5.2 (terra, sf, tidymodels/tidysdm, stacks, spatialsample, mgcv, xgboost, ranger, maxnet, DALEX) in a scripted, non-interactive pipeline with fixed random seeds defined in a single configuration script; package versions are recorded in the `sessionInfo()` logs archived with the code. The vegetation classifier was implemented in Python with PyTorch, and image alignment used OpenCV. Code and data are archived at Zenodo (<https://doi.org/10.5281/zenodo.22745234>).

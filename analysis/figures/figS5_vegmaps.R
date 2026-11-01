@@ -65,25 +65,6 @@ veg_scale <- scale_fill_manual(
   guide = guide_legend(ncol = 3, byrow = TRUE, title.position = "top",
                        title.hjust = 0.5))
 
-# Graticule breaks must be explicit numbers: under coord_sf() a breaks
-# *function* yields no labels (same reason as in fig02_study_area_change.R).
-inner_breaks <- function(lo, hi, n = 3) {
-  b <- scales::breaks_pretty(n)(c(lo, hi))
-  b[b > lo + 0.02 * (hi - lo) & b < hi - 0.02 * (hi - lo)]
-}
-
-scale_bar <- function(len_m = 500, label = "500 m") {
-  w <- e$xmax - e$xmin; h <- e$ymax - e$ymin
-  x0 <- e$xmin + 0.05 * w; y0 <- e$ymin + 0.06 * h
-  list(
-    annotate("segment", x = x0, xend = x0 + len_m, y = y0, yend = y0,
-             colour = "black", linewidth = 0.5),
-    annotate("segment", x = c(x0, x0 + len_m), xend = c(x0, x0 + len_m),
-             y = y0, yend = y0 + 0.015 * h, colour = "black", linewidth = 0.5),
-    annotate_text_pt(x0 + len_m / 2, y0 + 0.03 * h, label,
-                     size_pt = 10, vjust = 0))
-}
-
 sasa_patches <- function(r) {
   ids <- patches(ifel(r == CLASS_SASA, 1, NA), directions = 4, zeroAsNA = TRUE)
   polys <- as.polygons(ids, aggregate = TRUE, na.rm = TRUE)
@@ -101,23 +82,19 @@ veg_panel <- function(r, raw, tag) {
     geom_tile(data = sasa_cells, aes(x, y), width = res(raw)[1], height = res(raw)[2],
               fill = VEG_COLS[["Sasa"]], show.legend = FALSE) +
     veg_scale +
-    scale_bar() +
-    scale_x_continuous(breaks = inner_breaks(e$xmin, e$xmax)) +
-    scale_y_continuous(breaks = inner_breaks(e$ymin, e$ymax)) +
+    map_scalebar_layers(e, 500) +
     coord_sf(xlim = c(e$xmin, e$xmax), ylim = c(e$ymin, e$ymax),
-             expand = FALSE, datum = sf::st_crs(v21)) +
-    labs(x = LAB[["easting"]], y = LAB[["northing"]], tag = tag)
+             expand = FALSE, datum = NA) +
+    labs(tag = tag) + theme_map()
 }
 
-# The upper panel drops its x-axis title: the two panels are aspect-locked, so
-# patchwork cannot collect the axis titles into one, and repeating "Easting (m)"
-# between the maps only pushes them apart.
-pa <- veg_panel(veg12, v12, "a") + labs(x = NULL)
+pa <- veg_panel(veg12, v12, "a") + north_arrow_layers(e)
 pb <- veg_panel(veg21, v21, "b")
 
 fig <- (pa / pb) +
   plot_layout(guides = "collect") &
-  theme(legend.position = "bottom", legend.box = "vertical")
+  theme(legend.position = "bottom", legend.box = "vertical",
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"))
 
 # 140 mm wide; the extent is nearly square (1801 x 1753 cells at 1 m), so two
 # stacked, aspect-locked panels plus the shared legend need most of a page.

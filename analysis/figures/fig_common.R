@@ -84,11 +84,11 @@ zoom_box_layers <- function(e = zoom_ext(), label = NULL, linewidth = 0.45,
   out
 }
 
-# Scale bar for a zoom panel, drawn in map units in the lower-left corner.
-zoom_scalebar_layers <- function(e = zoom_ext(), len_m = 50, colour = "black",
-                                 size_pt = 10) {
+# Scale bar in map units: 200 m on the core extent, 50 m on zoom panels.
+map_scalebar_layers <- function(e, len_m, colour = "black", size_pt = 10,
+                                frac_x = 0.06, frac_y = 0.07) {
   w <- e$xmax - e$xmin; h <- e$ymax - e$ymin
-  x0 <- e$xmin + 0.06 * w; y0 <- e$ymin + 0.07 * h
+  x0 <- e$xmin + frac_x * w; y0 <- e$ymin + frac_y * h
   list(
     annotate("segment", x = x0, xend = x0 + len_m, y = y0, yend = y0,
              colour = colour, linewidth = 0.5),
@@ -98,6 +98,35 @@ zoom_scalebar_layers <- function(e = zoom_ext(), len_m = 50, colour = "black",
     annotate_text_pt(x0 + len_m / 2, y0 + 0.028 * h, paste0(len_m, " m"),
                      size_pt = size_pt, colour = colour, vjust = 0)
   )
+}
+
+# Keep the trial figure's existing entry point on the same implementation.
+zoom_scalebar_layers <- function(e = zoom_ext(), len_m = 50, ...) {
+  map_scalebar_layers(e, len_m, ...)
+}
+
+# All maps are north-up; the upper-right corner clears the lower-left scale bar.
+north_arrow_layers <- function(e, colour = "black", size_pt = 10,
+                               frac_x = 0.94, frac_y = 0.81) {
+  w <- e$xmax - e$xmin; h <- e$ymax - e$ymin
+  x <- e$xmin + frac_x * w; y <- e$ymin + frac_y * h
+  list(
+    annotate("segment", x = x, xend = x, y = y, yend = y + 0.10 * h,
+             colour = colour, linewidth = 0.35,
+             arrow = grid::arrow(length = unit(1.5, "mm"), type = "open")),
+    annotate_text_pt(x, y + 0.12 * h, "N", size_pt = size_pt,
+                     colour = colour, vjust = 0)
+  )
+}
+
+# Apply only to maps: chart axes and the shared 12 pt base theme stay intact.
+theme_map <- function() {
+  theme(axis.title = element_blank(), axis.text = element_blank(),
+        axis.ticks = element_blank(), axis.line = element_blank(),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"),
+        legend.box.spacing = unit(1, "mm"),
+        plot.tag.position = c(0.02, 0.98), plot.tag.location = "panel",
+        plot.tag = element_text(hjust = 0, vjust = 1))
 }
 
 # Coordinate breaks for the 150 m zoom window: one every 50 m, inner ticks only.

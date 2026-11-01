@@ -122,12 +122,6 @@ anchors$x[anchors$label == "(i)"] <- anchors$x[anchors$label == "(i)"] + 60
 # ---- (a) risk map ----------------------------------------------------------
 xr <- c(core$xmin, core$xmax); yr <- c(core$ymin, core$ymax)
 
-BAR_M <- 200
-bar <- data.frame(
-  xmin = xr[2] - 0.06 * diff(xr) - BAR_M, xmax = xr[2] - 0.06 * diff(xr),
-  ymin = yr[1] + 0.055 * diff(yr), ymax = yr[1] + 0.055 * diff(yr) + 0.014 * diff(yr)
-)
-
 # Colonization probability must look the same in every figure: this is exactly
 # the scale of Fig. 4(b) and Fig. 5(a) -- viridis rocket reversed, fourth-root
 # stretch, published breaks.
@@ -138,10 +132,6 @@ root4 <- if (utils::packageVersion("scales") >= "1.3.0") {
 } else {
   scales::trans_new("root4", function(x) x^0.25, function(x) x^4)
 }
-
-# Axis breaks identical to Fig. 4 and Fig. 5; labels stay horizontal.
-X_BREAKS <- c(733000, 733500)
-Y_BREAKS <- seq(4050800, 4051800, by = 400)
 
 LINE_KEYS <- c("Community boundary", if (HAS_GGTEXT) "2021 *Sasa*" else "2021 Sasa")
 LINE_COLS <- c("grey50", SASA_OUTLINE_COLOUR)
@@ -175,21 +165,12 @@ p_a <- ggplot() +
              inherit.aes = FALSE, size = 11, size.unit = "pt",
              fill = "white", colour = "black", alpha = 0.85,
              linewidth = 0.15, label.padding = unit(0.6, "mm")) +
-  annotate("rect", xmin = bar$xmin, xmax = bar$xmax, ymin = bar$ymin, ymax = bar$ymax,
-           fill = "black", colour = "black", linewidth = 0.2) +
-  annotate_text_pt(x = mean(c(bar$xmin, bar$xmax)), y = bar$ymax + 0.03 * diff(yr),
-                   label = paste0(BAR_M, " m"), size_pt = 10, vjust = 0) +
-  coord_sf(xlim = xr, ylim = yr, expand = FALSE, datum = sf::st_crs(6690)) +
-  scale_x_continuous(breaks = X_BREAKS) +
-  scale_y_continuous(breaks = Y_BREAKS) +
-  labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
+  map_scalebar_layers(core, 200) +
+  north_arrow_layers(core) +
+  coord_sf(xlim = xr, ylim = yr, expand = FALSE, datum = NA) +
+  theme_map() +
   theme(legend.position = "bottom", legend.box = "vertical",
-        legend.box.spacing = unit(1, "mm"), legend.spacing.y = unit(0.5, "mm"),
-        axis.text = element_text(size = 9.5),
-        # Right pad so the 734000 tick label (the core extent's edge) is not
-        # clipped: this panel is narrower than the map panels of Figs. 4 and 5,
-        # and wrap_elements() below stops patchwork from finding the room itself.
-        plot.margin = margin(2, 11, 2, 2, "mm"))
+        legend.box.spacing = unit(1, "mm"), legend.spacing.y = unit(0.5, "mm"))
 
 # The line legend gets its own guide theme. Markdown legend text is applied only
 # here: setting element_markdown() on the whole plot theme also affects the
@@ -263,7 +244,7 @@ p_b <- ggplot(agg, aes(x = expected_area_m2, y = comm)) +
   labs(x = "Expected establishment\narea (m²)", y = NULL) +
   theme_paper(base_size = 12, style = "classic") +
   theme(legend.position = "bottom", legend.box.spacing = unit(1, "mm"),
-        plot.margin = margin(2, 4, 2, 2, "mm"),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"),
         axis.text.y = if (HAS_GGTEXT) ggtext::element_markdown(size = 9.5,
                                                                lineheight = 1.05,
                                                                colour = "black")
@@ -275,7 +256,8 @@ p_b <- ggplot(agg, aes(x = expected_area_m2, y = comm)) +
 # patchwork aligns the two legend rows and the map legend runs under panel (b).
 fig <- (wrap_elements(full = p_a) | wrap_elements(full = p_b)) +
   plot_layout(widths = c(1, 1.1)) +
-  plot_annotation(tag_levels = "a")
+  plot_annotation(tag_levels = "a") &
+  theme(plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"))
 
 save_figure(fig, file.path(DIR_OUT_FIG, "fig06_risk_communities.pdf"),
             width_mm = 170, height_mm = 112)

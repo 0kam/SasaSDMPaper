@@ -80,71 +80,29 @@ sasa21_core <- sf::st_as_sf(terra::crop(sasa21_sf, core))
 sasa21_zoom <- sf::st_as_sf(terra::crop(sasa21_sf, zoom_ext()))
 stopifnot(nrow(sasa21_core) > 0, nrow(sasa21_zoom) > 0)
 
-X_BREAKS <- c(733000, 733500)
-Y_BREAKS <- seq(4050800, 4051800, by = 400)
-
-# Hand-drawn scale bar: guarantees >= 10 pt text (annotation_scale sizes text in
-# `cex`, which is easy to drop below the journal minimum without noticing).
-SCALEBAR_M <- 200
-scalebar_layers <- function(colour = "black") {
-  x1 <- core$xmax - 90
-  x0 <- x1 - SCALEBAR_M
-  y0 <- core$ymin + 85
-  list(
-    annotate("segment", x = x0, xend = x1, y = y0, yend = y0,
-             colour = colour, linewidth = 0.4),
-    annotate("segment", x = c(x0, x1), xend = c(x0, x1),
-             y = y0 - 12, yend = y0 + 12, colour = colour, linewidth = 0.4),
-    annotate_text_pt(x = (x0 + x1) / 2, y = y0 + 30,
-                     label = paste0(SCALEBAR_M, " m"),
-                     size_pt = 10, colour = colour, vjust = 0)
-  )
-}
-
-# In-panel key: a white plate keeps the text legible over both the dark viridis
-# field and the empty (NA) corners of the analysis domain.
-panel_key <- function(label, parse = FALSE) {
-  annotate("label", x = core$xmin + 25, y = core$ymax - 25, label = label,
-           parse = parse, size = 10, size.unit = "pt", hjust = 0, vjust = 1,
-           colour = "black", fill = "white", alpha = 0.8,
-           label.r = unit(0, "mm"),
-           label.padding = unit(0.5, "mm"))
-}
-
 map_frame <- function(p) {
   p +
     coord_sf(xlim = c(core$xmin, core$xmax),
              ylim = c(core$ymin, core$ymax),
-             expand = FALSE, datum = sf::st_crs(CRS_MAP)) +
-    scale_x_continuous(breaks = X_BREAKS) +
-    scale_y_continuous(breaks = Y_BREAKS) +
-    labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
+             expand = FALSE, datum = NA) +
+    theme_map() +
     theme(
       legend.position = "top",
       legend.title.position = "top",
-      legend.justification = "left",
-      axis.text = element_text(size = 9.5),
-      # Right pad: at 11 pt the "734000" tick label (the core extent's own edge)
-      # is most of a label wider than the panel and is otherwise clipped.
-      plot.margin = margin(1, 8, 1, 1, "mm")
+      legend.justification = "left"
     )
 }
 
-# Zoom-panel frame: same furniture, own breaks, and no colour guide -- the bar
-# above the matching core-extent panel is shared through guides = "collect".
+# The zoom panel shares its colour guide with the matching core-extent panel.
 zoom_frame <- function(p) {
   z <- zoom_ext()
   p +
     coord_sf(xlim = c(z$xmin, z$xmax), ylim = c(z$ymin, z$ymax),
-             expand = FALSE, datum = sf::st_crs(CRS_MAP)) +
-    scale_x_continuous(breaks = ZOOM_X_BREAKS) +
-    scale_y_continuous(breaks = ZOOM_Y_BREAKS) +
-    labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
+             expand = FALSE, datum = NA) +
+    theme_map() +
     theme(legend.position = "top",
           legend.title.position = "top",
-          legend.justification = "left",
-          axis.text = element_text(size = 9.5),
-          plot.margin = margin(1, 8, 1, 1, "mm"))
+          legend.justification = "left")
 }
 
 contour_layer <- geom_sf(data = contours_core, colour = CONTOUR_COLOUR,
@@ -197,11 +155,9 @@ p_a <- ggplot() +
   sasa_layer +
   suit_scale +
   zoom_box_layers(label = "c") +
-  scalebar_layers("white")
-# Two lines: at 10 pt the one-line version of this key is wider than the panel.
-p_a <- map_frame(p_a) +
-  panel_key('atop("TSS threshold (white line),", "2021 "*italic("Sasa")*" (black)")',
-            parse = TRUE)
+  map_scalebar_layers(core, 200) +
+  north_arrow_layers(core, frac_x = 0.12)
+p_a <- map_frame(p_a)
 
 # ---- (b) Model B nine-year colonization probability ------------------------
 # Source: analysis/out/p9_colonization.tif, written by analysis/04_model_B.R --
@@ -236,9 +192,8 @@ p_b <- ggplot() +
   sasa_layer +
   p9_scale +
   zoom_box_layers(label = "d") +
-  scalebar_layers("black")
-p_b <- map_frame(p_b) +
-  panel_key('"2021 "*italic("Sasa")*" (black line)"', parse = TRUE)
+  map_scalebar_layers(core, 200)
+p_b <- map_frame(p_b)
 
 # ---- (c)(d) Zoom panels ----------------------------------------------------
 # Same two rasters, same two colour scales, cropped to ZOOM_WINDOW. At 150 m
@@ -261,14 +216,14 @@ p_c <- ggplot() +
           inherit.aes = FALSE) +
   sasa_layer_zoom +
   suit_scale +
-  zoom_scalebar_layers(colour = "white")
-p_c <- zoom_frame(p_c)
+  map_scalebar_layers(zoom_ext(), 50, colour = "white")
+p_c <- zoom_frame(p_c) + theme(plot.tag = element_text(colour = "white"))
 
 p_d <- ggplot() +
   geom_spatraster(data = p9_zoom, maxcell = Inf) +
   sasa_layer_zoom +
   p9_scale +
-  zoom_scalebar_layers(colour = "black")
+  map_scalebar_layers(zoom_ext(), 50)
 p_d <- zoom_frame(p_d)
 
 # ---- (e) Distance kernel ---------------------------------------------------
@@ -321,29 +276,29 @@ p_e <- ggplot() +
        y = "Nine-year\nestablishment rate") +
   theme_paper(base_size = 12, style = "classic") +
   theme(axis.text = element_text(size = 9.5),
-        plot.margin = margin(2, 2, 1, 1, "mm"))
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"))
 
 # ---- Compose ---------------------------------------------------------------
-# ---- Compose ---------------------------------------------------------------
-# Each map column is its own nested patchwork so that guides = "collect" merges
-# the core-extent panel and its zoom into a single colour bar per column; the
-# tags are therefore set by hand (automatic tagging skips nested patchworks).
+# Collect identical guides across the two map rows; each fill scale appears once.
 p_a <- p_a + labs(tag = "a")
 p_b <- p_b + labs(tag = "b")
 p_c <- p_c + labs(tag = "c")
 p_d <- p_d + labs(tag = "d")
 p_e <- p_e + labs(tag = "e")
 
-col_left  <- (p_a / p_c) + plot_layout(guides = "collect", heights = c(1, 1)) &
-  theme(legend.position = "top")
-col_right <- (p_b / p_d) + plot_layout(guides = "collect", heights = c(1, 1)) &
-  theme(legend.position = "top")
+# Fixed panel dimensions prevent aspect-ratio constraints from opening gaps.
+MAP_PANEL_MM <- 79
+maps <- wrap_plots(p_a, p_b, p_c, p_d, ncol = 2, guides = "collect",
+                   widths = unit(rep(MAP_PANEL_MM, 2), "mm"),
+                   heights = unit(MAP_PANEL_MM * c(13 / 14, 1), "mm")) &
+  theme(legend.position = "top", legend.box = "horizontal",
+        legend.spacing.x = unit(5, "mm"))
 
-fig <- ((col_left | col_right) / p_e) +
-  plot_layout(heights = c(2.9, 1)) &
-  theme(plot.tag = element_text(size = 13, face = "bold"))
+fig <- wrap_plots(free(maps), p_e, ncol = 1, heights = c(3.7, 1)) &
+  theme(plot.tag = element_text(size = 13, face = "bold"),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"))
 
-# Height raised from 163 mm: the figure gained a whole row of zoom panels.
+# Keep the canvas height so the coordinate-free map panels can grow.
 save_figure(fig, OUT_PDF, width_mm = 170, height_mm = 244)
 save_figure(fig, OUT_PNG, width_mm = 170, height_mm = 244, dpi = 300)
 

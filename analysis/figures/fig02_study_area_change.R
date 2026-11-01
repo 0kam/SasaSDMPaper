@@ -148,33 +148,11 @@ message(sprintf("zoom d: E %.0f-%.0f N %.0f-%.0f (%d Sasa->pine cells)",
                 zoom_d$xmin, zoom_d$xmax, zoom_d$ymin, zoom_d$ymax, wd$n))
 
 # ---- Map helpers ---------------------------------------------------------
-map_theme <- function(p, e, n_breaks = 3) {
-  # coord_sf() draws graticule labels, so the breaks must be supplied as
-  # explicit numbers: a breaks *function* yields no labels under coord_sf().
-  inner <- function(lo, hi) {
-    b <- scales::breaks_pretty(n_breaks)(c(lo, hi))
-    b[b > lo + 0.02 * (hi - lo) & b < hi - 0.02 * (hi - lo)]
-  }
+map_theme <- function(p, e) {
   p +
-    scale_x_continuous(breaks = inner(e$xmin, e$xmax)) +
-    scale_y_continuous(breaks = inner(e$ymin, e$ymax)) +
     coord_sf(xlim = c(e$xmin, e$xmax), ylim = c(e$ymin, e$ymax),
-             expand = FALSE, datum = sf::st_crs(v21)) +
-    labs(x = LAB[["easting"]], y = LAB[["northing"]])
-}
-
-# Plain scale bar drawn in map units (no dependency on ggspatial).
-scale_bar <- function(e, len_m, label, frac_x = 0.06, frac_y = 0.06) {
-  w <- e$xmax - e$xmin; h <- e$ymax - e$ymin
-  x0 <- e$xmin + frac_x * w; y0 <- e$ymin + frac_y * h
-  list(
-    annotate("segment", x = x0, xend = x0 + len_m, y = y0, yend = y0,
-             colour = "black", linewidth = 0.5),
-    annotate("segment", x = c(x0, x0 + len_m), xend = c(x0, x0 + len_m),
-             y = y0, yend = y0 + 0.015 * h, colour = "black", linewidth = 0.5),
-    annotate_text_pt(x0 + len_m / 2, y0 + 0.035 * h, label,
-                     size_pt = 10, vjust = 0)
-  )
+             expand = FALSE, datum = NA) +
+    theme_map()
 }
 
 box_ann <- function(e, colour = "black", linewidth = 0.4, linetype = 1) {
@@ -210,7 +188,8 @@ pa <- ggplot() +
   # Label sits just above the box so that it does not clash with the inset.
   annotate_text_pt(bb$xmin, bb$ymax + 30, "Core extent (b)",
                    size_pt = 10, hjust = 0, vjust = 0, fontface = "bold") +
-  scale_bar(ext_a, 500, "500 m") +
+  map_scalebar_layers(ext_a, 500) +
+  north_arrow_layers(ext_a) +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE, order = 1,
                              override.aes = list(alpha = 1)))
 pa <- map_theme(pa, ext_a)
@@ -264,7 +243,7 @@ pb <- ggplot() +
                    size_pt = 11, hjust = 0, vjust = 0, fontface = "bold") +
   annotate_text_pt(zoom_d$xmin + 2, zoom_d$ymax + 12, "d",
                    size_pt = 11, hjust = 0, vjust = 0, fontface = "bold") +
-  scale_bar(bb, 200, "200 m")
+  map_scalebar_layers(bb, 200)
 pb <- map_theme(pb, bb)
 
 # ---- (c)(d) Zoom panels --------------------------------------------------
@@ -276,8 +255,8 @@ zoom_panel <- function(e) {
     { if (!is.null(cz))
         geom_sf(data = cz, colour = CONTOUR_COLOUR,
                 linewidth = CONTOUR_LINEWIDTH, inherit.aes = FALSE) } +
-    scale_bar(e, 50, "50 m")
-  map_theme(p, e, n_breaks = 3)
+    map_scalebar_layers(e, 50)
+  map_theme(p, e)
 }
 pc <- zoom_panel(zoom_c)
 pd <- zoom_panel(zoom_d)
@@ -294,16 +273,16 @@ pb <- pb + labs(tag = "b")
 pc <- pc + labs(tag = "c")
 pd <- pd + labs(tag = "d")
 
-fig <- (pa_full | pb) / (pc | pd) +
-  plot_layout(guides = "collect", heights = c(1, 1),
-              widths = c(0.9, 1), axis_titles = "collect") &
+# Fixed panel dimensions keep the four maps close despite their different extents.
+MAP_PANEL_MM <- 83
+fig <- wrap_plots(pa_full, pb, pc, pd, ncol = 2, guides = "collect",
+                  widths = unit(rep(MAP_PANEL_MM, 2), "mm"),
+                  heights = unit(MAP_PANEL_MM * c(13 / 14, 1), "mm")) &
   theme(legend.position = "bottom", legend.box = "vertical",
-        legend.spacing.y = unit(1, "mm"))
+        legend.spacing.y = unit(1, "mm"),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"))
 
-# Height raised from 196 mm: the two-row legend and the axis labels grew with
-# the type. The maps are aspect-locked by coord_sf(), so a much taller canvas
-# only opens white space between the rows; 202 mm is the point where the legend
-# and the axis titles clear each other without a gap appearing.
+# Keep the 190 x 182 mm canvas; removing coordinate axes enlarges the maps.
 save_figure(fig, file.path(DIR_OUT_FIG, "fig02_study_area_change.pdf"),
             width_mm = W_2COL, height_mm = 182)
 save_figure(fig, file.path(DIR_OUT_FIG, "fig02_study_area_change.png"),

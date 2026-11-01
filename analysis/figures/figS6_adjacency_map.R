@@ -49,22 +49,12 @@ p <- ggplot(d, aes(x, y, fill = class)) +
   scale_fill_manual(values = pal, name = NULL,
                     guide = guide_legend(nrow = 2, byrow = TRUE)) +
   coord_sf(xlim = c(win$xmin, win$xmax), ylim = c(win$ymin, win$ymax),
-           expand = FALSE, datum = sf::st_crs("EPSG:6690")) +
-  scale_x_continuous(breaks = seq(win$xmin + 25, win$xmax - 25, 50)) +
-  scale_y_continuous(breaks = seq(win$ymin + 25, win$ymax - 25, 50)) +
-  annotate("rect", xmin = win$xmax - 65, xmax = win$xmax - 5,
-           ymin = win$ymin + 5, ymax = win$ymin + 30,
-           fill = "white", colour = "grey25", linewidth = 0.2) +
-  annotate("segment", x = win$xmax - 60, xend = win$xmax - 10,
-           y = win$ymin + 12, yend = win$ymin + 12, linewidth = 1) +
-  annotate("text", x = win$xmax - 35, y = win$ymin + 22, label = "50 m",
-           size = 10 / 2.845276) +
-  labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
-  theme(axis.text = element_text(size = 11),
-        legend.position = "top",
-        legend.text = element_text(size = 11))
+           expand = FALSE, datum = NA) +
+  map_scalebar_layers(win, 50, frac_x = 0.60, frac_y = 0.17) + north_arrow_layers(win) +
+  theme_map() +
+  theme(legend.position = "top", legend.text = element_text(size = 11))
 save_figure(p, file.path("paper", "files", "si", "figS6_adjacency_map.png"),
-            width_mm = 140, height_mm = 150, dpi = 300)
+            width_mm = 140, height_mm = 144, dpi = 300)
 stopifnot(sum(!is.na(values(lay$loss_pine))) == max(counts))
 cat(sprintf("Window: %d x %d m; easting %.0f–%.0f; northing %.0f–%.0f\n",
             WINDOW_M, WINDOW_M, win$xmin, win$xmax, win$ymin, win$ymax))

@@ -86,39 +86,18 @@ traj <- read.csv(file.path(DIR_ANALYSIS_OUT, "ca_trajectory.csv"))
 # ---- Shared map furniture -------------------------------------------------
 xr <- c(core$xmin, core$xmax); yr <- c(core$ymin, core$ymax)
 
-# Axis breaks are identical to Fig. 4 (analysis/figures/fig04_potential_vs_
-# establishment.R) so that the two figures' maps are read the same way; the
-# labels stay horizontal.
-X_BREAKS <- c(733000, 733500)
-Y_BREAKS <- seq(4050800, 4051800, by = 400)
-
-# Scale bar: 200 m, lower right, drawn in map units so it is exact.
-BAR_M <- 200
-bar <- data.frame(
-  xmin = xr[2] - 0.06 * diff(xr) - BAR_M, xmax = xr[2] - 0.06 * diff(xr),
-  ymin = yr[1] + 0.055 * diff(yr), ymax = yr[1] + 0.055 * diff(yr) + 0.014 * diff(yr)
-)
-
 map_furniture <- function(p) {
   p +
     geom_sf(data = outline21, fill = NA, colour = SASA_OUTLINE_COLOUR,
             linewidth = SASA_OUTLINE_LINEWIDTH) +
-    annotate("rect", xmin = bar$xmin, xmax = bar$xmax, ymin = bar$ymin, ymax = bar$ymax,
-             fill = "black", colour = "black", linewidth = 0.2) +
-    annotate_text_pt(x = mean(c(bar$xmin, bar$xmax)), y = bar$ymax + 0.03 * diff(yr),
-                     label = paste0(BAR_M, " m"), size_pt = 10, vjust = 0) +
-    coord_sf(xlim = xr, ylim = yr, expand = FALSE, datum = sf::st_crs(6690)) +
-    scale_x_continuous(breaks = X_BREAKS) +
-    scale_y_continuous(breaks = Y_BREAKS) +
-    labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
+    map_scalebar_layers(core, 200) +
+    coord_sf(xlim = xr, ylim = yr, expand = FALSE, datum = NA) +
+    theme_map() +
     theme(legend.position = "top",
-          legend.title = element_text(vjust = 1),
-          axis.text = element_text(size = 9.5),
-          # Right pad: at 11 pt the 734000 tick label overruns the panel.
-          plot.margin = margin(2, 8, 2, 2, "mm"))
+          legend.title = element_text(vjust = 1))
 }
 
-# Zoom-panel frame: same furniture, own breaks. The colour scale is the object
+# Zoom-panel frame: the colour scale is the object
 # the matching core-extent panel uses, so patchwork's guides = "collect" keeps
 # one bar per column.
 zoom_furniture <- function(p, outline_colour = SASA_OUTLINE_COLOUR,
@@ -127,16 +106,12 @@ zoom_furniture <- function(p, outline_colour = SASA_OUTLINE_COLOUR,
   p +
     geom_sf(data = outline21_zoom, fill = NA, colour = outline_colour,
             linewidth = 0.45) +
-    zoom_scalebar_layers(colour = bar_colour) +
+    map_scalebar_layers(z, 50, colour = bar_colour) +
     coord_sf(xlim = c(z$xmin, z$xmax), ylim = c(z$ymin, z$ymax),
-             expand = FALSE, datum = sf::st_crs(6690)) +
-    scale_x_continuous(breaks = ZOOM_X_BREAKS) +
-    scale_y_continuous(breaks = ZOOM_Y_BREAKS) +
-    labs(x = LAB[["easting"]], y = LAB[["northing"]]) +
+             expand = FALSE, datum = NA) +
+    theme_map() +
     theme(legend.position = "top",
-          legend.title = element_text(vjust = 1),
-          axis.text = element_text(size = 9.5),
-          plot.margin = margin(2, 8, 2, 2, "mm"))
+          legend.title = element_text(vjust = 1))
 }
 
 base_map <- function() {
@@ -173,7 +148,8 @@ prob_scale <- scale_fill_viridis_c(
 p_a <- base_map() +
   geom_spatraster(data = pc_s0, maxcell = Inf) +
   prob_scale
-p_a <- map_furniture(p_a) + zoom_box_layers(label = "c")
+p_a <- map_furniture(p_a) + zoom_box_layers(label = "c") +
+  north_arrow_layers(core)
 
 # ---- (b) scenario difference map ------------------------------------------
 # The differences are small and heavily concentrated near zero, so the diverging
@@ -253,30 +229,31 @@ p_e <- ggplot(traj, aes(year, cumulative_expected_area_m2,
   # Two-line y title: at 12 pt the one-line version is taller than the panel and
   # is clipped top and bottom.
   labs(x = "Year",
-       y = "Cumulative expected new\nestablishment (m²)") +
+       y = "Cumulative expected\nestablishment area (m²)") +
   theme_paper(base_size = 12, style = "classic") +
   theme(axis.text = element_text(size = 9.5))
 
 # ---- Assemble -------------------------------------------------------------
-# Each map column is its own nested patchwork so that guides = "collect" merges
-# the core-extent panel and its zoom into one colour bar per column; tags are
-# therefore set by hand (automatic tagging skips nested patchworks).
+# Collect identical guides across the two map rows; each fill scale appears once.
 p_a <- p_a + labs(tag = "a")
 p_b <- p_b + labs(tag = "b")
 p_c <- p_c + labs(tag = "c")
 p_d <- p_d + labs(tag = "d")
 p_e <- p_e + labs(tag = "e")
 
-col_left  <- (p_a / p_c) + plot_layout(guides = "collect", heights = c(1, 1)) &
-  theme(legend.position = "top")
-col_right <- (p_b / p_d) + plot_layout(guides = "collect", heights = c(1, 1)) &
-  theme(legend.position = "top")
+# Fixed panel dimensions prevent aspect-ratio constraints from opening gaps.
+MAP_PANEL_MM <- 79
+maps <- wrap_plots(p_a, p_b, p_c, p_d, ncol = 2, guides = "collect",
+                   widths = unit(rep(MAP_PANEL_MM, 2), "mm"),
+                   heights = unit(MAP_PANEL_MM * c(13 / 14, 1), "mm")) &
+  theme(legend.position = "top", legend.box = "horizontal",
+        legend.spacing.x = unit(5, "mm"))
 
-fig <- ((col_left | col_right) / p_e) +
-  plot_layout(heights = c(2.7, 1)) &
-  theme(plot.tag = element_text(size = 13, face = "bold"))
+fig <- wrap_plots(free(maps), p_e, ncol = 1, heights = c(3.7, 1)) &
+  theme(plot.tag = element_text(size = 13, face = "bold"),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "mm"))
 
-# Height raised from 170 mm: the figure gained a whole row of zoom panels.
+# Keep the canvas height so the coordinate-free map panels can grow.
 save_figure(fig, file.path(DIR_OUT_FIG, "fig05_projection.pdf"),
             width_mm = 170, height_mm = 244)
 save_figure(fig, file.path(DIR_OUT_FIG, "fig05_projection.png"),

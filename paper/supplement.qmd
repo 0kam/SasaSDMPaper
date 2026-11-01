@@ -217,7 +217,7 @@ Suitable area exceeded occupied area at thresholds up to 0.55. At thresholds of 
 
 ## Figure S7: seed-dispersal stratum (environmental potential)
 
-![The seed-dispersal stratum was more than an order of magnitude larger than the expected establishment area in the near-term rhizome stratum. Orange cells were classified as other vegetation in 2021 and had Model A suitability at or above the TSS-maximising threshold (0.158), covering a nominal area of 84.7×10³ m² compared with expected establishment of 2,429–3,383 m² in the near-term rhizome stratum. Black lines show the 2021 *Sasa* distribution.](files/si/figS7_seed_layer.png){#fig-s7 width=80% fig-pos="H"}
+![The seed-dispersal stratum was more than an order of magnitude larger than the expected establishment area in the rhizome stratum. Orange cells were classified as other vegetation in 2021 and had Model A suitability at or above the TSS-maximising threshold (0.158), covering a nominal area of 84.7×10³ m² compared with expected establishment of 2,429–3,383 m² in the rhizome stratum. Black lines show the 2021 *Sasa* distribution.](files/si/figS7_seed_layer.png){#fig-s7 width=80% fig-pos="H"}
 
 \clearpage
 

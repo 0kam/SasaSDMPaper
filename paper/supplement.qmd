@@ -17,29 +17,29 @@ Ryotaro Okamoto, Hiroyuki Oguma, Reiko Ide (National Institute for Environmental
 
 This Supporting Information follows the order of the methods in the main text. Figures (S1–S7) and tables (S1–S12) are numbered in their order of appearance; all are cited from the main text.
 
-# Snowmelt regime and trends
+# Snowmelt pattern and trends
 
 ## Figures S1–S3: temporal and spatial patterns of snowmelt
 
 ![Annual landscape-mean snowmelt DOY varied markedly among years, with no detectable temporal trend. The time series covers 2011–2021, with 2019 missing. The slope of the regression against year was −0.69 days/year (95% confidence interval −2.24 to +0.87, p = 0.34).](files/si/fig_snowmelt_annual_mean.png){#fig-s1 width=80% fig-pos="H"}
 
-![Snowmelt climatology followed the microtopographic gradient from early-melting ridges to late-melting snowbed hollows. The map shows per-pixel mean snowmelt DOY for 2011–2021. Black lines show the 2021 *Sasa* distribution (patches exceeding 5 m²), and grey lines are 100 m contours.](files/si/figS2_snowmelt_mean_map.png){#fig-s2 width=80% fig-pos="H"}
+![The mean snowmelt date followed the microtopographic gradient from early-melting ridges to late-melting snowbed hollows. The map shows per-cell mean snowmelt DOY for 2011–2021. Black lines show the 2021 *Sasa* distribution (patches exceeding 5 m²), and grey lines are 100 m contours.](files/si/figS2_snowmelt_mean_map.png){#fig-s2 width=80% fig-pos="H"}
 
 ::: {#fig-s3 layout-ncol=2 fig-pos="H"}
 ![](files/si/fig_snowmelt_slope_map.png)
 
 ![](files/si/fig_snowmelt_slope_hist.png)
 
-Per-pixel snowmelt trends were negative in 91.7% of pixels, but none remained significant after Benjamini–Hochberg correction. Left: trend map; right: frequency distribution of slopes. The mean slope was −0.71 days/year (median −0.63, SD 0.63, n = 1,206,063), and only 2.0% of pixels were individually significant (p < 0.05). In the right panel, the solid black line denotes zero and the dashed black line denotes the mean (−0.71 days/year). The horizontal axis is truncated at the 0.1–99.9 percentiles; pixels outside this range (0.2% of all pixels, with slopes below −4.1 or above +1.4 days/year, including residual-snow margins) are not shown.
+Per-cell snowmelt trends were negative in 91.7% of pixels, but none remained significant after Benjamini–Hochberg correction. Left: trend map; right: frequency distribution of slopes. The mean slope was −0.71 days/year (median −0.63, SD 0.63, n = 1,206,063), and only 2.0% of pixels were individually significant (p < 0.05). In the right panel, the solid black line denotes zero and the dashed black line denotes the mean (−0.71 days/year). The horizontal axis is truncated at the 0.1–99.9 percentiles; pixels outside this range (0.2% of all pixels, with slopes below −4.1 or above +1.4 days/year, including residual-snow margins) are not shown.
 :::
 
 ## Power to detect snowmelt trends
 
-With a 10-year record and a residual annual SD of approximately 9 days, the minimum slope detectable by per-pixel regression at the 5% significance level is approximately 2 days/year. The observed mean slope (−0.71 days/year) is far below this detection limit, so a lack of significance is expected regardless of whether a true trend exists. This is why the main text uses trends only to parameterise scenarios, rather than as evidence of change.
+With a 10-year record and a residual annual SD of approximately 9 days, the minimum slope detectable by per-cell regression at the 5% significance level is approximately 2 days/year. The observed mean slope (−0.71 days/year) is far below this detection limit, so a lack of significance is expected regardless of whether a true trend exists. This is why the main text uses trends only to parameterise scenarios, rather than as evidence of change.
 
 ## Rationale for excluding trends as predictors: sensitivity analysis adding a trend term to Model B
 
-We added a smooth term for the per-pixel trend, `s(trend)`, to the selected Model B specification and re-evaluated it using the same 4 spatial blocks in leave-one-block-out validation (Table S1).
+We added a smooth term for the per-cell trend, `s(trend)`, to the selected Model B specification and re-evaluated it using the same 4 spatial blocks in leave-one-fold-out validation (Table S1).
 
 | Evaluation scope | Baseline AUC | +s(trend) AUC | ΔAUC |
 |---|---:|---:|---:|
@@ -55,14 +55,14 @@ Although `s(trend)` was nominally significant in-sample (edf 3.15, p = 0.011, Δ
 
 ## Rationale for spatially uniform snowmelt shifts
 
-The scenarios for the 2030 projections apply spatially uniform shifts to snowmelt climatology. We examined the spatial structure of the per-pixel trend field (Figure S4, left). Trends were almost unrelated to elevation (Spearman $\rho$ = +0.022; 50 m elevation bins explained 1.9% of the variance), but showed a **non-monotonic** relationship with snowmelt climatology: means across well-sampled 10-day bins ranged from −0.47 days/year in the earliest-melting bin (DOY 120–130), through a minimum of −1.29 (DOY 150–160) and a local maximum of −0.33 (DOY 180–190), to −0.97 in the latest bin (DOY 220–230), and the bins explained 24% of the pixel-level variance. Because the relationship was non-monotonic, Spearman $\rho$ was close to zero (−0.007). A uniform shift is therefore an approximation. Nevertheless, the means of all well-sampled bins were negative and within ±0.6 days/year of the landscape mean, with deviations smaller than within-bin variation (SD 0.39–0.77 days/year). The scenario range in the main text (0 / −0.71 / −2.24 days/year) brackets all bin means. Moreover, as shown above, the trend field did not contribute to predicting establishment. A uniform shift is therefore an adequate and deliberately conservative approximation for the purpose of the scenarios.
+The scenarios for the 2030 projections apply spatially uniform shifts to the mean snowmelt date. We examined the spatial structure of the per-cell trend field (Figure S4, left). Trends were almost unrelated to elevation (Spearman $\rho$ = +0.022; 50 m elevation bins explained 1.9% of the variance), but showed a **non-monotonic** relationship with the mean snowmelt date: means across well-sampled 10-day bins ranged from −0.47 days/year in the earliest-melting bin (DOY 120–130), through a minimum of −1.29 (DOY 150–160) and a local maximum of −0.33 (DOY 180–190), to −0.97 in the latest bin (DOY 220–230), and the bins explained 24% of the cell-level variance. Because the relationship was non-monotonic, Spearman $\rho$ was close to zero (−0.007). A uniform shift is therefore an approximation. Nevertheless, the means of all well-sampled bins were negative and within ±0.6 days/year of the landscape mean, with deviations smaller than within-bin variation (SD 0.39–0.77 days/year). The scenario range in the main text (0 / −0.71 / −2.24 days/year) brackets all bin means. Moreover, as shown above, the trend field did not contribute to predicting establishment. A uniform shift is therefore an adequate and deliberately conservative approximation for the purpose of the scenarios.
 
 ::: {#fig-s4 layout-ncol=2 fig-pos="H"}
 ![](files/si/fig_trend_vs_snow_mean.png)
 
 ![](files/si/fig_smooth_trend_zoom.png)
 
-Snowmelt trends varied non-monotonically with snowmelt climatology, but their partial effect in Model B was indistinguishable from zero. Left: two-dimensional binned density of per-pixel trends against snowmelt climatology. Red points show bin means ±1 SD. The non-monotonic arch was small relative to the vertical scatter. Right: partial effect of `s(trend)` added to Model B, shown over the central 90% of the trend distribution. The 95% band (grey) included zero throughout.
+Snowmelt trends varied non-monotonically with the mean snowmelt date, but their partial effect in Model B was indistinguishable from zero. Left: two-dimensional binned density of per-cell trends against the mean snowmelt date. Red points show bin means ±1 SD. The non-monotonic arch was small relative to the vertical scatter. Right: partial effect of `s(trend)` added to Model B, shown over the central 90% of the trend distribution. The 95% band (grey) included zero throughout.
 :::
 
 # Vegetation classification
@@ -82,7 +82,7 @@ The classifier was a Conv2D–LSTM operating on 5×5-pixel patches, using tempor
 
 **Architecture.** Each frame passed through a single convolutional block — `Conv2d`(3 → 8 channels, 3 × 3 kernel, stride 1, no padding) → PReLU → batch normalisation → `MaxPool2d`(3 × 3, stride 1) — which reduces a 5 × 5 patch to a single spatial position and yields 8 features per frame. The resulting 7-step sequence of 8-dimensional feature vectors was passed to a single-layer, unidirectional LSTM with 7 hidden units (the implementation sets the hidden width to the mean of the convolutional output width and the number of classes, i.e. $\lfloor (8 + 7)/2 \rfloor = 7$). The final hidden state was normalised, passed through one fully connected layer of 7 units with PReLU and batch normalisation, and mapped by a second fully connected layer to the 7 class scores, followed by a softmax. Dropout layers were present but were set to a rate of 0, so the fitted network used none.
 
-**Training.** The loss was cross-entropy and the optimiser RAdam with a fixed learning rate of $1 \times 10^{-3}$; the batch size was 500 and each fold was trained for 50 epochs. No data augmentation was applied: the training and validation transform pipelines are both empty. Training labels comprised 216 hand-drawn polygons, which supplied 618,012 labelled pixels. These were split by stratified 5-fold cross-validation (shuffled, stratified on class), so that each fold trained on 4/5 of the labelled pixels and validated on the remaining 1/5 (mean 123,602 pixels per validation fold). Within each fold the epoch with the lowest validation loss was retained. The published maps are the per-pixel majority vote of the 5 fold models applied to the full image.
+**Training.** The loss was cross-entropy and the optimiser RAdam with a fixed learning rate of $1 \times 10^{-3}$; the batch size was 500 and each fold was trained for 50 epochs. No data augmentation was applied: the training and validation transform pipelines are both empty. Training labels comprised 216 hand-drawn polygons, which supplied 618,012 labelled pixels. These were split by stratified 5-fold cross-validation (shuffled, stratified on class), so that each fold trained on 4/5 of the labelled pixels and validated on the remaining 1/5 (mean 123,602 pixels per validation fold). Within each fold the epoch with the lowest validation loss was retained. The published maps are the per-cell majority vote of the 5 fold models applied to the full image.
 
 Class-specific accuracy is given in Table S2 as the mean across the 5 validation folds. *Sasa*, the focal class, was recovered with an F1 of 0.96 in both years; the weakest class in both years was maple, the rarest of the 7 (12,758 labelled pixels), whose recall fell to 0.90 in 2021. Because the folds were split at the pixel level and the same polygons were reused for both years, these values describe accuracy near the training polygons and are upper bounds on accuracy elsewhere in the scene.
 
@@ -195,7 +195,7 @@ Elevation was taken from the Fundamental Geospatial Data DEM of the Geospatial I
 | eastness | −0.14 | −0.25 | 0.05 | 0.02 | 0.48 | 1 | 0.13 | 1.22 |
 | snowmelt clim. | −0.55 | −0.58 | −0.33 | 0.63 | 0.27 | 0.13 | 1 | 2.30 |
 
-: Pairwise Spearman correlations and variance inflation factors (VIF) of the retained predictors. The largest |r| is 0.63 between TWI and snowmelt climatology, and the largest VIF is 2.30 (snowmelt climatology); both are below conventional thresholds (|r| < 0.7, VIF < 5). {#tbl-s7}
+: Pairwise Spearman correlations and variance inflation factors (VIF) of the retained predictors. The largest |r| is 0.63 between TWI and the mean snowmelt date, and the largest VIF is 2.30 (mean snowmelt date); both are below conventional thresholds (|r| < 0.7, VIF < 5). {#tbl-s7}
 
 ## Table S8: threshold sensitivity of suitable area in the main model
 
@@ -221,6 +221,12 @@ Suitable area exceeded occupied area at thresholds up to 0.55. At thresholds of 
 
 \clearpage
 
+## Figure S8: Model B partial effects
+
+![Establishment probability in Model B was most strongly associated with distance from the 2012 front, peaked at a mean snowmelt date of approximately DOY 175, and declined on steeper slopes, whereas the partial effect of elevation was weak and uncertain. Each panel shows the centred partial effect of one smooth term of the establishment GAM on the log-odds scale (green line) with a pointwise 95% confidence band (green shading). Curves are drawn over the 0.5–99.5 percentile range of the establishment cells (cells that became *Sasa* between 2012 and 2021), so they cover only the range supported by the establishment data; grey strips show the density of establishment cells along each predictor. The distance axis is logarithmic.](files/si/figS8_modelB_smooths.png){#fig-s8 width=85% fig-pos="H"}
+
+\clearpage
+
 # Model B
 
 ## Selection of the distance-term specification
@@ -235,7 +241,7 @@ We selected the distance-term specification by comparing a smooth on the linear 
 
 : Comparison of distance-term specifications using predefined criteria (linear axis → log distance). All 3 criteria were met, so `s(log(1+d))` was selected. {#tbl-s9 tbl-colwidths="[38, 18, 29, 15]"}
 
-The selected specification achieved block-specific AUC of 0.91–0.96 (pooled AUC 0.946, TSS 0.75). The gradient boosted tree ensemble used as a robustness comparison, fitted on the same folds to all establishment cells and a fold-stratified random sample of 150,000 non-establishment cells, achieved a pooled AUC of 0.948, indicating that the additive model captured nearly all the signal available to a flexible learner. MaxEnt was excluded from the comparison because quasi-separation of the classes along the distance gradient prevented convergence of the regularisation path in `maxnet`/`glmnet`. The selected specification used a basis dimension of k = 5 for `s(log(1 + d))` and k = 10 for the environmental smooths; the distance term is deliberately low-dimensional because establishment records are sparse and larger bases produced unsupported oscillations between distant stands. Kernels fitted with k = 3, 5, and 10 on the linear distance axis are included in the deposited output (`model_B_distance_kernel.csv`).
+The selected specification achieved fold-specific AUC of 0.91–0.96 (pooled AUC 0.946, TSS 0.75). The gradient boosted tree ensemble used as a robustness comparison, fitted on the same folds to all establishment cells and a fold-stratified random sample of 150,000 non-establishment cells, achieved a pooled AUC of 0.948, indicating that the additive model captured nearly all the signal available to a flexible learner. MaxEnt was excluded from the comparison because quasi-separation of the classes along the distance gradient prevented convergence of the regularisation path in `maxnet`/`glmnet`. The selected specification used a basis dimension of k = 5 for `s(log(1 + d))` and k = 10 for the environmental smooths; the distance term is deliberately low-dimensional because establishment records are sparse and larger bases produced unsupported oscillations between distant stands. Kernels fitted with k = 3, 5, and 10 on the linear distance axis are included in the deposited output (`model_B_distance_kernel.csv`).
 
 \clearpage
 
@@ -247,25 +253,28 @@ The environmental component of the linear predictor was precomputed for each sce
 
 ## Validation and structural sensitivity
 
-The hindcast initialised from the 2012 distribution reproduced observed gross expansion with a ratio of 1.077 (expected 4,414 m² vs observed 4,093 m²), and cell-level AUC was 0.92. In spatial-block-exclusion validation (50 replicates per block), AUC ranged from 0.79 to 0.86 and block-level ratios of expected to observed area ranged from 0.67 to 2.0. Structural sensitivity (50 replicates per setting) is summarised in Table S10.
+The hindcast initialised from the 2012 distribution reproduced observed gross expansion with a ratio of 1.077 (expected 4,414 m² vs observed 4,093 m²), and cell-level AUC was 0.92. In spatial-fold-exclusion validation (50 replicates per fold), AUC ranged from 0.79 to 0.86 and fold-level ratios of expected to observed area ranged from 0.67 to 2.0. Structural sensitivity (50 replicates per setting) is summarised in Table S10.
 
 | Sensitivity setting | Expected area in 2030 (s = −0.71) | Ratio to baseline |
 |---|---:|---:|
 | Baseline | 5,730 m² | 1.00 |
 | Remove the 5 m² patch rule | 17,226 m² | 3.01 |
 | Replace annualisation with the first-order approximation $p_9/9$ | 5,326 m² | 0.93 |
+| Add annual loss at the observed rate (3.7%/year) | 5,008 m² | 0.87 |
 
 : Structural sensitivity of projected establishment area. {#tbl-s10 tbl-colwidths="[45, 35, 20]"}
 
+The loss variant relaxes the no-loss assumption of the main projections: every occupied cell (including the initial 2021 *Sasa* cells) was removed each year with probability 0.037, the annual rate implied by the observed 2012–2021 gross loss of 29%, and the distance surface was recomputed after each year's losses. Lost cells were not recolonised, and cumulative establishment counts each cell once, at first colonisation, so the quantity remains comparable with the baseline. Expected establishment area decreased by 13% under both reported scenarios (s = 0: 4,265 m² vs 4,901 m²; s = −0.71: 5,008 m² vs 5,730 m²), while approximately 2,930 m² of the initial 2021 *Sasa* area was lost by 2030. The projected magnitude and spatial concentration of establishment are therefore not driven by the no-loss assumption; note also that gross loss is itself an upper bound on true decline (see the Discussion of the main text), so the baseline and the loss variant bracket the plausible range.
+
 ## Table S11: projection summary by scenario
 
-| Scenario | Expected new establishment area by 2030 | SD across replicates | Number of replicates |
+| Scenario | Expected establishment area by 2030 | SD across replicates | Number of replicates |
 |---|---:|---:|---:|
 | s = 0 (no change) | 4,901 m² | 70 | 200 |
 | s = −0.71 days/year (point estimate) | 5,730 m² | 84 | 200 |
 | s = −2.24 days/year (lower CI limit) | 5,524 m² | 81 | 200 |
 
-: Expected new establishment area by 2030 under each snowmelt scenario. {#tbl-s11 tbl-colwidths="[34, 30, 18, 18]"}
+: Expected establishment area by 2030 under each snowmelt scenario. {#tbl-s11 tbl-colwidths="[34, 30, 18, 18]"}
 
 The extreme scenario (−2.24 days/year) yielded less establishment than the point-estimate scenario. At sites immediately adjacent to the front, where establishment was concentrated, excessive snowmelt advance shifted conditions beyond the favourable snowmelt window (see the Discussion of the main text).
 

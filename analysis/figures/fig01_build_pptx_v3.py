@@ -608,6 +608,13 @@ def build_and_export():
 
 
 if __name__ == "__main__":
+    import sys
+    if "--force" not in sys.argv:
+        sys.exit(
+            "SUPERSEDED (2026-11-02): SasaPaper_Figures_v3.pptx is now the"
+            " hand-tuned master (author arrow fixes + shortened labels)."
+            " Rerunning this script would overwrite it. Edit the pptx"
+            " directly instead, or pass --force if you really mean it.")
     try:
         build_and_export()
     finally:

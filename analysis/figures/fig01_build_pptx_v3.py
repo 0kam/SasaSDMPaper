@@ -193,7 +193,7 @@ for child in list(tree):
         tree.remove(child)
 
 PT = 12700
-INK, ENV = "42494C", "3E6B60"
+INK = "42494C"
 NODES, CONTENT, SEGMENTS, EDGES = {}, [], [], []
 
 
@@ -254,14 +254,15 @@ def thumb(name, rel, rect, owner, aspect=None, crop=None):
 
 
 def route(name, points, color=INK, arrow=True):
-    """Native straight connectors keep every segment horizontal or vertical."""
+    """Straight native segments avoid export-time rerouting of bent connectors."""
     for i, ((x1, y1), (x2, y2)) in enumerate(zip(points, points[1:])):
         assert x1 == x2 or y1 == y2, name
-        sp = ET.SubElement(tree, p("cxnSp"))
-        nv = ET.SubElement(sp, p("nvCxnSpPr"))
+        terminal = arrow and i == len(points) - 2
+        sp = ET.SubElement(tree, p("cxnSp" if terminal else "sp"))
+        nv = ET.SubElement(sp, p("nvCxnSpPr" if terminal else "nvSpPr"))
         ET.SubElement(nv, p("cNvPr"), {"id": str(new_id()),
                       "name": f"{name} segment {i + 1}"})
-        ET.SubElement(nv, p("cNvCxnSpPr"))
+        ET.SubElement(nv, p("cNvCxnSpPr" if terminal else "cNvSpPr"))
         ET.SubElement(nv, p("nvPr"))
         props = ET.SubElement(sp, p("spPr"))
         xf = ET.SubElement(props, a("xfrm"))
@@ -275,109 +276,101 @@ def route(name, points, color=INK, arrow=True):
                                     "cy": str(round(abs(y2 - y1) * PT))})
         ET.SubElement(ET.SubElement(props, a("prstGeom"), {"prst": "line"}),
                       a("avLst"))
-        ln = ET.SubElement(props, a("ln"), {"w": str(round(1.5 * PT))})
-        ET.SubElement(ET.SubElement(ln, a("solidFill")), a("srgbClr"),
-                      {"val": color})
-        if arrow and i == len(points) - 2:
-            ET.SubElement(ln, a("tailEnd"), {"type": "triangle", "w": "sm", "len": "sm"})
+        ln = ET.SubElement(props, a("ln"), {"w": str(3 * PT)})
+        ET.SubElement(ET.SubElement(ln, a("solidFill")), a("srgbClr"), {"val": color})
+        if terminal:
+            ET.SubElement(ln, a("tailEnd"), {"type": "triangle", "w": "lg", "len": "lg"})
         SEGMENTS.append((name, (x1, y1), (x2, y2)))
 
 
-def junction(x, y):
-    sh = modelbox("Environmental-predictor junction", (x - 2) * PT,
-                  (y - 2) * PT, 4 * PT, 4 * PT, [])
-    sh.find(".//" + a("prstGeom")).set("prst", "ellipse")
-    rect_style(sh, ENV, ENV, 0)
-
-
-# Tier 1: the camera feeds two data products; terrain is an independent input.
-node("D1", (14, 54, 224, 222))
-thumb("Camera photographs", "rId5", (36, 60, 180, 152), "D1",
+# Rows 0 and 1: columns at approximately 33, 95 and 158 mm printed.
+node("D1", (265, 4, 430, 110))
+thumb("Camera photographs", "rId5", (272, 7, 180, 104), "D1",
       aspect=4318000 / 2476500)
-text("D1 sentence", (21, 213, 210, 57),
+text("D1 sentence", (464, 12, 221, 94),
      ["A fixed camera photographed the slope hourly from 2010 to 2021."], owner="D1")
 
-node("D2", (250, 54, 224, 222))
-thumb("Vegetation-map thumbnail", "rId4", (286, 60, 152, 152), "D2",
+node("D2", (14, 140, 305, 158))
+thumb("Vegetation-map thumbnail", "rId4", (20, 143, 152, 152), "D2",
       aspect=(6000 * .29) / (2000 * .85), crop=(59000, 2000, 12000, 13000))
-text("D2 sentence", (257, 213, 210, 57),
+text("D2 sentence", (180, 147, 132, 144),
      ["Vegetation maps describe 2012 and 2021 at 1 m cell resolution."], owner="D2")
 
-node("D3", (486, 54, 224, 222))
-thumb("Snowmelt thumbnail", "rId3", (522, 60, 152, 136), "D3",
+node("D3", (328, 140, 305, 158))
+thumb("Snowmelt thumbnail", "rId3", (334, 143, 152, 152), "D3",
       aspect=(1200 * .68) / (700 * .91), crop=(3000, 4000, 29000, 5000))
-text("D3 sentence", (493, 195, 210, 75),
+text("D3 sentence", (494, 147, 132, 144),
      ["Annual snowmelt dates for 2011–2021 give the mean snowmelt date of every cell."], owner="D3")
 
-node("D4", (722, 54, 224, 222))
-thumb("DEM-derived terrain thumbnail", "rId9", (758, 60, 152, 152), "D4",
+node("D4", (641, 140, 305, 158))
+thumb("DEM-derived terrain thumbnail", "rId9", (647, 143, 152, 152), "D4",
       aspect=1.0)
-text("D4 sentence", (729, 213, 210, 57),
+text("D4 sentence", (807, 147, 132, 144),
      ["Terrain variables (elevation, slope, TPI, TWI, aspect) are derived from a DEM."], owner="D4")
 
-route("D1 to D2", [(214, 54), (214, 49), (362, 49), (362, 54)])
-text("D1 to D2 label", (157, 8, 225, 39),
+route("D1 to D2", [(300, 114), (300, 125), (166.5, 125), (166.5, 140)])
+text("D1 to D2 label", (30, 80, 225, 39),
      ["alignment, classification,", "georectification"])
-route("D1 to D3", [(70, 54), (70, 5), (598, 5), (598, 54)])
-text("D1 to D3 label", (410, 15, 175, 21), ["snowmelt detection"])
+route("D1 to D3", [(480, 114), (480, 140)])
+text("D1 to D3 label", (493, 116, 175, 21), ["snowmelt detection"])
 EDGES += [("D1", "D2"), ("D1", "D3")]
 
-# Tier 2: two distinct responses share the same environmental predictors.
-node("MA", (14, 352, 305, 68), "EBF1EE")
-text("MA title", (24, 357, 285, 22), ["Model A (habitat suitability)"], 18, True, owner="MA")
-text("MA question", (24, 379, 285, 38),
+# Row 2: Model A sits slightly lower to leave its environmental drop longer.
+node("MA", (14, 390, 305, 68), "EBF1EE")
+text("MA title", (24, 395, 285, 22), ["Model A (habitat suitability)"], 18, True, owner="MA")
+text("MA question", (24, 417, 285, 38),
      ["Where do environmental conditions permit Sasa?"], owner="MA")
-node("MB", (432, 352, 514, 68), "EBF1EE")
-text("MB title", (442, 357, 494, 22), ["Model B (establishment)"], 18, True, owner="MB")
-text("MB question", (442, 379, 494, 38),
+node("MB", (360, 347, 586, 68), "EBF1EE")
+text("MB title", (370, 352, 566, 22), ["Model B (establishment)"], 18, True, owner="MB")
+text("MB question", (370, 374, 566, 38),
      ["Where did Sasa establish between 2012 and 2021, as a function of distance from the 2012 front and environment?"], owner="MB")
 
-route("D2 to MA", [(285, 276), (285, 284), (65, 284), (65, 352)])
-text("D2 to MA label", (78, 299, 120, 39), ["presence in 2021"])
-route("D2 to MB", [(440, 276), (440, 284), (468, 284), (468, 352)])
-text("D2 to MB label", (205, 286, 258, 57),
-     ["2012→2021 establishment and", "distance from the 2012 front", "(distance surface)"])
+route("D2 to MA", [(26, 298), (26, 390)])
+text("D2 to MA label", (40, 302, 240, 21), ["presence in 2021"])
+# The D2->MB input and the bus->MA drop cross by necessity (the requested
+# column order is non-planar). The horizontal line hops the vertical one:
+# a 14 pt gap centred on x = 310 marks "no connection" in the usual way.
+route("D2 to MB", [(292, 298), (292, 356), (303, 356)], arrow=False)
+route("D2 to MB", [(317, 356), (360, 356)])
+text("D2 to MB label", (35, 328, 248, 57),
+     ["2012→2021 establishment and", "distance from the 2012 front", "(distance surface)"], align="r")
 EDGES += [("D2", "MA"), ("D2", "MB")]
 
-# A shared green trunk visibly merges D3/D4 and forks into BOTH models.
-route("D3 environmental input", [(630, 276), (630, 284), (820, 284)], ENV, False)
-route("D4 environmental input", [(850, 276), (850, 284), (820, 284)], ENV, False)
-route("Environmental predictor trunk", [(820, 284), (820, 345)], ENV, False)
-text("Shared environmental-predictor label", (500, 294, 300, 39),
-     ["environmental predictors", "(mean snowmelt date + terrain)"])
-# A small gap marks the non-junction where the black D2->MB arrow crosses.
-route("Environment to MA bus right", [(820, 345), (474, 345)], ENV, False)
-route("Environment to MA bus left", [(462, 345), (295, 345), (295, 352)], ENV)
-route("Environment to MB", [(820, 345), (900, 345), (900, 352)], ENV)
-junction(820, 284)
-junction(820, 345)
+# One horizontal bus, with short source drops and straight model drops.
+route("D3 environmental input", [(335, 298), (335, 327)])
+route("D4 environmental input", [(940, 298), (940, 327)])
+route("Environmental predictor bus", [(310, 327), (940, 327)], arrow=False)
+text("Shared environmental-predictor label", (345, 302, 560, 21),
+     ["environmental predictors (mean snowmelt date + terrain)"], align="ctr")
+route("Environment to MA", [(310, 327), (310, 390)])
+route("Environment to MB", [(925, 327), (925, 347)])
 EDGES += [(source, target) for source in ("D3", "D4") for target in ("MA", "MB")]
 
-# Tier 3: suitability identifies seed exposure; Model B drives front advance.
-node("S", (130, 473, 244, 45))
-text("S title", (140, 476, 224, 20), ["Snowmelt scenarios"], 18, True, owner="S")
-text("S sentence", (140, 497, 224, 20), ["Use s = 0 or −0.71 days/year."], owner="S")
+# Rows 3 and 4: two vertical outputs; scenarios enter CA from the left.
+node("S", (324, 438, 160, 88))
+text("S title", (331, 444, 146, 40), ["Snowmelt scenarios"], 18, True, owner="S")
+text("S sentence", (331, 486, 146, 38), ["Use s = 0 or −0.71 days/year."], owner="S")
 
-node("CA", (505, 444, 441, 86), "F4F1EB")
-text("CA sentence", (515, 450, 421, 74),
+node("CA", (505, 440, 441, 86), "F4F1EB")
+text("CA sentence", (515, 446, 421, 74),
      ["A stochastic cellular automaton applies Model B annually from 2022 to 2030. It recomputes the distance surface as simulated fronts advance. Snowmelt scenarios shift the mean snowmelt date by s days/year."], owner="CA")
-route("MB to CA", [(710, 420), (710, 444)])
-text("MB to CA label", (727, 422, 219, 21), ["establishment probability"])
-route("S to CA", [(374, 510), (505, 510)])
-text("S to CA label", (380, 467, 119, 40), ["snowmelt-date", "shift"], align="ctr")
+route("MB to CA", [(710, 415), (710, 440)])
+text("MB to CA label", (727, 417, 219, 21), ["establishment probability"])
+route("S to CA", [(484, 515), (505, 515)])
+text("S to CA label", (365, 532, 134, 40), ["snowmelt-date", "shift"], align="ctr")
 EDGES += [("MB", "CA"), ("S", "CA")]
 
-node("R2", (14, 554, 445, 71), "EBF1EE")
-text("R2 sentence", (24, 560, 425, 59),
+node("R2", (24, 500, 285, 110), "EBF1EE")
+text("R2 sentence", (34, 506, 265, 98),
      ["Suitable but unoccupied area identifies the seed-dispersal stratum: communities are exposed if seeds arrive."], owner="R2")
-route("MA to R2", [(50, 420), (50, 554)])
-text("MA to R2 label", (63, 429, 140, 38), ["habitat suitability", "surface"])
+route("MA to R2", [(166.5, 458), (166.5, 500)])
+text("MA to R2 label", (180, 461, 140, 38), ["habitat suitability", "surface"])
 
-node("R1", (505, 554, 441, 71), "F4F1EB")
-text("R1 sentence", (515, 560, 421, 59),
+node("R1", (505, 552, 441, 73), "F4F1EB")
+text("R1 sentence", (515, 558, 421, 61),
      ["Establishment probability by 2030 identifies the rhizome stratum: communities at risk from front advance."], owner="R1")
-route("CA to R1", [(710, 530), (710, 554)])
-text("CA to R1 label", (727, 531, 219, 21), ["P(established by 2030)"])
+route("CA to R1", [(710, 526), (710, 552)])
+text("CA to R1 label", (727, 529, 219, 21), ["P(established by 2030)"])
 EDGES += [("MA", "R2"), ("CA", "R1")]
 
 
@@ -401,6 +394,9 @@ def verify_layout():
         if owner:
             u, v, s, t = NODES[owner]
             assert u <= x and v <= y and x + w <= u + s and y + h <= v + t, name
+        else:
+            for key, rect in NODES.items():
+                assert not overlaps((x, y, w, h), rect), (name, key)
         for edge, (x1, y1), (x2, y2) in SEGMENTS:
             assert not (x < x1 < x + w and x1 == x2 and
                         max(min(y1, y2), y) < min(max(y1, y2), y + h)), (edge, name)
@@ -409,6 +405,39 @@ def verify_layout():
     for i, (name, rect, _) in enumerate(CONTENT):
         for other, other_rect, _ in CONTENT[i + 1:]:
             assert not overlaps(rect, other_rect), (name, other)
+    for edge, (x1, y1), (x2, y2) in SEGMENTS:
+        for key, (x, y, w, h) in NODES.items():
+            assert not (x < x1 < x + w and x1 == x2 and
+                        max(min(y1, y2), y) < min(max(y1, y2), y + h)), (edge, key)
+            assert not (y < y1 < y + h and y1 == y2 and
+                        max(min(x1, x2), x) < min(max(x1, x2), x + w)), (edge, key)
+    crossings = []
+    for i, (name, start, end) in enumerate(SEGMENTS):
+        for other, other_start, other_end in SEGMENTS[i + 1:]:
+            if name == other:
+                continue
+            horizontal, vertical = ((start, end), (other_start, other_end))
+            if start[0] == end[0]:
+                horizontal, vertical = vertical, horizontal
+            (x1, y1), (x2, y2) = horizontal
+            (u1, v1), (u2, v2) = vertical
+            if y1 == y2 and u1 == u2 and min(x1, x2) < u1 < max(x1, x2) and min(v1, v2) < y1 < max(v1, v2):
+                crossings.append((name, other, (u1, y1)))
+            elif start[0] == end[0] == other_start[0] == other_end[0]:
+                assert max(min(start[1], end[1]), min(other_start[1], other_end[1])) >= min(max(start[1], end[1]), max(other_start[1], other_end[1])), (name, other)
+            elif start[1] == end[1] == other_start[1] == other_end[1]:
+                assert max(min(start[0], end[0]), min(other_start[0], other_end[0])) >= min(max(start[0], end[0]), max(other_start[0], other_end[0])), (name, other)
+    for name in dict.fromkeys(segment[0] for segment in SEGMENTS):
+        bends = sum(segment[0] == name for segment in SEGMENTS) - 1
+        assert bends <= 2, (name, bends)
+        print(f"Route: {name}: {bends} bends.")
+    # The requested column order and two crossing inputs cannot both be planar.
+    assert all(crossing == ("D2 to MB", "Environment to MA", (310, 356))
+               for crossing in crossings), crossings
+    for source, target, (x, y) in crossings:
+        print(f"ROUTING FAIL: {source} crosses {target} at "
+              f"({x * 190 / 960:.2f}, {y * 190 / 960:.2f}) mm printed; "
+              "no bridge or detour has been added.")
     reached = {"D1", "D4", "S"}
     for _ in NODES:
         reached.update(target for source, target in EDGES if source in reached)
@@ -428,14 +457,31 @@ def verify_layout():
         name = pic.find(p("nvPicPr")).find(p("cNvPr")).get("name")
         ext = pic.find(p("spPr")).find(a("xfrm")).find(a("ext"))
         w, h = (int(ext.get(dim)) / 914400 * 25.4 * SCALE for dim in ("cx", "cy"))
-        assert 30 <= w <= (40 if name == "Camera photographs" else 35), (name, w)
+        assert (35 if name == "Camera photographs" else 30) <= w <= (40 if name == "Camera photographs" else 35), (name, w)
         print(f"{name}: printed {w:.1f} x {h:.1f} mm")
+    connectors = list(slide.iter(p("cxnSp")))
+    widths = []
+    for connector in connectors:
+        name = connector.find(".//" + p("cNvPr")).get("name")
+        lines = list(connector.iter(a("ln")))
+        assert lines, name
+        for line in lines:
+            widths.append(int(line.get("w")))
+            assert widths[-1] >= 34925, (name, line.attrib)
+            tail = line.find(a("tailEnd"))
+            assert tail is not None and tail.attrib == {
+                "type": "triangle", "w": "lg", "len": "lg"}, name
+            assert line.find(a("solidFill")).find(a("srgbClr")).get("val") == INK, name
+    print(f"Connectors: {len(connectors)}; min line width {min(widths)} EMU "
+          f"({min(widths) / PT:.2f} pt); all tailEnd=triangle/lg/lg; uniform #{INK}.")
     all_text = " ".join(el.text or "" for el in slide.iter(a("t")))
     for forbidden in ("colonized", "hugs", "concentrated", "−2.24"):
         assert forbidden not in all_text, forbidden
     print(f"Layout: 190 x {printed_height:.1f} mm; 10 nodes, one connected graph, "
           f"12 directed interfaces; all labels >= {min(sizes) / 100 * SCALE:.1f} pt printed.")
-    print("No box/content overlaps or connector-label collisions in layout geometry.")
+    print("No box/content overlaps, connector-box collisions or connector-label collisions.")
+    print(f"Routing acceptance: {'FAIL' if crossings else 'PASS'}; "
+          f"{len(crossings)} connector crossing(s).")
 
 
 def _fix_theme_fonts(name, data):

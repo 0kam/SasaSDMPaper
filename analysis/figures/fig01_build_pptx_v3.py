@@ -5,16 +5,15 @@ Run from the repository root:
     python3 analysis/figures/fig01_build_pptx_v3.py
 
 Outputs: paper/files/SasaPaper_Figures_v3.pptx, fig01_workflow_draft.pdf,
-         fig01_workflow_draft.png (300 dpi, approximately 4000 x 4209 pixels).
+         fig01_workflow_draft.png (300 dpi, approximately 4000 x 2625 pixels).
 Requires Python 3, LibreOffice (soffice), Poppler (pdftoppm, pdffonts), and GDAL
 (gdalinfo, gdal_translate, gdaldem). No additional Python packages are needed.
 
 The original OOXML primitives and Arial theme substitution are copied from
 fig01_build_pptx.py. Do not import that script: importing it would write v2.
-The camera, vegetation and snowmelt images come from the original deck;
-probability/suitability thumbnails come from fig01_assets. The DEM thumbnail
+The camera, vegetation and snowmelt images come from the original deck. The DEM thumbnail
 is generated from the existing DEM, cropped to the vegetation raster extent.
-Image legends are cropped out so all visible text is editable and >=14 pt.
+Image legends are cropped out so all visible text is editable and >=9 pt printed.
 
 Export (performed automatically in an isolated temporary directory):
     soffice -env:UserInstallation=file:///TEMP/profile --headless \
@@ -41,7 +40,6 @@ import xml.etree.ElementTree as ET
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SRC = os.path.join(ROOT, "paper/files/SasaPaper_Figures.pptx")
 DST = os.path.join(ROOT, "paper/files/SasaPaper_Figures_v3.pptx")
-ASSETS = os.path.join(ROOT, "paper/files/fig01_assets")
 
 A = "http://schemas.openxmlformats.org/drawingml/2006/main"
 P = "http://schemas.openxmlformats.org/presentationml/2006/main"
@@ -54,7 +52,7 @@ a = lambda t: "{%s}%s" % (A, t)
 p = lambda t: "{%s}%s" % (P, t)
 r = lambda t: "{%s}%s" % (R, t)
 
-SLIDE_W, SLIDE_H = 12192000, 12827000  # 960 x 1010 pt; printed 190 x 199.9 mm
+SLIDE_W, SLIDE_H = 12192000, 8001000  # 960 x 630 pt; printed 190 x 124.7 mm
 SCALE = 190.0 / (SLIDE_W / 914400.0 * 25.4)      # slide EMU -> printed size
 
 
@@ -63,9 +61,6 @@ def png_aspect(path):
         w, h = struct.unpack(">II", f.read(24)[16:24])
     return w / float(h)
 
-
-AR_THUMB = png_aspect(os.path.join(ASSETS, "thumb_suitability.png"))
-AR_SCHEM = png_aspect(os.path.join(ASSETS, "schematic_modelB.png"))
 
 zin = zipfile.ZipFile(SRC)
 slide = ET.fromstring(zin.read("ppt/slides/slide1.xml"))
@@ -214,7 +209,7 @@ def rect_style(sh, fill="FFFFFF", stroke=INK, width=1.0):
                   {"val": stroke})
 
 
-def text(name, rect, paragraphs, size=14, bold=False, align="l", owner=None):
+def text(name, rect, paragraphs, size=17, bold=False, align="l", owner=None):
     """Point-based placement around the unchanged v2 textbox primitive."""
     sh = textbox(name, *(v * PT for v in rect),
                  [[(line, size * 100, bold)] for line in paragraphs], align)
@@ -226,7 +221,7 @@ def text(name, rect, paragraphs, size=14, bold=False, align="l", owner=None):
     ET.SubElement(body, a("noAutofit"))
     for prop in sh.iter(a("pPr")):
         spacing = ET.SubElement(prop, a("lnSpc"))
-        ET.SubElement(spacing, a("spcPts"), {"val": str(round(size * 115))})
+        ET.SubElement(spacing, a("spcPts"), {"val": str(round(size * 108))})
         ET.SubElement(ET.SubElement(prop, a("spcAft")), a("spcPts"), {"val": "0"})
     CONTENT.append((name, rect, owner))
     return sh
@@ -296,95 +291,93 @@ def junction(x, y):
 
 
 # Tier 1: the camera feeds two data products; terrain is an independent input.
-node("D1", (259, 10, 252, 180))
-thumb("Camera photographs", "rId5", (280, 20, 210, 121), "D1",
+node("D1", (14, 54, 224, 222))
+thumb("Camera photographs", "rId5", (36, 60, 180, 152), "D1",
       aspect=4318000 / 2476500)
-text("D1 sentence", (269, 148, 232, 34),
+text("D1 sentence", (21, 213, 210, 57),
      ["A fixed camera photographed the slope hourly from 2010 to 2021."], owner="D1")
 
-node("D2", (14, 230, 252, 262))
-thumb("Vegetation-map thumbnail", "rId4", (45, 240, 190, 190), "D2",
+node("D2", (250, 54, 224, 222))
+thumb("Vegetation-map thumbnail", "rId4", (286, 60, 152, 152), "D2",
       aspect=(6000 * .29) / (2000 * .85), crop=(59000, 2000, 12000, 13000))
-text("D2 sentence", (24, 437, 232, 48),
+text("D2 sentence", (257, 213, 210, 57),
      ["Vegetation maps describe 2012 and 2021 at 1 m cell resolution."], owner="D2")
 
-node("D3", (367, 230, 288, 262))
-thumb("Snowmelt thumbnail", "rId3", (416, 240, 190, 190), "D3",
+node("D3", (486, 54, 224, 222))
+thumb("Snowmelt thumbnail", "rId3", (522, 60, 152, 136), "D3",
       aspect=(1200 * .68) / (700 * .91), crop=(3000, 4000, 29000, 5000))
-text("D3 sentence", (377, 437, 268, 48),
+text("D3 sentence", (493, 195, 210, 75),
      ["Annual snowmelt dates for 2011–2021 give the mean snowmelt date of every cell."], owner="D3")
 
-node("D4", (720, 230, 224, 262))
-thumb("DEM-derived terrain thumbnail", "rId9", (737, 240, 190, 190), "D4",
+node("D4", (722, 54, 224, 222))
+thumb("DEM-derived terrain thumbnail", "rId9", (758, 60, 152, 152), "D4",
       aspect=1.0)
-text("D4 sentence", (730, 437, 204, 48),
+text("D4 sentence", (729, 213, 210, 57),
      ["Terrain variables (elevation, slope, TPI, TWI, aspect) are derived from a DEM."], owner="D4")
 
-route("D1 to D2", [(288, 190), (288, 210), (140, 210), (140, 230)])
-text("D1 to D2 label", (24, 170, 221, 35),
+route("D1 to D2", [(214, 54), (214, 49), (362, 49), (362, 54)])
+text("D1 to D2 label", (157, 8, 225, 39),
      ["alignment, classification,", "georectification"])
-route("D1 to D3", [(490, 190), (490, 210), (511, 210), (511, 230)])
-text("D1 to D3 label", (525, 192, 151, 20), ["snowmelt detection"])
+route("D1 to D3", [(70, 54), (70, 5), (598, 5), (598, 54)])
+text("D1 to D3 label", (410, 15, 175, 21), ["snowmelt detection"])
 EDGES += [("D1", "D2"), ("D1", "D3")]
 
 # Tier 2: two distinct responses share the same environmental predictors.
-node("MA", (14, 568, 295, 64), "EBF1EE")
-text("MA title", (24, 576, 275, 20), ["Model A (habitat suitability)"], 16, True, owner="MA")
-text("MA question", (24, 598, 275, 28),
+node("MA", (14, 352, 305, 68), "EBF1EE")
+text("MA title", (24, 357, 285, 22), ["Model A (habitat suitability)"], 18, True, owner="MA")
+text("MA question", (24, 379, 285, 38),
      ["Where do environmental conditions permit Sasa?"], owner="MA")
-node("MB", (432, 568, 512, 64), "EBF1EE")
-text("MB title", (442, 576, 492, 20), ["Model B (establishment)"], 16, True, owner="MB")
-text("MB question", (442, 598, 492, 28),
+node("MB", (432, 352, 514, 68), "EBF1EE")
+text("MB title", (442, 357, 494, 22), ["Model B (establishment)"], 18, True, owner="MB")
+text("MB question", (442, 379, 494, 38),
      ["Where did Sasa establish between 2012 and 2021, as a function of distance from the 2012 front and environment?"], owner="MB")
 
-route("D2 to MA", [(70, 492), (70, 568)])
-text("D2 to MA label", (81, 516, 140, 20), ["presence in 2021"])
-route("D2 to MB", [(202, 492), (202, 501), (468, 501), (468, 568)])
-text("D2 to MB label", (223, 505, 236, 47),
+route("D2 to MA", [(285, 276), (285, 284), (65, 284), (65, 352)])
+text("D2 to MA label", (78, 299, 120, 39), ["presence in 2021"])
+route("D2 to MB", [(440, 276), (440, 284), (468, 284), (468, 352)])
+text("D2 to MB label", (205, 286, 258, 57),
      ["2012→2021 establishment and", "distance from the 2012 front", "(distance surface)"])
 EDGES += [("D2", "MA"), ("D2", "MB")]
 
 # A shared green trunk visibly merges D3/D4 and forks into BOTH models.
-route("D3 environmental input", [(590, 492), (590, 506), (750, 506)], ENV, False)
-route("D4 environmental input", [(835, 492), (835, 506), (750, 506)], ENV, False)
-route("Environmental predictor trunk", [(750, 506), (750, 556)], ENV, False)
-text("Shared environmental-predictor label", (500, 512, 236, 37),
+route("D3 environmental input", [(630, 276), (630, 284), (820, 284)], ENV, False)
+route("D4 environmental input", [(850, 276), (850, 284), (820, 284)], ENV, False)
+route("Environmental predictor trunk", [(820, 284), (820, 345)], ENV, False)
+text("Shared environmental-predictor label", (500, 294, 300, 39),
      ["environmental predictors", "(mean snowmelt date + terrain)"])
 # A small gap marks the non-junction where the black D2->MB arrow crosses.
-route("Environment to MA bus right", [(750, 556), (474, 556)], ENV, False)
-route("Environment to MA bus left", [(462, 556), (276, 556), (276, 568)], ENV)
-route("Environment to MB", [(750, 556), (900, 556), (900, 568)], ENV)
-junction(750, 506)
-junction(750, 556)
+route("Environment to MA bus right", [(820, 345), (474, 345)], ENV, False)
+route("Environment to MA bus left", [(462, 345), (295, 345), (295, 352)], ENV)
+route("Environment to MB", [(820, 345), (900, 345), (900, 352)], ENV)
+junction(820, 284)
+junction(820, 345)
 EDGES += [(source, target) for source in ("D3", "D4") for target in ("MA", "MB")]
 
 # Tier 3: suitability identifies seed exposure; Model B drives front advance.
-node("S", (217, 654, 200, 52))
-text("S title", (225, 660, 184, 18), ["Snowmelt scenarios"], bold=True, owner="S")
-text("S sentence", (225, 681, 184, 19), ["Use s = 0 or −0.71 days/year."], owner="S")
+node("S", (130, 473, 244, 45))
+text("S title", (140, 476, 224, 20), ["Snowmelt scenarios"], 18, True, owner="S")
+text("S sentence", (140, 497, 224, 20), ["Use s = 0 or −0.71 days/year."], owner="S")
 
-node("CA", (525, 661, 419, 75), "F4F1EB")
-text("CA sentence", (535, 668, 399, 61),
+node("CA", (505, 444, 441, 86), "F4F1EB")
+text("CA sentence", (515, 450, 421, 74),
      ["A stochastic cellular automaton applies Model B annually from 2022 to 2030. It recomputes the distance surface as simulated fronts advance. Snowmelt scenarios shift the mean snowmelt date by s days/year."], owner="CA")
-route("MB to CA", [(735, 632), (735, 661)])
-text("MB to CA label", (751, 635, 193, 21), ["establishment probability"])
-route("S to CA", [(417, 688), (525, 688)])
-text("S to CA label", (425, 649, 92, 34), ["snowmelt-date", "shift"], align="ctr")
+route("MB to CA", [(710, 420), (710, 444)])
+text("MB to CA label", (727, 422, 219, 21), ["establishment probability"])
+route("S to CA", [(374, 510), (505, 510)])
+text("S to CA label", (380, 467, 119, 40), ["snowmelt-date", "shift"], align="ctr")
 EDGES += [("MB", "CA"), ("S", "CA")]
 
-node("R2", (14, 760, 445, 240), "EBF1EE")
-thumb("Suitability thumbnail", "rId7", (141.5, 770, 190, 177), "R2", aspect=AR_THUMB)
-text("R2 sentence", (24, 950, 425, 42),
+node("R2", (14, 554, 445, 71), "EBF1EE")
+text("R2 sentence", (24, 560, 425, 59),
      ["Suitable but unoccupied area identifies the seed-dispersal stratum: communities are exposed if seeds arrive."], owner="R2")
-route("MA to R2", [(50, 632), (50, 760)])
-text("MA to R2 label", (63, 669, 143, 38), ["habitat suitability", "surface"])
+route("MA to R2", [(50, 420), (50, 554)])
+text("MA to R2 label", (63, 429, 140, 38), ["habitat suitability", "surface"])
 
-node("R1", (525, 760, 419, 240), "F4F1EB")
-thumb("Projection thumbnail", "rId6", (639.5, 770, 190, 177), "R1", aspect=AR_THUMB)
-text("R1 sentence", (535, 950, 399, 42),
+node("R1", (505, 554, 441, 71), "F4F1EB")
+text("R1 sentence", (515, 560, 421, 59),
      ["Establishment probability by 2030 identifies the rhizome stratum: communities at risk from front advance."], owner="R1")
-route("CA to R1", [(735, 736), (735, 760)])
-text("CA to R1 label", (751, 737, 193, 20), ["P(established by 2030)"])
+route("CA to R1", [(710, 530), (710, 554)])
+text("CA to R1 label", (727, 531, 219, 21), ["P(established by 2030)"])
 EDGES += [("MA", "R2"), ("CA", "R1")]
 
 
@@ -396,6 +389,8 @@ def overlaps(r1, r2):
 
 def verify_layout():
     """Acceptance self-checks; rendering is still needed to check text fit."""
+    printed_height = SLIDE_H / 914400 * 25.4 * SCALE
+    assert 110 <= printed_height <= 125, printed_height
     for key, (x, y, w, h) in NODES.items():
         assert 0 <= x < x + w <= SLIDE_W / PT and 0 <= y < y + h <= SLIDE_H / PT, key
     for i, (key, rect) in enumerate(NODES.items()):
@@ -425,18 +420,21 @@ def verify_layout():
                 connected.update((source, target))
     assert connected == set(NODES), connected
     sizes = {int(el.get("sz")) for el in slide.iter(a("rPr"))}
-    assert min(sizes) >= 1400, sizes
+    assert min(sizes) / 100 * SCALE >= 9.0, sizes
     assert not list(slide.iter(a("normAutofit")))
-    for pic in slide.iter(p("pic")):
+    pics = list(slide.iter(p("pic")))
+    assert len(pics) == 4, len(pics)
+    for pic in pics:
         name = pic.find(p("nvPicPr")).find(p("cNvPr")).get("name")
         ext = pic.find(p("spPr")).find(a("xfrm")).find(a("ext"))
         w, h = (int(ext.get(dim)) / 914400 * 25.4 * SCALE for dim in ("cx", "cy"))
-        assert w >= 35, (name, w)
+        assert 30 <= w <= (40 if name == "Camera photographs" else 35), (name, w)
         print(f"{name}: printed {w:.1f} x {h:.1f} mm")
     all_text = " ".join(el.text or "" for el in slide.iter(a("t")))
     for forbidden in ("colonized", "hugs", "concentrated", "−2.24"):
         assert forbidden not in all_text, forbidden
-    print("Layout: 10 nodes, one connected graph, 12 directed interfaces; all labels >=14 pt.")
+    print(f"Layout: 190 x {printed_height:.1f} mm; 10 nodes, one connected graph, "
+          f"12 directed interfaces; all labels >= {min(sizes) / 100 * SCALE:.1f} pt printed.")
     print("No box/content overlaps or connector-label collisions in layout geometry.")
 
 
@@ -468,8 +466,10 @@ def terrain_thumbnail(work):
     pc = next(el for el in tree if el.find(".//" + p("cNvPr")) is not None and
               el.find(".//" + p("cNvPr")).get("name") == "DEM-derived terrain thumbnail")
     aspect = png_aspect(png)
-    w, h = min(190, 190 * aspect), min(190, 190 / aspect)
-    rect = (737 + (190 - w) / 2, 240 + (190 - h) / 2, w, h)
+    left, top, right, bottom = (v / PT for v in bbox(pc))
+    max_w, max_h = right - left, bottom - top
+    w, h = min(max_w, max_h * aspect), min(max_h, max_w / aspect)
+    rect = (left + (max_w - w) / 2, top + (max_h - h) / 2, w, h)
     set_xfrm(pc, *(v * PT for v in rect))
     for i, (name, _, owner) in enumerate(CONTENT):
         if name == "DEM-derived terrain thumbnail":
@@ -492,15 +492,13 @@ def build_and_export():
         presentation = ET.fromstring(zin.read("ppt/presentation.xml"))
         presentation.find(p("sldSz")).set("cy", str(SLIDE_H))
         rels = zin.read("ppt/slides/_rels/slide1.xml.rels").decode("utf-8")
-        extra = {"ppt/media/image5.png": Path(ASSETS, "thumb_suitability.png").read_bytes(),
-                 "ppt/media/image7.png": terrain}
-        for rid, media in (("rId7", "image5.png"), ("rId9", "image7.png")):
+        extra = {"ppt/media/image7.png": terrain}
+        for rid, media in (("rId9", "image7.png"),):
             rels = rels.replace("</Relationships>",
                 f'<Relationship Id="{rid}" Type="{R}/image" Target="../media/{media}"/></Relationships>')
         replace = {"ppt/presentation.xml": ET.tostring(presentation, encoding="UTF-8", xml_declaration=True),
                    "ppt/slides/slide1.xml": ET.tostring(slide, encoding="UTF-8", xml_declaration=True),
-                   "ppt/slides/_rels/slide1.xml.rels": rels.encode("utf-8"),
-                   "ppt/media/image4.png": Path(ASSETS, "thumb_pcol2030.png").read_bytes()}
+                   "ppt/slides/_rels/slide1.xml.rels": rels.encode("utf-8")}
         candidate = work / Path(DST).name
         with zipfile.ZipFile(candidate, "w", zipfile.ZIP_DEFLATED) as zout:
             for item in zin.infolist():

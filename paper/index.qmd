@@ -42,7 +42,7 @@ keywords:
   - alpine vegetation
   - rhizome expansion
   - dispersal limitation
-  - habitat suitability modelling
+  - habitat suitability modeling
   - snowmelt timing
   - time-lapse camera
 date: last-modified
@@ -65,7 +65,7 @@ format:
 
 # Abstract {.unnumbered}
 
-In mountains with deep seasonal snowpack, snowmelt timing structures alpine vegetation, and snowbed plant communities depend on long-lasting snow cover. Under climate change, earlier snowmelt has been associated with the expansion of dwarf bamboo (*Sasa* spp.), which forms dense evergreen stands that exclude subordinate species and threatens the diversity of Japanese alpine snowbed vegetation. Because vegetation and snowmelt vary over distances of metres, observing this expansion requires approximately 1 m resolution, which plots and satellites cannot provide across whole slopes. We asked two questions: is the expansion of *Sasa* limited mainly by environmental conditions, in particular snowmelt timing, or by its ability to reach suitable sites, and which plant communities does its near-term expansion threaten? Using 10 years of ground-based time-lapse imagery of an alpine slope on Mt. Tateyama, Japan, we mapped *Sasa* at 1 m resolution in 2012 and 2021, derived the mean snowmelt date of every cell, fitted a habitat suitability model and an establishment model of the observed 2012–2021 changes, and projected establishment to 2030 with a simulation advancing patch fronts annually. *Sasa* area changed by +19% over 9 years (gross expansion 48%, gross loss 29%, loss concentrated at ambiguous dwarf pine boundaries). Establishment probability was most strongly associated with distance from existing patches (approximately 10% within 5 m, below 1% beyond 10 m), together with a favourable snowmelt window (mean snowmelt date approximately day of year 150–185). Environmentally suitable area was approximately 16 times the occupied area, suggesting that dispersal, rather than habitat availability, limits the current distribution. Projected establishment by 2030 was approximately 4,900–5,700 m², nine tenths of it in two snowbed communities adjoining existing patches. Near-term expansion is therefore spatially predictable: removal or containment at patch fronts bordering snowbeds, complemented by surveillance of suitable areas for seed establishment, offers a concrete conservation strategy.
+In mountains with deep seasonal snowpacks, snowmelt timing shapes alpine vegetation, and snowbed plant communities depend on long-lasting snow cover. Climate change-induced earlier snowmelt has been associated with the expansion of dwarf bamboo (*Sasa* spp.), which forms dense evergreen stands that exclude subordinate species and threatens the diversity of Japanese alpine snowbed vegetation. Because vegetation and snowmelt vary over distances of meters, monitoring this expansion requires approximately 1 m resolution, which neither plots nor satellites provide across whole slopes. We investigated whether *Sasa* expansion is constrained mainly by environmental conditions, particularly snowmelt timing, or by its ability to reach suitable sites, and which plant communities are threatened by its near-term expansion. Using 10-year ground-based time-lapse imagery of an alpine slope on Mt. Tateyama, Japan, we mapped *Sasa* at 1 m resolution in 2012 and 2021, derived mean snowmelt dates for each cell, fitted a habitat suitability model and an establishment model of the observed 2012–2021 changes, and projected establishment to 2030 using simulations advancing patch fronts annually. *Sasa* area increased by a net 19% over nine years, with gross expansion of 48% and gross loss of 29%, the loss concentrated at ambiguous dwarf pine boundaries. Establishment probability was most strongly associated with proximity to existing patches (approximately 10% within 5 m and below 1% beyond 10 m), together with a favorable snowmelt window (mean snowmelt date approximately day of year 150–185). Environmentally suitable area was approximately 16 times the occupied area, suggesting that dispersal rather than habitat availability limits the current distribution. Projected establishment by 2030 was approximately 4,900–5,700 m², with approximately 90% occurring in two snowbed communities adjoining existing patches. Near-term expansion is therefore spatially predictable: removal or containment at patch fronts bordering snowbeds, complemented by surveillance of suitable areas for seed establishment, offers a concrete conservation strategy.
 
 {{< include intro.qmd >}}
 {{< include matmet.qmd >}}
@@ -75,7 +75,7 @@ In mountains with deep seasonal snowpack, snowmelt timing structures alpine vege
 
 # Acknowledgements {.unnumbered}
 
-This research was supported by JSPS KAKENHI Grant Number JP23H00729.
+This research was supported by JSPS KAKENHI Grant Number JP23H00729. We would like to thank Editage (<https://www.editage.jp>) for English language editing.
 
 # Conflict of Interest Statement {.unnumbered}
 
